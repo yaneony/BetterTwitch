@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      1.2.0
+// @version      1.2.1
 // @description  Keep deleted messages visible, widen chat, show user avatars, auto-claim points, prefer source quality, @mention highlights/sounds, mod/VIP highlights, and chat filters. Configurable from a panel in the chat footer.
 // @author       YaneonY
 // @updateURL    https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js
@@ -394,6 +394,16 @@
     return Array.from(parts).map(p => p.textContent).join('').replace(/\s+/g, ' ').trim();
   }
 
+  // Full message text for copying: includes links and emote names, which lineText() omits.
+  function lineCopyText(el) {
+    const body = el.querySelector('[data-a-target="chat-line-message-body"]');
+    if (!body) return lineText(el);
+    const clone = body.cloneNode(true);
+    clone.querySelectorAll('.bt-copy, .bt-trash').forEach(n => n.remove());
+    clone.querySelectorAll('img').forEach(img => img.replaceWith(document.createTextNode(img.alt || '')));
+    return clone.textContent.replace(/\s+/g, ' ').trim();
+  }
+
   function mark(el) {
     if (el.hasAttribute('data-bt')) return;
     el.classList.add('bt-deleted'); el.setAttribute('data-bt', '1');
@@ -532,7 +542,7 @@
     const body = el.querySelector('[data-a-target="chat-line-message-body"]') || el;
     const btn = document.createElement('button');
     btn.className = 'bt-copy'; btn.type = 'button'; btn.title = 'Copy'; btn.setAttribute('aria-label', 'Copy message');
-    btn.addEventListener('click', (e) => { e.stopPropagation(); try { navigator.clipboard.writeText(lineText(el)); } catch (_) {} });
+    btn.addEventListener('click', (e) => { e.stopPropagation(); try { navigator.clipboard.writeText(lineCopyText(el)); } catch (_) {} });
     body.appendChild(btn);
   }
 
