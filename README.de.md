@@ -31,6 +31,7 @@ Ein schlankes Userscript, das den Twitch-Chat und den Player angenehmer macht - 
 
 ### Kanalpunkte
 - **Bonus-Truhe automatisch einlösen**, sobald sie erscheint.
+- **Drops automatisch einlösen**, sobald ein Einlösen-Button verfügbar ist.
 
 ### Benachrichtigungen
 - **Ton bei @Erwähnung** und **Ton bei Antworten an dich.**
@@ -99,6 +100,7 @@ browser://extensions/?id=mfdhdgbonjidekjkjmjaneanmdmpmidf
 | | Bits-Bestenliste ausblenden | Bits-Bestenlisten-Kopf ausblenden |
 | Player | Quellqualität bevorzugen | Quell-/Chunked-Videoqualität erzwingen |
 | Punkte | Bonus-Truhe automatisch einlösen | Kanalpunkt-Bonus-Truhe automatisch anklicken |
+| | Drops automatisch einlösen | Drops-Einlösen-Button automatisch anklicken |
 | Benachrichtigungen | Ton bei @Erwähnung | Ton abspielen, wenn dein Name erwähnt wird |
 | | Ton bei Antworten an dich | Ton abspielen, wenn dir jemand antwortet |
 | | Ton / Lautstärke | Ton und Lautstärke wählen |

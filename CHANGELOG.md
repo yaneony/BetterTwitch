@@ -2,6 +2,19 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [1.3.0] - 2026-06-20
+
+### Added
+- **Auto-claim Drops** alongside the channel-points bonus chest (toggleable under Points).
+- Import/export now use an in-panel textarea dialog instead of the browser's `prompt`/`alert`, so long settings JSON is no longer truncated.
+
+### Changed
+- Avatar lookups are batched into a single GraphQL request per ~80 ms window instead of one request per user.
+- Moderator/VIP badge detection now falls back to `alt`/`aria-label` text so it degrades gracefully if Twitch rotates the badge IDs.
+
+### Fixed
+- **Hide Bits leaderboard** now reliably hides the leaderboard / sub-goal carousel at the top of chat. Twitch renders it with hashed class names and localized labels and cycles between slides, so it's now located by its `.tw-transition-group` wrapper (present on every slide) and hidden the moment it mounts via a `.chat-room__content` observer. This also hides the sibling goal panels in the same carousel.
+
 ## [1.2.1] - 2026-06-20
 
 ### Added

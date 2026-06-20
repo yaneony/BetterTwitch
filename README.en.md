@@ -31,6 +31,7 @@ A lightweight userscript that makes Twitch chat and the player nicer to use - ke
 
 ### Channel points
 - **Auto-claim the bonus chest** when it appears.
+- **Auto-claim Drops** when a claim button is available.
 
 ### Notifications
 - **Sound on @mention** and **sound on replies to you**.
@@ -99,6 +100,7 @@ browser://extensions/?id=mfdhdgbonjidekjkjmjaneanmdmpmidf
 | | Hide Bits leaderboard | Hide the Bits leaderboard header |
 | Player | Prefer source quality | Force source/chunked video quality |
 | Points | Auto-claim bonus chest | Click the channel-points bonus chest automatically |
+| | Auto-claim Drops | Click the Drops claim button automatically |
 | Notifications | Sound on @mention | Play a sound when your name is mentioned |
 | | Sound on replies to you | Play a sound when someone replies to you |
 | | Sound / Volume | Choose the ping sound and volume |

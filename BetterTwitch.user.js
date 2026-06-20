@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      1.2.1
-// @description  Keep deleted messages visible, widen chat, show user avatars, auto-claim points, prefer source quality, @mention highlights/sounds, mod/VIP highlights, and chat filters. Configurable from a panel in the chat footer.
+// @version      1.3.0
+// @description  Keep deleted messages visible, widen chat, show user avatars, auto-claim points & Drops, prefer source quality, @mention highlights/sounds, mod/VIP highlights, and chat filters. Configurable from a panel in the chat footer.
 // @author       YaneonY
 // @updateURL    https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js
 // @downloadURL  https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js
@@ -36,6 +36,7 @@
       autoQuality: 'Prefer source quality',
       secPoints: 'Points',
       autoClaimPoints: 'Auto-claim bonus chest',
+      autoClaimDrops: 'Auto-claim Drops',
       secNotifications: 'Notifications',
       mentionSound: 'Sound on @mention',
       mentionReplyPing: 'Sound on replies to you',
@@ -58,11 +59,11 @@
       export: 'Export', import: 'Import', reset: 'Reset',
       savedNote: 'Saved automatically.',
       settingsBtnTitle: 'BetterTwitch settings',
-      alertCopied: 'Settings copied to clipboard.',
-      promptCopy: 'Copy your settings:',
-      promptPaste: 'Paste settings JSON:',
+      alertCopied: 'Copied to clipboard.',
       alertInvalidJson: 'Invalid JSON.',
       confirmReset: 'Reset all BetterTwitch settings to defaults?',
+      exportTitle: 'Export settings', importTitle: 'Import settings',
+      ioCopy: 'Copy', ioApply: 'Apply', ioClose: 'Close',
     },
     de: {
       secLanguage: 'Sprache', langAuto: 'Automatisch erkennen',
@@ -81,6 +82,7 @@
       autoQuality: 'Quellqualität bevorzugen',
       secPoints: 'Punkte',
       autoClaimPoints: 'Bonus-Truhe automatisch einlösen',
+      autoClaimDrops: 'Drops automatisch einlösen',
       secNotifications: 'Benachrichtigungen',
       mentionSound: 'Ton bei @Erwähnung',
       mentionReplyPing: 'Ton bei Antworten an dich',
@@ -103,11 +105,11 @@
       export: 'Exportieren', import: 'Importieren', reset: 'Zurücksetzen',
       savedNote: 'Automatisch gespeichert.',
       settingsBtnTitle: 'BetterTwitch-Einstellungen',
-      alertCopied: 'Einstellungen in die Zwischenablage kopiert.',
-      promptCopy: 'Einstellungen kopieren:',
-      promptPaste: 'Einstellungen-JSON einfügen:',
+      alertCopied: 'In die Zwischenablage kopiert.',
       alertInvalidJson: 'Ungültiges JSON.',
       confirmReset: 'Alle BetterTwitch-Einstellungen auf Standard zurücksetzen?',
+      exportTitle: 'Einstellungen exportieren', importTitle: 'Einstellungen importieren',
+      ioCopy: 'Kopieren', ioApply: 'Übernehmen', ioClose: 'Schließen',
     },
     ru: {
       secLanguage: 'Язык', langAuto: 'Автоопределение',
@@ -126,6 +128,7 @@
       autoQuality: 'Предпочитать исходное качество',
       secPoints: 'Баллы',
       autoClaimPoints: 'Авто-сбор бонусного сундука',
+      autoClaimDrops: 'Авто-сбор Drops',
       secNotifications: 'Уведомления',
       mentionSound: 'Звук при @упоминании',
       mentionReplyPing: 'Звук при ответах вам',
@@ -148,11 +151,11 @@
       export: 'Экспорт', import: 'Импорт', reset: 'Сброс',
       savedNote: 'Сохраняется автоматически.',
       settingsBtnTitle: 'Настройки BetterTwitch',
-      alertCopied: 'Настройки скопированы в буфер обмена.',
-      promptCopy: 'Скопируйте настройки:',
-      promptPaste: 'Вставьте JSON настроек:',
+      alertCopied: 'Скопировано в буфер обмена.',
       alertInvalidJson: 'Неверный JSON.',
       confirmReset: 'Сбросить все настройки BetterTwitch к значениям по умолчанию?',
+      exportTitle: 'Экспорт настроек', importTitle: 'Импорт настроек',
+      ioCopy: 'Копировать', ioApply: 'Применить', ioClose: 'Закрыть',
     },
   };
 
@@ -180,7 +183,7 @@
     markSingleDeletes: true, markTimeouts: true, markFullClear: true,
     chatWidthEnabled: true, chatWidthPx: 400,
     hideBadges: false, showAvatars: false, msgSeparators: false, hideLeaderboard: false,
-    autoClaimPoints: true, autoQuality: false,
+    autoClaimPoints: true, autoClaimDrops: true, autoQuality: false,
     mentionSound: true, mentionReplyPing: true,
     pingSound: 'chime', pingVolume: 0.2,
     mentionHighlight: true, highlightMods: false, highlightVips: false,
@@ -448,9 +451,19 @@
     return isMention(el.textContent.toLowerCase(), me);
   }
 
-  function lineHasMod(el) { return !!(el.querySelector('img.chat-badge[src*="' + MOD_BADGE + '"]') || el.querySelector('img.chat-badge[alt="Moderator" i]')); }
+  // Match a badge by its stable UUID (locale-independent) first, then fall back to alt /
+  // aria-label text so a UUID rotation degrades gracefully instead of silently breaking.
+  function hasBadge(el, uuid, label) {
+    return !!(
+      el.querySelector('.chat-badge[src*="' + uuid + '"]') ||
+      el.querySelector('.chat-badge[alt="' + label + '" i]') ||
+      el.querySelector('.chat-badge[aria-label*="' + label + '" i]')
+    );
+  }
 
-  function lineHasVip(el) { return !!(el.querySelector('img.chat-badge[src*="' + VIP_BADGE + '"]') || el.querySelector('img.chat-badge[alt="VIP" i]')); }
+  function lineHasMod(el) { return hasBadge(el, MOD_BADGE, 'Moderator'); }
+
+  function lineHasVip(el) { return hasBadge(el, VIP_BADGE, 'VIP'); }
 
   let botCache = null;
 
@@ -470,23 +483,49 @@
   }
 
   const LOGIN_RE = /^[a-z0-9_]{1,30}$/;
+  const AVATAR_BATCH = 50;
   const avatarCache = new Map();
-  const avatarInflight = new Map();
+  const avatarInflight = new Map(); // login -> { promise, resolve }
+  let avatarQueue = [];
+  let avatarFlush = null;
 
+  // Requests for distinct logins are collected over a short window and sent as a single
+  // aliased GraphQL query, instead of one POST per avatar. Logins are pre-validated by
+  // LOGIN_RE (only [a-z0-9_]) before reaching here, so inlining them is injection-safe.
   function fetchAvatar(login) {
     if (avatarCache.has(login)) return Promise.resolve(avatarCache.get(login));
-    if (avatarInflight.has(login)) return avatarInflight.get(login);
-    const p = fetch('https://gql.twitch.tv/gql', {
+    const existing = avatarInflight.get(login);
+    if (existing) return existing.promise;
+    let resolve;
+    const promise = new Promise((r) => { resolve = r; });
+    avatarInflight.set(login, { promise, resolve });
+    avatarQueue.push(login);
+    if (!avatarFlush) avatarFlush = setTimeout(flushAvatars, 80);
+    return promise;
+  }
+
+  function settleAvatar(login, url) {
+    if (avatarCache.size >= 500) avatarCache.delete(avatarCache.keys().next().value);
+    avatarCache.set(login, url);
+    const inf = avatarInflight.get(login);
+    avatarInflight.delete(login);
+    if (inf) inf.resolve(url);
+  }
+
+  function flushAvatars() {
+    avatarFlush = null;
+    const batch = avatarQueue.splice(0, AVATAR_BATCH);
+    if (!batch.length) return;
+    const query = 'query{' + batch.map((login, i) => 'u' + i + ':user(login:"' + login + '"){profileImageURL(width:70)}').join(' ') + '}';
+    fetch('https://gql.twitch.tv/gql', {
       method: 'POST',
       headers: { 'Client-ID': 'kimne78kx3ncx6brgo4mv6wki5h1ko', 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ query: 'query{user(login:"' + login + '"){profileImageURL(width:70)}}' }),
+      body: JSON.stringify({ query }),
     }).then((r) => r.json()).then((d) => {
-      const url = (d && d.data && d.data.user && d.data.user.profileImageURL) || null;
-      if (avatarCache.size >= 500) avatarCache.delete(avatarCache.keys().next().value);
-      avatarCache.set(login, url); avatarInflight.delete(login); return url;
-    }).catch(() => { avatarInflight.delete(login); return null; });
-    avatarInflight.set(login, p);
-    return p;
+      const data = (d && d.data) || {};
+      batch.forEach((login, i) => { const u = data['u' + i]; settleAvatar(login, (u && u.profileImageURL) || null); });
+    }).catch(() => { batch.forEach((login) => settleAvatar(login, null)); });
+    if (avatarQueue.length && !avatarFlush) avatarFlush = setTimeout(flushAvatars, 80);
   }
 
   function addAvatar(el) {
@@ -614,8 +653,10 @@
       .chat-line__message.bt-hidden { display: none !important; }
 
       html.bt-hide-badges .chat-line__message img.chat-badge { display: none !important; }
-      html.bt-hide-leaderboard .tw-transition-group:has([class*="LeaderboardHeader"]),
-      html.bt-hide-leaderboard .tw-transition-group:has([class*="leaderboard-header"]) { display: none !important; }
+      /* Twitch's leaderboard / goal carousel at the top of chat has hashed class names and
+         localized labels, so it can't be matched by a static selector. applyLeaderboard()
+         finds it by its role="progressbar" and tags the wrapping block with .bt-lb-hidden. */
+      html.bt-hide-leaderboard .bt-lb-hidden { display: none !important; }
       html.bt-separators .chat-line__message { border-bottom: 1px solid rgba(255,255,255,.08) !important; }
       .bt-avatar { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-right: 5px; display: inline-block; background: #2f2f35; }
 
@@ -652,6 +693,20 @@
       #bt-panel button.bt-btn:hover { background: #34343b; }
       #bt-panel .bt-foot { display: flex; gap: 6px; margin-top: 12px; }
       #bt-panel .bt-note { margin-top: 10px; font-size: 11px; color: #7d7d85; }
+
+      #bt-modal { position: fixed; inset: 0; z-index: 100000; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.6); }
+      #bt-modal.bt-open { display: flex; }
+      #bt-modal .bt-modal-box { width: 420px; max-width: calc(100vw - 32px); background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: 6px; box-shadow: 0 8px 28px rgba(0,0,0,.55); padding: 16px; font: 13px/1.45 Inter, Roobert, "Helvetica Neue", Arial, sans-serif; box-sizing: border-box; }
+      #bt-modal .bt-modal-head { display: flex; align-items: center; margin-bottom: 10px; }
+      #bt-modal .bt-modal-title { font-size: 15px; font-weight: 700; color: var(--bt-accent,#e31337); }
+      #bt-modal .bt-modal-x { margin-left: auto; background: none; border: none; color: #adadb8; font-size: 18px; line-height: 1; cursor: pointer; padding: 0 2px; }
+      #bt-modal .bt-modal-x:hover { color: #efeff1; }
+      #bt-modal textarea { width: 100%; height: 160px; resize: vertical; box-sizing: border-box; background: #0e0e10; color: #efeff1; border: 1px solid #34343b; border-radius: 4px; padding: 8px; font: 12px/1.4 ui-monospace, Menlo, Consolas, monospace; }
+      #bt-modal .bt-modal-foot { display: flex; gap: 6px; margin-top: 12px; }
+      #bt-modal .bt-modal-foot .bt-modal-close { margin-left: auto; }
+      #bt-modal button.bt-btn { background: #26262c; color: #efeff1; border: 1px solid #3a3a42; border-radius: 4px; padding: 4px 12px; cursor: pointer; font-size: 12px; }
+      #bt-modal button.bt-btn:hover { background: #34343b; }
+      #bt-modal .bt-modal-note { margin-top: 8px; font-size: 11px; min-height: 14px; color: #57bb6c; }
     `;
     (document.head || document.documentElement).appendChild(style);
   }
@@ -665,6 +720,42 @@
     r.classList.toggle('bt-hide-badges', !!CONFIG.hideBadges);
     r.classList.toggle('bt-hide-leaderboard', !!CONFIG.hideLeaderboard);
     r.classList.toggle('bt-separators', !!CONFIG.msgSeparators);
+    applyLeaderboard();
+  }
+
+  // The leaderboard / sub-goal carousel above the chat messages uses hashed class names and
+  // localized labels, so it can't be matched by a static selector. It cycles between slides
+  // (a goal with a progress bar, a ranked leaderboard with none), but every slide sits inside
+  // a .tw-transition-group, so that — plus any stray progress bar — is the handle. For each
+  // match outside the chat alert queue and message list, tag the block directly under
+  // .chat-room__content, unless that block also holds the messages or input (never hide chat).
+  function applyLeaderboard() {
+    document.querySelectorAll('.bt-lb-hidden').forEach((el) => el.classList.remove('bt-lb-hidden'));
+    if (!CONFIG.hideLeaderboard) return;
+    document.querySelectorAll('.chat-room__content .tw-transition-group, .chat-room__content [role="progressbar"]').forEach((el) => {
+      if (el.closest('[data-a-target="chat-alert-queue"]') || el.closest('.chat-scrollable-area__message-container')) return;
+      const content = el.closest('.chat-room__content');
+      if (!content) return;
+      let block = el;
+      while (block.parentElement && block.parentElement !== content) block = block.parentElement;
+      if (block.querySelector('.chat-scrollable-area__message-container, [data-test-selector="chat-scrollable-area__message-container"], .chat-input')) return;
+      block.classList.add('bt-lb-hidden');
+    });
+  }
+
+  // The carousel mounts as a direct child of .chat-room__content after chat loads, so a
+  // childList (non-subtree) observer hides it the moment it appears, without firing on every
+  // new chat message. The 2s tick still covers slide changes within an already-tagged block.
+  let hlObserver = null, observedRoom = null;
+
+  function ensureHighlightObserver() {
+    const room = document.querySelector('.chat-room__content');
+    if (!room || room === observedRoom) return;
+    if (hlObserver) hlObserver.disconnect();
+    hlObserver = new MutationObserver(() => applyLeaderboard());
+    hlObserver.observe(room, { childList: true });
+    observedRoom = room;
+    applyLeaderboard();
   }
 
   function applyAutoQuality() {
@@ -673,12 +764,27 @@
   }
 
   function claimPoints() {
-    if (!CONFIG.autoClaimPoints) return;
     const icon = document.querySelector('.claimable-bonus__icon');
     if (icon) { const b = icon.closest('button'); if (b) b.click(); }
   }
 
-  function scheduleClaim() { setTimeout(() => { claimPoints(); scheduleClaim(); }, 8000 + Math.random() * 5000); }
+  // Twitch's Drops markup has changed names over time, so try the known claim-button
+  // selectors first and fall back to a "Claim"-labelled button inside any Drops container.
+  function claimDrops() {
+    let btn = document.querySelector('button[data-test-selector="DropClaimButton"], button[data-a-target="DropClaimButton"]');
+    if (!btn) {
+      const cands = document.querySelectorAll('[data-test-selector*="Drop"] button, [class*="drops"] button, [class*="Drops"] button');
+      for (const c of cands) if (/^\s*claim/i.test(c.textContent || '')) { btn = c; break; }
+    }
+    if (btn) btn.click();
+  }
+
+  function runClaims() {
+    if (CONFIG.autoClaimPoints) claimPoints();
+    if (CONFIG.autoClaimDrops) claimDrops();
+  }
+
+  function scheduleClaim() { setTimeout(() => { runClaims(); scheduleClaim(); }, 8000 + Math.random() * 5000); }
 
   scheduleClaim();
 
@@ -799,6 +905,7 @@
 
       <div class="bt-sub">${t('secPoints')}</div>
       <label class="bt-row"><input type="checkbox" data-k="autoClaimPoints"> ${t('autoClaimPoints')}</label>
+      <label class="bt-row"><input type="checkbox" data-k="autoClaimDrops"> ${t('autoClaimDrops')}</label>
 
       <div class="bt-sub">${t('secNotifications')}</div>
       <label class="bt-row"><input type="checkbox" data-k="mentionSound"> ${t('mentionSound')}</label>
@@ -849,12 +956,23 @@
 
     panel.querySelector('#bt-test-ping').addEventListener('click', () => playPing(true));
     panel.querySelector('#bt-export').addEventListener('click', () => {
-      const json = JSON.stringify(CONFIG);
-      try { navigator.clipboard.writeText(json); alert(t('alertCopied')); } catch (e) { prompt(t('promptCopy'), json); }
+      openModal({
+        title: t('exportTitle'), value: JSON.stringify(CONFIG, null, 2), readOnly: true, primary: t('ioCopy'),
+        onPrimary: (ta, note) => {
+          try { navigator.clipboard.writeText(ta.value); } catch (e) {}
+          ta.select(); note.textContent = t('alertCopied');
+        },
+      });
     });
     panel.querySelector('#bt-import').addEventListener('click', () => {
-      const s = prompt(t('promptPaste')); if (!s) return;
-      try { JSON.parse(s); localStorage.setItem(STORAGE_KEY, s); location.reload(); } catch (e) { alert(t('alertInvalidJson')); }
+      openModal({
+        title: t('importTitle'), value: '', readOnly: false, primary: t('ioApply'),
+        onPrimary: (ta, note) => {
+          const s = ta.value.trim(); if (!s) return;
+          try { JSON.parse(s); } catch (e) { note.style.color = '#ff6b6b'; note.textContent = t('alertInvalidJson'); return; }
+          localStorage.setItem(STORAGE_KEY, s); location.reload();
+        },
+      });
     });
     panel.querySelector('#bt-reset').addEventListener('click', () => {
       if (confirm(t('confirmReset'))) { try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} location.reload(); }
@@ -868,6 +986,50 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && panel.classList.contains('bt-open')) panel.classList.remove('bt-open');
     });
+  }
+
+  let modal = null;
+
+  function ensureModal() {
+    if (modal) return modal;
+    modal = document.createElement('div');
+    modal.id = 'bt-modal';
+    modal.innerHTML = `
+      <div class="bt-modal-box">
+        <div class="bt-modal-head"><span class="bt-modal-title"></span><button class="bt-modal-x" type="button" aria-label="Close">✕</button></div>
+        <textarea spellcheck="false"></textarea>
+        <div class="bt-modal-note"></div>
+        <div class="bt-modal-foot">
+          <button class="bt-btn bt-modal-primary" type="button"></button>
+          <button class="bt-btn bt-modal-close" type="button"></button>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+    const close = () => modal.classList.remove('bt-open');
+    modal.querySelector('.bt-modal-x').addEventListener('click', close);
+    modal.querySelector('.bt-modal-close').addEventListener('click', close);
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('bt-open')) close(); });
+    return modal;
+  }
+
+  function openModal(opts) {
+    const m = ensureModal();
+    const ta = m.querySelector('textarea');
+    const note = m.querySelector('.bt-modal-note');
+    m.querySelector('.bt-modal-title').textContent = opts.title;
+    m.querySelector('.bt-modal-close').textContent = t('ioClose');
+    const primary = m.querySelector('.bt-modal-primary');
+    primary.textContent = opts.primary;
+    ta.value = opts.value || '';
+    ta.readOnly = !!opts.readOnly;
+    note.textContent = ''; note.style.color = '';
+    const newPrimary = primary.cloneNode(true);
+    primary.replaceWith(newPrimary);
+    newPrimary.addEventListener('click', () => opts.onPrimary(ta, note));
+    m.classList.add('bt-open');
+    ta.focus();
+    if (opts.readOnly) ta.select();
   }
 
   function positionPanel(p, btn) {
@@ -964,7 +1126,7 @@
     if (me && me !== lastSyncedLogin) { lastSyncedLogin = me; syncAll(); }
   }
 
-  function ensureUI() { injectStyle(); applyVars(); ensurePanel(); ensureSettingsButton(); ensureChatObserver(); applyAutoQuality(); }
+  function ensureUI() { injectStyle(); applyVars(); ensurePanel(); ensureSettingsButton(); ensureChatObserver(); ensureHighlightObserver(); applyAutoQuality(); }
 
   function tick() { ensureUI(); applyLayout(); reSyncOnLogin(); }
 
