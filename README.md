@@ -2,15 +2,25 @@
 
 A lightweight userscript that improves Twitch chat and the player. Everything is configurable from a settings panel right in the chat footer, and it works in normal chat and **Mod View**.
 
+<div align="center">
+
+### 📖 Read the docs in your language
+
+[![English](https://img.shields.io/badge/🇬🇧_English-Read_docs-2ea44f?style=for-the-badge)](README.en.md)
+[![Deutsch](https://img.shields.io/badge/🇩🇪_Deutsch-Anleitung-2ea44f?style=for-the-badge)](README.de.md)
+[![Русский](https://img.shields.io/badge/🇷🇺_Русский-Документация-2ea44f?style=for-the-badge)](README.ru.md)
+
+</div>
+
 ## ✨ Highlights
 
-- 🗑️ **Keep deleted messages visible** — single deletions, timeouts/bans, and full chat clears
-- 💬 **Chat tweaks** — widen the panel, show avatars, boost name contrast, copy & translate messages on hover
-- 🔔 **Notifications** — @mention sounds, mod/VIP & mention highlights, and a Mentions Panel
-- 📊 **Live dashboard** — messages/min, a live sparkline, top chatters and top emotes
-- ⭐ **Automation** — auto-claim channel points & Drops, prefer source quality
-- 🧹 **Filters** — hide `!` commands, bot messages, badges, and the Bits leaderboard
-- 🌐 **Multi-language UI** — English / Deutsch / Русский (auto-detected)
+- 🗑️ **Keep deleted messages visible**: single deletions, timeouts/bans, and full chat clears
+- 💬 **Chat tweaks**: widen the panel, show avatars, boost name contrast, copy & translate messages on hover
+- 🔔 **Notifications**: @mention sounds, mod/VIP & mention highlights, and a Mentions Panel
+- 📊 **Live dashboard**: messages/min, a live sparkline, top chatters and top emotes
+- ⭐ **Automation**: auto-claim channel points & Drops, prefer source quality
+- 🧹 **Filters**: hide `!` commands, bot messages, badges, and the Bits leaderboard
+- 🌐 **Multi-language UI**: English / Deutsch / Русский (auto-detected)
 
 ## 🌍 Browser support
 
@@ -34,15 +44,7 @@ Works on any modern desktop browser via a userscript manager:
 
 1. Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/).
 2. Open **[BetterTwitch.user.js](https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js)** and confirm the install (it auto-updates from the same URL).
-3. Open any [twitch.tv](https://www.twitch.tv/) channel — a ⚙ icon appears in the chat footer next to **Send**.
-
-## 📖 Documentation
-
-Read the full docs in your language:
-
-- 🇬🇧 [English](README.en.md)
-- 🇩🇪 [Deutsch](README.de.md)
-- 🇷🇺 [Русский](README.ru.md)
+3. Open any [twitch.tv](https://www.twitch.tv/) channel. A ⚙ icon appears in the chat footer next to **Send**.
 
 ---
 
