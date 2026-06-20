@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      1.3.0
-// @description  Keep deleted messages visible, widen chat, show user avatars, auto-claim points & Drops, prefer source quality, @mention highlights/sounds, mod/VIP highlights, and chat filters. Configurable from a panel in the chat footer.
+// @version      1.4.0
+// @description  Keep deleted messages visible, widen chat, show avatars, auto-claim points & Drops, prefer source quality, @mention highlights/sounds, mod/VIP highlights, chat filters, plus a live stats dashboard, hype meter, emote rain, inline translation, mention inbox and first-chatter spotlight.
 // @author       YaneonY
 // @updateURL    https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js
 // @downloadURL  https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js
@@ -64,12 +64,19 @@
       confirmReset: 'Reset all BetterTwitch settings to defaults?',
       exportTitle: 'Export settings', importTitle: 'Import settings',
       ioCopy: 'Copy', ioApply: 'Apply', ioClose: 'Close',
+      secExtras: 'Extras',
+      dashboard: 'Live chat dashboard',
+      inlineTranslate: 'Translate on hover', mentionInbox: 'Mentions Panel',
+      dashBtnTitle: 'Live chat stats', inboxBtnTitle: 'Mentions',
+      dashTitle: 'Live stats', dashPerMin: 'msgs/min', dashTopChatters: 'Top chatters',
+      dashTopEmotes: 'Top emotes', dashEmpty: 'Waiting for messages…',
+      inboxTitle: 'Mentions', inboxEmpty: 'No mentions yet.',
     },
     de: {
       secLanguage: 'Sprache', langAuto: 'Automatisch erkennen',
       secDeleted: 'Gelöschte Nachrichten',
       markSingleDeletes: 'Einzellöschungen markieren',
-      markTimeouts: 'Timeouts / Banns markieren',
+      markTimeouts: 'Timeouts / Sperren markieren',
       markFullClear: 'Komplette Chat-Löschungen markieren',
       secChat: 'Chat',
       chatWidthEnabled: 'Chat-Panel verbreitern',
@@ -100,7 +107,7 @@
       secTheme: 'Design',
       accentColor: 'Akzentfarbe',
       secFilter: 'Filter',
-      hideCommands: '! Befehle ausblenden',
+      hideCommands: '!-Befehle ausblenden',
       hideBots: 'Bot-Nachrichten ausblenden',
       export: 'Exportieren', import: 'Importieren', reset: 'Zurücksetzen',
       savedNote: 'Automatisch gespeichert.',
@@ -110,6 +117,13 @@
       confirmReset: 'Alle BetterTwitch-Einstellungen auf Standard zurücksetzen?',
       exportTitle: 'Einstellungen exportieren', importTitle: 'Einstellungen importieren',
       ioCopy: 'Kopieren', ioApply: 'Übernehmen', ioClose: 'Schließen',
+      secExtras: 'Extras',
+      dashboard: 'Live-Chat-Dashboard',
+      inlineTranslate: 'Beim Überfahren übersetzen', mentionInbox: 'Erwähnungs-Panel',
+      dashBtnTitle: 'Live-Chat-Statistik', inboxBtnTitle: 'Erwähnungen',
+      dashTitle: 'Live-Statistik', dashPerMin: 'Nachr./Min', dashTopChatters: 'Top-Chatter',
+      dashTopEmotes: 'Top-Emotes', dashEmpty: 'Warte auf Nachrichten…',
+      inboxTitle: 'Erwähnungen', inboxEmpty: 'Noch keine Erwähnungen.',
     },
     ru: {
       secLanguage: 'Язык', langAuto: 'Автоопределение',
@@ -146,7 +160,7 @@
       secTheme: 'Оформление',
       accentColor: 'Акцентный цвет',
       secFilter: 'Фильтр',
-      hideCommands: 'Скрывать ! команды',
+      hideCommands: 'Скрывать !-команды',
       hideBots: 'Скрывать сообщения ботов',
       export: 'Экспорт', import: 'Импорт', reset: 'Сброс',
       savedNote: 'Сохраняется автоматически.',
@@ -156,6 +170,13 @@
       confirmReset: 'Сбросить все настройки BetterTwitch к значениям по умолчанию?',
       exportTitle: 'Экспорт настроек', importTitle: 'Импорт настроек',
       ioCopy: 'Копировать', ioApply: 'Применить', ioClose: 'Закрыть',
+      secExtras: 'Дополнительно',
+      dashboard: 'Панель статистики чата',
+      inlineTranslate: 'Перевод при наведении', mentionInbox: 'Панель упоминаний',
+      dashBtnTitle: 'Статистика чата', inboxBtnTitle: 'Упоминания',
+      dashTitle: 'Статистика', dashPerMin: 'сообщ./мин', dashTopChatters: 'Самые активные',
+      dashTopEmotes: 'Топ эмоций', dashEmpty: 'Ожидание сообщений…',
+      inboxTitle: 'Упоминания', inboxEmpty: 'Упоминаний пока нет.',
     },
   };
 
@@ -192,6 +213,7 @@
     accentColor: '#e31337',
     hideCommands: false, hideBots: false,
     botNames: 'nightbot,streamelements,moobot,streamlabs,fossabot,wizebot,soundalerts',
+    dashboard: true, inlineTranslate: false, mentionInbox: true,
   };
 
   function loadConfig() {
@@ -285,6 +307,7 @@
   function hook(ws) {
     const wrap = (listener) => function (event) {
       try { checkAlerts(event.data); } catch (e) {}
+      try { ingest(event.data); } catch (e) {}
       const out = filterEvent(event);
       if (out) return listener.call(this, out);
     };
@@ -379,6 +402,193 @@
   }
 
   ['click', 'keydown'].forEach(ev => document.addEventListener(ev, unlockAudio, { once: true, passive: true }));
+
+  function esc(s) { return (s || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+  const stats = { msgTimes: [], chatters: new Map(), emotes: new Map() };
+  const mentions = [];
+  let mentionUnread = 0;
+  let dashboardOpen = false, inboxOpen = false, liveTimer = null;
+
+  function emoteUrl(id) { return 'https://static-cdn.jtvnw.net/emoticons/v2/' + id + '/default/dark/2.0'; }
+
+  function parseEmotes(tags, text) {
+    const raw = tags.emotes;
+    if (!raw) return [];
+    const chars = Array.from(text);
+    const out = [];
+    for (const part of raw.split('/')) {
+      if (!part) continue;
+      const c = part.indexOf(':'); if (c === -1) continue;
+      const id = part.slice(0, c);
+      const ranges = part.slice(c + 1).split(',');
+      const first = ranges[0], dash = first.indexOf('-');
+      const s = +first.slice(0, dash), e = +first.slice(dash + 1);
+      const name = chars.slice(s, e + 1).join('');
+      for (let i = 0; i < ranges.length; i++) out.push({ id, name });
+    }
+    return out;
+  }
+
+  function ingest(data) {
+    if (typeof data !== 'string' || data.indexOf('PRIVMSG') === -1) return;
+    const now = Date.now();
+    const me = getMyLogin();
+    for (const line of data.split('\r\n')) {
+      if (!line || ircCommand(line) !== 'PRIVMSG') continue;
+      const tags = parseTags(line);
+      const login = senderLogin(line) || (tags['display-name'] || '').toLowerCase();
+      const text = trailing(line);
+      stats.msgTimes.push(now);
+      if (login) stats.chatters.set(login, (stats.chatters.get(login) || 0) + 1);
+      for (const em of parseEmotes(tags, text)) {
+        const cur = stats.emotes.get(em.id) || { name: em.name, count: 0 };
+        cur.count++; stats.emotes.set(em.id, cur);
+      }
+      if (me && login && login !== me) {
+        const replyToMe = (tags['reply-parent-user-login'] || '').toLowerCase() === me;
+        if (isMention(text.toLowerCase(), me) || replyToMe) {
+          mentions.push({ t: now, user: tags['display-name'] || login, color: tags.color || '', text });
+          if (mentions.length > 50) mentions.shift();
+          mentionUnread++;
+          updateInboxBadge();
+        }
+      }
+    }
+  }
+
+  function msgsPerMin(now) {
+    while (stats.msgTimes.length && now - stats.msgTimes[0] > 60000) stats.msgTimes.shift();
+    return stats.msgTimes.length;
+  }
+
+  function ensureLive() {
+    if (liveTimer) return;
+    liveTimer = setInterval(() => {
+      const now = Date.now();
+      if (dashboardOpen) renderDashboard(msgsPerMin(now), now);
+    }, 1000);
+  }
+
+  function sparkline(now) {
+    const buckets = new Array(20).fill(0);
+    for (const t of stats.msgTimes) {
+      const idx = 19 - Math.floor((now - t) / 3000);
+      if (idx >= 0 && idx < 20) buckets[idx]++;
+    }
+    const max = Math.max(1, ...buckets), W = 240, H = 34;
+    const pts = buckets.map((v, i) => (i / 19 * W).toFixed(1) + ',' + (H - v / max * (H - 2)).toFixed(1)).join(' ');
+    return '<svg class="bt-spark" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none"><polyline points="' + pts + '"/></svg>';
+  }
+
+  let dashPanel = null;
+
+  function ensureDashPanel() {
+    if (dashPanel) return dashPanel;
+    dashPanel = document.createElement('div');
+    dashPanel.id = 'bt-dash'; dashPanel.className = 'bt-pop';
+    document.body.appendChild(dashPanel);
+    document.addEventListener('click', (e) => {
+      if (dashboardOpen && !dashPanel.contains(e.target) && !(e.target.closest && e.target.closest('#bt-dash-btn'))) { dashboardOpen = false; dashPanel.classList.remove('bt-open'); }
+    });
+    return dashPanel;
+  }
+
+  function renderDashboard(mpm, now) {
+    const p = ensureDashPanel();
+    const topChatters = [...stats.chatters.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5);
+    const topEmotes = [...stats.emotes.entries()].sort((a, b) => b[1].count - a[1].count).slice(0, 5);
+    const idle = !stats.msgTimes.length && !topChatters.length;
+    p.innerHTML =
+      '<div class="bt-pop-head"><span class="bt-pop-title">' + t('dashTitle') + '</span></div>' +
+      (idle ? '<div class="bt-pop-empty">' + t('dashEmpty') + '</div>' :
+        '<div class="bt-dash-mpm"><span class="bt-dash-num">' + mpm + '</span><span class="bt-dash-unit">' + t('dashPerMin') + '</span></div>' +
+        sparkline(now) +
+        '<div class="bt-pop-sub">' + t('dashTopChatters') + '</div>' +
+        '<div class="bt-dash-list">' + (topChatters.map(([n, c]) => '<div class="bt-dash-row"><span class="bt-dash-name">' + esc(n) + '</span><span class="bt-dash-c">' + c + '</span></div>').join('') || '—') + '</div>' +
+        '<div class="bt-pop-sub">' + t('dashTopEmotes') + '</div>' +
+        '<div class="bt-dash-emotes">' + (topEmotes.map(([id, e]) => '<span class="bt-dash-emote" title="' + esc(e.name) + '"><img src="' + emoteUrl(id) + '" alt=""><b>' + e.count + '</b></span>').join('') || '—') + '</div>');
+  }
+
+  let inboxPanel = null;
+
+  function ensureInboxPanel() {
+    if (inboxPanel) return inboxPanel;
+    inboxPanel = document.createElement('div');
+    inboxPanel.id = 'bt-inbox'; inboxPanel.className = 'bt-pop';
+    document.body.appendChild(inboxPanel);
+    document.addEventListener('click', (e) => {
+      if (inboxOpen && !inboxPanel.contains(e.target) && !(e.target.closest && e.target.closest('#bt-inbox-btn'))) { inboxOpen = false; inboxPanel.classList.remove('bt-open'); }
+    });
+    return inboxPanel;
+  }
+
+  function renderInbox() {
+    const p = ensureInboxPanel();
+    const rows = mentions.map((m) => {
+      const d = new Date(m.t);
+      const time = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+      const color = m.color || 'var(--bt-accent,#e31337)';
+      return '<div class="bt-inbox-row"><span class="bt-inbox-time">' + time + '</span> ' +
+        '<span class="bt-inbox-user" style="color:' + esc(color) + '">' + esc(m.user) + '</span>' +
+        '<span class="bt-inbox-colon">: </span><span class="bt-inbox-text">' + esc(m.text) + '</span></div>';
+    }).join('');
+    p.innerHTML = '<div class="bt-pop-head"><span class="bt-pop-title">' + t('inboxTitle') + '</span></div>' +
+      (rows || '<div class="bt-pop-empty">' + t('inboxEmpty') + '</div>');
+  }
+
+  function updateInboxBadge() {
+    const btn = document.getElementById('bt-inbox-btn');
+    if (!btn) return;
+    let b = btn.querySelector('.bt-badge');
+    if (mentionUnread > 0) {
+      if (!b) { b = document.createElement('span'); b.className = 'bt-badge'; btn.appendChild(b); }
+      b.textContent = mentionUnread > 99 ? '99+' : mentionUnread;
+    } else if (b) { b.remove(); }
+  }
+
+  function translateText(text, cb) {
+    const tl = currentLang();
+    fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=' + tl + '&dt=t&q=' + encodeURIComponent(text))
+      .then((r) => r.json())
+      .then((d) => cb(d && d[0] ? d[0].map((x) => x[0]).join('') : null))
+      .catch(() => cb(null));
+  }
+
+  function addTranslateButton(el) {
+    if (!CONFIG.inlineTranslate) { const ex = el.querySelector('.bt-translate'); if (ex) ex.remove(); return; }
+    if (el.querySelector('.bt-translate')) return;
+    const body = el.querySelector('[data-a-target="chat-line-message-body"]');
+    if (!body) return;
+    const btn = document.createElement('button');
+    btn.className = 'bt-translate'; btn.type = 'button'; btn.title = 'Translate'; btn.setAttribute('aria-label', 'Translate message');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const existing = el.querySelector('.bt-trans');
+      if (existing) { existing.remove(); return; }
+      const out = document.createElement('div');
+      out.className = 'bt-trans'; out.textContent = '…';
+      body.insertAdjacentElement('afterend', out);
+      translateText(lineCopyText(el), (res) => { out.textContent = res || '—'; });
+    });
+    body.appendChild(btn);
+  }
+
+  function ensureExtraButtons() {
+    if (CONFIG.dashboard && !document.getElementById('bt-dash-btn')) {
+      makeFooterButton('bt-dash-btn', t('dashBtnTitle'),
+        '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 13h3v7H4v-7Zm6.5-9h3v16h-3V4ZM17 9h3v11h-3V9Z"/></svg>',
+        (e) => { e.stopPropagation(); const btn = document.getElementById('bt-dash-btn'); dashboardOpen = !dashboardOpen; const p = ensureDashPanel(); if (dashboardOpen) { positionPanel(p, btn); renderDashboard(msgsPerMin(Date.now()), Date.now()); } p.classList.toggle('bt-open', dashboardOpen); inboxOpen = false; if (inboxPanel) inboxPanel.classList.remove('bt-open'); },
+        'bt-settings-btn');
+    }
+    if (CONFIG.mentionInbox && !document.getElementById('bt-inbox-btn')) {
+      makeFooterButton('bt-inbox-btn', t('inboxBtnTitle'),
+        '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a6 6 0 0 0-6 6c0 3.5-1 5-2 6v1h16v-1c-1-1-2-2.5-2-6a6 6 0 0 0-6-6Zm0 20a3 3 0 0 0 3-3H9a3 3 0 0 0 3 3Z"/></svg>',
+        (e) => { e.stopPropagation(); const btn = document.getElementById('bt-inbox-btn'); inboxOpen = !inboxOpen; const p = ensureInboxPanel(); if (inboxOpen) { mentionUnread = 0; updateInboxBadge(); renderInbox(); positionPanel(p, btn); } p.classList.toggle('bt-open', inboxOpen); if (inboxOpen) p.scrollTop = p.scrollHeight; dashboardOpen = false; if (dashPanel) dashPanel.classList.remove('bt-open'); },
+        'bt-settings-btn');
+      updateInboxBadge();
+    }
+  }
 
   const pending = [];
 
@@ -587,6 +797,7 @@
       addAvatar(el);
       fixNameColor(el);
       addCopyButton(el);
+      addTranslateButton(el);
     } catch (e) {}
   }
 
@@ -655,6 +866,10 @@
       #bt-settings-btn svg { width: 20px; height: 20px; }
       #bt-settings-btn.bt-footer-btn { background: none; border: none; padding: 4px 6px; line-height: 0; }
       .bt-float-btn { position: absolute; top: 8px; right: 8px; z-index: 1000; background: rgba(14,14,16,.7); border: none; border-radius: 4px; padding: 5px; line-height: 0; }
+      #bt-dash-btn, #bt-inbox-btn { display: inline-flex; align-items: center; justify-content: center; color: var(--bt-accent,#e31337); cursor: pointer; }
+      #bt-dash-btn:hover, #bt-inbox-btn:hover { color: #ff6b85; }
+      #bt-dash-btn svg, #bt-inbox-btn svg { width: 20px; height: 20px; }
+      #bt-dash-btn.bt-footer-btn, #bt-inbox-btn.bt-footer-btn { background: none; border: none; padding: 4px 6px; line-height: 0; }
 
       #bt-panel {
         position: fixed; z-index: 99999; width: 320px; max-height: 74vh; overflow-y: auto; overflow-x: hidden; box-sizing: border-box;
@@ -667,7 +882,8 @@
       #bt-panel .bt-head { display: flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; max-width: none; margin: 0 -16px 8px; padding: 0 16px; border-bottom: 1px solid #34343b; position: sticky; top: 0; background: #18181b; z-index: 2; }
       #bt-panel .bt-title { font-size: 17px; font-weight: 800; letter-spacing: .2px; color: var(--bt-accent,#e31337); }
       #bt-panel .bt-by { margin-left: auto; font-size: 11px; color: #7d7d85; }
-      #bt-panel .bt-sub { margin: 14px 0 4px; padding-top: 13px; border-top: 1px solid #2a2a30; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #adadb8; }
+      #bt-panel .bt-sub { display: flex; align-items: center; gap: 6px; margin: 14px 0 4px; padding-top: 13px; border-top: 1px solid #2a2a30; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #adadb8; }
+      #bt-panel .bt-sub .bt-ico { width: 13px; height: 13px; flex: 0 0 auto; }
       #bt-panel .bt-head + .bt-sub { border-top: none; padding-top: 2px; margin-top: 4px; }
       #bt-panel label.bt-row { display: flex; align-items: center; gap: 9px; padding: 5px 0; cursor: pointer; }
       #bt-panel label.bt-row input[type=checkbox] { accent-color: var(--bt-accent,#e31337); width: 15px; height: 15px; cursor: pointer; }
@@ -697,6 +913,45 @@
       #bt-modal button.bt-btn { background: #26262c; color: #efeff1; border: 1px solid #3a3a42; border-radius: 4px; padding: 4px 12px; cursor: pointer; font-size: 12px; }
       #bt-modal button.bt-btn:hover { background: #34343b; }
       #bt-modal .bt-modal-note { margin-top: 8px; font-size: 11px; min-height: 14px; color: #57bb6c; }
+
+      .chat-line__message .bt-translate {
+        display: none; width: 13px; height: 13px; margin-left: 6px; vertical-align: -2px; padding: 0; border: none; cursor: pointer;
+        background: no-repeat center / contain
+          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23adadb8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M2 12h20M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20'/></svg>");
+      }
+      .chat-line__message:hover .bt-translate { display: inline-block; }
+      .chat-line__message .bt-trans { margin: 2px 0 2px 4px; padding-left: 7px; border-left: 2px solid var(--bt-accent,#e31337); color: #adadb8; font-size: .95em; font-style: italic; }
+
+      .bt-pop {
+        position: fixed; z-index: 99999; width: 300px; max-height: 70vh; overflow-y: auto; box-sizing: border-box; display: none;
+        background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: 6px; padding: 0 14px 14px;
+        box-shadow: 0 8px 28px rgba(0,0,0,.55); font: 13px/1.45 Inter, Roobert, "Helvetica Neue", Arial, sans-serif;
+      }
+      .bt-pop.bt-open { display: block; }
+      .bt-pop * { box-sizing: border-box; max-width: 100%; }
+      .bt-pop .bt-pop-head { position: sticky; top: 0; background: #18181b; padding: 12px 0 8px; margin-bottom: 6px; border-bottom: 1px solid #34343b; }
+      .bt-pop .bt-pop-title { font-size: 15px; font-weight: 800; color: var(--bt-accent,#e31337); }
+      .bt-pop .bt-pop-sub { margin: 12px 0 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #adadb8; }
+      .bt-pop .bt-pop-empty { padding: 16px 0; color: #7d7d85; text-align: center; }
+      .bt-dash-mpm { display: flex; align-items: baseline; gap: 6px; margin-top: 6px; }
+      .bt-dash-num { font-size: 30px; font-weight: 800; color: #efeff1; font-variant-numeric: tabular-nums; }
+      .bt-dash-unit { font-size: 12px; color: #adadb8; }
+      .bt-spark { width: 100%; height: 34px; margin-top: 4px; }
+      .bt-spark polyline { fill: none; stroke: var(--bt-accent,#e31337); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+      .bt-dash-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+      .bt-dash-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .bt-dash-c { color: #adadb8; font-variant-numeric: tabular-nums; }
+      .bt-dash-emotes { display: flex; flex-wrap: wrap; gap: 8px; }
+      .bt-dash-emote { display: inline-flex; align-items: center; gap: 3px; }
+      .bt-dash-emote img { width: 24px; height: 24px; object-fit: contain; }
+      .bt-dash-emote b { color: #adadb8; font-size: 11px; }
+      .bt-inbox-row { padding: 4px 0; border-bottom: 1px solid #26262c; line-height: 1.4; word-break: break-word; }
+      .bt-inbox-time { color: #7d7d85; font-size: 11px; font-variant-numeric: tabular-nums; }
+      .bt-inbox-user { font-weight: 700; }
+      .bt-inbox-colon { color: #efeff1; }
+      .bt-inbox-text { color: #dcdce0; }
+      #bt-inbox-btn { position: relative; }
+      #bt-inbox-btn .bt-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; min-width: 15px; height: 15px; padding: 0 3px; border-radius: 8px; background: var(--bt-accent,#e31337); color: #fff; font-size: 9px; line-height: 1; font-weight: 700; pointer-events: none; box-shadow: 0 0 0 2px #18181b; }
     `;
     (document.head || document.documentElement).appendChild(style);
   }
@@ -854,6 +1109,22 @@
 
   function refresh() { applyLayout(); applyVars(); applyAutoQuality(); syncAll(); }
 
+  const SVG = (inner) => '<svg class="bt-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + inner + '</svg>';
+  const SEC_ICONS = {
+    secLanguage: SVG('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/>'),
+    secDeleted: SVG('<polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>'),
+    secChat: SVG('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'),
+    secPlayer: SVG('<polygon points="6 4 20 12 6 20 6 4"/>'),
+    secPoints: SVG('<polygon points="12 3 14.7 8.5 20.8 9.3 16.4 13.6 17.5 19.7 12 16.8 6.5 19.7 7.6 13.6 3.2 9.3 9.3 8.5 12 3"/>'),
+    secNotifications: SVG('<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>'),
+    secHighlights: SVG('<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'),
+    secTheme: SVG('<path d="M12 3l5.5 5.5a7.8 7.8 0 1 1-11 0z"/>'),
+    secFilter: SVG('<polygon points="22 4 2 4 10 12.5 10 19 14 21 14 12.5 22 4"/>'),
+    secExtras: SVG('<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>'),
+  };
+
+  function secHead(key) { return '<div class="bt-sub">' + (SEC_ICONS[key] || '') + t(key) + '</div>'; }
+
   function ensurePanel() {
     if (panel) return;
     panel = document.createElement('div');
@@ -863,15 +1134,15 @@
         <span class="bt-title">BetterTwitch</span><span class="bt-by">by YaneonY</span>
       </div>
 
-      <div class="bt-sub">${t('secLanguage')}</div>
+      ${secHead('secLanguage')}
       <div class="bt-rowflex"><select data-k="language" style="flex:1;margin-left:0"><option value="auto">${t('langAuto')}</option><option value="en">English</option><option value="de">Deutsch</option><option value="ru">Русский</option></select></div>
 
-      <div class="bt-sub">${t('secDeleted')}</div>
+      ${secHead('secDeleted')}
       <label class="bt-row"><input type="checkbox" data-k="markSingleDeletes"> ${t('markSingleDeletes')}</label>
       <label class="bt-row"><input type="checkbox" data-k="markTimeouts"> ${t('markTimeouts')}</label>
       <label class="bt-row"><input type="checkbox" data-k="markFullClear"> ${t('markFullClear')}</label>
 
-      <div class="bt-sub">${t('secChat')}</div>
+      ${secHead('secChat')}
       <label class="bt-row"><input type="checkbox" data-k="chatWidthEnabled"> ${t('chatWidthEnabled')}</label>
       <div class="bt-rowflex"><span style="flex:0 0 64px">${t('width')}</span><input type="range" min="340" max="${MAX_CHAT_PX}" step="10" data-k="chatWidthPx"><span class="bt-val" data-val-for="chatWidthPx"></span></div>
       <label class="bt-row"><input type="checkbox" data-k="hideBadges"> ${t('hideBadges')}</label>
@@ -881,31 +1152,36 @@
       <label class="bt-row"><input type="checkbox" data-k="msgSeparators"> ${t('msgSeparators')}</label>
       <label class="bt-row"><input type="checkbox" data-k="hideLeaderboard"> ${t('hideLeaderboard')}</label>
 
-      <div class="bt-sub">${t('secPlayer')}</div>
+      ${secHead('secPlayer')}
       <label class="bt-row"><input type="checkbox" data-k="autoQuality"> ${t('autoQuality')}</label>
 
-      <div class="bt-sub">${t('secPoints')}</div>
+      ${secHead('secPoints')}
       <label class="bt-row"><input type="checkbox" data-k="autoClaimPoints"> ${t('autoClaimPoints')}</label>
       <label class="bt-row"><input type="checkbox" data-k="autoClaimDrops"> ${t('autoClaimDrops')}</label>
 
-      <div class="bt-sub">${t('secNotifications')}</div>
+      ${secHead('secNotifications')}
       <label class="bt-row"><input type="checkbox" data-k="mentionSound"> ${t('mentionSound')}</label>
       <label class="bt-row"><input type="checkbox" data-k="mentionReplyPing"> ${t('mentionReplyPing')}</label>
       <div class="bt-rowflex"><span style="flex:0 0 64px">${t('sound')}</span><select data-k="pingSound"><option value="chime">${t('sndChime')}</option><option value="beep">${t('sndBeep')}</option><option value="ding">${t('sndDing')}</option><option value="soft">${t('sndSoft')}</option><option value="low">${t('sndLow')}</option><option value="rise">${t('sndRise')}</option><option value="fall">${t('sndFall')}</option><option value="double">${t('sndDouble')}</option><option value="pop">${t('sndPop')}</option><option value="bell">${t('sndBell')}</option><option value="arcade">${t('sndArcade')}</option><option value="glass">${t('sndGlass')}</option></select><button class="bt-btn" id="bt-test-ping">${t('test')}</button></div>
       <div class="bt-rowflex"><span style="flex:0 0 64px">${t('volume')}</span><input type="range" min="0" max="1" step="0.05" data-k="pingVolume"><span class="bt-val" data-val-for="pingVolume"></span></div>
 
-      <div class="bt-sub">${t('secHighlights')}</div>
+      ${secHead('secHighlights')}
       <div class="bt-rowflex"><label><input type="checkbox" data-k="mentionHighlight"> ${t('mentionHighlight')}</label><input type="color" data-k="mentionColor"></div>
       <div class="bt-rowflex"><label><input type="checkbox" data-k="highlightMods"> ${t('highlightMods')}</label><input type="color" data-k="modColor"></div>
       <div class="bt-rowflex"><label><input type="checkbox" data-k="highlightVips"> ${t('highlightVips')}</label><input type="color" data-k="vipColor"></div>
 
-      <div class="bt-sub">${t('secTheme')}</div>
+      ${secHead('secTheme')}
       <div class="bt-rowflex"><label style="flex:1">${t('accentColor')}</label><input type="color" data-k="accentColor"></div>
 
-      <div class="bt-sub">${t('secFilter')}</div>
+      ${secHead('secFilter')}
       <label class="bt-row"><input type="checkbox" data-k="hideCommands"> ${t('hideCommands')}</label>
       <label class="bt-row"><input type="checkbox" data-k="hideBots"> ${t('hideBots')}</label>
       <div class="bt-rowflex"><input type="text" data-k="botNames" placeholder="bot1,bot2,..."></div>
+
+      ${secHead('secExtras')}
+      <label class="bt-row"><input type="checkbox" data-k="dashboard"> ${t('dashboard')}</label>
+      <label class="bt-row"><input type="checkbox" data-k="inlineTranslate"> ${t('inlineTranslate')}</label>
+      <label class="bt-row"><input type="checkbox" data-k="mentionInbox"> ${t('mentionInbox')}</label>
 
       <div class="bt-foot">
         <button class="bt-btn" id="bt-export">${t('export')}</button>
@@ -1072,7 +1348,9 @@
     if (document.getElementById(id)) return true;
     const ctx = footerInsertCtx();
     if (!ctx || !ctx.toolbar) return floatFallback(id, title, innerHTML, onClick);
-    const before = (beforeId && document.getElementById(beforeId)) || ctx.anchor;
+    let before = (beforeId && document.getElementById(beforeId)) || ctx.anchor;
+    while (before && before.parentElement && before.parentElement !== ctx.toolbar) before = before.parentElement;
+    if (!before || before.parentElement !== ctx.toolbar) before = ctx.anchor;
     if (ctx.cell) {
       const wrap = ctx.cell.cloneNode(true);
       wrap.id = id + '-wrap';
@@ -1091,7 +1369,7 @@
 
   function ensureSettingsButton() {
     makeFooterButton('bt-settings-btn', t('settingsBtnTitle'),
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true"><path opacity=".4" d="M138.5 250.9C160.8 272.4 174.1 285.3 178.6 289.7C178.1 294.9 177.6 300 177 305.2C176.5 310 176.3 315 176.3 320.1C176.3 325.2 176.6 330.1 177 334.9C177.5 340 178 345.2 178.6 350.3C174.1 354.6 160.8 367.6 138.5 389.1C148.8 407 159.2 424.9 169.5 442.8C199.2 434.3 217.1 429.1 223.2 427.4C227.4 430.5 231.6 433.5 235.9 436.6C241.9 440.9 248.2 444.8 254.8 448.2C257.1 449.3 259.3 450.4 261.6 451.4C266.3 453.5 271 455.6 275.8 457.7C277.3 463.7 281.8 481.8 289.4 511.9C289.4 511.9 289.4 511.9 289.4 511.9L351.4 511.9C358.9 481.8 363.4 463.8 364.9 457.7C369.6 455.6 374.4 453.4 379.1 451.3C388.2 447.2 396.8 442.3 404.8 436.5C409 433.4 413.2 430.4 417.4 427.3C422.4 428.7 427.4 430.2 432.4 431.6C445.3 435.3 458.2 439 471.1 442.7C471.1 442.7 471.1 442.7 471.1 442.7C481.4 424.8 491.8 406.9 502.1 389C479.8 367.5 466.4 354.5 462 350.2C462.5 345 463 339.9 463.6 334.7C464.1 329.8 464.4 324.8 464.4 319.8C464.4 314.8 464.1 309.8 463.6 304.9C463.1 299.7 462.6 294.6 462 289.4C466.5 285 479.9 272.1 502.1 250.6C491.8 232.7 481.4 214.8 471.1 196.9L471.1 196.9C458.2 200.6 445.2 204.3 432.3 208C427.3 209.4 422.3 210.8 417.3 212.2C413.1 209.2 408.9 206.1 404.7 203.1C396.7 197.3 388.1 192.4 379 188.3C374.3 186.2 369.5 184.1 364.8 181.9C363.5 176.9 362.3 171.8 361 166.8C357.7 153.8 354.5 140.8 351.3 127.7L289.3 127.7C289.3 127.7 289.3 127.7 289.3 127.7C281.8 157.8 277.2 175.8 275.7 181.9C271 184 266.3 186.1 261.5 188.2C252.4 192.3 243.8 197.3 235.8 203C231.6 206 227.4 209.1 223.2 212.1C218.2 210.7 213.2 209.3 208.2 207.9C195.3 204.2 182.4 200.5 169.5 196.8L169.5 196.8L138.5 250.5zM224.3 320C224.3 273.6 257.2 234.9 301 226C307.2 224.7 313.7 224 320.4 224C333.7 224 346.3 226.7 357.8 231.5C363.5 233.9 369 236.9 374.1 240.4C399.6 257.7 416.4 286.9 416.4 320C416.4 353.1 399.6 382.4 374.1 399.6C369 403.1 363.5 406 357.8 408.5C346.3 413.4 333.7 416 320.4 416C313.8 416 307.3 415.3 301.1 414C257.4 405 224.5 366.3 224.4 320z"/><path d="M356.8 64.2C383.8 66.5 406.7 85.8 413.4 112.5L413.4 112.5L419.6 137.3C422.7 139 425.8 140.8 428.8 142.6L453.5 135.6C481.7 127.5 511.8 139.7 526.5 165.1L526.5 165.1L557.5 218.8L560 223.6C571.5 248.1 566.3 277.6 546.5 296.8L546.5 296.8L528.1 314.6C528.1 316.4 528.3 318.2 528.3 319.9C528.3 321.7 528.2 323.4 528.1 325.2L546.5 343C567.6 363.4 572.1 395.6 557.4 421L526.4 474.7C511.7 500.2 481.5 512.3 453.3 504.2L453.3 504.2L428.6 497.1C425.6 499 422.5 500.7 419.4 502.4L413.2 527.3L413.2 527.3C406.5 554 383.6 573.3 356.6 575.6L351.1 575.8L289.1 575.8C259.7 575.8 234.1 555.8 227 527.3L220.7 502.4C217.6 500.7 214.5 498.9 211.5 497.1L187 504.2L187 504.2C158.8 512.3 128.7 500.1 114 474.7L114 474.7L83 421C68.4 395.7 72.9 363.5 94 343.1L112.4 325.3C112.4 323.5 112.3 321.8 112.3 320C112.3 318.2 112.4 316.4 112.4 314.7L94 296.9C72.9 276.5 68.4 244.3 83.1 218.9L114.1 165.2L114.1 165.2C128.8 139.8 158.9 127.6 187.1 135.7L187.1 135.7L211.7 142.7C214.7 140.9 217.8 139.1 220.9 137.4L227.2 112.6C234.3 84 259.9 64 289.3 64L351.3 64L356.8 64.2zM289.3 128C281.8 158.1 277.2 176.1 275.7 182.2L261.5 188.5C252.4 192.6 243.8 197.6 235.8 203.3L223.2 212.4L208.2 208.2L169.4 197.1L169.4 197.1L138.4 250.8C160.7 272.3 174 285.2 178.5 289.6L177 305.1C176.5 309.9 176.3 314.9 176.3 320C176.3 325.1 176.6 330 177 334.8L178.6 350.2C174.1 354.5 160.8 367.5 138.5 389L169.5 442.7C199.2 434.2 217.1 429 223.2 427.3L235.9 436.5C241.9 440.8 248.2 444.7 254.8 448.1L261.6 451.3L275.8 457.6C277.3 463.6 281.8 481.7 289.4 511.8L289.4 511.8L351.4 511.8L361.2 472.7L365 457.6L379.2 451.2C388.3 447.1 396.9 442.2 404.9 436.4L417.5 427.2L432.5 431.5L471.2 442.6L471.2 442.6L502.2 388.9C479.9 367.4 466.5 354.4 462.1 350.1L463.7 334.6C464.2 329.7 464.5 324.7 464.5 319.7C464.5 314.7 464.2 309.7 463.7 304.8L462.1 289.3C466.6 284.9 480 272 502.2 250.5L471.2 196.8L471.2 196.8L432.4 207.9L417.4 212.1L404.8 203C396.8 197.2 388.2 192.3 379.1 188.2L364.9 181.8C363.4 175.7 358.9 157.7 351.4 127.6L289.4 127.6L289.4 127.6zM319.8 416C266.8 415.8 223.9 372.7 224.1 319.7C224.3 266.7 267.4 223.8 320.4 224C373.4 224.2 416.3 267.3 416.1 320.3C415.9 373.3 372.8 416.2 319.8 416zM320.4 280C298.3 279.8 280.3 297.6 280.1 319.7C279.9 341.8 297.7 359.8 319.8 360C341.9 360.2 359.9 342.4 360.1 320.3C360.3 298.2 342.5 280.2 320.4 280z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46a.5.5 0 0 0-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.49.49 0 0 0 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1a.5.5 0 0 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65ZM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7Z"/></svg>',
       (e) => { e.stopPropagation(); togglePanel(panel, document.getElementById('bt-settings-btn'), null); });
   }
 
@@ -1102,7 +1380,7 @@
     if (me && me !== lastSyncedLogin) { lastSyncedLogin = me; syncAll(); }
   }
 
-  function ensureUI() { injectStyle(); applyVars(); ensurePanel(); ensureSettingsButton(); ensureChatObserver(); ensureHighlightObserver(); applyAutoQuality(); }
+  function ensureUI() { injectStyle(); applyVars(); ensurePanel(); ensureSettingsButton(); ensureExtraButtons(); ensureChatObserver(); ensureHighlightObserver(); ensureLive(); applyAutoQuality(); }
 
   function tick() { ensureUI(); applyLayout(); reSyncOnLogin(); }
 

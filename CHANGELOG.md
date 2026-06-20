@@ -2,6 +2,14 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [1.4.0] - 2026-06-20
+
+### Added
+- **Live chat dashboard** — a footer button opens a panel with messages/min, a live sparkline, top chatters, and a most-used-emote leaderboard, all computed from the chat WebSocket.
+- **Inline translation** — a 🌐 button on message hover translates foreign-language messages in place (off by default).
+- **Mention inbox** — a 🔔 footer button with an unread badge lists every message that @mentioned or replied to you this session.
+- New **Extras** section in the settings panel for all of the above.
+
 ## [1.3.0] - 2026-06-20
 
 ### Added

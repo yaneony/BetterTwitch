@@ -43,6 +43,11 @@ A lightweight userscript that makes Twitch chat and the player nicer to use - ke
 ### Filters
 - **Hide `!` commands** and **hide bot messages** (configurable bot name list).
 
+### Extras
+- **Live chat dashboard** — messages/min, a live sparkline, top chatters, and a top-emote leaderboard.
+- **Inline translation** — translate foreign-language messages on hover.
+- **Mention inbox** — a list of everyone who @mentioned or replied to you, with an unread badge.
+
 ### Other
 - **Custom accent color** for the panel and button.
 - Multi-language UI: **English / Deutsch / Русский** (auto-detected, or pick one).
@@ -108,6 +113,9 @@ browser://extensions/?id=mfdhdgbonjidekjkjmjaneanmdmpmidf
 | Theme | Accent color | Color of the settings button and panel accents |
 | Filter | Hide `!` commands | Hide messages starting with `!` |
 | | Hide bot messages | Hide messages from listed bot accounts |
+| Extras | Live chat dashboard | Footer button: msgs/min, sparkline, top chatters & emotes |
+| | Translate on hover | 🌐 button to translate a message in place |
+| | Mention inbox | Footer button listing mentions/replies to you |
 
 Use **Export** / **Import** to move settings between browsers, or **Reset** to restore defaults.
 

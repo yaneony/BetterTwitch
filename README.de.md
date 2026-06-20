@@ -43,6 +43,11 @@ Ein schlankes Userscript, das den Twitch-Chat und den Player angenehmer macht - 
 ### Filter
 - **`!`-Befehle ausblenden** und **Bot-Nachrichten ausblenden** (konfigurierbare Bot-Namensliste).
 
+### Extras
+- **Live-Chat-Dashboard** — Nachrichten/Min, Live-Sparkline, Top-Chatter und Top-Emotes.
+- **Beim Überfahren übersetzen** — fremdsprachige Nachrichten direkt übersetzen.
+- **Erwähnungs-Postfach** — Liste aller Erwähnungen/Antworten an dich mit Ungelesen-Zähler.
+
 ### Sonstiges
 - **Eigene Akzentfarbe** für Panel und Button.
 - Mehrsprachige Oberfläche: **English / Deutsch / Русский** (automatisch erkannt oder manuell wählbar).
