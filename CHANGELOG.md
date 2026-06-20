@@ -13,7 +13,7 @@ All notable changes to **BetterTwitch** are documented in this file.
 - Moderator/VIP badge detection now falls back to `alt`/`aria-label` text so it degrades gracefully if Twitch rotates the badge IDs.
 
 ### Fixed
-- **Hide Bits leaderboard** now reliably hides the leaderboard / sub-goal carousel at the top of chat. Twitch renders it with hashed class names and localized labels and cycles between slides, so it's now located by its `.tw-transition-group` wrapper (present on every slide) and hidden the moment it mounts via a `.chat-room__content` observer. This also hides the sibling goal panels in the same carousel.
+- **Hide Bits leaderboard** now reliably hides the leaderboard / sub-goal carousel at the top of chat. Twitch renders it with hashed class names and localized labels and cycles between slides, so it's located positionally (carousel blocks above the message list, identified by their `.tw-transition-group`/progress-bar content) and hidden the moment it mounts via a `.chat-room__content` observer. The chat input and raid/host alerts are explicitly excluded so they're never hidden.
 
 ## [1.2.1] - 2026-06-20
 

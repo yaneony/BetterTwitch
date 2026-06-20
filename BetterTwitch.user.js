@@ -397,7 +397,6 @@
     return Array.from(parts).map(p => p.textContent).join('').replace(/\s+/g, ' ').trim();
   }
 
-  // Full message text for copying: includes links and emote names, which lineText() omits.
   function lineCopyText(el) {
     const body = el.querySelector('[data-a-target="chat-line-message-body"]');
     if (!body) return lineText(el);
@@ -451,8 +450,6 @@
     return isMention(el.textContent.toLowerCase(), me);
   }
 
-  // Match a badge by its stable UUID (locale-independent) first, then fall back to alt /
-  // aria-label text so a UUID rotation degrades gracefully instead of silently breaking.
   function hasBadge(el, uuid, label) {
     return !!(
       el.querySelector('.chat-badge[src*="' + uuid + '"]') ||
@@ -485,13 +482,10 @@
   const LOGIN_RE = /^[a-z0-9_]{1,30}$/;
   const AVATAR_BATCH = 50;
   const avatarCache = new Map();
-  const avatarInflight = new Map(); // login -> { promise, resolve }
+  const avatarInflight = new Map();
   let avatarQueue = [];
   let avatarFlush = null;
 
-  // Requests for distinct logins are collected over a short window and sent as a single
-  // aliased GraphQL query, instead of one POST per avatar. Logins are pre-validated by
-  // LOGIN_RE (only [a-z0-9_]) before reaching here, so inlining them is injection-safe.
   function fetchAvatar(login) {
     if (avatarCache.has(login)) return Promise.resolve(avatarCache.get(login));
     const existing = avatarInflight.get(login);
@@ -549,7 +543,6 @@
 
   function relLum(r, g, b) { return 0.2126 * srgbToLin(r) + 0.7152 * srgbToLin(g) + 0.0722 * srgbToLin(b); }
 
-  // Lighten too-dark usernames so they stay readable on the dark chat background.
   function fixNameColor(el) {
     const nameEl = el.querySelector('.chat-author__display-name, [data-a-target="chat-message-username"]');
     if (!nameEl) return;
@@ -653,9 +646,6 @@
       .chat-line__message.bt-hidden { display: none !important; }
 
       html.bt-hide-badges .chat-line__message img.chat-badge { display: none !important; }
-      /* Twitch's leaderboard / goal carousel at the top of chat has hashed class names and
-         localized labels, so it can't be matched by a static selector. applyLeaderboard()
-         finds it by its role="progressbar" and tags the wrapping block with .bt-lb-hidden. */
       html.bt-hide-leaderboard .bt-lb-hidden { display: none !important; }
       html.bt-separators .chat-line__message { border-bottom: 1px solid rgba(255,255,255,.08) !important; }
       .bt-avatar { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-right: 5px; display: inline-block; background: #2f2f35; }
@@ -723,29 +713,22 @@
     applyLeaderboard();
   }
 
-  // The leaderboard / sub-goal carousel above the chat messages uses hashed class names and
-  // localized labels, so it can't be matched by a static selector. It cycles between slides
-  // (a goal with a progress bar, a ranked leaderboard with none), but every slide sits inside
-  // a .tw-transition-group, so that — plus any stray progress bar — is the handle. For each
-  // match outside the chat alert queue and message list, tag the block directly under
-  // .chat-room__content, unless that block also holds the messages or input (never hide chat).
   function applyLeaderboard() {
     document.querySelectorAll('.bt-lb-hidden').forEach((el) => el.classList.remove('bt-lb-hidden'));
     if (!CONFIG.hideLeaderboard) return;
-    document.querySelectorAll('.chat-room__content .tw-transition-group, .chat-room__content [role="progressbar"]').forEach((el) => {
-      if (el.closest('[data-a-target="chat-alert-queue"]') || el.closest('.chat-scrollable-area__message-container')) return;
-      const content = el.closest('.chat-room__content');
-      if (!content) return;
-      let block = el;
-      while (block.parentElement && block.parentElement !== content) block = block.parentElement;
-      if (block.querySelector('.chat-scrollable-area__message-container, [data-test-selector="chat-scrollable-area__message-container"], .chat-input')) return;
-      block.classList.add('bt-lb-hidden');
+    const LIST = '.chat-scrollable-area__message-container, [data-test-selector="chat-scrollable-area__message-container"]';
+    document.querySelectorAll('.chat-room__content').forEach((content) => {
+      const children = Array.from(content.children);
+      const listIdx = children.findIndex((c) => c.matches(LIST) || c.querySelector(LIST));
+      if (listIdx === -1) return; // chat not ready yet — don't risk hiding anything
+      for (let i = 0; i < listIdx; i++) {
+        const child = children[i];
+        if (child.matches('[data-a-target="chat-alert-queue"]') || child.querySelector('[data-a-target="chat-alert-queue"]')) continue;
+        if (child.querySelector('.tw-transition-group, [role="progressbar"]')) child.classList.add('bt-lb-hidden');
+      }
     });
   }
 
-  // The carousel mounts as a direct child of .chat-room__content after chat loads, so a
-  // childList (non-subtree) observer hides it the moment it appears, without firing on every
-  // new chat message. The 2s tick still covers slide changes within an already-tagged block.
   let hlObserver = null, observedRoom = null;
 
   function ensureHighlightObserver() {
@@ -768,8 +751,6 @@
     if (icon) { const b = icon.closest('button'); if (b) b.click(); }
   }
 
-  // Twitch's Drops markup has changed names over time, so try the known claim-button
-  // selectors first and fall back to a "Claim"-labelled button inside any Drops container.
   function claimDrops() {
     let btn = document.querySelector('button[data-test-selector="DropClaimButton"], button[data-a-target="DropClaimButton"]');
     if (!btn) {
@@ -1054,9 +1035,6 @@
     p.classList.toggle('bt-open', willOpen);
   }
 
-  // Scope to the active chat input's button row (the last one on the page - Mod View can have
-  // several chat regions) and anchor just before its Send button, so the cog lands in the same
-  // spot in both normal chat and Mod View, whether or not the native settings cog exists.
   function footerInsertCtx() {
     const bars = document.querySelectorAll('.chat-input__buttons-container');
     const toolbar = bars[bars.length - 1];
@@ -1067,7 +1045,6 @@
       anchor = send;
       while (anchor.parentElement && anchor.parentElement !== toolbar) anchor = anchor.parentElement;
     }
-    // The native cog's cell, cloned to inherit Twitch's button styling when available.
     const cog = toolbar.querySelector('button[data-a-target="chat-settings"]');
     let cell = cog;
     if (cog) for (let i = 0; i < 3 && cell.parentElement && cell.parentElement.children.length === 1; i++) cell = cell.parentElement;
@@ -1083,7 +1060,6 @@
     return btn;
   }
 
-  // Last resort when no chat input toolbar is found at all: float over the chat panel.
   function floatFallback(id, title, innerHTML, onClick) {
     const chat = document.querySelector('.stream-chat, section[data-test-selector="chat-room-component-layout"]');
     if (!chat) return false;
