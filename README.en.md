@@ -33,7 +33,7 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 ### Viewer context
 
 - Hover over a username to open a **viewer hovercard** with that viewer's Twitch avatar.
-- See that viewer's message count, first-seen time, number of mentions, and most-used emote for the current session.
+- See that viewer's message count, number of mentions, and most-used emote for the current session.
 
 ### Message tools
 

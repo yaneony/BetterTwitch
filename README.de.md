@@ -33,7 +33,7 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 ### Zuschauer-Kontext
 
 - Fahre über einen Benutzernamen, um eine **Zuschauer-Hovercard** mit dessen Twitch-Avatar zu öffnen.
-- Sie zeigt für die aktuelle Sitzung Nachrichtenanzahl, ersten Sichtungszeitpunkt, Erwähnungen und das meistgenutzte Emote.
+- Sie zeigt für die aktuelle Sitzung Nachrichtenanzahl, Erwähnungen und das meistgenutzte Emote.
 
 ### Nachrichtenwerkzeuge
 

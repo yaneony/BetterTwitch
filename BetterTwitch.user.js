@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      2.0.3
+// @version      2.0.4
 // @description  A Twitch chat enhancement suite with live statistics, viewer hovercards, translation, notifications, filters, and layout controls.
 // @description:de Eine Twitch-Chat-Erweiterung mit Live-Statistik, Zuschauer-Hovercards, Übersetzung, Benachrichtigungen, Filtern und Layout-Steuerung.
 // @description:ru Расширение чата Twitch со статистикой, карточками зрителей, переводом, уведомлениями, фильтрами и настройкой интерфейса.
@@ -103,7 +103,7 @@
       showOriginal: 'Show original', showTranslation: 'Show translation',
       detectedLanguage: 'Detected language', translationTarget: 'Translation', unknownLanguage: 'Unknown',
       viewerHovercards: 'Viewer hovercards',
-      hoverMessages: 'Messages', hoverFirstSeen: 'First seen', hoverMentions: 'Mentions', hoverTopEmote: 'Top emote',
+      hoverMessages: 'Messages', hoverMentions: 'Mentions', hoverTopEmote: 'Top emote',
       characterCounterTitle: 'Message length',
       settingHelpTitle: 'Explain this setting', byAuthor: 'by', botNamesLabel: 'Bot usernames', botNamesPlaceholder: 'bot1, bot2, …',
       saferSending: 'Safer message sending', messageActions: 'Message actions',
@@ -206,7 +206,7 @@
       showOriginal: 'Original anzeigen', showTranslation: 'Übersetzung anzeigen',
       detectedLanguage: 'Erkannte Sprache', translationTarget: 'Übersetzung', unknownLanguage: 'Unbekannt',
       viewerHovercards: 'Zuschauer-Hovercards',
-      hoverMessages: 'Nachrichten', hoverFirstSeen: 'Zuerst gesehen', hoverMentions: 'Erwähnungen', hoverTopEmote: 'Top-Emote',
+      hoverMessages: 'Nachrichten', hoverMentions: 'Erwähnungen', hoverTopEmote: 'Top-Emote',
       characterCounterTitle: 'Nachrichtenlänge',
       settingHelpTitle: 'Diese Einstellung erklären', byAuthor: 'von', botNamesLabel: 'Bot-Benutzernamen', botNamesPlaceholder: 'bot1, bot2, …',
       saferSending: 'Sicheres Senden', messageActions: 'Nachrichtenaktionen',
@@ -309,7 +309,7 @@
       showOriginal: 'Показать оригинал', showTranslation: 'Показать перевод',
       detectedLanguage: 'Определённый язык', translationTarget: 'Перевод', unknownLanguage: 'Неизвестно',
       viewerHovercards: 'Карточки зрителей',
-      hoverMessages: 'Сообщения', hoverFirstSeen: 'Впервые замечен', hoverMentions: 'Упоминания', hoverTopEmote: 'Лучшая эмоция',
+      hoverMessages: 'Сообщения', hoverMentions: 'Упоминания', hoverTopEmote: 'Лучшая эмоция',
       characterCounterTitle: 'Длина сообщения',
       settingHelpTitle: 'Описание этой настройки', byAuthor: 'от', botNamesLabel: 'Имена ботов', botNamesPlaceholder: 'bot1, bot2, …',
       saferSending: 'Безопасная отправка', messageActions: 'Действия с сообщением',
@@ -367,7 +367,7 @@
       inlineTranslate: 'Adds a Translate action to each message toolbar. Translation is requested only when you click it; the clicked message text is sent directly to Google’s public translation endpoint and translated into the selected or auto-detected BetterTwitch language. Results are cached for this page session and can be copied, retried, or switched back to the original; no BetterTwitch server is involved.',
       mentionInbox: 'Adds a Mentions panel that collects incoming messages which mention your username or directly reply to you. The panel provides an unread count, search, optional nearby context, and a button to jump to a message that is still visible. It records only messages received while this page is open; reloading, closing, or changing the room clears the session list.',
       mentionContextMessages: 'Chooses how many ordinary chat messages are saved before and after each item in the Mentions panel: 0, 1, 2, or 3 on each side. This control has no effect until the Mentions panel is enabled. A larger value provides more conversation context but displays and keeps more lines in memory; it does not send them to a server.',
-      viewerHovercards: 'Shows a BetterTwitch information card with the viewer’s Twitch avatar when you hover over a username in chat. It summarizes only what BetterTwitch observed during the current page session, including message count, first-seen time, mentions, and most-used emote. The avatar is requested directly from Twitch and cached for the page session; this is not Twitch account history, and reloading or changing the room resets the observed statistics.',
+      viewerHovercards: 'Shows a BetterTwitch information card with the viewer’s Twitch avatar when you hover over a username in chat. It summarizes only what BetterTwitch observed during the current page session, including message count, mentions, and most-used emote. The avatar is requested directly from Twitch and cached for the page session; this is not Twitch account history, and reloading or changing the room resets the observed statistics.',
       preserveDrafts: 'Saves unfinished composer text separately for each Twitch channel in this browser and restores it when you return to that channel. Up to 30 channel drafts are kept locally, each limited to 5,000 characters; a confirmed send or manually clearing the composer removes that draft. Nothing is uploaded to BetterTwitch, and disabling this option clears the saved channel drafts.',
       sentMessageHistory: 'Keeps up to 50 messages you send during the current page session and lets you recall them with the Up and Down arrow keys. History navigation starts only when the text cursor is at the beginning or end of the composer, so normal cursor movement still works. The history is memory-only and is cleared when the page reloads.',
       characterCounter: 'Shows the message’s current character count immediately before Twitch’s chat-settings button, using a slightly larger readable label. It compares the count with the limit detected from Twitch and falls back to 500 characters when no limit is available. The counter is guidance only: it does not shorten text or prevent Twitch from rejecting a message.',
@@ -413,7 +413,7 @@
       inlineTranslate: 'Fügt jeder Nachrichtenleiste eine Übersetzungsaktion hinzu. Erst beim Anklicken wird der Text dieser einen Nachricht direkt an Googles öffentlichen Übersetzungsdienst gesendet und in die gewählte oder automatisch erkannte BetterTwitch-Sprache übersetzt. Ergebnisse werden für diese Seitensitzung zwischengespeichert und lassen sich kopieren, wiederholen oder gegen das Original umschalten; ein BetterTwitch-Server ist nicht beteiligt.',
       mentionInbox: 'Fügt ein Erwähnungs-Panel hinzu, das eingehende Nachrichten mit deinem Benutzernamen oder direkte Antworten auf dich sammelt. Es bietet einen Ungelesen-Zähler, Suche, optionalen Kontext und einen Sprung-Button, solange die Nachricht noch sichtbar ist. Gespeichert werden nur Nachrichten, die bei geöffneter Seite eintreffen; Neuladen, Schließen oder Raumwechsel löscht die Sitzungsliste.',
       mentionContextMessages: 'Legt fest, wie viele normale Chat-Nachrichten vor und nach jedem Eintrag im Erwähnungs-Panel gespeichert werden: 0, 1, 2 oder 3 je Seite. Der Wert hat keine Wirkung, solange das Erwähnungs-Panel ausgeschaltet ist. Mehr Kontext zeigt und behält mehr Zeilen im Arbeitsspeicher, sendet sie aber an keinen Server.',
-      viewerHovercards: 'Zeigt beim Überfahren eines Chat-Namens eine BetterTwitch-Infokarte mit dem Twitch-Avatar des Zuschauers. Sie fasst ausschließlich zusammen, was BetterTwitch in der aktuellen Seitensitzung gesehen hat: Nachrichtenanzahl, erste Sichtung, Erwähnungen und meistgenutztes Emote. Der Avatar wird direkt von Twitch abgerufen und für die Seitensitzung zwischengespeichert; dies ist kein Kontoverlauf, und Neuladen oder Raumwechsel setzt die beobachteten Statistiken zurück.',
+      viewerHovercards: 'Zeigt beim Überfahren eines Chat-Namens eine BetterTwitch-Infokarte mit dem Twitch-Avatar des Zuschauers. Sie fasst ausschließlich zusammen, was BetterTwitch in der aktuellen Seitensitzung gesehen hat: Nachrichtenanzahl, Erwähnungen und meistgenutztes Emote. Der Avatar wird direkt von Twitch abgerufen und für die Seitensitzung zwischengespeichert; dies ist kein Kontoverlauf, und Neuladen oder Raumwechsel setzt die beobachteten Statistiken zurück.',
       preserveDrafts: 'Speichert unfertigen Text für jeden Twitch-Kanal getrennt in diesem Browser und stellt ihn bei deiner Rückkehr wieder her. Lokal bleiben bis zu 30 Kanalentwürfe mit jeweils höchstens 5.000 Zeichen erhalten; bestätigtes Senden oder manuelles Leeren des Eingabefelds entfernt den Entwurf. Nichts wird an BetterTwitch hochgeladen, und das Ausschalten löscht die gespeicherten Kanalentwürfe.',
       sentMessageHistory: 'Behält bis zu 50 Nachrichten, die du in der aktuellen Seitensitzung sendest, und ruft sie mit Pfeil hoch und Pfeil runter wieder auf. Die Navigation beginnt nur, wenn der Textcursor am Anfang oder Ende des Eingabefelds steht, damit normale Cursorbewegung weiter funktioniert. Der Verlauf liegt nur im Arbeitsspeicher und verschwindet beim Neuladen.',
       characterCounter: 'Zeigt die aktuelle Zeichenzahl direkt vor Twitchs Chat-Einstellungsbutton in einer etwas größeren, gut lesbaren Anzeige. Sie vergleicht den Wert mit dem von Twitch erkannten Limit und verwendet 500 Zeichen, falls kein Limit gefunden wird. Der Zähler dient nur als Orientierung: Er kürzt keinen Text und verhindert keine Ablehnung durch Twitch.',
@@ -459,7 +459,7 @@
       inlineTranslate: 'Добавляет действие перевода в панель каждого сообщения. Текст конкретного сообщения отправляется напрямую в публичный сервис перевода Google только после нажатия кнопки и переводится на выбранный или автоматически определённый язык BetterTwitch. Результат кешируется на время сеанса страницы; его можно скопировать, запросить повторно или переключить на оригинал. Сервер BetterTwitch не используется.',
       mentionInbox: 'Добавляет панель упоминаний, которая собирает входящие сообщения с вашим именем и прямые ответы на ваши сообщения. В панели есть счётчик непрочитанных, поиск, необязательный контекст и кнопка перехода, пока исходное сообщение ещё видно. Записываются только сообщения, полученные при открытой странице; перезагрузка, закрытие или смена комнаты очищает список сеанса.',
       mentionContextMessages: 'Определяет, сколько обычных сообщений сохраняется до и после каждого элемента панели упоминаний: 0, 1, 2 или 3 с каждой стороны. Значение ничего не меняет, пока панель упоминаний отключена. Чем больше число, тем больше строк показывается и хранится в памяти; на сервер они не отправляются.',
-      viewerHovercards: 'Показывает при наведении на имя в чате информационную карточку BetterTwitch с аватаром зрителя Twitch. Карточка содержит только данные текущего сеанса страницы: количество сообщений, время первого появления, упоминания и самую частую эмоцию. Аватар запрашивается напрямую у Twitch и кешируется на время страницы; это не история аккаунта, а перезагрузка или смена комнаты сбрасывает собранную статистику.',
+      viewerHovercards: 'Показывает при наведении на имя в чате информационную карточку BetterTwitch с аватаром зрителя Twitch. Карточка содержит только данные текущего сеанса страницы: количество сообщений, упоминания и самую частую эмоцию. Аватар запрашивается напрямую у Twitch и кешируется на время страницы; это не история аккаунта, а перезагрузка или смена комнаты сбрасывает собранную статистику.',
       preserveDrafts: 'Сохраняет незавершённый текст отдельно для каждого канала Twitch в этом браузере и восстанавливает его при возвращении. Локально хранится до 30 черновиков каналов, каждый не длиннее 5 000 символов; подтверждённая отправка или ручная очистка поля удаляет черновик. Ничего не загружается на BetterTwitch, а отключение настройки очищает сохранённые черновики каналов.',
       sentMessageHistory: 'Хранит до 50 сообщений, отправленных вами в текущем сеансе страницы, и позволяет вызывать их стрелками вверх и вниз. Просмотр истории начинается только когда текстовый курсор находится в начале или конце поля ввода, поэтому обычное перемещение курсора продолжает работать. История хранится только в памяти и очищается при перезагрузке.',
       characterCounter: 'Показывает текущее количество символов прямо перед кнопкой настроек чата Twitch более крупным и читаемым текстом. Счётчик сравнивает длину с лимитом, обнаруженным у Twitch, и использует запасное значение 500 символов, если лимит найти не удалось. Это только подсказка: текст не обрезается, и отказ Twitch в отправке не предотвращается.',
@@ -500,7 +500,7 @@
     );
   }
 
-  const VERSION = '2.0.3';
+  const VERSION = '2.0.4';
   const PROJECT_URL = 'https://github.com/yaneony/BetterTwitch';
   const AUTHOR_URL = 'https://yaneony.com';
   const STORAGE_KEY = 'BetterTwitch-settings';
@@ -1098,7 +1098,7 @@
     if (!profile) {
       if (userProfiles.size >= MAX_USER_PROFILES) userProfiles.delete(userProfiles.keys().next().value);
       profile = {
-        login: record.login, user: record.user, color: record.color, firstSeen: record.t, lastSeen: record.t,
+        login: record.login, user: record.user, color: record.color,
         messages: 0, mentions: 0, emotes: new Map(), badges: tags.badges || '',
         moderator: tagsIdentifyModerator(tags), vip: tagsIdentifyVip(tags),
       };
@@ -1109,7 +1109,6 @@
     profile.badges = tags.badges || '';
     profile.moderator = tagsIdentifyModerator(tags);
     profile.vip = tagsIdentifyVip(tags);
-    profile.lastSeen = record.t;
     profile.messages++;
     if (mentionedMe) profile.mentions++;
     for (const emote of emotes) {
@@ -1543,11 +1542,6 @@
     } else if (b) { b.remove(); }
   }
 
-  function formatClock(timestamp) {
-    const date = new Date(timestamp);
-    return ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
-  }
-
   let hovercard = null, hoverHideTimer = null;
 
   function topProfileEmote(profile) {
@@ -1596,8 +1590,7 @@
     hovercard.innerHTML = '<div class="bt-hover-head">' + viewerHovercardAvatar(login, profile.user) +
       '<div class="bt-hover-name" style="color:' + esc(chatterColor(profile.color)) + '">' + esc(profile.user) + '</div></div>' +
       '<div class="bt-hover-grid"><span><b>' + profile.messages + '</b>' + t('hoverMessages') + '</span>' +
-      '<span><b>' + profile.mentions + '</b>' + t('hoverMentions') + '</span>' +
-      '<span><b>' + formatClock(profile.firstSeen) + '</b>' + t('hoverFirstSeen') + '</span></div>' +
+      '<span><b>' + profile.mentions + '</b>' + t('hoverMentions') + '</span></div>' +
       (top ? '<div class="bt-hover-emote"><small>' + t('hoverTopEmote') + '</small><img src="' + emoteUrl(top[0]) + '" alt=""><span>' + esc(top[1].name) + ' ×' + top[1].count + '</span></div>' : '');
     hydrateViewerHovercardAvatar(hovercard, login);
     const rect = anchor.getBoundingClientRect();
@@ -3688,7 +3681,7 @@
       .bt-hover-avatar { display: grid; flex: 0 0 36px; width: 36px; height: 36px; place-items: center; overflow: hidden; border: 1px solid #3d3d46; border-radius: 50%; background: #292930; color: #d7d7dc; font-size: 14px; font-weight: 800; }
       .bt-hover-avatar img { width: 100%; height: 100%; object-fit: cover; }
       .bt-hover-name { min-width: 0; overflow: hidden; font-size: 15px; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
-      .bt-hover-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; margin-top: 8px; }
+      .bt-hover-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 5px; margin-top: 8px; }
       .bt-hover-grid span { color: #7d7d85; font-size: 9px; text-align: center; }
       .bt-hover-grid b { display: block; color: #efeff1; font-size: 13px; }
       .bt-hover-emote { display: flex; align-items: center; gap: 6px; margin-top: 8px; padding-top: 7px; border-top: 1px solid #34343b; }

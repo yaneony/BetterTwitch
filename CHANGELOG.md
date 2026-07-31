@@ -2,6 +2,12 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [2.0.4] - 2026-07-31
+
+### Removed
+
+- Removed the first-seen timestamp from viewer hovercards and stopped tracking it in session user profiles.
+
 ## [2.0.3] - 2026-07-31
 
 ### Removed
