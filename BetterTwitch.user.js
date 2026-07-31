@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      2.0.2
+// @version      2.0.3
 // @description  A Twitch chat enhancement suite with live statistics, viewer hovercards, translation, notifications, filters, and layout controls.
 // @description:de Eine Twitch-Chat-Erweiterung mit Live-Statistik, Zuschauer-Hovercards, Übersetzung, Benachrichtigungen, Filtern und Layout-Steuerung.
 // @description:ru Расширение чата Twitch со статистикой, карточками зрителей, переводом, уведомлениями, фильтрами и настройкой интерфейса.
@@ -76,7 +76,6 @@
       exportTitle: 'Export settings', importTitle: 'Import settings',
       ioCopy: 'Copy', ioApply: 'Apply', ioClose: 'Close',
       mentionInbox: 'Mentions panel', mentionContextMessages: 'Context messages',
-      highlightFirstChatters: 'Highlight first-time chatters', highlightReturningChatters: 'Highlight returning chatters',
       inlineTranslate: 'Translate on hover',
       preserveDrafts: 'Preserve drafts per channel', sentMessageHistory: 'Sent-message history',
       characterCounter: 'Character counter',
@@ -99,7 +98,6 @@
       inboxBtnTitle: 'Mentions',
       inboxTitle: 'Mentions', inboxEmpty: 'No mentions yet.', inboxSearch: 'Search mentions…',
       inboxJump: 'Jump to message', inboxMissing: 'Message is no longer visible.',
-      firstChatterLabel: 'FIRST', returningChatterLabel: 'RETURNING',
       transFailed: 'Translation failed', transLoading: 'Translating…',
       retryTranslation: 'Retry', copyTranslation: 'Copy translation', translationCopied: 'Copied',
       showOriginal: 'Show original', showTranslation: 'Show translation',
@@ -181,7 +179,6 @@
       exportTitle: 'Einstellungen exportieren', importTitle: 'Einstellungen importieren',
       ioCopy: 'Kopieren', ioApply: 'Übernehmen', ioClose: 'Schließen',
       mentionInbox: 'Erwähnungs-Panel', mentionContextMessages: 'Kontextnachrichten',
-      highlightFirstChatters: 'Erstmalige Chatter hervorheben', highlightReturningChatters: 'Wiederkehrende Chatter hervorheben',
       inlineTranslate: 'Beim Überfahren übersetzen',
       preserveDrafts: 'Entwürfe pro Kanal behalten', sentMessageHistory: 'Verlauf gesendeter Nachrichten',
       characterCounter: 'Zeichenzähler',
@@ -204,7 +201,6 @@
       inboxBtnTitle: 'Erwähnungen',
       inboxTitle: 'Erwähnungen', inboxEmpty: 'Noch keine Erwähnungen.', inboxSearch: 'Erwähnungen suchen…',
       inboxJump: 'Zur Nachricht springen', inboxMissing: 'Nachricht ist nicht mehr sichtbar.',
-      firstChatterLabel: 'NEU', returningChatterLabel: 'WIEDER DA',
       transFailed: 'Übersetzung fehlgeschlagen', transLoading: 'Wird übersetzt…',
       retryTranslation: 'Erneut versuchen', copyTranslation: 'Übersetzung kopieren', translationCopied: 'Kopiert',
       showOriginal: 'Original anzeigen', showTranslation: 'Übersetzung anzeigen',
@@ -286,7 +282,6 @@
       exportTitle: 'Экспорт настроек', importTitle: 'Импорт настроек',
       ioCopy: 'Копировать', ioApply: 'Применить', ioClose: 'Закрыть',
       mentionInbox: 'Панель упоминаний', mentionContextMessages: 'Сообщения контекста',
-      highlightFirstChatters: 'Выделять новых участников', highlightReturningChatters: 'Выделять вернувшихся участников',
       inlineTranslate: 'Перевод при наведении',
       preserveDrafts: 'Сохранять черновики по каналам', sentMessageHistory: 'История отправленных сообщений',
       characterCounter: 'Счётчик символов',
@@ -309,7 +304,6 @@
       inboxBtnTitle: 'Упоминания',
       inboxTitle: 'Упоминания', inboxEmpty: 'Упоминаний пока нет.', inboxSearch: 'Поиск упоминаний…',
       inboxJump: 'Перейти к сообщению', inboxMissing: 'Сообщение больше не отображается.',
-      firstChatterLabel: 'ВПЕРВЫЕ', returningChatterLabel: 'ВЕРНУЛСЯ',
       transFailed: 'Ошибка перевода', transLoading: 'Перевод…',
       retryTranslation: 'Повторить', copyTranslation: 'Копировать перевод', translationCopied: 'Скопировано',
       showOriginal: 'Показать оригинал', showTranslation: 'Показать перевод',
@@ -361,13 +355,9 @@
       mentionHighlight: 'Adds a colored background and side marker to messages that mention your currently logged-in Twitch username. Your own messages are not treated as incoming mentions. Turn this off to remove the visual marker; the Mentions panel and notification sound have their own separate settings.',
       highlightMods: 'Adds a colored background and side marker to messages from channel moderators. BetterTwitch relies on the role or badge data attached to each Twitch message, so a message cannot be highlighted when Twitch does not provide recognizable moderator metadata. This changes appearance only and grants no moderation permissions.',
       highlightVips: 'Adds a colored background and side marker to messages from channel VIPs. BetterTwitch relies on the role or badge data attached to each Twitch message, so a message cannot be highlighted when Twitch does not provide recognizable VIP metadata. This changes appearance only and does not alter the user’s Twitch status.',
-      mentionColor: 'Selects the background, border, and marker color used for messages that mention you. This picker has no visible effect until "Highlight @mentions" is enabled. Choose a color that remains readable against your Twitch theme; it does not affect moderator, VIP, first-time, or returning-chatter colors.',
+      mentionColor: 'Selects the background, border, and marker color used for messages that mention you. This picker has no visible effect until "Highlight @mentions" is enabled. Choose a color that remains readable against your Twitch theme; it does not affect moderator or VIP colors.',
       modColor: 'Selects the background, border, and marker color used for moderator messages. This picker has no visible effect until "Highlight moderators" is enabled. It changes only the local highlight and does not change Twitch’s username color or moderator badge.',
       vipColor: 'Selects the background, border, and marker color used for VIP messages. This picker has no visible effect until "Highlight VIPs" is enabled. It changes only the local highlight and does not change Twitch’s username color or VIP badge.',
-      highlightFirstChatters: 'Highlights a message and adds a FIRST label when Twitch marks it as that user’s first message in the channel. BetterTwitch cannot infer this status from chat history, so it works only when Twitch includes the first-message metadata. The label is translated into the selected BetterTwitch language.',
-      highlightReturningChatters: 'Highlights a message and adds a RETURNING label when Twitch marks the sender as a returning chatter. BetterTwitch cannot calculate this status by itself, so it works only when Twitch includes the returning-chatter metadata. The label is translated into the selected BetterTwitch language.',
-      firstChatterColor: 'Selects the background, border, and FIRST-label color used for first-time chatters. This picker has no visible effect until "Highlight first-time chatters" is enabled and Twitch identifies a message as a first message. It does not change the user’s Twitch name color.',
-      returningChatterColor: 'Selects the background, border, and RETURNING-label color used for returning chatters. This picker has no visible effect until "Highlight returning chatters" is enabled and Twitch identifies the sender as returning. It does not change the user’s Twitch name color.',
       fixNameColors: 'Checks Twitch username colors against the currently selected light or dark Twitch theme and adjusts only colors that would otherwise be difficult to read. Names that already have enough contrast are left unchanged. This is a local readability adjustment: it does not change the user’s saved Twitch color, role, badge, or identity.',
       copyButton: 'Adds a Copy action to BetterTwitch’s message toolbar, which appears when you hover over or focus a chat message. Clicking it copies the readable author/message content without the toolbar buttons or BetterTwitch translation controls. Turn this off to remove only the Copy action; Twitch’s chat message remains unchanged.',
       accentColor: 'Sets the main color used by BetterTwitch for enabled switches, active buttons, headings, borders, focus rings, and other interface accents. The change is applied immediately across BetterTwitch panels. It does not recolor Twitch itself, usernames, message highlights, or the video player.',
@@ -411,13 +401,9 @@
       mentionHighlight: 'Gibt Nachrichten, die deinen aktuell angemeldeten Twitch-Namen erwähnen, einen farbigen Hintergrund und Seitenmarker. Eigene Nachrichten zählen nicht als eingehende Erwähnungen. Ausschalten entfernt nur diese optische Markierung; das Erwähnungs-Panel und der Benachrichtigungston besitzen eigene Einstellungen.',
       highlightMods: 'Gibt Nachrichten von Kanalmoderatoren einen farbigen Hintergrund und Seitenmarker. BetterTwitch benötigt dafür die Rollen- oder Abzeichen-Daten der jeweiligen Twitch-Nachricht; ohne erkennbare Moderator-Metadaten ist keine Hervorhebung möglich. Es ändert nur die Darstellung und verleiht keinerlei Moderationsrechte.',
       highlightVips: 'Gibt Nachrichten von Kanal-VIPs einen farbigen Hintergrund und Seitenmarker. BetterTwitch benötigt dafür die Rollen- oder Abzeichen-Daten der jeweiligen Twitch-Nachricht; ohne erkennbare VIP-Metadaten ist keine Hervorhebung möglich. Es ändert nur die Darstellung und nicht den Twitch-Status des Benutzers.',
-      mentionColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für Nachrichten, in denen du erwähnt wirst. Die Farbauswahl hat keine sichtbare Wirkung, solange „@Erwähnungen hervorheben" ausgeschaltet ist. Wähle eine Farbe, die in deinem Twitch-Design lesbar bleibt; Moderator-, VIP-, Erstmalig- und Wiederkehrer-Farben ändern sich nicht.',
+      mentionColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für Nachrichten, in denen du erwähnt wirst. Die Farbauswahl hat keine sichtbare Wirkung, solange „@Erwähnungen hervorheben" ausgeschaltet ist. Wähle eine Farbe, die in deinem Twitch-Design lesbar bleibt; Moderator- und VIP-Farben ändern sich nicht.',
       modColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für Moderator-Nachrichten. Die Farbauswahl hat keine sichtbare Wirkung, solange „Moderatoren hervorheben" ausgeschaltet ist. Nur die lokale Hervorhebung ändert sich, nicht Twitchs Namensfarbe oder Moderator-Abzeichen.',
       vipColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für VIP-Nachrichten. Die Farbauswahl hat keine sichtbare Wirkung, solange „VIPs hervorheben" ausgeschaltet ist. Nur die lokale Hervorhebung ändert sich, nicht Twitchs Namensfarbe oder VIP-Abzeichen.',
-      highlightFirstChatters: 'Hebt eine Nachricht hervor und ergänzt das Label NEU, wenn Twitch sie als erste Nachricht dieses Benutzers im Kanal kennzeichnet. BetterTwitch kann diesen Status nicht aus dem Chatverlauf erraten und ist deshalb auf Twitchs Erstnachrichten-Metadaten angewiesen. Das Label erscheint in der gewählten BetterTwitch-Sprache.',
-      highlightReturningChatters: 'Hebt eine Nachricht hervor und ergänzt das Label WIEDER DA, wenn Twitch den Absender als wiederkehrenden Chatter kennzeichnet. BetterTwitch kann diesen Status nicht selbst berechnen und ist deshalb auf Twitchs Wiederkehrer-Metadaten angewiesen. Das Label erscheint in der gewählten BetterTwitch-Sprache.',
-      firstChatterColor: 'Wählt Hintergrund-, Rahmen- und NEU-Label-Farbe für erstmalige Chatter. Die Farbauswahl wirkt nur, wenn „Erstmalige Chatter hervorheben" aktiv ist und Twitch eine Nachricht als erste Nachricht erkennt. Die Twitch-Namensfarbe des Benutzers bleibt unverändert.',
-      returningChatterColor: 'Wählt Hintergrund-, Rahmen- und WIEDER-DA-Label-Farbe für wiederkehrende Chatter. Die Farbauswahl wirkt nur, wenn „Wiederkehrende Chatter hervorheben" aktiv ist und Twitch den Absender als wiederkehrend erkennt. Die Twitch-Namensfarbe des Benutzers bleibt unverändert.',
       fixNameColors: 'Prüft Twitch-Namensfarben im aktuell gewählten hellen oder dunklen Twitch-Design und passt nur Farben an, die sonst schwer lesbar wären. Namen mit ausreichendem Kontrast bleiben unverändert. Diese lokale Lesbarkeitshilfe ändert weder die bei Twitch gespeicherte Farbe noch Rolle, Abzeichen oder Identität des Benutzers.',
       copyButton: 'Fügt der BetterTwitch-Nachrichtenleiste eine Kopieraktion hinzu; die Leiste erscheint beim Überfahren oder Fokussieren einer Chat-Nachricht. Ein Klick kopiert den lesbaren Autor-/Nachrichteninhalt ohne Leisten-Buttons oder BetterTwitch-Übersetzungselemente. Ausschalten entfernt nur die Kopieraktion und verändert die Twitch-Nachricht nicht.',
       accentColor: 'Bestimmt die Hauptfarbe für aktivierte BetterTwitch-Schalter, aktive Buttons, Überschriften, Rahmen, Fokusmarkierungen und weitere Oberflächenakzente. Die Änderung wird sofort in allen BetterTwitch-Panels angewendet. Twitch selbst, Benutzernamen, Nachrichten-Hervorhebungen und Videoplayer werden nicht umgefärbt.',
@@ -461,13 +447,9 @@
       mentionHighlight: 'Добавляет цветной фон и боковую метку к сообщениям, в которых упомянуто имя вашей текущей учётной записи Twitch. Собственные сообщения не считаются входящими упоминаниями. Отключение убирает только визуальную подсветку; у панели упоминаний и звукового уведомления есть отдельные настройки.',
       highlightMods: 'Добавляет цветной фон и боковую метку к сообщениям модераторов канала. BetterTwitch использует данные роли или значка, прикреплённые Twitch к сообщению; если распознаваемых метаданных модератора нет, подсветить сообщение невозможно. Меняется только внешний вид, никаких прав модератора настройка не предоставляет.',
       highlightVips: 'Добавляет цветной фон и боковую метку к сообщениям VIP канала. BetterTwitch использует данные роли или значка, прикреплённые Twitch к сообщению; если распознаваемых метаданных VIP нет, подсветить сообщение невозможно. Меняется только внешний вид, статус пользователя на Twitch не изменяется.',
-      mentionColor: 'Выбирает цвет фона, рамки и боковой метки для сообщений, в которых вас упоминают. Выбор цвета ничего не меняет, пока не включена настройка «Подсвечивать @упоминания». Используйте цвет, который хорошо читается в вашей теме Twitch; цвета модераторов, VIP, новых и вернувшихся участников не меняются.',
+      mentionColor: 'Выбирает цвет фона, рамки и боковой метки для сообщений, в которых вас упоминают. Выбор цвета ничего не меняет, пока не включена настройка «Подсвечивать @упоминания». Используйте цвет, который хорошо читается в вашей теме Twitch; цвета модераторов и VIP не меняются.',
       modColor: 'Выбирает цвет фона, рамки и боковой метки для сообщений модераторов. Выбор цвета ничего не меняет, пока не включена настройка «Подсвечивать модераторов». Меняется только локальная подсветка, а не цвет имени или значок модератора на Twitch.',
       vipColor: 'Выбирает цвет фона, рамки и боковой метки для сообщений VIP. Выбор цвета ничего не меняет, пока не включена настройка «Подсвечивать VIP». Меняется только локальная подсветка, а не цвет имени или значок VIP на Twitch.',
-      highlightFirstChatters: 'Подсвечивает сообщение и добавляет метку ВПЕРВЫЕ, когда Twitch отмечает его как первое сообщение этого пользователя на канале. BetterTwitch не может определить такой статус по истории чата, поэтому функция работает только при наличии метаданных первого сообщения от Twitch. Метка отображается на выбранном языке BetterTwitch.',
-      highlightReturningChatters: 'Подсвечивает сообщение и добавляет метку ВЕРНУЛСЯ, когда Twitch отмечает автора как вернувшегося участника. BetterTwitch не может вычислить этот статус самостоятельно, поэтому функция работает только при наличии соответствующих метаданных Twitch. Метка отображается на выбранном языке BetterTwitch.',
-      firstChatterColor: 'Выбирает цвет фона, рамки и метки ВПЕРВЫЕ для новых участников. Цвет применяется только при включённой настройке «Подсвечивать новых участников» и только когда Twitch определяет сообщение как первое. Цвет имени пользователя на Twitch не меняется.',
-      returningChatterColor: 'Выбирает цвет фона, рамки и метки ВЕРНУЛСЯ для вернувшихся участников. Цвет применяется только при включённой настройке «Подсвечивать вернувшихся участников» и только когда Twitch определяет автора как вернувшегося. Цвет имени пользователя на Twitch не меняется.',
       fixNameColors: 'Проверяет контраст цветов имён в выбранной светлой или тёмной теме Twitch и корректирует только те цвета, которые иначе трудно читать. Имена с достаточным контрастом остаются без изменений. Эта локальная коррекция читаемости не меняет сохранённый на Twitch цвет, роль, значок или личность пользователя.',
       copyButton: 'Добавляет действие копирования в панель BetterTwitch, которая появляется при наведении или фокусе на сообщении чата. Нажатие копирует читаемое содержимое автора и сообщения без кнопок панели и элементов перевода BetterTwitch. Отключение удаляет только действие копирования и не изменяет сообщение Twitch.',
       accentColor: 'Задаёт основной цвет включённых переключателей, активных кнопок, заголовков, рамок, индикаторов фокуса и других элементов BetterTwitch. Изменение сразу применяется ко всем панелям BetterTwitch. Сама страница Twitch, имена пользователей, подсветка сообщений и видеоплеер не перекрашиваются.',
@@ -518,7 +500,7 @@
     );
   }
 
-  const VERSION = '2.0.2';
+  const VERSION = '2.0.3';
   const PROJECT_URL = 'https://github.com/yaneony/BetterTwitch';
   const AUTHOR_URL = 'https://yaneony.com';
   const STORAGE_KEY = 'BetterTwitch-settings';
@@ -555,8 +537,6 @@
     pingSound: 'message', pingVolume: 0.35,
     mentionHighlight: true, highlightMods: false, highlightVips: false,
     mentionColor: '#e31337', modColor: '#00ad03', vipColor: '#e005b9',
-    highlightFirstChatters: true, highlightReturningChatters: true,
-    firstChatterColor: '#9147ff', returningChatterColor: '#3cc8ff',
     fixNameColors: false, copyButton: false,
     accentColor: '#e31337',
     hideCommands: false, hideBots: false,
@@ -577,7 +557,6 @@
     'hideLeaderboard', 'hideCommunityHighlights',
     'autoClaimPoints', 'autoClaimDrops', 'autoQuality',
     'mentionSound', 'mentionReplyPing', 'mentionHighlight', 'highlightMods', 'highlightVips',
-    'highlightFirstChatters', 'highlightReturningChatters',
     'fixNameColors', 'copyButton', 'hideCommands', 'hideBots',
     'inlineTranslate', 'mentionInbox', 'viewerHovercards',
     'preserveDrafts', 'sentMessageHistory', 'characterCounter',
@@ -587,7 +566,7 @@
     'saferSending',
   ]);
   const COLOR_SETTINGS = new Set([
-    'mentionColor', 'modColor', 'vipColor', 'firstChatterColor', 'returningChatterColor', 'accentColor',
+    'mentionColor', 'modColor', 'vipColor', 'accentColor',
   ]);
 
   function isPlainObject(value) {
@@ -1221,8 +1200,6 @@
         id: record.id,
         login,
         text,
-        first: tags['first-msg'] === '1',
-        returning: tags['returning-chatter'] === '1',
         moderator: tagsIdentifyModerator(tags),
         vip: tagsIdentifyVip(tags),
         record,
@@ -1342,14 +1319,16 @@
       if (slot.querySelector('img')) return;
       const login = slot.dataset.btDashAvatar || '';
       if (!LOGIN_RE.test(login)) return;
+      const getSlot = weakElementGetter(slot);
       fetchAvatar(login).then((url) => {
-        if (!url || !slot.isConnected || slot.dataset.btDashAvatar !== login) return;
+        const currentSlot = getSlot();
+        if (!url || !currentSlot || !currentSlot.isConnected || currentSlot.dataset.btDashAvatar !== login) return;
         const img = document.createElement('img');
         img.src = url;
         img.alt = '';
         img.loading = 'lazy';
-        slot.textContent = '';
-        slot.appendChild(img);
+        currentSlot.textContent = '';
+        currentSlot.appendChild(img);
       });
     });
   }
@@ -1587,14 +1566,16 @@
     if (!card || !LOGIN_RE.test(login)) return;
     const slot = card.querySelector('[data-bt-hover-avatar]');
     if (!slot || slot.dataset.btHoverAvatar !== login || slot.querySelector('img')) return;
+    const getSlot = weakElementGetter(slot);
     fetchAvatar(login).then((url) => {
-      if (!url || !slot.isConnected || slot.dataset.btHoverAvatar !== login) return;
+      const currentSlot = getSlot();
+      if (!url || !currentSlot || !currentSlot.isConnected || currentSlot.dataset.btHoverAvatar !== login) return;
       const img = document.createElement('img');
       img.src = url;
       img.alt = '';
       img.loading = 'lazy';
-      slot.textContent = '';
-      slot.appendChild(img);
+      currentSlot.textContent = '';
+      currentSlot.appendChild(img);
     });
   }
 
@@ -2907,31 +2888,6 @@
     return meta;
   }
 
-  function applyChatterSpotlight(el) {
-    const meta = metadataForLine(el);
-    const first = !!(meta && meta.first && CONFIG.highlightFirstChatters);
-    const returning = !!(meta && !first && meta.returning && CONFIG.highlightReturningChatters);
-    el.classList.toggle('bt-first-chatter', first);
-    el.classList.toggle('bt-returning-chatter', returning);
-    let chip = el.querySelector('.bt-chatter-chip');
-    if (!first && !returning) {
-      if (chip) chip.remove();
-      return;
-    }
-    if (!chip) {
-      chip = document.createElement('span');
-      chip.className = 'bt-chatter-chip';
-      const name = el.querySelector('.chat-line__username-container')
-        || el.querySelector('[data-a-target="chat-message-username"]')
-        || el.querySelector('.chat-author__display-name');
-      if (name && name.parentNode) name.parentNode.insertBefore(chip, name.nextSibling);
-      else el.insertBefore(chip, el.firstChild);
-    }
-    chip.classList.toggle('bt-first-chip', first);
-    chip.classList.toggle('bt-returning-chip', returning);
-    chip.textContent = first ? t('firstChatterLabel') : t('returningChatterLabel');
-  }
-
   function mark(el) {
     if (el.hasAttribute('data-bt')) return;
     el.classList.add('bt-deleted'); el.setAttribute('data-bt', '1');
@@ -3040,25 +2996,43 @@
 
   const LOGIN_RE = /^[a-z0-9_]{1,30}$/;
   const AVATAR_BATCH = 50;
+  const MAX_AVATAR_CACHE = 500;
+  const MAX_AVATAR_PENDING = 250;
+  const MAX_AVATAR_BATCH_REQUESTS = 2;
   const avatarCache = new Map();
   const avatarInflight = new Map();
   let avatarQueue = [];
   let avatarFlush = null;
+  let avatarBatchRequests = 0;
+
+  function weakElementGetter(element) {
+    if (typeof WeakRef !== 'function') return () => element;
+    const reference = new WeakRef(element);
+    element = null;
+    return () => reference.deref();
+  }
+
+  function scheduleAvatarFlush() {
+    if (!avatarFlush && avatarQueue.length && avatarBatchRequests < MAX_AVATAR_BATCH_REQUESTS) {
+      avatarFlush = setTimeout(flushAvatars, 80);
+    }
+  }
 
   function fetchAvatar(login) {
     if (avatarCache.has(login)) return Promise.resolve(avatarCache.get(login));
     const existing = avatarInflight.get(login);
     if (existing) return existing.promise;
+    if (avatarInflight.size >= MAX_AVATAR_PENDING) return Promise.resolve(null);
     let resolve;
     const promise = new Promise((r) => { resolve = r; });
     avatarInflight.set(login, { promise, resolve });
     avatarQueue.push(login);
-    if (!avatarFlush) avatarFlush = setTimeout(flushAvatars, 80);
+    scheduleAvatarFlush();
     return promise;
   }
 
   function settleAvatar(login, url) {
-    if (avatarCache.size >= 500) avatarCache.delete(avatarCache.keys().next().value);
+    if (avatarCache.size >= MAX_AVATAR_CACHE) avatarCache.delete(avatarCache.keys().next().value);
     avatarCache.set(login, url);
     const inf = avatarInflight.get(login);
     avatarInflight.delete(login);
@@ -3067,8 +3041,10 @@
 
   function flushAvatars() {
     avatarFlush = null;
+    if (avatarBatchRequests >= MAX_AVATAR_BATCH_REQUESTS) return;
     const batch = avatarQueue.splice(0, AVATAR_BATCH);
     if (!batch.length) return;
+    avatarBatchRequests++;
     const query = 'query{' + batch.map((login, i) => 'u' + i + ':user(login:"' + login + '"){profileImageURL(width:70)}').join(' ') + '}';
     fetchWithTimeout('https://gql.twitch.tv/gql', {
       method: 'POST',
@@ -3080,25 +3056,71 @@
     }).then((d) => {
       const data = (d && d.data) || {};
       batch.forEach((login, i) => { const u = data['u' + i]; settleAvatar(login, (u && u.profileImageURL) || null); });
-    }).catch(() => { batch.forEach((login) => settleAvatar(login, null)); });
-    if (avatarQueue.length && !avatarFlush) avatarFlush = setTimeout(flushAvatars, 80);
+    }).catch(() => {
+      batch.forEach((login) => settleAvatar(login, null));
+    }).finally(() => {
+      avatarBatchRequests--;
+      scheduleAvatarFlush();
+    });
+    scheduleAvatarFlush();
   }
 
-  function addAvatar(el) {
-    if (!CONFIG.showAvatars) { const ex = el.querySelector('.bt-avatar'); if (ex) ex.remove(); return; }
-    if (el.querySelector('.bt-avatar')) return;
-    const login = lineLogin(el);
-    if (!LOGIN_RE.test(login)) return;
+  function clearLineAvatar(el) {
+    const existing = el.querySelector('.bt-avatar');
+    if (existing) existing.remove();
+    delete el.dataset.btAvatarLogin;
+    delete el.dataset.btAvatarState;
+  }
+
+  function insertLineAvatar(el, login, url) {
+    if (!url || !el.isConnected || el.dataset.btAvatarLogin !== login || el.querySelector('.bt-avatar')) return;
     const img = document.createElement('img');
-    img.className = 'bt-avatar'; img.alt = ''; img.loading = 'lazy';
+    img.className = 'bt-avatar';
+    img.alt = '';
+    img.loading = 'lazy';
+    img.src = url;
     const name = el.querySelector('.chat-line__username-container')
       || el.querySelector('[data-a-target="chat-message-username"]')
       || el.querySelector('.chat-author__display-name');
     try {
       if (name && name.parentNode) name.parentNode.insertBefore(img, name);
       else el.insertBefore(img, el.firstChild);
-    } catch (e) { return; }
-    fetchAvatar(login).then((url) => { if (url) img.src = url; else img.remove(); });
+      el.dataset.btAvatarState = 'ready';
+    } catch (e) {
+      el.dataset.btAvatarState = 'missing';
+    }
+  }
+
+  function addAvatar(el) {
+    if (!CONFIG.showAvatars) { clearLineAvatar(el); return; }
+    const login = lineLogin(el);
+    if (!LOGIN_RE.test(login)) { clearLineAvatar(el); return; }
+    if (el.dataset.btAvatarLogin !== login) {
+      clearLineAvatar(el);
+      el.dataset.btAvatarLogin = login;
+    }
+    if (el.querySelector('.bt-avatar')) {
+      el.dataset.btAvatarState = 'ready';
+      return;
+    }
+    if (el.dataset.btAvatarState === 'pending' || el.dataset.btAvatarState === 'missing') return;
+    if (avatarCache.has(login)) {
+      const cached = avatarCache.get(login);
+      if (cached) insertLineAvatar(el, login, cached);
+      else el.dataset.btAvatarState = 'missing';
+      return;
+    }
+    el.dataset.btAvatarState = 'pending';
+    const getLine = weakElementGetter(el);
+    fetchAvatar(login).then((url) => {
+      const line = getLine();
+      if (!line || line.dataset.btAvatarLogin !== login) return;
+      if (!url) {
+        line.dataset.btAvatarState = 'missing';
+        return;
+      }
+      insertLineAvatar(line, login, url);
+    });
   }
 
   function srgbToLin(x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); }
@@ -3309,7 +3331,6 @@
       el.classList.toggle('bt-mod', CONFIG.highlightMods && lineHasMod(el));
       el.classList.toggle('bt-vip', CONFIG.highlightVips && lineHasVip(el));
       el.classList.toggle('bt-hidden', shouldHide(el));
-      applyChatterSpotlight(el);
       addAvatar(el);
       fixNameColor(el);
       ensureMessageActionBar(el);
@@ -3327,6 +3348,28 @@
   function syncAll() { botCache = null; document.querySelectorAll('.chat-line__message').forEach(processLine); }
 
   let chatObserver = null, observedChat = null, sweepTimer = null;
+
+  function observeChatContainer(container) {
+    if (chatObserver && container && container.isConnected && observedChat === container) {
+      chatObserver.observe(container, { childList: true, subtree: true });
+    }
+  }
+
+  function pruneDisconnectedChatState() {
+    for (const [signature, group] of spamGroupsBySignature) {
+      if (!group.root || !group.root.isConnected) {
+        spamGroupsBySignature.delete(signature);
+        continue;
+      }
+      group.lines = group.lines.filter((line) => line.isConnected);
+      if (group.button && !group.button.isConnected) group.button = null;
+    }
+    if (chatSearchMatches.length) {
+      chatSearchMatches = chatSearchMatches.filter((line) => line.isConnected);
+      if (!chatSearchMatches.length) chatSearchIndex = -1;
+      else chatSearchIndex = Math.min(Math.max(0, chatSearchIndex), chatSearchMatches.length - 1);
+    }
+  }
 
   function disconnectChatObserver() {
     if (chatObserver) chatObserver.disconnect();
@@ -3354,9 +3397,11 @@
     chatSearchIndex = -1;
     chatObserver = new MutationObserver((muts) => {
       const lines = new Set();
+      let contentRemoved = false;
       for (const m of muts) {
         const changedLine = m.target.closest && m.target.closest('.chat-line__message');
         if (changedLine) lines.add(changedLine);
+        if (m.removedNodes.length) contentRemoved = true;
         for (const node of m.addedNodes) {
           if (node.nodeType !== 1) continue;
           if (node.matches && node.matches('.chat-line__message')) lines.add(node);
@@ -3365,11 +3410,20 @@
           if (node.querySelectorAll) node.querySelectorAll('.chat-line__message').forEach((line) => lines.add(line));
         }
       }
-      lines.forEach((line) => processLine(line, true));
+      // BetterTwitch adds controls inside chat rows. Process while disconnected so
+      // those additions cannot recursively invoke this observer.
+      chatObserver.disconnect();
+      try {
+        lines.forEach((line) => processLine(line, true));
+        if (contentRemoved) pruneDisconnectedChatState();
+      } finally {
+        observeChatContainer(container);
+      }
+      if (chatSearchQuery && (lines.size || contentRemoved)) scheduleChatSearch();
     });
-    chatObserver.observe(container, { childList: true, subtree: true });
     observedChat = container;
     syncAll();
+    observeChatContainer(container);
     if (chatSearchQuery) runChatSearch(false);
     let sweeps = 0;
     sweepTimer = setInterval(() => {
@@ -3400,14 +3454,9 @@
           url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff4444' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='3 6 5 6 21 6'/><path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/><line x1='10' y1='11' x2='10' y2='17'/><line x1='14' y1='11' x2='14' y2='17'/></svg>");
       }
 
-      .chat-line__message.bt-first-chatter { background-color: color-mix(in srgb, var(--bt-first,#9147ff) 13%, transparent) !important; box-shadow: inset 3px 0 0 var(--bt-first,#9147ff); }
-      .chat-line__message.bt-returning-chatter { background-color: color-mix(in srgb, var(--bt-returning,#3cc8ff) 10%, transparent) !important; box-shadow: inset 3px 0 0 var(--bt-returning,#3cc8ff); }
       .chat-line__message.bt-mod { background-color: color-mix(in srgb, var(--bt-mod,#00ad03) 14%, transparent) !important; box-shadow: inset 3px 0 0 var(--bt-mod,#00ad03); }
       .chat-line__message.bt-vip { background-color: color-mix(in srgb, var(--bt-vip,#e005b9) 14%, transparent) !important; box-shadow: inset 3px 0 0 var(--bt-vip,#e005b9); }
       .chat-line__message.bt-mention { background-color: color-mix(in srgb, var(--bt-mention,#e31337) 16%, transparent) !important; box-shadow: inset 3px 0 0 var(--bt-mention,#e31337); }
-      .bt-chatter-chip { display: inline-block; margin: 0 5px; padding: 1px 4px; border-radius: 3px; color: #fff; font-size: 8px; font-weight: 800; line-height: 1.4; vertical-align: 2px; letter-spacing: .04em; }
-      .bt-chatter-chip.bt-first-chip { background: var(--bt-first,#9147ff); }
-      .bt-chatter-chip.bt-returning-chip { background: var(--bt-returning,#3cc8ff); color: #111; }
       .chat-line__message.bt-focus-pulse { animation: bt-focus-pulse 2.2s ease-out; }
       @keyframes bt-focus-pulse { 0%,35% { background: color-mix(in srgb, var(--bt-accent,#e31337) 45%, transparent); box-shadow: inset 4px 0 var(--bt-accent,#e31337), 0 0 18px color-mix(in srgb, var(--bt-accent,#e31337) 45%, transparent); } 100% { box-shadow: none; } }
 
@@ -4238,8 +4287,7 @@
 
   function applyVars() {
     const signature = [
-      CONFIG.mentionColor, CONFIG.modColor, CONFIG.vipColor, CONFIG.firstChatterColor,
-      CONFIG.returningChatterColor, CONFIG.accentColor, CONFIG.hideBadges,
+      CONFIG.mentionColor, CONFIG.modColor, CONFIG.vipColor, CONFIG.accentColor, CONFIG.hideBadges,
       CONFIG.hideLeaderboard, CONFIG.hideCommunityHighlights, CONFIG.msgSeparators,
     ].join('|');
     if (signature === appliedVarsSignature) return;
@@ -4248,8 +4296,6 @@
     r.style.setProperty('--bt-mention', CONFIG.mentionColor);
     r.style.setProperty('--bt-mod', CONFIG.modColor);
     r.style.setProperty('--bt-vip', CONFIG.vipColor);
-    r.style.setProperty('--bt-first', CONFIG.firstChatterColor);
-    r.style.setProperty('--bt-returning', CONFIG.returningChatterColor);
     r.style.setProperty('--bt-accent', CONFIG.accentColor);
     r.classList.toggle('bt-hide-badges', !!CONFIG.hideBadges);
     r.classList.toggle('bt-hide-leaderboard', !!CONFIG.hideLeaderboard);
@@ -4544,8 +4590,6 @@
       mentionColor: 'mentionHighlight',
       modColor: 'highlightMods',
       vipColor: 'highlightVips',
-      firstChatterColor: 'highlightFirstChatters',
-      returningChatterColor: 'highlightReturningChatters',
     };
     return parents[key] ? !CONFIG[parents[key]] : false;
   }
@@ -4741,8 +4785,6 @@
       <div class="bt-rowflex"><label><input type="checkbox" data-k="mentionHighlight"> ${t('mentionHighlight')}</label><input type="color" data-k="mentionColor"></div>
       <div class="bt-rowflex"><label><input type="checkbox" data-k="highlightMods"> ${t('highlightMods')}</label><input type="color" data-k="modColor"></div>
       <div class="bt-rowflex"><label><input type="checkbox" data-k="highlightVips"> ${t('highlightVips')}</label><input type="color" data-k="vipColor"></div>
-      <div class="bt-rowflex"><label><input type="checkbox" data-k="highlightFirstChatters"> ${t('highlightFirstChatters')}</label><input type="color" data-k="firstChatterColor"></div>
-      <div class="bt-rowflex"><label><input type="checkbox" data-k="highlightReturningChatters"> ${t('highlightReturningChatters')}</label><input type="color" data-k="returningChatterColor"></div>
 
       ${secHead('secNotifications')}
       <label class="bt-row"><input type="checkbox" data-k="mentionSound"> ${t('mentionSound')}</label>

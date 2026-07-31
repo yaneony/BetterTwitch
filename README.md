@@ -1,6 +1,6 @@
 # BetterTwitch
 
-[![Version 2.0.2](https://img.shields.io/badge/version-2.0.2-9147ff?style=flat-square)](CHANGELOG.md)
+[![Version 2.0.3](https://img.shields.io/badge/version-2.0.3-9147ff?style=flat-square)](CHANGELOG.md)
 [![License MIT](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](LICENSE)
 
 <div align="center">
@@ -27,7 +27,7 @@ A lightweight userscript that makes Twitch chat easier to follow, personalize, a
 - **Chat filters & search panel** opened from the footer, with quick filters, plain username/message search, result navigation, and an active-state indicator
 - **Spam compression** that groups repeated messages while keeping every original expandable
 - **Safer links** with visible destination domains and confirmation for suspicious-looking addresses
-- **Visual highlights** for mentions, moderators, VIPs, first-time chatters, and returning chatters
+- **Visual highlights** for mentions, moderators, and VIPs
 - **18 distinct notification sounds** with volume control and instant preview
 - **Deleted-message visibility** for individual deletions, timeouts/bans, and full chat clears
 - **Layout and appearance controls** for chat width, Comfortable/Compact/Accessible profiles, avatars, badges, separators, name contrast, accent color, the top-user slider, and community/pinned highlights

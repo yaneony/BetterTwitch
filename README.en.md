@@ -34,7 +34,6 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 
 - Hover over a username to open a **viewer hovercard** with that viewer's Twitch avatar.
 - See that viewer's message count, first-seen time, number of mentions, and most-used emote for the current session.
-- Highlight Twitch's **first-time chatter** and **returning chatter** markers with independent colors and visible labels.
 
 ### Message tools
 
@@ -63,7 +62,7 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 - Play a sound when another chatter @mentions you and, optionally, when someone replies to you.
 - Choose from 18 short sounds: Message, Pop, Drop, Knock, Glass, Pluck, Orbit, Pixel, Bell, Spark, Chime, Double Tap, Woodblock, Marble, Quartz, Blink, Ripple, and Chord.
 - Preview sounds in the settings panel and set their volume independently of Twitch; new installations and resets use Message at 35%.
-- Highlight mentions, moderators, VIPs, first-time chatters, and returning chatters with separate colors.
+- Highlight mentions, moderators, and VIPs with separate colors.
 
 ### Deleted messages
 
@@ -142,8 +141,6 @@ Updates are delivered from the same raw GitHub URL by your userscript manager. I
 | Highlights | Highlight @mentions | Tints messages that mention your current Twitch username. |
 | Highlights | Highlight moderators | Tints messages whose moderator status can be detected. |
 | Highlights | Highlight VIPs | Tints messages whose VIP status can be detected. |
-| Highlights | Highlight first-time chatters | Adds a FIRST label and colored highlight using Twitch message metadata. |
-| Highlights | Highlight returning chatters | Adds a RETURNING label and colored highlight using Twitch message metadata. |
 | Highlights | Color controls | Sets an independent color for each enabled highlight type. |
 | Notifications | Sound on @mention | Plays the selected sound when someone else mentions your username. |
 | Notifications | Sound on replies to you | Also notifies for direct replies; available when mention sounds are enabled. |

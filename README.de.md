@@ -34,7 +34,6 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 
 - Fahre über einen Benutzernamen, um eine **Zuschauer-Hovercard** mit dessen Twitch-Avatar zu öffnen.
 - Sie zeigt für die aktuelle Sitzung Nachrichtenanzahl, ersten Sichtungszeitpunkt, Erwähnungen und das meistgenutzte Emote.
-- Hebe die Twitch-Markierungen für **erstmalige** und **wiederkehrende Chatter** mit getrennten Farben und sichtbaren Labels hervor.
 
 ### Nachrichtenwerkzeuge
 
@@ -63,7 +62,7 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 - Spiele einen Ton ab, wenn dich jemand mit @ erwähnt und optional, wenn jemand direkt auf dich antwortet.
 - Wähle aus 18 kurzen Tönen: Nachricht, Pop, Tropfen, Klopfen, Glas, Zupfen, Orbit, Pixel, Glocke, Funke, Klang, Doppeltipp, Holzblock, Murmel, Quarz, Blinken, Welle und Akkord.
 - Teste Töne direkt im Einstellungs-Panel und stelle ihre Lautstärke unabhängig vom Twitch-Player ein; Neuinstallationen und Zurücksetzen verwenden Nachricht mit 35 %.
-- Hebe Erwähnungen, Moderatoren, VIPs, erstmalige Chatter und wiederkehrende Chatter mit eigenen Farben hervor.
+- Hebe Erwähnungen, Moderatoren und VIPs mit eigenen Farben hervor.
 
 ### Gelöschte Nachrichten
 
@@ -142,8 +141,6 @@ Aktualisierungen werden durch den Userscript-Manager über dieselbe GitHub-Raw-U
 | Hervorhebungen | @Erwähnungen hervorheben | Färbt Nachrichten ein, die deinen aktuellen Twitch-Namen erwähnen. |
 | Hervorhebungen | Moderatoren hervorheben | Färbt erkannte Moderatoren-Nachrichten ein. |
 | Hervorhebungen | VIPs hervorheben | Färbt erkannte VIP-Nachrichten ein. |
-| Hervorhebungen | Erstmalige Chatter hervorheben | Fügt anhand der Twitch-Metadaten ein NEU-Label und eine Farbe hinzu. |
-| Hervorhebungen | Wiederkehrende Chatter hervorheben | Fügt ein WIEDER-DA-Label und eine Farbe hinzu. |
 | Hervorhebungen | Farbauswahl | Legt für jede aktivierte Hervorhebung eine eigene Farbe fest. |
 | Benachrichtigungen | Ton bei @Erwähnung | Spielt den gewählten Ton ab, wenn dich jemand anderes erwähnt. |
 | Benachrichtigungen | Ton bei Antworten an dich | Meldet zusätzlich direkte Antworten; abhängig vom Erwähnungston. |

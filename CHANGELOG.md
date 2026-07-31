@@ -2,6 +2,19 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [2.0.3] - 2026-07-31
+
+### Removed
+
+- Removed first-time and returning-chatter highlighting, including its message metadata, DOM labels, styles, settings, and translations.
+
+### Fixed
+
+- Prevented first-time and returning-chatter labels from recursively triggering the chat mutation observer and consuming unbounded memory.
+- Failed avatar lookups are negatively cached per chat line instead of repeatedly inserting and removing images.
+- Avatar request concurrency and pending work are bounded, pending avatar updates weakly reference DOM nodes, and detached chat-search and spam-group elements are released promptly.
+- BetterTwitch now isolates its own chat-row DOM updates from Twitch's chat observer to prevent future self-triggering mutation loops.
+
 ## [2.0.2] - 2026-07-31
 
 ### Added
