@@ -1,6 +1,6 @@
 # BetterTwitch
 
-[![Version 2.0.5](https://img.shields.io/badge/version-2.0.5-9147ff?style=flat-square)](CHANGELOG.md)
+[![Version 2.0.6](https://img.shields.io/badge/version-2.0.6-9147ff?style=flat-square)](CHANGELOG.md)
 [![License MIT](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](LICENSE)
 
 <div align="center">

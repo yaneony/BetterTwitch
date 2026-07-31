@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      2.0.5
+// @version      2.0.6
 // @description  A Twitch chat enhancement suite with live statistics, viewer hovercards, translation, notifications, filters, and layout controls.
 // @description:de Eine Twitch-Chat-Erweiterung mit Live-Statistik, Zuschauer-Hovercards, Übersetzung, Benachrichtigungen, Filtern und Layout-Steuerung.
 // @description:ru Расширение чата Twitch со статистикой, карточками зрителей, переводом, уведомлениями, фильтрами и настройкой интерфейса.
@@ -470,7 +470,7 @@
     );
   }
 
-  const VERSION = '2.0.5';
+  const VERSION = '2.0.6';
   const PROJECT_URL = 'https://github.com/yaneony/BetterTwitch';
   const AUTHOR_URL = 'https://yaneony.com';
   const STORAGE_KEY = 'BetterTwitch-settings';
@@ -1392,7 +1392,7 @@
         e.stopPropagation();
         const index = +jump.getAttribute('data-bt-jump');
         const mention = mentions[index];
-        if (!mention || !jumpToMessage(mention.id)) {
+        if (!mention || !jumpToMessage(mention)) {
           inboxNotice = t('inboxMissing');
           renderInbox();
         } else {
@@ -1427,9 +1427,27 @@
     });
   }
 
-  function jumpToMessage(id) {
-    if (!id) return false;
-    const line = Array.from(document.querySelectorAll('.chat-line__message')).find((el) => lineMessageId(el) === id);
+  function jumpToMessage(mention) {
+    if (!mention) return false;
+    const lines = Array.from(document.querySelectorAll('.chat-line__message'));
+    let line = mention.id ? lines.find((el) => lineMessageId(el) === mention.id) : null;
+    if (!line && mention.id) {
+      line = lines.find((el) => {
+        const meta = lineMeta.get(el);
+        return !!(meta && meta.id === mention.id);
+      });
+    }
+    if (!line) {
+      const login = String(mention.login || '').toLowerCase();
+      const text = String(mention.text || '').replace(/\s+/g, ' ').trim();
+      for (let i = lines.length - 1; i >= 0; i--) {
+        const candidate = lines[i];
+        if (login && lineLogin(candidate) !== login) continue;
+        if (lineCopyText(candidate).replace(/\s+/g, ' ').trim() !== text) continue;
+        line = candidate;
+        break;
+      }
+    }
     if (!line) return false;
     try { line.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) { line.scrollIntoView(); }
     line.classList.add('bt-focus-pulse');
@@ -1507,7 +1525,32 @@
     });
   }
 
-  function showViewerHovercard(line, anchor) {
+  function positionViewerHovercard(anchor, pointerEvent) {
+    if (!hovercard || !anchor) return;
+    const margin = 8, gap = 6;
+    const anchorRect = anchor.getBoundingClientRect();
+    const pointerX = pointerEvent && Number.isFinite(pointerEvent.clientX) && pointerEvent.clientX > 0
+      ? pointerEvent.clientX : null;
+    const pointerY = pointerEvent && Number.isFinite(pointerEvent.clientY) && pointerEvent.clientY > 0
+      ? pointerEvent.clientY : null;
+    const cardRect = hovercard.getBoundingClientRect();
+    const cardWidth = hovercard.offsetWidth || cardRect.width;
+    const cardHeight = hovercard.offsetHeight || cardRect.height;
+    const maxLeft = Math.max(margin, window.innerWidth - cardWidth - margin);
+    const desiredLeft = pointerX === null ? anchorRect.left : pointerX - 16;
+    const left = Math.max(margin, Math.min(desiredLeft, maxLeft));
+    const anchorTop = anchorRect.height > 0 ? anchorRect.top : (pointerY === null ? margin : pointerY);
+    const anchorBottom = anchorRect.height > 0 ? anchorRect.bottom : anchorTop;
+    const below = anchorBottom + gap;
+    const above = anchorTop - gap - cardHeight;
+    const desiredTop = below + cardHeight <= window.innerHeight - margin || above < margin ? below : above;
+    const maxTop = Math.max(margin, window.innerHeight - cardHeight - margin);
+    const top = Math.max(margin, Math.min(desiredTop, maxTop));
+    hovercard.style.left = Math.round(left) + 'px';
+    hovercard.style.top = Math.round(top) + 'px';
+  }
+
+  function showViewerHovercard(line, anchor, pointerEvent) {
     if (!CONFIG.viewerHovercards) return;
     const login = lineLogin(line);
     const profile = userProfiles.get(login);
@@ -1527,10 +1570,8 @@
       '<span><b>' + profile.mentions + '</b>' + t('hoverMentions') + '</span></div>' +
       (top ? '<div class="bt-hover-emote"><small>' + t('hoverTopEmote') + '</small><img src="' + emoteUrl(top[0]) + '" alt=""><span>' + esc(top[1].name) + ' ×' + top[1].count + '</span></div>' : '');
     hydrateViewerHovercardAvatar(hovercard, login);
-    const rect = anchor.getBoundingClientRect();
-    hovercard.style.left = Math.min(window.innerWidth - 260, Math.max(8, rect.left)) + 'px';
-    hovercard.style.top = Math.min(window.innerHeight - 150, rect.bottom + 6) + 'px';
     hovercard.classList.add('bt-open');
+    positionViewerHovercard(anchor, pointerEvent);
   }
 
   function hideViewerHovercard() {
@@ -1965,16 +2006,20 @@
   }
 
   function lineMessageId(el) {
-    const attrs = ['data-id', 'data-message-id', 'data-a-message-id', 'data-bt-message-id'];
+    const attrs = ['data-bt-message-id', 'data-message-id', 'data-a-message-id', 'data-id'];
     for (const attr of attrs) {
       const value = el.getAttribute && el.getAttribute(attr);
       if (value) return value;
     }
     const nested = el.querySelector && el.querySelector(
-      '[data-a-target="chat-line-message"][data-id], [data-a-target="chat-line-message"][data-message-id]'
+      '[data-a-target="chat-line-message"][data-bt-message-id], ' +
+      '[data-a-target="chat-line-message"][data-message-id], ' +
+      '[data-a-target="chat-line-message"][data-a-message-id], ' +
+      '[data-a-target="chat-line-message"][data-id]'
     );
     if (!nested) return '';
-    return nested.getAttribute('data-id') || nested.getAttribute('data-message-id') || '';
+    return nested.getAttribute('data-bt-message-id') || nested.getAttribute('data-message-id') ||
+      nested.getAttribute('data-a-message-id') || nested.getAttribute('data-id') || '';
   }
 
   function updateSpamGroup(group) {
@@ -2372,7 +2417,7 @@
     if (!meta) return null;
     meta.assigned = true;
     lineMeta.set(el, meta);
-    if (!id && meta.id) el.setAttribute('data-bt-message-id', meta.id);
+    if (meta.id && id !== meta.id) el.setAttribute('data-bt-message-id', meta.id);
     return meta;
   }
 
@@ -2809,7 +2854,7 @@
     const anchor = el.querySelector('[data-a-target="chat-message-username"], .chat-author__display-name');
     if (!anchor || anchor.dataset.btHovercard) return;
     anchor.dataset.btHovercard = '1';
-    anchor.addEventListener('mouseenter', () => showViewerHovercard(el, anchor));
+    anchor.addEventListener('mouseenter', (event) => showViewerHovercard(el, anchor, event));
     anchor.addEventListener('mouseleave', hideViewerHovercard);
   }
 
@@ -3164,7 +3209,7 @@
       #bt-inbox-btn { position: relative; }
       #bt-inbox-btn .bt-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; min-width: 15px; height: 15px; padding: 0 3px; border-radius: 8px; background: var(--bt-accent,#e31337); color: #fff; font-size: 9px; line-height: 1; font-weight: 700; pointer-events: none; box-shadow: 0 0 0 2px #18181b; }
 
-      #bt-hovercard { position: fixed; z-index: 100001; display: none; width: 250px; padding: 10px; border: 1px solid #3a3a42; border-radius: 7px; background: #18181b; color: #efeff1; box-shadow: 0 8px 24px rgba(0,0,0,.55); font: 12px/1.4 Inter,Roobert,Arial,sans-serif; }
+      #bt-hovercard { position: fixed; z-index: 100001; display: none; width: 250px; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 10px; border: 1px solid #3a3a42; border-radius: 7px; background: #18181b; color: #efeff1; box-shadow: 0 8px 24px rgba(0,0,0,.55); font: 12px/1.4 Inter,Roobert,Arial,sans-serif; }
       #bt-hovercard.bt-open { display: block; }
       .bt-hover-head { display: flex; align-items: center; gap: 9px; }
       .bt-hover-avatar { display: grid; flex: 0 0 36px; width: 36px; height: 36px; place-items: center; overflow: hidden; border: 1px solid #3d3d46; border-radius: 50%; background: #292930; color: #d7d7dc; font-size: 14px; font-weight: 800; }
@@ -4557,6 +4602,5 @@
     if (inboxOpen && inboxPanel) { const b = document.getElementById('bt-inbox-btn'); if (b) positionPanel(inboxPanel, b); }
     if (chatControlOpen && chatControlPanel) { const b = document.getElementById('bt-chat-control-btn'); if (b) positionPanel(chatControlPanel, b); }
     if (activeHelp) positionSettingTooltip(activeHelp);
-    positionComposerNotice();
   });
 })();

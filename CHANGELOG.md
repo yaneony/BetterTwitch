@@ -2,6 +2,14 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [2.0.6] - 2026-07-31
+
+### Fixed
+
+- Viewer hovercards now use their measured size and pointer position, remain clamped inside the viewport, and open above the username when there is not enough room below. This fixes highlighted-message hovercards appearing mostly off-screen on the left.
+- Mention jump buttons now prefer BetterTwitch’s resolved message ID and fall back to matching the visible author and message text when Twitch omits or changes DOM IDs.
+- Removed a stale resize callback left behind by the removed safer-sending notice.
+
 ## [2.0.5] - 2026-07-31
 
 ### Changed
