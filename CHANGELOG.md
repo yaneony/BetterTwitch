@@ -30,6 +30,7 @@ All notable changes to **BetterTwitch** are documented in this file.
 - Every settings row now follows one predictable left-to-right layout: information symbol, localized title, then the switch, selector, slider, color, or text field; enabled switches use the selected accent color.
 - Settings, Mentions, Live Stats, and Chat filters & search headers now explicitly span the complete panel width.
 - Google inline translation now follows the selected or auto-detected BetterTwitch interface language.
+- New installations and settings resets now use the Message notification sound at 35% volume; existing saved sound and volume choices remain unchanged.
 - Live chat search matches any part of a visible username, Twitch login, or message directly, without special search syntax.
 - Message actions now share one consistent hover/focus toolbar instead of separate controls.
 - BetterTwitch’s Reply action now uses Twitch’s native reply panel, and Twitch’s duplicate visible reply button is hidden.
@@ -48,7 +49,7 @@ All notable changes to **BetterTwitch** are documented in this file.
 - One-minute message-rate tracking now uses a compacting queue instead of shifting the full timestamp array for every expired message.
 - Long-session collections are explicitly bounded, including mentions, context history, message metadata, viewer statistics, emotes, translations, avatars, deletion tasks, and per-channel sent history.
 - Startup and maintenance work is adaptive: the fast bootstrap always ends, hidden tabs use a slower maintenance interval, dashboard rendering pauses while hidden, and reward polling stops when both auto-claim options are disabled.
-- Chat, composer, leaderboard, and layout observers now disconnect from detached Twitch nodes; chat mutation batches deduplicate affected message lines before enhancement.
+- Chat, composer, top-of-chat surface, and layout observers now disconnect from detached Twitch nodes; chat mutation batches deduplicate affected message lines before enhancement.
 - Translation and avatar requests now use 15-second timeouts, and generated notification-audio graphs disconnect after playback.
 - All BetterTwitch panels now expose consistent dialog/accessibility states; Dashboard and Mentions also support Escape-to-close.
 
@@ -61,13 +62,14 @@ All notable changes to **BetterTwitch** are documented in this file.
 - Disabling username contrast restoration now preserves Twitch's original inline username color.
 - Inline translations now fill the available message width and wrap safely.
 - The interface-language selector now has the same visible row label treatment as other settings.
+- Hiding the animated top-user slider no longer also hides Twitch’s separate community-highlight and pinned-message stack, and nested slider/highlight mounts are detected without processing ordinary chat-message mutations.
 
 ## [1.4.0] - 2026-06-20
 
 ### Added
-- **Live chat dashboard** — a footer button opens a panel with messages/min, a live sparkline, top chatters, and a most-used-emote leaderboard, all computed from the chat WebSocket.
-- **Inline translation** — a 🌐 button on message hover translates foreign-language messages in place (off by default).
-- **Mention inbox** — a 🔔 footer button with an unread badge lists every message that @mentioned or replied to you this session.
+- **Live chat dashboard** - a footer button opens a panel with messages/min, a live sparkline, top chatters, and a most-used-emote leaderboard, all computed from the chat WebSocket.
+- **Inline translation** - a 🌐 button on message hover translates foreign-language messages in place (off by default).
+- **Mention inbox** - a 🔔 footer button with an unread badge lists every message that @mentioned or replied to you this session.
 - New **Extras** section in the settings panel for all of the above.
 
 ## [1.3.0] - 2026-06-20
@@ -113,7 +115,7 @@ All notable changes to **BetterTwitch** are documented in this file.
 
 ### Added
 - Initial release.
-- **Keep deleted messages visible** — mark single deletions, timeouts/bans, and full chat clears (each toggleable).
+- **Keep deleted messages visible** - mark single deletions, timeouts/bans, and full chat clears (each toggleable).
 - **Widen the chat panel** up to 1200px with the video resizing to match.
 - **Show user avatars** next to names.
 - **Hide badges**, **hide the Bits leaderboard**, and **separators between messages**.

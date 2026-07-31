@@ -31,7 +31,7 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 ### Message tools
 
 - Use one top-aligned, non-shifting **message action bar** for Reply, Copy, and Translate. Every action has a larger localized tooltip and is reachable by keyboard; Reply opens Twitch’s native reply panel.
-- Copy readable message text without BetterTwitch controls, or translate it with Google into the selected—or auto-detected—BetterTwitch interface language.
+- Copy readable message text without BetterTwitch controls, or translate it with Google into the selected - or auto-detected - BetterTwitch interface language.
 - Retry a failed translation, copy the translated text, toggle between original and translation, and see localized detected/target language names.
 - Hide messages beginning with `!` and messages from a configurable list of bot accounts.
 
@@ -47,14 +47,14 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 
 - Collapse three or more identical messages received within twelve seconds into one expandable row without deleting the originals.
 - Open one footer button to filter the current chat by mentions, moderators, questions, links, or emotes in a matching BetterTwitch panel.
-- Search visible chat locally by typing any part of a username, Twitch login, or message—no prefixes or special syntax required—then move between results.
+- Search visible chat locally by typing any part of a username, Twitch login, or message - no prefixes or special syntax required - then move between results.
 - Display real destination domains beside links and confirm shortened, numeric-IP, punycode, or misleading-looking addresses before opening them.
 
 ### Notifications and highlights
 
 - Play a sound when another chatter @mentions you and, optionally, when someone replies to you.
 - Choose from 18 short sounds: Message, Pop, Drop, Knock, Glass, Pluck, Orbit, Pixel, Bell, Spark, Chime, Double Tap, Woodblock, Marble, Quartz, Blink, Ripple, and Chord.
-- Preview sounds in the settings panel and set their volume independently of Twitch.
+- Preview sounds in the settings panel and set their volume independently of Twitch; new installations and resets use Message at 35%.
 - Highlight mentions, moderators, VIPs, first-time chatters, and returning chatters with separate colors.
 
 ### Deleted messages
@@ -138,8 +138,8 @@ Updates are delivered from the same raw GitHub URL by your userscript manager. I
 | Highlights | Color controls | Sets an independent color for each enabled highlight type. |
 | Notifications | Sound on @mention | Plays the selected sound when someone else mentions your username. |
 | Notifications | Sound on replies to you | Also notifies for direct replies; available when mention sounds are enabled. |
-| Notifications | Sound | Selects and previews one of the 18 notification sounds. |
-| Notifications | Volume | Sets notification volume without changing Twitch player volume. |
+| Notifications | Sound | Selects and previews one of the 18 notification sounds; new installations and resets default to Message. |
+| Notifications | Volume | Sets notification volume without changing Twitch player volume; new installations and resets default to 35%. |
 | Deleted messages | Mark single deletions | Preserves and marks individually deleted messages. |
 | Deleted messages | Mark timeouts / bans | Preserves and marks visible messages removed for one user. |
 | Deleted messages | Mark full chat clears | Preserves and marks visible messages when the whole room is cleared. |
@@ -173,7 +173,7 @@ Updates are delivered from the same raw GitHub URL by your userscript manager. I
 - Unfinished channel drafts are stored in browser `localStorage` under `BetterTwitch-chat-drafts`, with at most 30 channels retained. A Twitch-confirmed send or clearing the composer removes the corresponding draft.
 - Mention and sent-message history live only in memory for the current page session and use the limits listed above. Viewer hovercards and dashboard statistics are additionally reset when the chat room changes.
 - Duplicate groups, chat filters, and search results stay local to the current page. Link safety examines URL text only and does not fetch destination pages.
-- If **Show user avatars** is enabled, validated Twitch login names from chat and dashboard rankings are sent in batched requests to Twitch's GraphQL endpoint.
+- If **Show user avatars** or **Viewer hovercards** is enabled, validated Twitch login names needed for chat, dashboard, or hovercard profile images are sent in batched requests to Twitch's GraphQL endpoint.
 - If you click **Translate**, that message's text is sent to `translate.googleapis.com`; translations are cached in memory for the session.
 - BetterTwitch contains no telemetry, analytics, advertising, or BetterTwitch-operated backend.
 
