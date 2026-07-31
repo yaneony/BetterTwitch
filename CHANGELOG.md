@@ -2,6 +2,12 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [2.0.1] - 2026-07-31
+
+### Fixed
+
+- Moderator and VIP messages are highlighted reliably using Twitch IRC role metadata, current badge wrappers, and legacy badge identifiers.
+
 ## [2.0.0] - 2026-07-31
 
 ### Added

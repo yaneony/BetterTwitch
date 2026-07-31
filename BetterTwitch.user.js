@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      2.0.0
+// @version      2.0.1
 // @description  A Twitch chat enhancement suite with live statistics, viewer hovercards, translation, notifications, filters, and layout controls.
 // @description:de Eine Twitch-Chat-Erweiterung mit Live-Statistik, Zuschauer-Hovercards, Übersetzung, Benachrichtigungen, Filtern und Layout-Steuerung.
 // @description:ru Расширение чата Twitch со статистикой, карточками зрителей, переводом, уведомлениями, фильтрами и настройкой интерфейса.
@@ -515,7 +515,7 @@
     );
   }
 
-  const VERSION = '2.0.0';
+  const VERSION = '2.0.1';
   const PROJECT_URL = 'https://github.com/yaneony/BetterTwitch';
   const AUTHOR_URL = 'https://yaneony.com';
   const STORAGE_KEY = 'BetterTwitch-settings';
@@ -961,6 +961,10 @@
   const MAX_DELETE_TASKS = 500;
   const CHAT_HYDRATION_SWEEPS = 6;
   const NETWORK_TIMEOUT_MS = 15000;
+  const MOD_BADGE_UUID = '3267646d-33f0-4b17-b3df-f923a41db1d0';
+  const VIP_BADGE_UUID = 'b817aba4-fad8-49e2-b88a-7cc744dfa6ec';
+  const MOD_BADGE_NAMES = new Set(['moderator', 'global_mod', 'admin', 'staff']);
+  const VIP_BADGE_NAMES = new Set(['vip']);
   const RESERVED_TWITCH_ROUTES = new Set([
     'directory', 'downloads', 'drops', 'inventory', 'jobs', 'login', 'p', 'search',
     'settings', 'signup', 'subscriptions', 'turbo', 'wallet',
@@ -994,6 +998,22 @@
 
   function emoteUrl(id) { return 'https://static-cdn.jtvnw.net/emoticons/v2/' + id + '/default/dark/2.0'; }
   function chatterColor(value) { return COLOR_RE.test(value || '') ? value : 'var(--bt-accent,#e31337)'; }
+
+  function badgeListHasRole(value, roleNames) {
+    return String(value || '').split(',').some((badge) => {
+      const slash = badge.indexOf('/');
+      const name = (slash === -1 ? badge : badge.slice(0, slash)).trim().toLowerCase();
+      return roleNames.has(name);
+    });
+  }
+
+  function tagsIdentifyModerator(tags) {
+    return tags.mod === '1' || badgeListHasRole(tags.badges, MOD_BADGE_NAMES);
+  }
+
+  function tagsIdentifyVip(tags) {
+    return badgeListHasRole(tags.badges, VIP_BADGE_NAMES);
+  }
 
   function parseEmotes(tags, text) {
     const raw = tags.emotes;
@@ -1086,11 +1106,15 @@
       profile = {
         login: record.login, user: record.user, color: record.color, firstSeen: record.t, lastSeen: record.t,
         messages: 0, mentions: 0, emotes: new Map(), badges: tags.badges || '',
+        moderator: tagsIdentifyModerator(tags), vip: tagsIdentifyVip(tags),
       };
       userProfiles.set(record.login, profile);
     }
     profile.user = record.user || profile.user;
     profile.color = record.color || profile.color;
+    profile.badges = tags.badges || '';
+    profile.moderator = tagsIdentifyModerator(tags);
+    profile.vip = tagsIdentifyVip(tags);
     profile.lastSeen = record.t;
     profile.messages++;
     if (mentionedMe) profile.mentions++;
@@ -1184,6 +1208,8 @@
         text,
         first: tags['first-msg'] === '1',
         returning: tags['returning-chatter'] === '1',
+        moderator: tagsIdentifyModerator(tags),
+        vip: tagsIdentifyVip(tags),
         record,
         assigned: false,
       });
@@ -2933,26 +2959,52 @@
 
   function resolveSoon() { if (sched) return; sched = setTimeout(() => { sched = null; resolve(); if (pending.length) resolveSoon(); }, 150); }
 
-  const MOD_BADGE = '3267646d-33f0-4b17-b3df-f923a41db1d0';
-  const VIP_BADGE = 'b817aba4-fad8-49e2-b88a-7cc744dfa6ec';
-
   function lineMentionsMe(el) {
     const me = getMyLogin();
     if (!me || lineLogin(el) === me) return false;
     return isMention(lineCopyText(el), me);
   }
 
-  function hasBadge(el, uuid, label) {
-    return !!(
-      el.querySelector('.chat-badge[src*="' + uuid + '"]') ||
-      el.querySelector('.chat-badge[alt="' + label + '" i]') ||
-      el.querySelector('.chat-badge[aria-label*="' + label + '" i]')
+  function lineHasBadge(el, uuid, roleNames) {
+    const badgeRoots = el.querySelectorAll(
+      '.chat-badge, [data-a-target="chat-badge"], [data-test-selector*="badge" i], [class*="chat-badge"]'
     );
+    for (const root of badgeRoots) {
+      const candidates = [root, ...root.querySelectorAll('img, [alt], [aria-label], [title], [data-badge], [data-badge-type]')];
+      for (const candidate of candidates) {
+        const values = [
+          candidate.getAttribute('src'),
+          candidate.getAttribute('alt'),
+          candidate.getAttribute('aria-label'),
+          candidate.getAttribute('title'),
+          candidate.getAttribute('data-badge'),
+          candidate.getAttribute('data-badge-type'),
+          candidate.getAttribute('data-test-selector'),
+        ];
+        const description = values.filter(Boolean).join(' ').toLowerCase();
+        if (description.includes(uuid) || Array.from(roleNames).some((name) => description.includes(name))) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
-  function lineHasMod(el) { return hasBadge(el, MOD_BADGE, 'Moderator'); }
+  function lineHasMod(el) {
+    const meta = metadataForLine(el);
+    if (meta && meta.moderator) return true;
+    if (lineHasBadge(el, MOD_BADGE_UUID, MOD_BADGE_NAMES)) return true;
+    const profile = userProfiles.get(lineLogin(el));
+    return !!(profile && profile.moderator);
+  }
 
-  function lineHasVip(el) { return hasBadge(el, VIP_BADGE, 'VIP'); }
+  function lineHasVip(el) {
+    const meta = metadataForLine(el);
+    if (meta && meta.vip) return true;
+    if (lineHasBadge(el, VIP_BADGE_UUID, VIP_BADGE_NAMES)) return true;
+    const profile = userProfiles.get(lineLogin(el));
+    return !!(profile && profile.vip);
+  }
 
   let botCache = null;
 

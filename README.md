@@ -1,6 +1,6 @@
 # BetterTwitch
 
-[![Version 2.0.0](https://img.shields.io/badge/version-2.0.0-9147ff?style=flat-square)](CHANGELOG.md)
+[![Version 2.0.1](https://img.shields.io/badge/version-2.0.1-9147ff?style=flat-square)](CHANGELOG.md)
 [![License MIT](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](LICENSE)
 
 A lightweight userscript that makes Twitch chat easier to follow, personalize, and manage. BetterTwitch adds contextual mentions, local search and filters, safer links, viewer context, notification sounds, moderation visibility, layout controls, and more - all from one settings panel in the chat footer.
