@@ -1,6 +1,14 @@
 # BetterTwitch 2.0
 
-[English](README.en.md) · **Deutsch** · [Русский](README.ru.md)
+<div align="center">
+
+## 🌐 Dokumentationssprachen
+
+[![English documentation](https://img.shields.io/badge/English-Open_documentation-007acc?style=for-the-badge)](README.en.md)
+[![Deutsche Dokumentation](https://img.shields.io/badge/Deutsch-Aktuelle_Sprache-9147ff?style=for-the-badge)](README.de.md)
+[![Русская документация](https://img.shields.io/badge/Русский-Открыть_документацию-007acc?style=for-the-badge)](README.ru.md)
+
+</div>
 
 BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter lesen und bedienen lässt. Es funktioniert im Kanal-Chat, in der Moderatoransicht und auf Stream-Manager-Seiten, auf denen Twitch die unterstützte Chat-Oberfläche bereitstellt.
 
@@ -82,6 +90,7 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 
 - Einstellungen sind logisch in Allgemein, Chat-Darstellung, Chat-Werkzeuge, Nachrichteneingabe, Gesprächsqualität, Hervorhebungen, Benachrichtigungen, Gelöschte Nachrichten, Nachrichtenfilter sowie Player & Belohnungen gegliedert.
 - Einstellungen, Erwähnungen, Live-Statistik, Chat-Filter & Suche, Benachrichtigungsregler, Dialoge, Zuschauerkarten, Tooltips und Hinweise verwenden ein einheitliches responsives Karten-Design mit deutlichem Fokus und reduzierter Bewegung.
+- BetterTwitch folgt automatisch dem aktuell gewählten hellen oder dunklen Twitch-Design, auch wenn es ohne Neuladen der Seite geändert wird.
 - Nur beim Überfahren oder Tastaturfokus des Informationssymbols neben einer Einstellung erscheint eine ausführliche Beschreibung.
 - Alle BetterTwitch-Beschriftungen, Aktionen, barrierefreien Bezeichnungen und Tooltips sind auf Englisch, Deutsch und Russisch verfügbar.
 - Abhängige Bedienelemente bleiben deaktiviert, bis ihre übergeordnete Funktion eingeschaltet ist.

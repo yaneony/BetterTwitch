@@ -7,6 +7,11 @@ All notable changes to **BetterTwitch** are documented in this file.
 ### Added
 
 - The unified message action bar includes Twitch's native Pin action only when Twitch exposes it to the signed-in moderator, administrator, or channel owner.
+- BetterTwitch surfaces automatically follow Twitch's light or dark theme, including theme changes made while the page is open.
+
+### Fixed
+
+- "Hide top users slider" also recognizes Twitch's newer rotating channel-leaderboard header, including its empty gift-subscription panel.
 
 ## [2.0.1] - 2026-07-31
 

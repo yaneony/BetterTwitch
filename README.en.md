@@ -1,6 +1,14 @@
 # BetterTwitch 2.0
 
-**English** · [Deutsch](README.de.md) · [Русский](README.ru.md)
+<div align="center">
+
+## 🌐 Documentation languages
+
+[![English documentation](https://img.shields.io/badge/English-Current_language-9147ff?style=for-the-badge)](README.en.md)
+[![Deutsche Dokumentation](https://img.shields.io/badge/Deutsch-Dokumentation_öffnen-007acc?style=for-the-badge)](README.de.md)
+[![Русская документация](https://img.shields.io/badge/Русский-Открыть_документацию-007acc?style=for-the-badge)](README.ru.md)
+
+</div>
 
 BetterTwitch is a lightweight userscript focused on making Twitch chat easier to read and use. It works on channel chat, Mod View, and Stream Manager pages where Twitch exposes the supported chat interface.
 
@@ -82,6 +90,7 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 
 - Settings are grouped into General, Chat appearance, Chat tools, Message composer, Conversation quality, Highlights, Notifications, Deleted messages, Message filters, and Player & rewards.
 - Settings, Mentions, Live Stats, Chat filters & search, notification controls, dialogs, viewer cards, tooltips, and notices use one responsive card-based visual system with clear focus states and reduced-motion support.
+- BetterTwitch automatically follows Twitch’s current light or dark theme, including changes made without reloading the page.
 - Hover or keyboard-focus the information symbol beside any setting for an explicit description.
 - Every BetterTwitch label, action, accessibility label, and tooltip is available in English, German, and Russian.
 - Dependent controls remain disabled until their parent feature is enabled.

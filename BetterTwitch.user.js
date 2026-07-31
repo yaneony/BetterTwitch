@@ -124,7 +124,7 @@
       searchResultCount: '{current}/{total}', searchNoResults: 'No matches',
       spamCollapsed: 'Repeated ×{count}', spamExpand: 'Show repeated messages', spamCollapse: 'Hide repeated messages',
       unsafeLinkLabel: 'CAUTION',
-      unsafeLinkConfirm: 'This link uses the domain “{domain}”, which may be shortened or misleading. Open it anyway?',
+      unsafeLinkConfirm: 'This link uses the domain "{domain}", which may be shortened or misleading. Open it anyway?',
     },
     de: {
       secGeneral: 'Allgemein', language: 'Sprache', langAuto: 'Automatisch erkennen',
@@ -229,7 +229,7 @@
       searchResultCount: '{current}/{total}', searchNoResults: 'Keine Treffer',
       spamCollapsed: 'Wiederholt ×{count}', spamExpand: 'Wiederholungen anzeigen', spamCollapse: 'Wiederholungen ausblenden',
       unsafeLinkLabel: 'VORSICHT',
-      unsafeLinkConfirm: 'Dieser Link verwendet die Domain „{domain}“, die verkürzt oder irreführend sein könnte. Trotzdem öffnen?',
+      unsafeLinkConfirm: 'Dieser Link verwendet die Domain „{domain}", die verkürzt oder irreführend sein könnte. Trotzdem öffnen?',
     },
     ru: {
       secGeneral: 'Общие', language: 'Язык', langAuto: 'Автоопределение',
@@ -340,40 +340,40 @@
 
   const SETTING_HELP = {
     en: {
-      language: 'Controls the language used by every BetterTwitch label, button, message, and tooltip. “Auto-detect” uses the first supported language reported by your browser; English is used if none match. Translation results also use this language as their target. Changing it reloads the page so the whole interface updates consistently.',
+      language: 'Controls the language used by every BetterTwitch label, button, message, and tooltip. "Auto-detect" uses the first supported language reported by your browser; English is used if none match. Translation results also use this language as their target. Changing it reloads the page so the whole interface updates consistently.',
       markSingleDeletes: 'When Twitch reports that one specific message was deleted, BetterTwitch keeps that message visible and marks it with a strike-through and trash icon. Turn this off if you want Twitch’s normal behavior, where the deleted text disappears. It only works for deletion events received after BetterTwitch loaded; it cannot recover older or previously removed messages.',
       markTimeouts: 'When a user is timed out or banned, BetterTwitch keeps that user’s messages currently visible in chat and marks them as deleted. This is separate from single-message deletions and full-room clears. It cannot restore messages that disappeared before the script loaded or messages no longer present in the page.',
       markFullClear: 'When a moderator clears the entire chat, BetterTwitch leaves the messages currently on screen visible and marks every one as deleted. Turn this off to let Twitch clear the visible chat normally. Messages from before BetterTwitch loaded, or messages already removed from the page, cannot be recovered.',
       chatWidthEnabled: 'Turns on BetterTwitch’s custom chat width. While enabled, the chat column uses the width selected below and the video area is resized to fit beside it. Turn it off to restore Twitch’s normal responsive layout. This changes only the page layout; it does not change text size or stream resolution.',
-      chatWidthPx: 'Sets the custom chat column to a precise width from 340 to 1200 pixels. This control has no effect until “Widen chat panel” is enabled. A larger number gives messages more room but leaves less horizontal space for the video; use a smaller value if the player becomes cramped.',
+      chatWidthPx: 'Sets the custom chat column to a precise width from 340 to 1200 pixels. This control has no effect until "Widen chat panel" is enabled. A larger number gives messages more room but leaves less horizontal space for the video; use a smaller value if the player becomes cramped.',
       hideBadges: 'Removes the small subscriber, moderator, VIP, broadcaster, founder, and similar badge images shown beside usernames. This is a visual change in your browser only: it does not remove anyone’s role or badge on Twitch. BetterTwitch can still use badge metadata for moderator and VIP highlighting when Twitch provides it.',
       showAvatars: 'Shows each chatter’s Twitch profile picture before their username in chat and beside their name in the dashboard ranking. BetterTwitch obtains missing avatars through batched requests directly to Twitch’s GraphQL service and caches the results for the page session; no BetterTwitch server receives the usernames. Turn this off for a denser chat and no avatar lookups.',
       msgSeparators: 'Adds a subtle horizontal divider between neighboring chat messages. This only changes appearance and can make fast or densely packed chat easier to follow. Turn it off to return to Twitch’s normal uninterrupted message list.',
       hideLeaderboard: 'Hides only Twitch’s animated top-user slider above chat. Depending on the channel, this strip can rank Bits cheerers, gift-sub gifters, or other leading supporters. It does not hide pinned messages, community highlights, chat notices, or the composer. The slider is hidden only in your browser.',
       hideCommunityHighlights: 'Hides Twitch’s community-highlight stack above the message list, including pinned messages and any other cards Twitch places in that same stack. It does not unpin or delete anything, and other viewers still see it. The top-user slider has a separate setting and is not affected.',
-      autoQuality: 'Stores Twitch’s “source/chunked” quality preference so the player tries to select the highest quality offered by the current stream. It cannot create a source-quality option when the streamer does not provide one, and Twitch may still change quality because of player or connection conditions. Higher quality can use more bandwidth.',
+      autoQuality: 'Stores Twitch’s "source/chunked" quality preference so the player tries to select the highest quality offered by the current stream. It cannot create a source-quality option when the streamer does not provide one, and Twitch may still change quality because of player or connection conditions. Higher quality can use more bandwidth.',
       autoClaimPoints: 'Automatically clicks the bonus channel-points chest when Twitch makes that chest available in chat. It only collects the free bonus: it never spends points, chooses rewards, follows channels, or performs predictions. If Twitch does not display a claimable chest, there is nothing for BetterTwitch to click.',
-      autoClaimDrops: 'Automatically clicks a visible Twitch Drops “Claim” button when one appears on a supported Twitch page. It cannot complete eligibility requirements, link external accounts, visit another website, or claim a reward that Twitch still considers locked. Check Twitch’s Drops inventory if a campaign requires extra manual steps.',
+      autoClaimDrops: 'Automatically clicks a visible Twitch Drops "Claim" button when one appears on a supported Twitch page. It cannot complete eligibility requirements, link external accounts, visit another website, or claim a reward that Twitch still considers locked. Check Twitch’s Drops inventory if a campaign requires extra manual steps.',
       mentionSound: 'Plays the selected BetterTwitch sound when a message from another user mentions your currently logged-in Twitch username. Your own messages are ignored, and rapid alerts are rate-limited so a burst of mentions does not play continuously. Most browsers require you to click or interact with the page once before they allow notification audio.',
-      mentionReplyPing: 'Also plays the mention notification sound when Twitch identifies a message as a direct reply to one of your messages, even if the reply text does not contain your username. This option only works while “Sound on @mention” is enabled; disabling the main sound also disables reply sounds. It uses the same selected sound and volume.',
+      mentionReplyPing: 'Also plays the mention notification sound when Twitch identifies a message as a direct reply to one of your messages, even if the reply text does not contain your username. This option only works while "Sound on @mention" is enabled; disabling the main sound also disables reply sounds. It uses the same selected sound and volume.',
       pingSound: 'Chooses which of the 18 built-in short sounds BetterTwitch uses for mention and direct-reply notifications. New installations and resets use Message by default; an existing saved choice is preserved. Use the Test button to hear the current sound. It uses a stable pitch, is generated locally, and does not change any Twitch audio.',
       pingVolume: 'Controls only the volume of BetterTwitch mention and reply sounds, from 0% (completely silent) to 100% (full notification volume). New installations and resets start at 35%; an existing saved level is preserved. Use the Test button to check a comfortable level. This does not change the stream, Twitch ads, browser volume, or operating-system volume.',
       mentionHighlight: 'Adds a colored background and side marker to messages that mention your currently logged-in Twitch username. Your own messages are not treated as incoming mentions. Turn this off to remove the visual marker; the Mentions panel and notification sound have their own separate settings.',
       highlightMods: 'Adds a colored background and side marker to messages from channel moderators. BetterTwitch relies on the role or badge data attached to each Twitch message, so a message cannot be highlighted when Twitch does not provide recognizable moderator metadata. This changes appearance only and grants no moderation permissions.',
       highlightVips: 'Adds a colored background and side marker to messages from channel VIPs. BetterTwitch relies on the role or badge data attached to each Twitch message, so a message cannot be highlighted when Twitch does not provide recognizable VIP metadata. This changes appearance only and does not alter the user’s Twitch status.',
-      mentionColor: 'Selects the background, border, and marker color used for messages that mention you. This picker has no visible effect until “Highlight @mentions” is enabled. Choose a color that remains readable against your Twitch theme; it does not affect moderator, VIP, first-time, or returning-chatter colors.',
-      modColor: 'Selects the background, border, and marker color used for moderator messages. This picker has no visible effect until “Highlight moderators” is enabled. It changes only the local highlight and does not change Twitch’s username color or moderator badge.',
-      vipColor: 'Selects the background, border, and marker color used for VIP messages. This picker has no visible effect until “Highlight VIPs” is enabled. It changes only the local highlight and does not change Twitch’s username color or VIP badge.',
+      mentionColor: 'Selects the background, border, and marker color used for messages that mention you. This picker has no visible effect until "Highlight @mentions" is enabled. Choose a color that remains readable against your Twitch theme; it does not affect moderator, VIP, first-time, or returning-chatter colors.',
+      modColor: 'Selects the background, border, and marker color used for moderator messages. This picker has no visible effect until "Highlight moderators" is enabled. It changes only the local highlight and does not change Twitch’s username color or moderator badge.',
+      vipColor: 'Selects the background, border, and marker color used for VIP messages. This picker has no visible effect until "Highlight VIPs" is enabled. It changes only the local highlight and does not change Twitch’s username color or VIP badge.',
       highlightFirstChatters: 'Highlights a message and adds a FIRST label when Twitch marks it as that user’s first message in the channel. BetterTwitch cannot infer this status from chat history, so it works only when Twitch includes the first-message metadata. The label is translated into the selected BetterTwitch language.',
       highlightReturningChatters: 'Highlights a message and adds a RETURNING label when Twitch marks the sender as a returning chatter. BetterTwitch cannot calculate this status by itself, so it works only when Twitch includes the returning-chatter metadata. The label is translated into the selected BetterTwitch language.',
-      firstChatterColor: 'Selects the background, border, and FIRST-label color used for first-time chatters. This picker has no visible effect until “Highlight first-time chatters” is enabled and Twitch identifies a message as a first message. It does not change the user’s Twitch name color.',
-      returningChatterColor: 'Selects the background, border, and RETURNING-label color used for returning chatters. This picker has no visible effect until “Highlight returning chatters” is enabled and Twitch identifies the sender as returning. It does not change the user’s Twitch name color.',
-      fixNameColors: 'Checks Twitch username colors against the dark chat background and lightens only colors that would otherwise be difficult to read. Names that already have enough contrast are left unchanged. This is a local readability adjustment: it does not change the user’s saved Twitch color, role, badge, or identity.',
+      firstChatterColor: 'Selects the background, border, and FIRST-label color used for first-time chatters. This picker has no visible effect until "Highlight first-time chatters" is enabled and Twitch identifies a message as a first message. It does not change the user’s Twitch name color.',
+      returningChatterColor: 'Selects the background, border, and RETURNING-label color used for returning chatters. This picker has no visible effect until "Highlight returning chatters" is enabled and Twitch identifies the sender as returning. It does not change the user’s Twitch name color.',
+      fixNameColors: 'Checks Twitch username colors against the currently selected light or dark Twitch theme and adjusts only colors that would otherwise be difficult to read. Names that already have enough contrast are left unchanged. This is a local readability adjustment: it does not change the user’s saved Twitch color, role, badge, or identity.',
       copyButton: 'Adds a Copy action to BetterTwitch’s message toolbar, which appears when you hover over or focus a chat message. Clicking it copies the readable author/message content without the toolbar buttons or BetterTwitch translation controls. Turn this off to remove only the Copy action; Twitch’s chat message remains unchanged.',
       accentColor: 'Sets the main color used by BetterTwitch for enabled switches, active buttons, headings, borders, focus rings, and other interface accents. The change is applied immediately across BetterTwitch panels. It does not recolor Twitch itself, usernames, message highlights, or the video player.',
-      hideCommands: 'Locally hides messages whose visible message text begins with an exclamation mark, such as “!song” or “!commands”. It does not stop you or anyone else from sending commands, delete them from Twitch, or hide commands that do not start with a visible ! character. Turn it off to show matching messages again.',
+      hideCommands: 'Locally hides messages whose visible message text begins with an exclamation mark, such as "!song" or "!commands". It does not stop you or anyone else from sending commands, delete them from Twitch, or hide commands that do not start with a visible ! character. Turn it off to show matching messages again.',
       hideBots: 'Locally hides messages sent by usernames listed in the bot field below. Matching ignores uppercase/lowercase differences, but the username still needs to be spelled correctly. Nothing is blocked, reported, timed out, or deleted on Twitch; other viewers continue to see those messages.',
-      botNames: 'Enter the Twitch login names that “Hide bot messages” should match, separated by commas - for example: nightbot, streamelements. Do not include @ symbols, display-name decorations, or profile links. This field has no effect until “Hide bot messages” is enabled, and a misspelled name will not match.',
+      botNames: 'Enter the Twitch login names that "Hide bot messages" should match, separated by commas - for example: nightbot, streamelements. Do not include @ symbols, display-name decorations, or profile links. This field has no effect until "Hide bot messages" is enabled, and a misspelled name will not match.',
       inlineTranslate: 'Adds a Translate action to each message toolbar. Translation is requested only when you click it; the clicked message text is sent directly to Google’s public translation endpoint and translated into the selected or auto-detected BetterTwitch language. Results are cached for this page session and can be copied, retried, or switched back to the original; no BetterTwitch server is involved.',
       mentionInbox: 'Adds a Mentions panel that collects incoming messages which mention your username or directly reply to you. The panel provides an unread count, search, optional nearby context, and a button to jump to a message that is still visible. It records only messages received while this page is open; reloading, closing, or changing the room clears the session list.',
       mentionContextMessages: 'Chooses how many ordinary chat messages are saved before and after each item in the Mentions panel: 0, 1, 2, or 3 on each side. This control has no effect until the Mentions panel is enabled. A larger value provides more conversation context but displays and keeps more lines in memory; it does not send them to a server.',
@@ -387,43 +387,43 @@
       liveChatSearch: 'Adds a simple local search with Previous and Next result navigation to the Chat filters & search panel opened from the chat footer. Type any part of a visible username, Twitch login, or message directly - no prefixes or special search syntax are required. Matching ignores letter case. Closing the panel keeps the current search active; only messages still present on this page are searched, and no query is sent to Twitch or BetterTwitch.',
       saferLinks: 'Shows the actual destination domain beside external chat links and marks shortened, numeric-IP, punycode, or otherwise misleading-looking hosts with a caution label. Clicking a marked link asks for confirmation before opening it. This is a local warning based on the URL text; it does not download, scan, or guarantee the safety of the destination.',
       dashboard: 'Adds a live dashboard for activity observed after BetterTwitch loads in the current chat room. It shows current and peak messages per minute, total messages, unique and recently active chatters, average rate, session duration, a 60-second graph, the top eight chatters with optional avatars, and the top six Twitch emotes. These are local session statistics - not historical Twitch analytics - and they reset on reload or room change.',
-      saferSending: 'Adds safeguards around the Twitch composer: the first identical message repeated within 8 seconds is blocked, and sending it again within 3 seconds confirms that you really want the duplicate. It warns before pasting 280+ characters or 4+ lines, tracks reconnecting state, waits up to 12 seconds for your own Twitch chat echo, and restores text when sending is not confirmed. Persistent draft recovery uses “Preserve drafts per channel”; Twitch can still reject, moderate, or remove a message after these checks.',
+      saferSending: 'Adds safeguards around the Twitch composer: the first identical message repeated within 8 seconds is blocked, and sending it again within 3 seconds confirms that you really want the duplicate. It warns before pasting 280+ characters or 4+ lines, tracks reconnecting state, waits up to 12 seconds for your own Twitch chat echo, and restores text when sending is not confirmed. Persistent draft recovery uses "Preserve drafts per channel"; Twitch can still reject, moderate, or remove a message after these checks.',
     },
     de: {
-      language: 'Legt die Sprache für alle BetterTwitch-Beschriftungen, Buttons, Meldungen und Hilfetexte fest. „Automatisch erkennen“ verwendet die erste unterstützte Sprache, die dein Browser meldet; passt keine, wird Englisch verwendet. Auch Übersetzungen werden in diese Sprache übertragen. Nach einer Änderung wird die Seite neu geladen, damit die gesamte Oberfläche einheitlich aktualisiert wird.',
+      language: 'Legt die Sprache für alle BetterTwitch-Beschriftungen, Buttons, Meldungen und Hilfetexte fest. „Automatisch erkennen" verwendet die erste unterstützte Sprache, die dein Browser meldet; passt keine, wird Englisch verwendet. Auch Übersetzungen werden in diese Sprache übertragen. Nach einer Änderung wird die Seite neu geladen, damit die gesamte Oberfläche einheitlich aktualisiert wird.',
       markSingleDeletes: 'Wenn Twitch meldet, dass genau eine Nachricht gelöscht wurde, lässt BetterTwitch sie sichtbar und markiert sie durchgestrichen mit einem Papierkorb-Symbol. Ausschalten stellt Twitchs normales Verhalten wieder her, bei dem der gelöschte Text verschwindet. Es funktioniert nur für Löschereignisse nach dem Laden von BetterTwitch; ältere oder bereits entfernte Nachrichten können nicht wiederhergestellt werden.',
       markTimeouts: 'Wenn ein Benutzer einen Timeout oder eine Sperre erhält, lässt BetterTwitch dessen aktuell sichtbare Nachrichten stehen und markiert sie als gelöscht. Diese Einstellung ist unabhängig von Einzellöschungen und kompletten Chat-Löschungen. Nachrichten, die vor dem Laden des Skripts verschwunden sind oder nicht mehr auf der Seite stehen, können nicht wiederhergestellt werden.',
       markFullClear: 'Wenn ein Moderator den gesamten Chat leert, lässt BetterTwitch die aktuell angezeigten Nachrichten stehen und markiert jede als gelöscht. Ausschalten erlaubt Twitch, den sichtbaren Chat wie gewohnt vollständig zu leeren. Nachrichten von vor dem Laden von BetterTwitch oder bereits von der Seite entfernte Nachrichten können nicht zurückgeholt werden.',
       chatWidthEnabled: 'Aktiviert die benutzerdefinierte BetterTwitch-Chatbreite. Solange die Einstellung aktiv ist, verwendet die Chatspalte den unten gewählten Wert und der Videobereich wird passend verkleinert. Ausschalten stellt Twitchs normales, responsives Layout wieder her. Nur die Seitenaufteilung ändert sich, nicht Textgröße oder Stream-Auflösung.',
-      chatWidthPx: 'Stellt die benutzerdefinierte Chatspalte exakt auf 340 bis 1200 Pixel ein. Der Regler hat keine Wirkung, solange „Chat-Panel verbreitern“ ausgeschaltet ist. Eine größere Zahl gibt Nachrichten mehr Platz, lässt aber weniger Breite für das Video; wähle einen kleineren Wert, wenn der Player zu eng wird.',
+      chatWidthPx: 'Stellt die benutzerdefinierte Chatspalte exakt auf 340 bis 1200 Pixel ein. Der Regler hat keine Wirkung, solange „Chat-Panel verbreitern" ausgeschaltet ist. Eine größere Zahl gibt Nachrichten mehr Platz, lässt aber weniger Breite für das Video; wähle einen kleineren Wert, wenn der Player zu eng wird.',
       hideBadges: 'Entfernt die kleinen Abonnenten-, Moderator-, VIP-, Broadcaster-, Gründer- und ähnlichen Abzeichen neben Benutzernamen. Das ist nur eine optische Änderung in deinem Browser: Rollen und Abzeichen auf Twitch bleiben bestehen. BetterTwitch kann von Twitch gelieferte Abzeichen-Metadaten weiterhin für Moderator- und VIP-Hervorhebungen verwenden.',
       showAvatars: 'Zeigt das Twitch-Profilbild jedes Chatters vor dem Namen im Chat und neben dem Namen in der Dashboard-Rangliste. Fehlende Avatare ruft BetterTwitch gebündelt direkt über Twitchs GraphQL-Dienst ab und speichert sie für die Seitensitzung zwischen; kein BetterTwitch-Server erhält die Benutzernamen. Ausschalten sorgt für einen kompakteren Chat und beendet Avatar-Abfragen.',
       msgSeparators: 'Fügt zwischen benachbarten Chat-Nachrichten eine dezente horizontale Trennlinie ein. Das ändert nur die Darstellung und kann einen schnellen oder dicht gefüllten Chat leichter lesbar machen. Ausschalten stellt Twitchs normale, durchgehende Nachrichtenliste wieder her.',
       hideLeaderboard: 'Blendet ausschließlich Twitchs animiertes Top-Nutzer-Karussell über dem Chat aus. Je nach Kanal zeigt dieser Streifen führende Bits-Spender, Geschenkabo-Spender oder andere Unterstützer. Angeheftete Nachrichten, Community-Highlights, Chat-Hinweise und Eingabefeld bleiben sichtbar. Das Karussell wird nur in deinem Browser ausgeblendet.',
       hideCommunityHighlights: 'Blendet Twitchs Community-Highlight-Stapel über der Nachrichtenliste aus, einschließlich angehefteter Nachrichten und weiterer Karten, die Twitch in diesem Stapel anzeigt. Nichts wird gelöst oder gelöscht und andere Zuschauer sehen alles weiterhin. Das Top-Nutzer-Karussell besitzt eine eigene Einstellung und bleibt unverändert.',
-      autoQuality: 'Speichert bei Twitch die Qualitätspräferenz „Quelle/Chunked“, damit der Player die höchste vom aktuellen Stream angebotene Qualität versucht. Die Einstellung kann keine Quellqualität erzeugen, wenn der Streamer sie nicht anbietet, und Twitch kann die Qualität wegen Player- oder Verbindungsbedingungen weiterhin ändern. Höhere Qualität kann mehr Datenvolumen verbrauchen.',
+      autoQuality: 'Speichert bei Twitch die Qualitätspräferenz „Quelle/Chunked", damit der Player die höchste vom aktuellen Stream angebotene Qualität versucht. Die Einstellung kann keine Quellqualität erzeugen, wenn der Streamer sie nicht anbietet, und Twitch kann die Qualität wegen Player- oder Verbindungsbedingungen weiterhin ändern. Höhere Qualität kann mehr Datenvolumen verbrauchen.',
       autoClaimPoints: 'Klickt automatisch auf die Kanalpunkte-Bonustruhe, sobald Twitch sie im Chat anbietet. Es wird ausschließlich der kostenlose Bonus eingesammelt: BetterTwitch gibt keine Punkte aus, wählt keine Belohnungen, folgt keinem Kanal und nimmt nicht an Vorhersagen teil. Zeigt Twitch keine einlösbare Truhe an, gibt es nichts anzuklicken.',
-      autoClaimDrops: 'Klickt automatisch auf einen sichtbaren „Einlösen“-Button für Twitch Drops, wenn er auf einer unterstützten Twitch-Seite erscheint. BetterTwitch kann keine Teilnahmebedingungen erfüllen, externe Konten verknüpfen, andere Webseiten besuchen oder noch gesperrte Belohnungen einlösen. Prüfe Twitchs Drops-Inventar, wenn eine Kampagne zusätzliche manuelle Schritte verlangt.',
+      autoClaimDrops: 'Klickt automatisch auf einen sichtbaren „Einlösen"-Button für Twitch Drops, wenn er auf einer unterstützten Twitch-Seite erscheint. BetterTwitch kann keine Teilnahmebedingungen erfüllen, externe Konten verknüpfen, andere Webseiten besuchen oder noch gesperrte Belohnungen einlösen. Prüfe Twitchs Drops-Inventar, wenn eine Kampagne zusätzliche manuelle Schritte verlangt.',
       mentionSound: 'Spielt den gewählten BetterTwitch-Ton ab, wenn ein anderer Benutzer deinen aktuell angemeldeten Twitch-Namen erwähnt. Eigene Nachrichten werden ignoriert und schnelle Meldungen werden begrenzt, damit bei vielen Erwähnungen kein Dauerton entsteht. Die meisten Browser erlauben Benachrichtigungstöne erst, nachdem du einmal auf der Seite geklickt oder mit ihr interagiert hast.',
-      mentionReplyPing: 'Spielt den Erwähnungston auch dann ab, wenn Twitch eine Nachricht als direkte Antwort auf eine deiner Nachrichten erkennt, selbst wenn dein Name nicht im Antworttext steht. Diese Option funktioniert nur mit aktiviertem „Ton bei @Erwähnung“; wird der Hauptton ausgeschaltet, sind auch Antworttöne aus. Verwendet werden derselbe ausgewählte Ton und dieselbe Lautstärke.',
+      mentionReplyPing: 'Spielt den Erwähnungston auch dann ab, wenn Twitch eine Nachricht als direkte Antwort auf eine deiner Nachrichten erkennt, selbst wenn dein Name nicht im Antworttext steht. Diese Option funktioniert nur mit aktiviertem „Ton bei @Erwähnung"; wird der Hauptton ausgeschaltet, sind auch Antworttöne aus. Verwendet werden derselbe ausgewählte Ton und dieselbe Lautstärke.',
       pingSound: 'Wählt einen der 18 eingebauten kurzen Töne für Erwähnungen und direkte Antworten. Neuinstallationen und Zurücksetzen verwenden standardmäßig Nachricht; eine vorhandene gespeicherte Auswahl bleibt erhalten. Mit dem Test-Button hörst du den aktuellen Ton. Er hat eine stabile Tonhöhe, wird lokal erzeugt und verändert kein Twitch-Audio.',
       pingVolume: 'Regelt ausschließlich die Lautstärke der BetterTwitch-Töne für Erwähnungen und Antworten von 0 % bis 100 %. Neuinstallationen und Zurücksetzen beginnen bei 35 %; ein vorhandener gespeicherter Wert bleibt erhalten. Prüfe die Lautstärke mit dem Test-Button. Stream, Twitch-Werbung, Browser- und Systemlautstärke werden nicht verändert.',
       mentionHighlight: 'Gibt Nachrichten, die deinen aktuell angemeldeten Twitch-Namen erwähnen, einen farbigen Hintergrund und Seitenmarker. Eigene Nachrichten zählen nicht als eingehende Erwähnungen. Ausschalten entfernt nur diese optische Markierung; das Erwähnungs-Panel und der Benachrichtigungston besitzen eigene Einstellungen.',
       highlightMods: 'Gibt Nachrichten von Kanalmoderatoren einen farbigen Hintergrund und Seitenmarker. BetterTwitch benötigt dafür die Rollen- oder Abzeichen-Daten der jeweiligen Twitch-Nachricht; ohne erkennbare Moderator-Metadaten ist keine Hervorhebung möglich. Es ändert nur die Darstellung und verleiht keinerlei Moderationsrechte.',
       highlightVips: 'Gibt Nachrichten von Kanal-VIPs einen farbigen Hintergrund und Seitenmarker. BetterTwitch benötigt dafür die Rollen- oder Abzeichen-Daten der jeweiligen Twitch-Nachricht; ohne erkennbare VIP-Metadaten ist keine Hervorhebung möglich. Es ändert nur die Darstellung und nicht den Twitch-Status des Benutzers.',
-      mentionColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für Nachrichten, in denen du erwähnt wirst. Die Farbauswahl hat keine sichtbare Wirkung, solange „@Erwähnungen hervorheben“ ausgeschaltet ist. Wähle eine Farbe, die in deinem Twitch-Design lesbar bleibt; Moderator-, VIP-, Erstmalig- und Wiederkehrer-Farben ändern sich nicht.',
-      modColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für Moderator-Nachrichten. Die Farbauswahl hat keine sichtbare Wirkung, solange „Moderatoren hervorheben“ ausgeschaltet ist. Nur die lokale Hervorhebung ändert sich, nicht Twitchs Namensfarbe oder Moderator-Abzeichen.',
-      vipColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für VIP-Nachrichten. Die Farbauswahl hat keine sichtbare Wirkung, solange „VIPs hervorheben“ ausgeschaltet ist. Nur die lokale Hervorhebung ändert sich, nicht Twitchs Namensfarbe oder VIP-Abzeichen.',
+      mentionColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für Nachrichten, in denen du erwähnt wirst. Die Farbauswahl hat keine sichtbare Wirkung, solange „@Erwähnungen hervorheben" ausgeschaltet ist. Wähle eine Farbe, die in deinem Twitch-Design lesbar bleibt; Moderator-, VIP-, Erstmalig- und Wiederkehrer-Farben ändern sich nicht.',
+      modColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für Moderator-Nachrichten. Die Farbauswahl hat keine sichtbare Wirkung, solange „Moderatoren hervorheben" ausgeschaltet ist. Nur die lokale Hervorhebung ändert sich, nicht Twitchs Namensfarbe oder Moderator-Abzeichen.',
+      vipColor: 'Wählt Hintergrund-, Rahmen- und Markerfarbe für VIP-Nachrichten. Die Farbauswahl hat keine sichtbare Wirkung, solange „VIPs hervorheben" ausgeschaltet ist. Nur die lokale Hervorhebung ändert sich, nicht Twitchs Namensfarbe oder VIP-Abzeichen.',
       highlightFirstChatters: 'Hebt eine Nachricht hervor und ergänzt das Label NEU, wenn Twitch sie als erste Nachricht dieses Benutzers im Kanal kennzeichnet. BetterTwitch kann diesen Status nicht aus dem Chatverlauf erraten und ist deshalb auf Twitchs Erstnachrichten-Metadaten angewiesen. Das Label erscheint in der gewählten BetterTwitch-Sprache.',
       highlightReturningChatters: 'Hebt eine Nachricht hervor und ergänzt das Label WIEDER DA, wenn Twitch den Absender als wiederkehrenden Chatter kennzeichnet. BetterTwitch kann diesen Status nicht selbst berechnen und ist deshalb auf Twitchs Wiederkehrer-Metadaten angewiesen. Das Label erscheint in der gewählten BetterTwitch-Sprache.',
-      firstChatterColor: 'Wählt Hintergrund-, Rahmen- und NEU-Label-Farbe für erstmalige Chatter. Die Farbauswahl wirkt nur, wenn „Erstmalige Chatter hervorheben“ aktiv ist und Twitch eine Nachricht als erste Nachricht erkennt. Die Twitch-Namensfarbe des Benutzers bleibt unverändert.',
-      returningChatterColor: 'Wählt Hintergrund-, Rahmen- und WIEDER-DA-Label-Farbe für wiederkehrende Chatter. Die Farbauswahl wirkt nur, wenn „Wiederkehrende Chatter hervorheben“ aktiv ist und Twitch den Absender als wiederkehrend erkennt. Die Twitch-Namensfarbe des Benutzers bleibt unverändert.',
-      fixNameColors: 'Prüft Twitch-Namensfarben auf dem dunklen Chat-Hintergrund und hellt nur Farben auf, die sonst schwer lesbar wären. Namen mit ausreichendem Kontrast bleiben unverändert. Diese lokale Lesbarkeitshilfe ändert weder die bei Twitch gespeicherte Farbe noch Rolle, Abzeichen oder Identität des Benutzers.',
+      firstChatterColor: 'Wählt Hintergrund-, Rahmen- und NEU-Label-Farbe für erstmalige Chatter. Die Farbauswahl wirkt nur, wenn „Erstmalige Chatter hervorheben" aktiv ist und Twitch eine Nachricht als erste Nachricht erkennt. Die Twitch-Namensfarbe des Benutzers bleibt unverändert.',
+      returningChatterColor: 'Wählt Hintergrund-, Rahmen- und WIEDER-DA-Label-Farbe für wiederkehrende Chatter. Die Farbauswahl wirkt nur, wenn „Wiederkehrende Chatter hervorheben" aktiv ist und Twitch den Absender als wiederkehrend erkennt. Die Twitch-Namensfarbe des Benutzers bleibt unverändert.',
+      fixNameColors: 'Prüft Twitch-Namensfarben im aktuell gewählten hellen oder dunklen Twitch-Design und passt nur Farben an, die sonst schwer lesbar wären. Namen mit ausreichendem Kontrast bleiben unverändert. Diese lokale Lesbarkeitshilfe ändert weder die bei Twitch gespeicherte Farbe noch Rolle, Abzeichen oder Identität des Benutzers.',
       copyButton: 'Fügt der BetterTwitch-Nachrichtenleiste eine Kopieraktion hinzu; die Leiste erscheint beim Überfahren oder Fokussieren einer Chat-Nachricht. Ein Klick kopiert den lesbaren Autor-/Nachrichteninhalt ohne Leisten-Buttons oder BetterTwitch-Übersetzungselemente. Ausschalten entfernt nur die Kopieraktion und verändert die Twitch-Nachricht nicht.',
       accentColor: 'Bestimmt die Hauptfarbe für aktivierte BetterTwitch-Schalter, aktive Buttons, Überschriften, Rahmen, Fokusmarkierungen und weitere Oberflächenakzente. Die Änderung wird sofort in allen BetterTwitch-Panels angewendet. Twitch selbst, Benutzernamen, Nachrichten-Hervorhebungen und Videoplayer werden nicht umgefärbt.',
-      hideCommands: 'Blendet lokal Nachrichten aus, deren sichtbarer Text mit einem Ausrufezeichen beginnt, zum Beispiel „!song“ oder „!commands“. Es verhindert weder das Senden von Befehlen noch löscht es sie bei Twitch; Befehle ohne sichtbares ! am Anfang werden nicht erkannt. Ausschalten zeigt passende Nachrichten wieder an.',
+      hideCommands: 'Blendet lokal Nachrichten aus, deren sichtbarer Text mit einem Ausrufezeichen beginnt, zum Beispiel „!song" oder „!commands". Es verhindert weder das Senden von Befehlen noch löscht es sie bei Twitch; Befehle ohne sichtbares ! am Anfang werden nicht erkannt. Ausschalten zeigt passende Nachrichten wieder an.',
       hideBots: 'Blendet lokal Nachrichten von Benutzernamen aus, die im Bot-Feld darunter stehen. Beim Vergleich ist Groß-/Kleinschreibung egal, der Name muss aber richtig geschrieben sein. Bei Twitch wird nichts blockiert, gemeldet, gesperrt oder gelöscht; andere Zuschauer sehen diese Nachrichten weiterhin.',
-      botNames: 'Trage die Twitch-Login-Namen ein, die „Bot-Nachrichten ausblenden“ erkennen soll, durch Kommas getrennt, zum Beispiel: nightbot, streamelements. Verwende keine @-Zeichen, Zusätze im Anzeigenamen oder Profillinks. Das Feld wirkt nur bei aktivierter Bot-Ausblendung; ein falsch geschriebener Name wird nicht erkannt.',
+      botNames: 'Trage die Twitch-Login-Namen ein, die „Bot-Nachrichten ausblenden" erkennen soll, durch Kommas getrennt, zum Beispiel: nightbot, streamelements. Verwende keine @-Zeichen, Zusätze im Anzeigenamen oder Profillinks. Das Feld wirkt nur bei aktivierter Bot-Ausblendung; ein falsch geschriebener Name wird nicht erkannt.',
       inlineTranslate: 'Fügt jeder Nachrichtenleiste eine Übersetzungsaktion hinzu. Erst beim Anklicken wird der Text dieser einen Nachricht direkt an Googles öffentlichen Übersetzungsdienst gesendet und in die gewählte oder automatisch erkannte BetterTwitch-Sprache übersetzt. Ergebnisse werden für diese Seitensitzung zwischengespeichert und lassen sich kopieren, wiederholen oder gegen das Original umschalten; ein BetterTwitch-Server ist nicht beteiligt.',
       mentionInbox: 'Fügt ein Erwähnungs-Panel hinzu, das eingehende Nachrichten mit deinem Benutzernamen oder direkte Antworten auf dich sammelt. Es bietet einen Ungelesen-Zähler, Suche, optionalen Kontext und einen Sprung-Button, solange die Nachricht noch sichtbar ist. Gespeichert werden nur Nachrichten, die bei geöffneter Seite eintreffen; Neuladen, Schließen oder Raumwechsel löscht die Sitzungsliste.',
       mentionContextMessages: 'Legt fest, wie viele normale Chat-Nachrichten vor und nach jedem Eintrag im Erwähnungs-Panel gespeichert werden: 0, 1, 2 oder 3 je Seite. Der Wert hat keine Wirkung, solange das Erwähnungs-Panel ausgeschaltet ist. Mehr Kontext zeigt und behält mehr Zeilen im Arbeitsspeicher, sendet sie aber an keinen Server.',
@@ -433,11 +433,11 @@
       characterCounter: 'Zeigt die aktuelle Zeichenzahl direkt vor Twitchs Chat-Einstellungsbutton in einer etwas größeren, gut lesbaren Anzeige. Sie vergleicht den Wert mit dem von Twitch erkannten Limit und verwendet 500 Zeichen, falls kein Limit gefunden wird. Der Zähler dient nur als Orientierung: Er kürzt keinen Text und verhindert keine Ablehnung durch Twitch.',
       appearanceProfile: 'Wählt ein vollständiges Lesbarkeitsprofil für den Chat. Komfortabel verwendet ausgewogene Abstände, Kompakt zeigt mehr Nachrichten gleichzeitig und Barrierearm nutzt größere Schrift, höhere Zeilen, größere Avatare, stärkeren Kontrast und größere Nachrichtenaktionen. Nur die lokale BetterTwitch-Darstellung ändert sich; ein Profilwechsel wirkt sofort und benötigt kein Neuladen.',
       spamCompression: 'Erkennt drei oder mehr identische Nachrichten innerhalb von 12 Sekunden und bündelt die Wiederholungen in einer Nachricht mit Zähler. Ein Klick auf den Zähler blendet alle ursprünglichen Wiederholungen ein oder wieder aus; nichts wird gelöscht oder verworfen. Gruppen gelten nur für den aktuell sichtbaren Chat und werden bei Raumwechsel, Neuladen oder Ausschalten zurückgesetzt.',
-      quickChatFilters: 'Fügt dem über die Chat-Fußleiste geöffneten Panel „Chat-Filter & Suche“ die Filter Alle, Erwähnungen, Moderatoren, Fragen, Links und Emotes hinzu. Ein Filter blendet nicht passende Zeilen nur vorübergehend in deinem Browser aus; beim Schließen des Panels bleibt er aktiv, nichts wird gelöscht und andere Zuschauer sehen keine Änderung. Mit Alle stellst du den vollständigen sichtbaren Chat wieder her.',
-      liveChatSearch: 'Fügt dem über die Chat-Fußleiste geöffneten Panel „Chat-Filter & Suche“ eine einfache lokale Suche mit Vorheriger-/Nächster-Navigation hinzu. Gib einen beliebigen Teil des sichtbaren Benutzernamens, Twitch-Logins oder Nachrichtentexts direkt ein; Präfixe oder besondere Suchsyntax sind nicht nötig. Groß-/Kleinschreibung wird ignoriert. Beim Schließen bleibt die Suche aktiv; sie erfasst nur Nachrichten der aktuellen Seite und sendet keine Anfrage an Twitch oder BetterTwitch.',
+      quickChatFilters: 'Fügt dem über die Chat-Fußleiste geöffneten Panel „Chat-Filter & Suche" die Filter Alle, Erwähnungen, Moderatoren, Fragen, Links und Emotes hinzu. Ein Filter blendet nicht passende Zeilen nur vorübergehend in deinem Browser aus; beim Schließen des Panels bleibt er aktiv, nichts wird gelöscht und andere Zuschauer sehen keine Änderung. Mit Alle stellst du den vollständigen sichtbaren Chat wieder her.',
+      liveChatSearch: 'Fügt dem über die Chat-Fußleiste geöffneten Panel „Chat-Filter & Suche" eine einfache lokale Suche mit Vorheriger-/Nächster-Navigation hinzu. Gib einen beliebigen Teil des sichtbaren Benutzernamens, Twitch-Logins oder Nachrichtentexts direkt ein; Präfixe oder besondere Suchsyntax sind nicht nötig. Groß-/Kleinschreibung wird ignoriert. Beim Schließen bleibt die Suche aktiv; sie erfasst nur Nachrichten der aktuellen Seite und sendet keine Anfrage an Twitch oder BetterTwitch.',
       saferLinks: 'Zeigt neben externen Chat-Links die tatsächliche Zieldomain und markiert verkürzte, numerische IP-, Punycode- oder anderweitig irreführend wirkende Hosts mit einem Warnhinweis. Beim Anklicken eines markierten Links wird vor dem Öffnen nachgefragt. Die lokale Prüfung betrachtet nur den URL-Text; sie lädt das Ziel nicht herunter und garantiert dessen Sicherheit nicht.',
       dashboard: 'Fügt ein Live-Dashboard für Aktivitäten hinzu, die BetterTwitch nach dem Laden im aktuellen Chatraum beobachtet. Es zeigt aktuelle und höchste Nachrichten pro Minute, Gesamtzahl, eindeutige und kürzlich aktive Chatter, Durchschnitt, Sitzungsdauer, ein 60-Sekunden-Diagramm, die acht aktivsten Chatter mit optionalen Avataren und die sechs häufigsten Twitch-Emotes. Das sind lokale Sitzungsdaten, keine historischen Twitch-Analysen; Neuladen oder Raumwechsel setzt alles zurück.',
-      saferSending: 'Ergänzt Schutzmechanismen im Twitch-Eingabefeld: Die erste identische Nachricht innerhalb von 8 Sekunden wird blockiert; erneutes Senden innerhalb von 3 Sekunden bestätigt das beabsichtigte Duplikat. Vor Einfügungen ab 280 Zeichen oder 4 Zeilen wird gewarnt, Verbindungsstatus wird verfolgt, bis zu 12 Sekunden auf dein eigenes Twitch-Chat-Echo gewartet und unbestätigter Text wiederhergestellt. Dauerhafte Wiederherstellung benötigt „Entwürfe pro Kanal behalten“; Twitch kann Nachrichten trotz dieser Prüfungen ablehnen, moderieren oder nachträglich entfernen.',
+      saferSending: 'Ergänzt Schutzmechanismen im Twitch-Eingabefeld: Die erste identische Nachricht innerhalb von 8 Sekunden wird blockiert; erneutes Senden innerhalb von 3 Sekunden bestätigt das beabsichtigte Duplikat. Vor Einfügungen ab 280 Zeichen oder 4 Zeilen wird gewarnt, Verbindungsstatus wird verfolgt, bis zu 12 Sekunden auf dein eigenes Twitch-Chat-Echo gewartet und unbestätigter Text wiederhergestellt. Dauerhafte Wiederherstellung benötigt „Entwürfe pro Kanal behalten"; Twitch kann Nachrichten trotz dieser Prüfungen ablehnen, moderieren oder nachträglich entfernen.',
     },
     ru: {
       language: 'Определяет язык всех надписей, кнопок, сообщений и подсказок BetterTwitch. Вариант «Автоопределение» использует первый поддерживаемый язык из настроек браузера; если подходящего языка нет, включается английский. На этот же язык переводятся сообщения чата. После изменения страница перезагружается, чтобы весь интерфейс обновился одинаково.',
@@ -468,7 +468,7 @@
       highlightReturningChatters: 'Подсвечивает сообщение и добавляет метку ВЕРНУЛСЯ, когда Twitch отмечает автора как вернувшегося участника. BetterTwitch не может вычислить этот статус самостоятельно, поэтому функция работает только при наличии соответствующих метаданных Twitch. Метка отображается на выбранном языке BetterTwitch.',
       firstChatterColor: 'Выбирает цвет фона, рамки и метки ВПЕРВЫЕ для новых участников. Цвет применяется только при включённой настройке «Подсвечивать новых участников» и только когда Twitch определяет сообщение как первое. Цвет имени пользователя на Twitch не меняется.',
       returningChatterColor: 'Выбирает цвет фона, рамки и метки ВЕРНУЛСЯ для вернувшихся участников. Цвет применяется только при включённой настройке «Подсвечивать вернувшихся участников» и только когда Twitch определяет автора как вернувшегося. Цвет имени пользователя на Twitch не меняется.',
-      fixNameColors: 'Проверяет контраст цветов имён на тёмном фоне чата и осветляет только те цвета, которые иначе трудно читать. Имена с достаточным контрастом остаются без изменений. Эта локальная коррекция читаемости не меняет сохранённый на Twitch цвет, роль, значок или личность пользователя.',
+      fixNameColors: 'Проверяет контраст цветов имён в выбранной светлой или тёмной теме Twitch и корректирует только те цвета, которые иначе трудно читать. Имена с достаточным контрастом остаются без изменений. Эта локальная коррекция читаемости не меняет сохранённый на Twitch цвет, роль, значок или личность пользователя.',
       copyButton: 'Добавляет действие копирования в панель BetterTwitch, которая появляется при наведении или фокусе на сообщении чата. Нажатие копирует читаемое содержимое автора и сообщения без кнопок панели и элементов перевода BetterTwitch. Отключение удаляет только действие копирования и не изменяет сообщение Twitch.',
       accentColor: 'Задаёт основной цвет включённых переключателей, активных кнопок, заголовков, рамок, индикаторов фокуса и других элементов BetterTwitch. Изменение сразу применяется ко всем панелям BetterTwitch. Сама страница Twitch, имена пользователей, подсветка сообщений и видеоплеер не перекрашиваются.',
       hideCommands: 'Локально скрывает сообщения, видимый текст которых начинается с восклицательного знака, например «!song» или «!commands». Настройка не запрещает отправку команд, не удаляет их на Twitch и не распознаёт команды без видимого символа ! в начале. После отключения подходящие сообщения снова отображаются.',
@@ -3108,6 +3108,7 @@
   function fixNameColor(el) {
     const nameEl = el.querySelector('.chat-author__display-name, [data-a-target="chat-message-username"]');
     if (!nameEl) return;
+    const theme = document.documentElement.dataset.btTheme || 'dark';
     if (!CONFIG.fixNameColors) {
       if (nameEl.dataset.btColor === 'fixed') {
         const original = nameEl.dataset.btOriginalColor || '';
@@ -3116,28 +3117,53 @@
         else nameEl.style.removeProperty('color');
       }
       if (nameEl.dataset.btColor) delete nameEl.dataset.btColor;
+      delete nameEl.dataset.btColorTheme;
       delete nameEl.dataset.btOriginalColor;
       delete nameEl.dataset.btOriginalColorPriority;
       return;
     }
-    if (nameEl.dataset.btColor) return;
+    if (nameEl.dataset.btColor && nameEl.dataset.btColorTheme === theme) return;
+    if (nameEl.dataset.btColor === 'fixed') {
+      const original = nameEl.dataset.btOriginalColor || '';
+      const priority = nameEl.dataset.btOriginalColorPriority || '';
+      if (original) nameEl.style.setProperty('color', original, priority);
+      else nameEl.style.removeProperty('color');
+    }
+    delete nameEl.dataset.btColor;
+    delete nameEl.dataset.btOriginalColor;
+    delete nameEl.dataset.btOriginalColorPriority;
     const c = nameEl.style.color || getComputedStyle(nameEl).color;
     const m = c.match(/\d+(?:\.\d+)?/g);
-    if (!m || m.length < 3) { nameEl.dataset.btColor = 'skip'; return; }
+    if (!m || m.length < 3) {
+      nameEl.dataset.btColor = 'skip';
+      nameEl.dataset.btColorTheme = theme;
+      return;
+    }
     let r = +m[0], g = +m[1], b = +m[2];
-    const MIN = 0.16;
+    const backgroundLuminance = theme === 'light' ? 1 : 0.01;
+    const contrast = (luminance) =>
+      (Math.max(luminance, backgroundLuminance) + 0.05) /
+      (Math.min(luminance, backgroundLuminance) + 0.05);
     let L = relLum(r, g, b);
-    if (L >= MIN) { nameEl.dataset.btColor = 'ok'; return; }
+    if (contrast(L) >= 4.5) {
+      nameEl.dataset.btColor = 'ok';
+      nameEl.dataset.btColorTheme = theme;
+      return;
+    }
     let nr = r, ng = g, nb = b, f = 0;
-    while (L < MIN && f < 1) {
+    const target = theme === 'light' ? 0 : 255;
+    while (contrast(L) < 4.5 && f < 1) {
       f += 0.08;
-      nr = Math.round(r + (255 - r) * f); ng = Math.round(g + (255 - g) * f); nb = Math.round(b + (255 - b) * f);
+      nr = Math.round(r + (target - r) * f);
+      ng = Math.round(g + (target - g) * f);
+      nb = Math.round(b + (target - b) * f);
       L = relLum(nr, ng, nb);
     }
     nameEl.dataset.btOriginalColor = nameEl.style.getPropertyValue('color') || '';
     nameEl.dataset.btOriginalColorPriority = nameEl.style.getPropertyPriority('color') || '';
     nameEl.style.setProperty('color', 'rgb(' + nr + ',' + ng + ',' + nb + ')', 'important');
     nameEl.dataset.btColor = 'fixed';
+    nameEl.dataset.btColorTheme = theme;
   }
 
   const MESSAGE_ACTION_ICONS = {
@@ -3846,6 +3872,285 @@
       #bt-modal .bt-modal-note { margin-top: 8px; padding: 0 3px; color: #74d68a; font-size: 10px; }
       #bt-modal .bt-modal-foot { gap: 7px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.07); }
 
+      /* Twitch light theme */
+      html[data-bt-theme="light"] #bt-panel,
+      html[data-bt-theme="light"] .bt-pop,
+      html[data-bt-theme="light"] #bt-modal .bt-modal-box,
+      html[data-bt-theme="light"] #bt-hovercard,
+      html[data-bt-theme="light"] #bt-setting-tooltip,
+      html[data-bt-theme="light"] #bt-composer-notice {
+        --bt-surface-0: #f2f2f4;
+        --bt-surface-1: #ffffff;
+        --bt-surface-2: #efeff1;
+        --bt-surface-3: #dedee3;
+        --bt-line: rgba(0,0,0,.14);
+        --bt-muted: #62626c;
+        --bt-text: #18181b;
+        color: var(--bt-text);
+        color-scheme: light;
+      }
+      html[data-bt-theme="light"] .chat-line__message .bt-message-actions {
+        border-color: #c8c8cf; background: rgba(255,255,255,.97); box-shadow: 0 3px 12px rgba(0,0,0,.16);
+      }
+      html[data-bt-theme="light"] .chat-line__message .bt-action-btn { color: #53535f; }
+      html[data-bt-theme="light"] .chat-line__message .bt-action-btn:hover,
+      html[data-bt-theme="light"] .chat-line__message .bt-action-btn:focus { background: #e6e6ea; color: #18181b; }
+      html[data-bt-theme="light"] .chat-line__message .bt-action-btn::after {
+        border-color: #c8c8cf; background: #fff; color: #18181b; box-shadow: 0 4px 14px rgba(0,0,0,.2);
+      }
+      html[data-bt-theme="light"].bt-separators .chat-line__message { border-bottom-color: rgba(0,0,0,.1) !important; }
+      html[data-bt-theme="light"] .bt-avatar { background: #e5e5e8; }
+      html[data-bt-theme="light"] .bt-link-domain {
+        border-color: rgba(0,0,0,.13); background: rgba(0,0,0,.045); color: #62626c;
+      }
+      html[data-bt-theme="light"] .bt-risky-link { color: #9a4d00 !important; }
+      html[data-bt-theme="light"] .bt-link-domain.bt-link-risk {
+        border-color: rgba(154,77,0,.3); background: rgba(154,77,0,.07); color: #8a4500;
+      }
+      html[data-bt-theme="light"] .bt-spam-toggle {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 38%,#c7c7ce);
+        background: color-mix(in srgb,var(--bt-accent,#e31337) 8%,#fff); color: #3f3f46;
+      }
+      html[data-bt-theme="light"] .bt-spam-toggle:hover,
+      html[data-bt-theme="light"] .bt-spam-toggle:focus-visible { color: #18181b; }
+      html[data-bt-theme="light"] .bt-filter-bar button {
+        border-color: #c7c7ce; background: #f2f2f4; color: #53535f;
+      }
+      html[data-bt-theme="light"] .bt-filter-bar button:hover,
+      html[data-bt-theme="light"] .bt-filter-bar button:focus-visible { border-color: #92929d; color: #18181b; }
+      html[data-bt-theme="light"] .bt-filter-bar button.bt-active {
+        background: color-mix(in srgb,var(--bt-accent,#e31337) 13%,#fff); color: #18181b;
+      }
+      html[data-bt-theme="light"] .bt-chat-search input,
+      html[data-bt-theme="light"] .bt-inbox-search {
+        border-color: #c7c7ce; background: rgba(255,255,255,.96); color: #18181b; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      }
+      html[data-bt-theme="light"] .bt-chat-search button,
+      html[data-bt-theme="light"] .bt-inbox-jump {
+        border-color: #c7c7ce; background: #f2f2f4; color: #53535f;
+      }
+      html[data-bt-theme="light"] .bt-search-count { color: #62626c; }
+      html[data-bt-theme="light"] .chat-line__message .bt-trans {
+        background: rgba(0,0,0,.035); color: #29292e;
+      }
+      html[data-bt-theme="light"] .chat-line__message .bt-trans-meta { color: #62626c; }
+      html[data-bt-theme="light"] .chat-line__message .bt-trans-error { color: #a3152f; }
+      html[data-bt-theme="light"] .chat-line__message .bt-trans-action {
+        border-color: #c7c7ce; background: #f2f2f4; color: #3f3f46;
+      }
+      html[data-bt-theme="light"] .chat-line__message .bt-trans-action:hover,
+      html[data-bt-theme="light"] .chat-line__message .bt-trans-action:focus { color: #18181b; }
+      html[data-bt-theme="light"].bt-profile-accessible .chat-line__timestamp { color: #53535f !important; }
+
+      html[data-bt-theme="light"] #bt-panel {
+        background: radial-gradient(circle at 90% 0,color-mix(in srgb,var(--bt-accent,#e31337) 8%,transparent),transparent 27%),linear-gradient(180deg,#fff,#f7f7f8);
+        box-shadow: 0 18px 54px rgba(0,0,0,.2),0 0 0 1px rgba(255,255,255,.7) inset;
+      }
+      html[data-bt-theme="light"] #bt-panel .bt-head,
+      html[data-bt-theme="light"] .bt-pop .bt-pop-head,
+      html[data-bt-theme="light"] #bt-dash .bt-pop-head {
+        background: linear-gradient(90deg,rgba(255,255,255,.98) 60%,color-mix(in srgb,var(--bt-accent,#e31337) 7%,rgba(255,255,255,.98)));
+        box-shadow: 0 5px 18px rgba(0,0,0,.08);
+      }
+      html[data-bt-theme="light"] #bt-panel .bt-by,
+      html[data-bt-theme="light"] #bt-panel .bt-note,
+      html[data-bt-theme="light"] #bt-panel .bt-val { color: #62626c; }
+      html[data-bt-theme="light"] #bt-panel .bt-by a { color: #3f3f46; }
+      html[data-bt-theme="light"] #bt-panel .bt-by a:hover,
+      html[data-bt-theme="light"] #bt-panel .bt-by a:focus,
+      html[data-bt-theme="light"] .bt-version:hover,
+      html[data-bt-theme="light"] .bt-version:focus { color: #18181b; }
+      html[data-bt-theme="light"] .bt-version {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 34%,#c7c7ce);
+        background: color-mix(in srgb,var(--bt-accent,#e31337) 8%,#fff); color: #3f3f46;
+      }
+      html[data-bt-theme="light"] .bt-settings-section,
+      html[data-bt-theme="light"] #bt-chat-controls .bt-chat-control-section {
+        border-color: rgba(0,0,0,.12); background: linear-gradient(145deg,rgba(0,0,0,.018),rgba(0,0,0,.006)); box-shadow: 0 5px 18px rgba(0,0,0,.055);
+      }
+      html[data-bt-theme="light"] .bt-settings-section:hover {
+        border-color: rgba(0,0,0,.2); background: linear-gradient(145deg,rgba(0,0,0,.03),rgba(0,0,0,.012));
+      }
+      html[data-bt-theme="light"] #bt-panel .bt-settings-section .bt-sub {
+        border-bottom-color: rgba(0,0,0,.09); color: #53535f;
+      }
+      html[data-bt-theme="light"] #bt-panel .bt-settings-secNotifications {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 24%,rgba(0,0,0,.14));
+        background: radial-gradient(circle at 100% 0,color-mix(in srgb,var(--bt-accent,#e31337) 8%,transparent),transparent 45%),linear-gradient(145deg,rgba(0,0,0,.018),rgba(0,0,0,.006));
+      }
+      html[data-bt-theme="light"] #bt-panel .bt-setting-item:hover,
+      html[data-bt-theme="light"] #bt-panel .bt-rowflex:hover { background: rgba(0,0,0,.035); }
+      html[data-bt-theme="light"] #bt-panel label.bt-row input[type=checkbox],
+      html[data-bt-theme="light"] #bt-panel .bt-rowflex label input[type=checkbox] {
+        border-color: #adadb8; background: #dedee3; box-shadow: 0 1px 3px rgba(0,0,0,.12) inset;
+      }
+      html[data-bt-theme="light"] #bt-panel input[type=checkbox]::before { background: #6f6f78; box-shadow: 0 1px 2px rgba(0,0,0,.22); }
+      html[data-bt-theme="light"] #bt-panel input[type=checkbox]:checked::before { background: #fff; }
+      html[data-bt-theme="light"] #bt-panel input[type=range] {
+        background: linear-gradient(90deg,color-mix(in srgb,var(--bt-accent,#e31337) 72%,#9147ff),#c7c7ce);
+      }
+      html[data-bt-theme="light"] #bt-panel input[type=color] { border-color: #b8b8c0; background: #f2f2f4; }
+      html[data-bt-theme="light"] #bt-panel select,
+      html[data-bt-theme="light"] #bt-panel input[type=text],
+      html[data-bt-theme="light"] #bt-panel input[type=url],
+      html[data-bt-theme="light"] #bt-panel input[type=password],
+      html[data-bt-theme="light"] #bt-panel textarea,
+      html[data-bt-theme="light"] #bt-modal textarea {
+        border-color: #b8b8c0; background: #fff; color: #18181b; box-shadow: 0 1px 4px rgba(0,0,0,.08) inset;
+      }
+      html[data-bt-theme="light"] #bt-panel .bt-help {
+        border-color: #b8b8c0; background: #efeff1; color: #53535f; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+      }
+      html[data-bt-theme="light"] #bt-panel .bt-help:hover,
+      html[data-bt-theme="light"] #bt-panel .bt-help:focus,
+      html[data-bt-theme="light"] #bt-panel .bt-help[aria-expanded="true"] { color: #18181b; }
+      html[data-bt-theme="light"] #bt-panel button.bt-btn,
+      html[data-bt-theme="light"] #bt-modal button.bt-btn {
+        border-color: #b8b8c0; background: linear-gradient(180deg,#fff,#e9e9ec); color: #29292e; box-shadow: 0 2px 7px rgba(0,0,0,.1);
+      }
+      html[data-bt-theme="light"] #bt-panel button.bt-btn:hover,
+      html[data-bt-theme="light"] #bt-modal button.bt-btn:hover {
+        border-color: #8f8f99; background: linear-gradient(180deg,#fff,#dedee3);
+      }
+      html[data-bt-theme="light"] #bt-panel #bt-test-ping,
+      html[data-bt-theme="light"] #bt-modal .bt-modal-primary {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 66%,#fff);
+        background: linear-gradient(135deg,var(--bt-accent,#e31337),color-mix(in srgb,var(--bt-accent,#e31337) 64%,#9147ff));
+        color: #fff;
+      }
+      html[data-bt-theme="light"] #bt-panel .bt-settings-secNotifications .bt-rowflex > span:first-child { color: #18181b; }
+      html[data-bt-theme="light"] #bt-panel #bt-reset { color: #a3152f; }
+      html[data-bt-theme="light"] #bt-panel .bt-foot,
+      html[data-bt-theme="light"] #bt-modal .bt-modal-foot { border-top-color: rgba(0,0,0,.1); }
+
+      html[data-bt-theme="light"] #bt-setting-tooltip {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 28%,#b8b8c0); border-left-color: var(--bt-accent,#e31337);
+        background: linear-gradient(145deg,rgba(255,255,255,.99),rgba(242,242,244,.99)); color: #18181b; box-shadow: 0 14px 38px rgba(0,0,0,.2);
+      }
+      html[data-bt-theme="light"] #bt-composer-notice {
+        border-color: #b8b8c0; background: linear-gradient(145deg,rgba(255,255,255,.99),rgba(242,242,244,.99)); color: #18181b;
+        box-shadow: 0 14px 36px rgba(0,0,0,.2),0 0 0 1px rgba(255,255,255,.7) inset;
+      }
+      html[data-bt-theme="light"] #bt-composer-notice.bt-warning { background: linear-gradient(145deg,#fff8ec,#fff1d7); color: #704313; }
+      html[data-bt-theme="light"] #bt-composer-notice.bt-error { background: linear-gradient(145deg,#fff2f4,#ffe4e9); color: #8b1e32; }
+
+      html[data-bt-theme="light"] .bt-pop,
+      html[data-bt-theme="light"] #bt-inbox {
+        background: radial-gradient(circle at 92% 0,color-mix(in srgb,var(--bt-accent,#e31337) 7%,transparent),transparent 29%),linear-gradient(180deg,#fff,#f7f7f8);
+        box-shadow: 0 18px 54px rgba(0,0,0,.2),0 0 0 1px rgba(255,255,255,.7) inset;
+      }
+      html[data-bt-theme="light"] .bt-pop .bt-pop-empty {
+        border-color: #c7c7ce; background: rgba(0,0,0,.018); color: #62626c;
+      }
+      html[data-bt-theme="light"] .bt-dash-live,
+      html[data-bt-theme="light"] .bt-inbox-total { color: #3f3f46; }
+      html[data-bt-theme="light"] #bt-dash .bt-pop-sub > b {
+        border-color: #c7c7ce; background: #efeff1; color: #3f3f46;
+      }
+      html[data-bt-theme="light"] .bt-dash-empty-icon {
+        border-color: #c7c7ce; background: linear-gradient(145deg,#fff,#e9e9ec);
+      }
+      html[data-bt-theme="light"] .bt-chat-control-label,
+      html[data-bt-theme="light"] .bt-pop .bt-pop-sub { color: #53535f; }
+      html[data-bt-theme="light"] .bt-dash-metric,
+      html[data-bt-theme="light"] .bt-dash-chart,
+      html[data-bt-theme="light"] .bt-dash-session,
+      html[data-bt-theme="light"] .bt-dash-row,
+      html[data-bt-theme="light"] .bt-dash-emote {
+        border-color: #d1d1d6; background: linear-gradient(145deg,#fff,#f2f2f4); box-shadow: 0 4px 13px rgba(0,0,0,.06);
+      }
+      html[data-bt-theme="light"] .bt-dash-metric-accent {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 52%,#c7c7ce);
+        background: linear-gradient(145deg,color-mix(in srgb,var(--bt-accent,#e31337) 10%,#fff),#f2f2f4);
+      }
+      html[data-bt-theme="light"] .bt-dash-metric > b,
+      html[data-bt-theme="light"] .bt-dash-empty b,
+      html[data-bt-theme="light"] .bt-dash-session b,
+      html[data-bt-theme="light"] .bt-dash-chart-head b,
+      html[data-bt-theme="light"] .bt-dash-emote b { color: #29292e; }
+      html[data-bt-theme="light"] .bt-dash-metric > span,
+      html[data-bt-theme="light"] .bt-dash-count { color: #53535f; }
+      html[data-bt-theme="light"] .bt-dash-metric > small,
+      html[data-bt-theme="light"] .bt-dash-chart-head small,
+      html[data-bt-theme="light"] .bt-dash-session small,
+      html[data-bt-theme="light"] .bt-dash-emote small,
+      html[data-bt-theme="light"] .bt-dash-empty,
+      html[data-bt-theme="light"] .bt-dash-rank { color: #62626c; }
+      html[data-bt-theme="light"] .bt-spark-grid { stroke: rgba(0,0,0,.08); }
+      html[data-bt-theme="light"] .bt-dash-session > span + span { border-left-color: #d1d1d6; }
+      html[data-bt-theme="light"] .bt-dash-row:hover,
+      html[data-bt-theme="light"] #bt-dash .bt-dash-metric:hover,
+      html[data-bt-theme="light"] #bt-dash .bt-dash-emote:hover { border-color: #adadb8; background: #fff; }
+      html[data-bt-theme="light"] .bt-dash-avatar { border-color: #c7c7ce; background: #e9e9ec; color: #53535f; }
+      html[data-bt-theme="light"] .bt-dash-share { background: #dedee3; }
+      html[data-bt-theme="light"] .bt-inbox-row {
+        border-color: rgba(0,0,0,.1); background: linear-gradient(145deg,rgba(0,0,0,.018),rgba(0,0,0,.006)); box-shadow: 0 4px 13px rgba(0,0,0,.055);
+      }
+      html[data-bt-theme="light"] .bt-inbox-row:hover { border-color: rgba(0,0,0,.2); background: #fafafa; }
+      html[data-bt-theme="light"] .bt-inbox-row.bt-expanded {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 26%,#c7c7ce);
+        background: color-mix(in srgb,var(--bt-accent,#e31337) 4%,#fff);
+      }
+      html[data-bt-theme="light"] .bt-inbox-notice {
+        border-color: rgba(138,84,0,.25); background: rgba(255,184,107,.12); color: #764700;
+      }
+      html[data-bt-theme="light"] .bt-inbox-kind {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 28%,#c7c7ce);
+        background: color-mix(in srgb,var(--bt-accent,#e31337) 8%,#efeff1);
+      }
+      html[data-bt-theme="light"] .bt-inbox-time { background: rgba(0,0,0,.04); color: #62626c; }
+      html[data-bt-theme="light"] .bt-inbox-text,
+      html[data-bt-theme="light"] .bt-inbox-colon { color: #29292e; }
+      html[data-bt-theme="light"] .bt-inbox-context { background: rgba(0,0,0,.045); }
+      html[data-bt-theme="light"] .bt-context-line { color: #53535f; }
+      html[data-bt-theme="light"] .bt-context-line.bt-context-focus {
+        background: color-mix(in srgb,var(--bt-accent,#e31337) 7%,rgba(0,0,0,.035)); color: #18181b;
+      }
+      html[data-bt-theme="light"] #bt-inbox-btn .bt-badge {
+        border-color: rgba(255,255,255,.7); box-shadow: 0 3px 9px rgba(0,0,0,.2);
+      }
+
+      html[data-bt-theme="light"] #bt-hovercard {
+        background: radial-gradient(circle at 95% 0,color-mix(in srgb,var(--bt-accent,#e31337) 9%,transparent),transparent 38%),linear-gradient(145deg,rgba(255,255,255,.99),rgba(242,242,244,.99));
+        box-shadow: 0 16px 42px rgba(0,0,0,.2),0 0 0 1px rgba(255,255,255,.7) inset;
+      }
+      html[data-bt-theme="light"] .bt-hover-head,
+      html[data-bt-theme="light"] .bt-hover-emote { border-color: rgba(0,0,0,.1); }
+      html[data-bt-theme="light"] .bt-hover-avatar {
+        border-color: color-mix(in srgb,var(--bt-accent,#e31337) 25%,#c7c7ce);
+        background: color-mix(in srgb,var(--bt-accent,#e31337) 8%,#efeff1); color: #3f3f46;
+      }
+      html[data-bt-theme="light"] .bt-hover-grid span,
+      html[data-bt-theme="light"] .bt-hover-emote { border-color: rgba(0,0,0,.09); background: rgba(0,0,0,.018); }
+      html[data-bt-theme="light"] .bt-hover-grid span,
+      html[data-bt-theme="light"] .bt-hover-emote small { color: #62626c; }
+      html[data-bt-theme="light"] .bt-hover-grid b { color: #29292e; }
+
+      html[data-bt-theme="light"] #bt-modal { background: rgba(24,24,27,.38); }
+      html[data-bt-theme="light"] #bt-modal .bt-modal-box {
+        background: radial-gradient(circle at 94% 0,color-mix(in srgb,var(--bt-accent,#e31337) 8%,transparent),transparent 34%),linear-gradient(145deg,#fff,#f2f2f4);
+        box-shadow: 0 24px 70px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.7) inset;
+      }
+      html[data-bt-theme="light"] #bt-modal .bt-modal-head { border-bottom-color: rgba(0,0,0,.1); }
+      html[data-bt-theme="light"] #bt-modal .bt-modal-title { color: #18181b; }
+      html[data-bt-theme="light"] #bt-modal .bt-modal-x { background: rgba(0,0,0,.025); color: #62626c; }
+      html[data-bt-theme="light"] #bt-modal .bt-modal-x:hover,
+      html[data-bt-theme="light"] #bt-modal .bt-modal-x:focus-visible { border-color: #b8b8c0; background: rgba(0,0,0,.06); color: #18181b; }
+      html[data-bt-theme="light"] #bt-modal .bt-modal-note { color: #27793a; }
+      html[data-bt-theme="light"] .bt-character-counter { color: #53535f; }
+      html[data-bt-theme="light"] .bt-float-btn { background: rgba(255,255,255,.85); box-shadow: 0 2px 8px rgba(0,0,0,.14); }
+      html[data-bt-theme="light"] #bt-chat-control-btn.bt-state-active::after { border-color: #fff; }
+      html[data-bt-theme="light"] #bt-settings-btn.bt-footer-btn:not(.bt-open-state):hover,
+      html[data-bt-theme="light"] #bt-inbox-btn.bt-footer-btn:not(.bt-open-state):hover,
+      html[data-bt-theme="light"] #bt-dash-btn.bt-footer-btn:not(.bt-open-state):hover,
+      html[data-bt-theme="light"] #bt-chat-control-btn.bt-footer-btn:not(.bt-open-state):hover,
+      html[data-bt-theme="light"] #bt-settings-btn.bt-footer-btn:not(.bt-open-state):focus-visible,
+      html[data-bt-theme="light"] #bt-inbox-btn.bt-footer-btn:not(.bt-open-state):focus-visible,
+      html[data-bt-theme="light"] #bt-dash-btn.bt-footer-btn:not(.bt-open-state):focus-visible,
+      html[data-bt-theme="light"] #bt-chat-control-btn.bt-footer-btn:not(.bt-open-state):focus-visible {
+        color: var(--bt-accent,#e31337) !important;
+      }
+
       @media (max-width: 430px) {
         #bt-panel, #bt-inbox, #bt-dash, #bt-chat-controls { width: calc(100vw - 16px); }
         #bt-panel .bt-by { display: none; }
@@ -3862,6 +4167,74 @@
   }
 
   let appliedVarsSignature = '';
+
+  let twitchThemeObserver = null;
+  const observedThemeHosts = new WeakSet();
+
+  function cssColorIsLight(value) {
+    const text = String(value || '').trim();
+    if (!text || text === 'transparent') return null;
+    let rgb = null;
+    const functional = text.match(/^rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/i);
+    if (functional) {
+      const parts = text.match(/[\d.]+/g) || [];
+      if (parts.length > 3 && Number(parts[3]) === 0) return null;
+      rgb = functional.slice(1, 4).map(Number);
+    }
+    const hex = text.match(/^#([\da-f]{3}|[\da-f]{6})$/i);
+    if (!rgb && hex) {
+      const raw = hex[1].length === 3
+        ? hex[1].split('').map((part) => part + part).join('')
+        : hex[1];
+      rgb = [0, 2, 4].map((offset) => parseInt(raw.slice(offset, offset + 2), 16));
+    }
+    if (!rgb || rgb.some((part) => !Number.isFinite(part))) return null;
+    return (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) > 150;
+  }
+
+  function detectTwitchTheme() {
+    const rootHosts = [document.documentElement, document.body].filter(Boolean);
+    for (const host of rootHosts) {
+      const classes = typeof host.className === 'string' ? host.className : '';
+      if (/(?:^|\s)tw-root--theme-light(?:\s|$)/.test(classes)) return 'light';
+      if (/(?:^|\s)tw-root--theme-dark(?:\s|$)/.test(classes)) return 'dark';
+    }
+    const lightHost = document.querySelector('.tw-root--theme-light');
+    const darkHost = document.querySelector('.tw-root--theme-dark');
+    if (lightHost && !darkHost) return 'light';
+    if (darkHost && !lightHost) return 'dark';
+    const hosts = rootHosts.concat([lightHost, darkHost].filter(Boolean));
+    for (const host of hosts) {
+      const style = getComputedStyle(host);
+      let light = cssColorIsLight(style.getPropertyValue('--color-background-base'));
+      if (light === null) light = cssColorIsLight(style.backgroundColor);
+      if (light !== null) return light ? 'light' : 'dark';
+    }
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function syncTwitchTheme() {
+    const theme = detectTwitchTheme();
+    const previous = document.documentElement.dataset.btTheme;
+    if (previous === theme) return;
+    document.documentElement.dataset.btTheme = theme;
+    if (previous) syncAll();
+  }
+
+  function ensureTwitchTheme() {
+    syncTwitchTheme();
+    if (!twitchThemeObserver) twitchThemeObserver = new MutationObserver(syncTwitchTheme);
+    const hosts = [
+      document.documentElement,
+      document.body,
+      document.querySelector('.tw-root--theme-light, .tw-root--theme-dark'),
+    ].filter(Boolean);
+    hosts.forEach((host) => {
+      if (observedThemeHosts.has(host)) return;
+      observedThemeHosts.add(host);
+      twitchThemeObserver.observe(host, { attributes: true, attributeFilter: ['class', 'style'] });
+    });
+  }
 
   function applyVars() {
     const signature = [
@@ -3888,7 +4261,8 @@
   const CHAT_MESSAGE_LIST_SELECTOR =
     '.chat-list--default, .chat-scrollable-area__message-container, [data-test-selector="chat-scrollable-area__message-container"]';
   const TOP_USERS_SURFACE_SELECTOR =
-    '[data-testid="leaderboard-top-three-entry"], [class*="bitsLeaderboard"]';
+    '[data-testid="leaderboard-top-three-entry"], [class*="bitsLeaderboard"], ' +
+    '[class*="channelLeaderboardHeader"]';
   const COMMUNITY_HIGHLIGHT_SURFACE_SELECTOR =
     '[class*="community-highlight-stack__"], .community-highlight, .pinned-chat__highlight-card';
   const CHAT_TOP_SURFACE_OBSERVER_IGNORE =
@@ -4657,7 +5031,7 @@
     if (me !== lastSyncedLogin) { lastSyncedLogin = me; syncAll(); }
   }
 
-  function ensureUI() { injectStyle(); applyVars(); ensurePanel(); ensureSettingsButton(); ensureExtraButtons(); ensureChatObserver(); ensureChatTopSurfaceObserver(); applyAutoQuality(); syncFeatureSurfaces(); }
+  function ensureUI() { ensureTwitchTheme(); injectStyle(); applyVars(); ensurePanel(); ensureSettingsButton(); ensureExtraButtons(); ensureChatObserver(); ensureChatTopSurfaceObserver(); applyAutoQuality(); syncFeatureSurfaces(); }
 
   function tick() { ensureUI(); applyLayout(); reSyncOnLogin(); }
 

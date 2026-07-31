@@ -1,19 +1,21 @@
 # BetterTwitch
 
-[![Version 2.0.1](https://img.shields.io/badge/version-2.0.1-9147ff?style=flat-square)](CHANGELOG.md)
+[![Version 2.0.2](https://img.shields.io/badge/version-2.0.2-9147ff?style=flat-square)](CHANGELOG.md)
 [![License MIT](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](LICENSE)
-
-A lightweight userscript that makes Twitch chat easier to follow, personalize, and manage. BetterTwitch adds contextual mentions, local search and filters, safer links, viewer context, notification sounds, moderation visibility, layout controls, and more - all from one settings panel in the chat footer.
 
 <div align="center">
 
-### Documentation
+## 🌐 Choose your documentation language
 
-[![English](https://img.shields.io/badge/English-Read_docs-2ea44f?style=for-the-badge)](README.en.md)
-[![Deutsch](https://img.shields.io/badge/Deutsch-Anleitung-2ea44f?style=for-the-badge)](README.de.md)
-[![Русский](https://img.shields.io/badge/Русский-Документация-2ea44f?style=for-the-badge)](README.ru.md)
+[![English documentation](https://img.shields.io/badge/English-Open_documentation-007acc?style=for-the-badge)](README.en.md)
+[![Deutsche Dokumentation](https://img.shields.io/badge/Deutsch-Dokumentation_öffnen-dd8b00?style=for-the-badge)](README.de.md)
+[![Русская документация](https://img.shields.io/badge/Русский-Открыть_документацию-d13c58?style=for-the-badge)](README.ru.md)
+
+**Complete feature guides and settings references are available in all three languages.**
 
 </div>
+
+A lightweight userscript that makes Twitch chat easier to follow, personalize, and manage. BetterTwitch adds contextual mentions, local search and filters, safer links, viewer context, notification sounds, moderation visibility, layout controls, and more - all from one settings panel in the chat footer.
 
 ## Highlights
 
@@ -32,6 +34,7 @@ A lightweight userscript that makes Twitch chat easier to follow, personalize, a
 - **Convenience options** for source quality, channel-point bonuses, Drops, commands, and bot messages
 - **English, German, and Russian UI**, with detailed tooltips for every setting
 - **Modern, consistent full-width panel headers** for Settings, Mentions, Live Stats, Chat filters & search, notification controls, dialogs, viewer cards, and notices
+- **Automatic light and dark themes** that follow Twitch’s current appearance setting
 - **Unified footer launchers** placed before Twitch's settings cog, with matching accent styling, open-state feedback, even inter-button spacing, and a larger visual separator before Twitch's controls
 - **Bounded long-session memory and adaptive maintenance**, including detached-observer cleanup, hidden-tab throttling, network timeouts, and notification-audio cleanup
 
