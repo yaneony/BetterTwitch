@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      2.0.4
+// @version      2.0.5
 // @description  A Twitch chat enhancement suite with live statistics, viewer hovercards, translation, notifications, filters, and layout controls.
 // @description:de Eine Twitch-Chat-Erweiterung mit Live-Statistik, Zuschauer-Hovercards, Übersetzung, Benachrichtigungen, Filtern und Layout-Steuerung.
 // @description:ru Расширение чата Twitch со статистикой, карточками зрителей, переводом, уведомлениями, фильтрами и настройкой интерфейса.
@@ -29,7 +29,6 @@
       markFullClear: 'Mark full chat clears',
       secChatAppearance: 'Chat appearance',
       secChatTools: 'Chat tools',
-      secComposer: 'Message composer',
       secConversation: 'Conversation quality',
       chatWidthEnabled: 'Widen chat panel',
       width: 'Width',
@@ -77,7 +76,6 @@
       ioCopy: 'Copy', ioApply: 'Apply', ioClose: 'Close',
       mentionInbox: 'Mentions panel', mentionContextMessages: 'Context messages',
       inlineTranslate: 'Translate on hover',
-      preserveDrafts: 'Preserve drafts per channel', sentMessageHistory: 'Sent-message history',
       characterCounter: 'Character counter',
       spamCompression: 'Compress repeated messages',
       quickChatFilters: 'Quick chat filters',
@@ -106,15 +104,10 @@
       hoverMessages: 'Messages', hoverMentions: 'Mentions', hoverTopEmote: 'Top emote',
       characterCounterTitle: 'Message length',
       settingHelpTitle: 'Explain this setting', byAuthor: 'by', botNamesLabel: 'Bot usernames', botNamesPlaceholder: 'bot1, bot2, …',
-      saferSending: 'Safer message sending', messageActions: 'Message actions',
+      messageActions: 'Message actions',
       replyMessageAction: 'Reply to message',
       pinMessageAction: 'Pin message',
       replyUnavailable: 'Reply is not available for this message.',
-      sendAlreadyPending: 'That message is already being sent.',
-      duplicateBlocked: 'Duplicate message blocked. Send it again within 3 seconds to confirm.',
-      largePasteWarning: 'Large paste: {chars} characters across {lines} lines.',
-      sendFailedRestored: 'Sending was not confirmed. Your message was restored as a draft.',
-      chatReconnecting: 'Chat reconnecting…',
       filterAll: 'All', filterMentions: 'Mentions', filterMods: 'Mods', filterQuestions: 'Questions',
       filterLinks: 'Links', filterEmotes: 'Emotes',
       searchPlaceholder: 'Search username or message',
@@ -132,7 +125,6 @@
       markFullClear: 'Komplette Chat-Löschungen markieren',
       secChatAppearance: 'Chat-Darstellung',
       secChatTools: 'Chat-Werkzeuge',
-      secComposer: 'Nachrichteneingabe',
       secConversation: 'Gesprächsqualität',
       chatWidthEnabled: 'Chat-Panel verbreitern',
       width: 'Breite',
@@ -180,7 +172,6 @@
       ioCopy: 'Kopieren', ioApply: 'Übernehmen', ioClose: 'Schließen',
       mentionInbox: 'Erwähnungs-Panel', mentionContextMessages: 'Kontextnachrichten',
       inlineTranslate: 'Beim Überfahren übersetzen',
-      preserveDrafts: 'Entwürfe pro Kanal behalten', sentMessageHistory: 'Verlauf gesendeter Nachrichten',
       characterCounter: 'Zeichenzähler',
       spamCompression: 'Wiederholte Nachrichten bündeln',
       quickChatFilters: 'Schnelle Chat-Filter',
@@ -209,15 +200,10 @@
       hoverMessages: 'Nachrichten', hoverMentions: 'Erwähnungen', hoverTopEmote: 'Top-Emote',
       characterCounterTitle: 'Nachrichtenlänge',
       settingHelpTitle: 'Diese Einstellung erklären', byAuthor: 'von', botNamesLabel: 'Bot-Benutzernamen', botNamesPlaceholder: 'bot1, bot2, …',
-      saferSending: 'Sicheres Senden', messageActions: 'Nachrichtenaktionen',
+      messageActions: 'Nachrichtenaktionen',
       replyMessageAction: 'Auf Nachricht antworten',
       pinMessageAction: 'Nachricht anheften',
       replyUnavailable: 'Für diese Nachricht ist keine Antwortfunktion verfügbar.',
-      sendAlreadyPending: 'Diese Nachricht wird bereits gesendet.',
-      duplicateBlocked: 'Doppelte Nachricht blockiert. Innerhalb von 3 Sekunden erneut senden, um sie zu bestätigen.',
-      largePasteWarning: 'Große Einfügung: {chars} Zeichen in {lines} Zeilen.',
-      sendFailedRestored: 'Das Senden wurde nicht bestätigt. Die Nachricht wurde als Entwurf wiederhergestellt.',
-      chatReconnecting: 'Chat wird neu verbunden…',
       filterAll: 'Alle', filterMentions: 'Erwähnungen', filterMods: 'Mods', filterQuestions: 'Fragen',
       filterLinks: 'Links', filterEmotes: 'Emotes',
       searchPlaceholder: 'Benutzername oder Nachricht suchen',
@@ -235,7 +221,6 @@
       markFullClear: 'Отмечать полную очистку чата',
       secChatAppearance: 'Вид чата',
       secChatTools: 'Инструменты чата',
-      secComposer: 'Поле сообщения',
       secConversation: 'Качество общения',
       chatWidthEnabled: 'Расширить панель чата',
       width: 'Ширина',
@@ -283,7 +268,6 @@
       ioCopy: 'Копировать', ioApply: 'Применить', ioClose: 'Закрыть',
       mentionInbox: 'Панель упоминаний', mentionContextMessages: 'Сообщения контекста',
       inlineTranslate: 'Перевод при наведении',
-      preserveDrafts: 'Сохранять черновики по каналам', sentMessageHistory: 'История отправленных сообщений',
       characterCounter: 'Счётчик символов',
       spamCompression: 'Сворачивать повторяющиеся сообщения',
       quickChatFilters: 'Быстрые фильтры чата',
@@ -312,15 +296,10 @@
       hoverMessages: 'Сообщения', hoverMentions: 'Упоминания', hoverTopEmote: 'Лучшая эмоция',
       characterCounterTitle: 'Длина сообщения',
       settingHelpTitle: 'Описание этой настройки', byAuthor: 'от', botNamesLabel: 'Имена ботов', botNamesPlaceholder: 'bot1, bot2, …',
-      saferSending: 'Безопасная отправка', messageActions: 'Действия с сообщением',
+      messageActions: 'Действия с сообщением',
       replyMessageAction: 'Ответить на сообщение',
       pinMessageAction: 'Закрепить сообщение',
       replyUnavailable: 'Для этого сообщения ответ недоступен.',
-      sendAlreadyPending: 'Это сообщение уже отправляется.',
-      duplicateBlocked: 'Повторное сообщение заблокировано. Отправьте его ещё раз в течение 3 секунд для подтверждения.',
-      largePasteWarning: 'Большая вставка: {chars} символов, строк: {lines}.',
-      sendFailedRestored: 'Отправка не подтверждена. Сообщение восстановлено как черновик.',
-      chatReconnecting: 'Переподключение к чату…',
       filterAll: 'Все', filterMentions: 'Упоминания', filterMods: 'Модераторы', filterQuestions: 'Вопросы',
       filterLinks: 'Ссылки', filterEmotes: 'Эмоции',
       searchPlaceholder: 'Поиск по имени или сообщению',
@@ -368,8 +347,6 @@
       mentionInbox: 'Adds a Mentions panel that collects incoming messages which mention your username or directly reply to you. The panel provides an unread count, search, optional nearby context, and a button to jump to a message that is still visible. It records only messages received while this page is open; reloading, closing, or changing the room clears the session list.',
       mentionContextMessages: 'Chooses how many ordinary chat messages are saved before and after each item in the Mentions panel: 0, 1, 2, or 3 on each side. This control has no effect until the Mentions panel is enabled. A larger value provides more conversation context but displays and keeps more lines in memory; it does not send them to a server.',
       viewerHovercards: 'Shows a BetterTwitch information card with the viewer’s Twitch avatar when you hover over a username in chat. It summarizes only what BetterTwitch observed during the current page session, including message count, mentions, and most-used emote. The avatar is requested directly from Twitch and cached for the page session; this is not Twitch account history, and reloading or changing the room resets the observed statistics.',
-      preserveDrafts: 'Saves unfinished composer text separately for each Twitch channel in this browser and restores it when you return to that channel. Up to 30 channel drafts are kept locally, each limited to 5,000 characters; a confirmed send or manually clearing the composer removes that draft. Nothing is uploaded to BetterTwitch, and disabling this option clears the saved channel drafts.',
-      sentMessageHistory: 'Keeps up to 50 messages you send during the current page session and lets you recall them with the Up and Down arrow keys. History navigation starts only when the text cursor is at the beginning or end of the composer, so normal cursor movement still works. The history is memory-only and is cleared when the page reloads.',
       characterCounter: 'Shows the message’s current character count immediately before Twitch’s chat-settings button, using a slightly larger readable label. It compares the count with the limit detected from Twitch and falls back to 500 characters when no limit is available. The counter is guidance only: it does not shorten text or prevent Twitch from rejecting a message.',
       appearanceProfile: 'Chooses one complete readability layout for chat. Comfortable keeps balanced spacing, Compact fits more messages on screen, and Accessible uses larger text, taller lines, larger avatars, stronger contrast, and larger message actions. The profile changes BetterTwitch’s local presentation only and can be switched immediately without reloading.',
       spamCompression: 'Detects three or more identical messages arriving within 12 seconds and collapses the repeats into one message with a count. Click the count to reveal or hide every original repeated message; nothing is deleted or discarded. Groups exist only in the current visible chat and reset when the room changes, the page reloads, or this option is disabled.',
@@ -377,7 +354,6 @@
       liveChatSearch: 'Adds a simple local search with Previous and Next result navigation to the Chat filters & search panel opened from the chat footer. Type any part of a visible username, Twitch login, or message directly - no prefixes or special search syntax are required. Matching ignores letter case. Closing the panel keeps the current search active; only messages still present on this page are searched, and no query is sent to Twitch or BetterTwitch.',
       saferLinks: 'Shows the actual destination domain beside external chat links and marks shortened, numeric-IP, punycode, or otherwise misleading-looking hosts with a caution label. Clicking a marked link asks for confirmation before opening it. This is a local warning based on the URL text; it does not download, scan, or guarantee the safety of the destination.',
       dashboard: 'Adds a live dashboard for activity observed after BetterTwitch loads in the current chat room. It shows current and peak messages per minute, total messages, unique and recently active chatters, average rate, session duration, a 60-second graph, the top eight chatters with optional avatars, and the top six Twitch emotes. These are local session statistics - not historical Twitch analytics - and they reset on reload or room change.',
-      saferSending: 'Adds safeguards around the Twitch composer: the first identical message repeated within 8 seconds is blocked, and sending it again within 3 seconds confirms that you really want the duplicate. It warns before pasting 280+ characters or 4+ lines, tracks reconnecting state, waits up to 12 seconds for your own Twitch chat echo, and restores text when sending is not confirmed. Persistent draft recovery uses "Preserve drafts per channel"; Twitch can still reject, moderate, or remove a message after these checks.',
     },
     de: {
       language: 'Legt die Sprache für alle BetterTwitch-Beschriftungen, Buttons, Meldungen und Hilfetexte fest. „Automatisch erkennen" verwendet die erste unterstützte Sprache, die dein Browser meldet; passt keine, wird Englisch verwendet. Auch Übersetzungen werden in diese Sprache übertragen. Nach einer Änderung wird die Seite neu geladen, damit die gesamte Oberfläche einheitlich aktualisiert wird.',
@@ -414,8 +390,6 @@
       mentionInbox: 'Fügt ein Erwähnungs-Panel hinzu, das eingehende Nachrichten mit deinem Benutzernamen oder direkte Antworten auf dich sammelt. Es bietet einen Ungelesen-Zähler, Suche, optionalen Kontext und einen Sprung-Button, solange die Nachricht noch sichtbar ist. Gespeichert werden nur Nachrichten, die bei geöffneter Seite eintreffen; Neuladen, Schließen oder Raumwechsel löscht die Sitzungsliste.',
       mentionContextMessages: 'Legt fest, wie viele normale Chat-Nachrichten vor und nach jedem Eintrag im Erwähnungs-Panel gespeichert werden: 0, 1, 2 oder 3 je Seite. Der Wert hat keine Wirkung, solange das Erwähnungs-Panel ausgeschaltet ist. Mehr Kontext zeigt und behält mehr Zeilen im Arbeitsspeicher, sendet sie aber an keinen Server.',
       viewerHovercards: 'Zeigt beim Überfahren eines Chat-Namens eine BetterTwitch-Infokarte mit dem Twitch-Avatar des Zuschauers. Sie fasst ausschließlich zusammen, was BetterTwitch in der aktuellen Seitensitzung gesehen hat: Nachrichtenanzahl, Erwähnungen und meistgenutztes Emote. Der Avatar wird direkt von Twitch abgerufen und für die Seitensitzung zwischengespeichert; dies ist kein Kontoverlauf, und Neuladen oder Raumwechsel setzt die beobachteten Statistiken zurück.',
-      preserveDrafts: 'Speichert unfertigen Text für jeden Twitch-Kanal getrennt in diesem Browser und stellt ihn bei deiner Rückkehr wieder her. Lokal bleiben bis zu 30 Kanalentwürfe mit jeweils höchstens 5.000 Zeichen erhalten; bestätigtes Senden oder manuelles Leeren des Eingabefelds entfernt den Entwurf. Nichts wird an BetterTwitch hochgeladen, und das Ausschalten löscht die gespeicherten Kanalentwürfe.',
-      sentMessageHistory: 'Behält bis zu 50 Nachrichten, die du in der aktuellen Seitensitzung sendest, und ruft sie mit Pfeil hoch und Pfeil runter wieder auf. Die Navigation beginnt nur, wenn der Textcursor am Anfang oder Ende des Eingabefelds steht, damit normale Cursorbewegung weiter funktioniert. Der Verlauf liegt nur im Arbeitsspeicher und verschwindet beim Neuladen.',
       characterCounter: 'Zeigt die aktuelle Zeichenzahl direkt vor Twitchs Chat-Einstellungsbutton in einer etwas größeren, gut lesbaren Anzeige. Sie vergleicht den Wert mit dem von Twitch erkannten Limit und verwendet 500 Zeichen, falls kein Limit gefunden wird. Der Zähler dient nur als Orientierung: Er kürzt keinen Text und verhindert keine Ablehnung durch Twitch.',
       appearanceProfile: 'Wählt ein vollständiges Lesbarkeitsprofil für den Chat. Komfortabel verwendet ausgewogene Abstände, Kompakt zeigt mehr Nachrichten gleichzeitig und Barrierearm nutzt größere Schrift, höhere Zeilen, größere Avatare, stärkeren Kontrast und größere Nachrichtenaktionen. Nur die lokale BetterTwitch-Darstellung ändert sich; ein Profilwechsel wirkt sofort und benötigt kein Neuladen.',
       spamCompression: 'Erkennt drei oder mehr identische Nachrichten innerhalb von 12 Sekunden und bündelt die Wiederholungen in einer Nachricht mit Zähler. Ein Klick auf den Zähler blendet alle ursprünglichen Wiederholungen ein oder wieder aus; nichts wird gelöscht oder verworfen. Gruppen gelten nur für den aktuell sichtbaren Chat und werden bei Raumwechsel, Neuladen oder Ausschalten zurückgesetzt.',
@@ -423,7 +397,6 @@
       liveChatSearch: 'Fügt dem über die Chat-Fußleiste geöffneten Panel „Chat-Filter & Suche" eine einfache lokale Suche mit Vorheriger-/Nächster-Navigation hinzu. Gib einen beliebigen Teil des sichtbaren Benutzernamens, Twitch-Logins oder Nachrichtentexts direkt ein; Präfixe oder besondere Suchsyntax sind nicht nötig. Groß-/Kleinschreibung wird ignoriert. Beim Schließen bleibt die Suche aktiv; sie erfasst nur Nachrichten der aktuellen Seite und sendet keine Anfrage an Twitch oder BetterTwitch.',
       saferLinks: 'Zeigt neben externen Chat-Links die tatsächliche Zieldomain und markiert verkürzte, numerische IP-, Punycode- oder anderweitig irreführend wirkende Hosts mit einem Warnhinweis. Beim Anklicken eines markierten Links wird vor dem Öffnen nachgefragt. Die lokale Prüfung betrachtet nur den URL-Text; sie lädt das Ziel nicht herunter und garantiert dessen Sicherheit nicht.',
       dashboard: 'Fügt ein Live-Dashboard für Aktivitäten hinzu, die BetterTwitch nach dem Laden im aktuellen Chatraum beobachtet. Es zeigt aktuelle und höchste Nachrichten pro Minute, Gesamtzahl, eindeutige und kürzlich aktive Chatter, Durchschnitt, Sitzungsdauer, ein 60-Sekunden-Diagramm, die acht aktivsten Chatter mit optionalen Avataren und die sechs häufigsten Twitch-Emotes. Das sind lokale Sitzungsdaten, keine historischen Twitch-Analysen; Neuladen oder Raumwechsel setzt alles zurück.',
-      saferSending: 'Ergänzt Schutzmechanismen im Twitch-Eingabefeld: Die erste identische Nachricht innerhalb von 8 Sekunden wird blockiert; erneutes Senden innerhalb von 3 Sekunden bestätigt das beabsichtigte Duplikat. Vor Einfügungen ab 280 Zeichen oder 4 Zeilen wird gewarnt, Verbindungsstatus wird verfolgt, bis zu 12 Sekunden auf dein eigenes Twitch-Chat-Echo gewartet und unbestätigter Text wiederhergestellt. Dauerhafte Wiederherstellung benötigt „Entwürfe pro Kanal behalten"; Twitch kann Nachrichten trotz dieser Prüfungen ablehnen, moderieren oder nachträglich entfernen.',
     },
     ru: {
       language: 'Определяет язык всех надписей, кнопок, сообщений и подсказок BetterTwitch. Вариант «Автоопределение» использует первый поддерживаемый язык из настроек браузера; если подходящего языка нет, включается английский. На этот же язык переводятся сообщения чата. После изменения страница перезагружается, чтобы весь интерфейс обновился одинаково.',
@@ -460,8 +433,6 @@
       mentionInbox: 'Добавляет панель упоминаний, которая собирает входящие сообщения с вашим именем и прямые ответы на ваши сообщения. В панели есть счётчик непрочитанных, поиск, необязательный контекст и кнопка перехода, пока исходное сообщение ещё видно. Записываются только сообщения, полученные при открытой странице; перезагрузка, закрытие или смена комнаты очищает список сеанса.',
       mentionContextMessages: 'Определяет, сколько обычных сообщений сохраняется до и после каждого элемента панели упоминаний: 0, 1, 2 или 3 с каждой стороны. Значение ничего не меняет, пока панель упоминаний отключена. Чем больше число, тем больше строк показывается и хранится в памяти; на сервер они не отправляются.',
       viewerHovercards: 'Показывает при наведении на имя в чате информационную карточку BetterTwitch с аватаром зрителя Twitch. Карточка содержит только данные текущего сеанса страницы: количество сообщений, упоминания и самую частую эмоцию. Аватар запрашивается напрямую у Twitch и кешируется на время страницы; это не история аккаунта, а перезагрузка или смена комнаты сбрасывает собранную статистику.',
-      preserveDrafts: 'Сохраняет незавершённый текст отдельно для каждого канала Twitch в этом браузере и восстанавливает его при возвращении. Локально хранится до 30 черновиков каналов, каждый не длиннее 5 000 символов; подтверждённая отправка или ручная очистка поля удаляет черновик. Ничего не загружается на BetterTwitch, а отключение настройки очищает сохранённые черновики каналов.',
-      sentMessageHistory: 'Хранит до 50 сообщений, отправленных вами в текущем сеансе страницы, и позволяет вызывать их стрелками вверх и вниз. Просмотр истории начинается только когда текстовый курсор находится в начале или конце поля ввода, поэтому обычное перемещение курсора продолжает работать. История хранится только в памяти и очищается при перезагрузке.',
       characterCounter: 'Показывает текущее количество символов прямо перед кнопкой настроек чата Twitch более крупным и читаемым текстом. Счётчик сравнивает длину с лимитом, обнаруженным у Twitch, и использует запасное значение 500 символов, если лимит найти не удалось. Это только подсказка: текст не обрезается, и отказ Twitch в отправке не предотвращается.',
       appearanceProfile: 'Выбирает готовый профиль читаемости чата. Комфортный использует сбалансированные интервалы, Компактный показывает больше сообщений, а Доступный увеличивает текст, высоту строк, аватары и кнопки действий и усиливает контраст. Меняется только локальное оформление BetterTwitch; профиль переключается сразу и не требует перезагрузки.',
       spamCompression: 'Находит три и более одинаковых сообщения, пришедших за 12 секунд, и сворачивает повторы в одну строку со счётчиком. Нажмите на счётчик, чтобы показать или снова скрыть все исходные сообщения; ничего не удаляется и не теряется. Группы существуют только в текущем видимом чате и сбрасываются при смене комнаты, перезагрузке или отключении функции.',
@@ -469,7 +440,6 @@
       liveChatSearch: 'Добавляет в открываемую из нижней части чата панель «Фильтры и поиск» простой локальный поиск с переходами к предыдущему и следующему совпадению. Введите любую часть видимого имени, логина Twitch или текста сообщения напрямую - префиксы и специальный синтаксис не нужны. Регистр букв не учитывается. После закрытия панели поиск остаётся активным; запросы никуда не отправляются, а поиск охватывает только сообщения текущей страницы.',
       saferLinks: 'Показывает настоящий домен назначения рядом с внешними ссылками и помечает сокращённые, числовые IP-, Punycode- и другие подозрительно выглядящие адреса предупреждением. Перед открытием отмеченной ссылки запрашивается подтверждение. Локальная проверка анализирует только текст URL, не загружает содержимое сайта и не гарантирует его безопасность.',
       dashboard: 'Добавляет панель текущей активности, которую BetterTwitch наблюдает после загрузки в этой комнате чата. Она показывает текущий и пиковый темп сообщений в минуту, общее число, уникальных и недавно активных участников, средний темп, длительность сеанса, график за 60 секунд, восемь самых активных участников с необязательными аватарами и шесть популярных эмоций Twitch. Это локальная статистика сеанса, а не историческая аналитика Twitch; перезагрузка или смена комнаты сбрасывает её.',
-      saferSending: 'Добавляет защиту к полю ввода Twitch: первая идентичная отправка в течение 8 секунд блокируется, а повторная попытка в следующие 3 секунды подтверждает, что дубликат нужен. BetterTwitch предупреждает перед вставкой 280+ символов или 4+ строк, следит за переподключением, до 12 секунд ждёт появления собственного сообщения в чате Twitch и восстанавливает неподтверждённый текст. Для постоянного восстановления нужна настройка «Сохранять черновики по каналам»; Twitch всё равно может отклонить, модерировать или позже удалить сообщение.',
     },
   };
 
@@ -500,22 +470,13 @@
     );
   }
 
-  const VERSION = '2.0.4';
+  const VERSION = '2.0.5';
   const PROJECT_URL = 'https://github.com/yaneony/BetterTwitch';
   const AUTHOR_URL = 'https://yaneony.com';
   const STORAGE_KEY = 'BetterTwitch-settings';
-  const DRAFTS_STORAGE_KEY = 'BetterTwitch-chat-drafts';
   const MAX_CHAT_PX = 1200;
   const DEFAULT_CHAT_PX = 340;
   const DEFAULT_MESSAGE_LIMIT = 500;
-  const MAX_DRAFT_CHANNELS = 30;
-  const MAX_SENT_HISTORY = 50;
-  const DUPLICATE_WINDOW_MS = 8000;
-  const DUPLICATE_CONFIRM_MS = 3000;
-  const SEND_CONFIRM_TIMEOUT_MS = 12000;
-  const SEND_ECHO_GRACE_MS = 5000;
-  const LARGE_PASTE_CHARS = 280;
-  const LARGE_PASTE_LINES = 4;
   const SPAM_WINDOW_MS = 12000;
   const SPAM_MIN_MATCHES = 3;
   const APPEARANCE_PROFILES = new Set(['comfortable', 'compact', 'accessible']);
@@ -543,12 +504,11 @@
     botNames: 'nightbot,streamelements,moobot,streamlabs,fossabot,wizebot,soundalerts',
     inlineTranslate: false, mentionInbox: true, mentionContextMessages: 2,
     viewerHovercards: true,
-    preserveDrafts: true, sentMessageHistory: true, characterCounter: true,
+    characterCounter: true,
     spamCompression: true,
     quickChatFilters: true, liveChatSearch: true, saferLinks: true,
     appearanceProfile: 'comfortable',
     dashboard: true,
-    saferSending: true,
   };
 
   const BOOLEAN_SETTINGS = new Set([
@@ -559,11 +519,10 @@
     'mentionSound', 'mentionReplyPing', 'mentionHighlight', 'highlightMods', 'highlightVips',
     'fixNameColors', 'copyButton', 'hideCommands', 'hideBots',
     'inlineTranslate', 'mentionInbox', 'viewerHovercards',
-    'preserveDrafts', 'sentMessageHistory', 'characterCounter',
+    'characterCounter',
     'spamCompression',
     'quickChatFilters', 'liveChatSearch', 'saferLinks',
     'dashboard',
-    'saferSending',
   ]);
   const COLOR_SETTINGS = new Set([
     'mentionColor', 'modColor', 'vipColor', 'accentColor',
@@ -616,6 +575,7 @@
   }
 
   const CONFIG = loadConfig();
+  try { localStorage.removeItem('BetterTwitch-chat-drafts'); } catch (e) {}
 
   function saveConfig() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(CONFIG)); } catch (e) {} }
 
@@ -734,31 +694,11 @@
     } catch (e) { console.warn('[BetterTwitch] filter error:', e); return event; }
   }
 
-  let currentChatSocket = null;
-  let chatConnectedOnce = false;
-  let chatConnectionState = 'connecting';
-
-  function trackChatSocket(ws, addListener) {
-    currentChatSocket = ws;
-    addListener('open', () => {
-      if (currentChatSocket !== ws) return;
-      chatConnectedOnce = true;
-      setChatConnectionState('connected');
-    });
-    addListener('close', () => {
-      if (currentChatSocket === ws && chatConnectedOnce) setChatConnectionState('reconnecting');
-    });
-    addListener('error', () => {
-      if (currentChatSocket === ws && chatConnectedOnce) setChatConnectionState('reconnecting');
-    });
-  }
-
   function hook(ws) {
     const origAdd = ws.addEventListener.bind(ws);
     const origRemove = ws.removeEventListener.bind(ws);
     const eventCache = new WeakMap();
     const listenerWrappers = new WeakMap();
-    trackChatSocket(ws, origAdd);
 
     const captureOf = (opts) => {
       try { return typeof opts === 'boolean' ? opts : !!(opts && opts.capture); } catch (e) { return false; }
@@ -939,7 +879,6 @@
   const MAX_USER_PROFILES = 1000;
   const MAX_PROFILE_EMOTES = 100;
   const MAX_DASHBOARD_EMOTES = 1000;
-  const MAX_HISTORY_CHANNELS = 30;
   const MAX_DELETE_TASKS = 500;
   const CHAT_HYDRATION_SWEEPS = 6;
   const NETWORK_TIMEOUT_MS = 15000;
@@ -952,10 +891,6 @@
     'moderator', 'lead_moderator', 'lead-moderator', 'global_mod', 'admin', 'staff',
   ]);
   const VIP_BADGE_NAMES = new Set(['vip']);
-  const RESERVED_TWITCH_ROUTES = new Set([
-    'directory', 'downloads', 'drops', 'inventory', 'jobs', 'login', 'p', 'search',
-    'settings', 'signup', 'subscriptions', 'turbo', 'wallet',
-  ]);
   const mentions = [];
   const chatHistory = [];
   const recentMessageMeta = [];
@@ -1189,7 +1124,6 @@
       if (mentionedMe && CONFIG.mentionSound && (nameHit || (CONFIG.mentionReplyPing && replyToMe))) playPing();
       recordUserProfile(record, tags, emotes, mentionedMe);
       recordDashboardMessage(record);
-      if (me && login === me) confirmSentMessage(channel || currentChannelKey(), text);
       const contextChanged = addContextAfter(record);
       const contextCount = CONFIG.mentionContextMessages;
       const before = contextCount ? chatHistory.slice(-contextCount) : [];
@@ -1751,82 +1685,12 @@
     requestTranslation(out, original);
   }
 
-  const composerBindings = new WeakSet();
-  const composerForms = new WeakSet();
-  const programmaticComposerInputs = new WeakSet();
-  const pendingComposerSends = new WeakMap();
-  const sentHistoryByChannel = new Map();
-  const lastSentByChannel = new Map();
-  const pendingSendConfirmations = [];
-  const recentOwnEchoes = new Map();
   let composerInput = null;
-  let composerChannel = '';
-  let historyCursor = -1;
-  let historyScratch = '';
-  let draftStore = null;
-  let draftStorageDisabledCleared = false;
-  let draftSaveTimer = null;
   let characterCounterEl = null;
   let characterCounterFrame = null;
   let pendingCounterInput = null;
-  let duplicateConfirmation = null;
-  let composerNoticeEl = null, composerNoticeTimer = null;
-  let connectionStatusEl = null;
   let composerDocumentEventsBound = false;
   let observedComposerInput = null, composerObserver = null;
-
-  function currentChannelKey() {
-    try {
-      const parts = location.pathname.split('/').filter(Boolean).map((part) => decodeURIComponent(part).toLowerCase());
-      if (location.hostname === 'dashboard.twitch.tv' && parts[0] === 'u' && parts[1]) return parts[1];
-      if ((parts[0] === 'moderator' || parts[0] === 'popout') && parts[1]) return parts[1];
-      if (parts[0] && !RESERVED_TWITCH_ROUTES.has(parts[0])) return parts[0];
-      return (location.hostname + location.pathname).toLowerCase().slice(0, 240);
-    } catch (e) {
-      return location.hostname || 'twitch';
-    }
-  }
-
-  function loadDraftStore() {
-    if (draftStore) return draftStore;
-    draftStore = {};
-    try {
-      const saved = JSON.parse(localStorage.getItem(DRAFTS_STORAGE_KEY) || '{}');
-      if (!isPlainObject(saved)) return draftStore;
-      for (const [channel, entry] of Object.entries(saved)) {
-        if (typeof channel !== 'string' || channel.length > 240 || !isPlainObject(entry)) continue;
-        if (typeof entry.text !== 'string' || entry.text.length > 5000 || !Number.isFinite(entry.updated)) continue;
-        draftStore[channel] = { text: entry.text, updated: entry.updated };
-      }
-    } catch (e) {}
-    return draftStore;
-  }
-
-  function saveDraftNow(channel, text) {
-    if (!CONFIG.preserveDrafts || !channel) return;
-    const store = loadDraftStore();
-    if (text) store[channel] = { text: text.slice(0, 5000), updated: Date.now() };
-    else delete store[channel];
-    const entries = Object.entries(store).sort((a, b) => b[1].updated - a[1].updated);
-    for (const [oldChannel] of entries.slice(MAX_DRAFT_CHANNELS)) delete store[oldChannel];
-    try { localStorage.setItem(DRAFTS_STORAGE_KEY, JSON.stringify(store)); } catch (e) {}
-  }
-
-  function scheduleDraftSave(channel, text) {
-    clearTimeout(draftSaveTimer);
-    draftSaveTimer = setTimeout(() => saveDraftNow(channel, text), 220);
-  }
-
-  function storedDraft(channel) {
-    const entry = channel && loadDraftStore()[channel];
-    return entry && typeof entry.text === 'string' ? entry.text : '';
-  }
-
-  function clearStoredDrafts() {
-    clearTimeout(draftSaveTimer);
-    draftStore = {};
-    try { localStorage.removeItem(DRAFTS_STORAGE_KEY); } catch (e) {}
-  }
 
   function findComposerInput() {
     const selectors = [
@@ -1860,34 +1724,6 @@
     const value = input.textContent || '';
     // Rich-text editors keep whitespace or an invisible placeholder when visually empty.
     return input.isContentEditable && /^[\s\u200B\u2060\uFEFF]*$/.test(value) ? '' : value;
-  }
-
-  function setComposerValue(input, value) {
-    if (!input) return;
-    programmaticComposerInputs.add(input);
-    try {
-      if ('value' in input) {
-        const proto = input.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;
-        const descriptor = Object.getOwnPropertyDescriptor(proto, 'value');
-        if (descriptor && descriptor.set) descriptor.set.call(input, value);
-        else input.value = value;
-      } else {
-        input.textContent = value;
-      }
-      let event;
-      try { event = new InputEvent('input', { bubbles: true, inputType: 'insertText', data: value }); }
-      catch (e) { event = new Event('input', { bubbles: true }); }
-      input.dispatchEvent(event);
-      input.focus();
-      if (typeof input.setSelectionRange === 'function') input.setSelectionRange(value.length, value.length);
-      else {
-        const range = document.createRange(), selection = window.getSelection();
-        range.selectNodeContents(input); range.collapse(false);
-        selection.removeAllRanges(); selection.addRange(range);
-      }
-    } catch (e) {}
-    setTimeout(() => programmaticComposerInputs.delete(input), 0);
-    updateCharacterCounter(input);
   }
 
   function composerLimit(input) {
@@ -1933,7 +1769,7 @@
       if (current) {
         if (current !== composerInput) {
           composerInput = current;
-          bindComposer(current);
+          syncComposerObserver(current);
         }
         ensureCharacterCounter(current);
         updateCharacterCounter(current);
@@ -1949,251 +1785,6 @@
     characterCounterEl.setAttribute('aria-label', t('characterCounterTitle') + ': ' + length + '/' + limit);
     characterCounterEl.classList.toggle('bt-near-limit', length >= limit * .9 && length <= limit);
     characterCounterEl.classList.toggle('bt-over-limit', length > limit);
-  }
-
-  function positionComposerNotice() {
-    if (!composerNoticeEl || !composerInput) return;
-    const rect = composerInput.getBoundingClientRect();
-    if (!rect.width) return;
-    const bottom = Math.max(8, window.innerHeight - rect.top + 6);
-    composerNoticeEl.style.left = Math.max(8, rect.left) + 'px';
-    composerNoticeEl.style.width = Math.min(rect.width, window.innerWidth - Math.max(8, rect.left) - 8) + 'px';
-    composerNoticeEl.style.bottom = bottom + 'px';
-  }
-
-  function hideComposerNotice() {
-    clearTimeout(composerNoticeTimer);
-    if (composerNoticeEl) composerNoticeEl.remove();
-    composerNoticeEl = null;
-  }
-
-  function showComposerNotice(message, kind, duration) {
-    if (!message || !document.body) return;
-    if (!composerNoticeEl) {
-      composerNoticeEl = document.createElement('div');
-      composerNoticeEl.id = 'bt-composer-notice';
-      composerNoticeEl.setAttribute('role', 'status');
-      composerNoticeEl.setAttribute('aria-live', 'polite');
-      document.body.appendChild(composerNoticeEl);
-    }
-    composerNoticeEl.className = 'bt-' + (kind || 'info');
-    composerNoticeEl.textContent = message;
-    positionComposerNotice();
-    clearTimeout(composerNoticeTimer);
-    composerNoticeTimer = setTimeout(hideComposerNotice, duration || 3200);
-  }
-
-  function removeConnectionStatus() {
-    if (connectionStatusEl) connectionStatusEl.remove();
-    connectionStatusEl = null;
-  }
-
-  function ensureConnectionStatus() {
-    if (!CONFIG.saferSending || chatConnectionState !== 'reconnecting') {
-      removeConnectionStatus();
-      return;
-    }
-    const ctx = footerInsertCtx();
-    if (!ctx || !ctx.toolbar) return;
-    if (!connectionStatusEl || !connectionStatusEl.isConnected) {
-      connectionStatusEl = document.createElement('span');
-      connectionStatusEl.id = 'bt-connection-status';
-      connectionStatusEl.className = 'bt-connection-status';
-      connectionStatusEl.setAttribute('role', 'status');
-      connectionStatusEl.setAttribute('aria-live', 'polite');
-    }
-    connectionStatusEl.textContent = t('chatReconnecting');
-    let before = characterCounterEl && characterCounterEl.isConnected ? characterCounterEl : ctx.cell;
-    while (before && before.parentElement && before.parentElement !== ctx.toolbar) before = before.parentElement;
-    if (!before || before.parentElement !== ctx.toolbar) before = ctx.anchor;
-    if (connectionStatusEl.parentElement !== ctx.toolbar || connectionStatusEl.nextSibling !== before) {
-      ctx.toolbar.insertBefore(connectionStatusEl, before);
-    }
-  }
-
-  function setChatConnectionState(state) {
-    chatConnectionState = state;
-    if (document.body) ensureConnectionStatus();
-  }
-
-  function normalizedOutgoingText(text) {
-    return String(text || '').trim().replace(/\s+/g, ' ');
-  }
-
-  function allowSendAttempt(input) {
-    if (!CONFIG.saferSending) return true;
-    const text = normalizedOutgoingText(composerValue(input));
-    const channel = currentChannelKey();
-    if (!text) return true;
-    const now = Date.now();
-    const pending = pendingComposerSends.get(input);
-    if (pending && normalizedOutgoingText(pending.text) === text && now - pending.created < 2000) {
-      duplicateConfirmation = null;
-      showComposerNotice(t('sendAlreadyPending'), 'warning', 2200);
-      return false;
-    }
-    if (duplicateConfirmation && duplicateConfirmation.channel === channel &&
-        duplicateConfirmation.text === text && now <= duplicateConfirmation.until) {
-      duplicateConfirmation = null;
-      return true;
-    }
-    const last = lastSentByChannel.get(channel);
-    if (last && last.text === text && now - last.time <= DUPLICATE_WINDOW_MS) {
-      duplicateConfirmation = { channel, text, until: now + DUPLICATE_CONFIRM_MS };
-      showComposerNotice(t('duplicateBlocked'), 'warning', DUPLICATE_CONFIRM_MS);
-      return false;
-    }
-    duplicateConfirmation = null;
-    return true;
-  }
-
-  function rememberSentMessage(channel, text, sentAt) {
-    const clean = String(text || '').trim();
-    if (!channel || !clean) return;
-    let history = sentHistoryByChannel.get(channel);
-    if (!history) {
-      if (sentHistoryByChannel.size >= MAX_HISTORY_CHANNELS) {
-        sentHistoryByChannel.delete(sentHistoryByChannel.keys().next().value);
-      }
-      history = [];
-      sentHistoryByChannel.set(channel, history);
-    }
-    if (history[history.length - 1] !== clean) history.push(clean);
-    if (history.length > MAX_SENT_HISTORY) history.splice(0, history.length - MAX_SENT_HISTORY);
-    if (!lastSentByChannel.has(channel) && lastSentByChannel.size >= MAX_HISTORY_CHANNELS) {
-      lastSentByChannel.delete(lastSentByChannel.keys().next().value);
-    }
-    lastSentByChannel.set(channel, { text: normalizedOutgoingText(clean), time: sentAt || Date.now() });
-    historyCursor = -1;
-    historyScratch = '';
-  }
-
-  function completeSendConfirmation(confirmation, confirmed) {
-    const index = pendingSendConfirmations.indexOf(confirmation);
-    if (index === -1) return;
-    pendingSendConfirmations.splice(index, 1);
-    const stored = storedDraft(confirmation.channel);
-    if (confirmed) {
-      if (!stored || normalizedOutgoingText(stored) === normalizedOutgoingText(confirmation.text)) {
-        clearTimeout(draftSaveTimer);
-        saveDraftNow(confirmation.channel, '');
-      }
-      return;
-    }
-    if (!CONFIG.saferSending) return;
-    const last = lastSentByChannel.get(confirmation.channel);
-    if (last && last.time === confirmation.created &&
-        last.text === normalizedOutgoingText(confirmation.text)) {
-      lastSentByChannel.delete(confirmation.channel);
-    }
-    const currentText = confirmation.channel === currentChannelKey() ? composerValue(composerInput) : '';
-    if (!currentText && confirmation.channel === currentChannelKey() && composerInput) {
-      setComposerValue(composerInput, confirmation.text);
-    }
-    if (!stored || normalizedOutgoingText(stored) === normalizedOutgoingText(confirmation.text)) {
-      saveDraftNow(confirmation.channel, confirmation.text);
-    }
-    if (confirmation.channel === currentChannelKey()) {
-      showComposerNotice(t('sendFailedRestored'), 'error', 5200);
-    }
-  }
-
-  function confirmSentMessage(channel, text) {
-    const normalized = normalizedOutgoingText(text);
-    const confirmation = pendingSendConfirmations.find((item) =>
-      item.channel === channel && normalizedOutgoingText(item.text) === normalized
-    );
-    if (confirmation) {
-      completeSendConfirmation(confirmation, true);
-      return;
-    }
-    if (!channel || !normalized) return;
-    const key = channel + '\n' + normalized;
-    const received = Date.now();
-    recentOwnEchoes.set(key, received);
-    setTimeout(() => {
-      if (recentOwnEchoes.get(key) === received) recentOwnEchoes.delete(key);
-    }, SEND_ECHO_GRACE_MS);
-  }
-
-  function commitPendingSend(input) {
-    const pending = pendingComposerSends.get(input);
-    if (!pending) return;
-    pendingComposerSends.delete(input);
-    const sentAt = Date.now();
-    rememberSentMessage(pending.channel, pending.text, sentAt);
-    if (CONFIG.saferSending) {
-      const echoKey = pending.channel + '\n' + normalizedOutgoingText(pending.text);
-      const echoAt = recentOwnEchoes.get(echoKey);
-      if (echoAt && sentAt - echoAt <= SEND_ECHO_GRACE_MS) {
-        recentOwnEchoes.delete(echoKey);
-        clearTimeout(draftSaveTimer);
-        saveDraftNow(pending.channel, '');
-      } else {
-        const confirmation = { channel: pending.channel, text: pending.text, created: sentAt };
-        pendingSendConfirmations.push(confirmation);
-        if (pendingSendConfirmations.length > 20) pendingSendConfirmations.splice(0, pendingSendConfirmations.length - 20);
-        setTimeout(() => completeSendConfirmation(confirmation, false), SEND_CONFIRM_TIMEOUT_MS);
-      }
-    } else {
-      saveDraftNow(pending.channel, '');
-    }
-  }
-
-  function schedulePendingSend(input) {
-    const text = composerValue(input);
-    if (!text.trim()) return;
-    const channel = currentChannelKey();
-    if (CONFIG.preserveDrafts) {
-      clearTimeout(draftSaveTimer);
-      saveDraftNow(channel, text);
-    }
-    const pending = { channel, text, created: Date.now() };
-    pendingComposerSends.set(input, pending);
-    setTimeout(() => {
-      const current = pendingComposerSends.get(input);
-      if (current === pending && !composerValue(input)) commitPendingSend(input);
-    }, 180);
-  }
-
-  function historyBoundary(input, direction) {
-    const value = composerValue(input);
-    if (historyCursor >= 0 || !value) return true;
-    if (typeof input.selectionStart !== 'number' || typeof input.selectionEnd !== 'number') return false;
-    return direction < 0
-      ? input.selectionStart === 0 && input.selectionEnd === 0
-      : input.selectionStart === value.length && input.selectionEnd === value.length;
-  }
-
-  function nativeComposerSuggestionsOpen(input) {
-    if (!input) return false;
-    if (input.getAttribute('aria-expanded') === 'true') return true;
-    const controlledId = input.getAttribute('aria-controls');
-    if (controlledId) {
-      const controlled = document.getElementById(controlledId);
-      if (controlled && controlled.getClientRects().length) return true;
-    }
-    const composer = input.closest('.chat-input, [data-a-target="chat-input"]') || input.parentElement;
-    return !!(composer && composer.querySelector(
-      '[role="listbox"], [data-a-target*="suggest"], [data-a-target*="autocomplete"], ' +
-      '[data-test-selector*="suggest"], [data-test-selector*="autocomplete"], [class*="autocomplete"]'
-    ));
-  }
-
-  function navigateSentHistory(input, direction) {
-    const history = sentHistoryByChannel.get(currentChannelKey()) || [];
-    if (!history.length || !historyBoundary(input, direction)) return false;
-    if (direction < 0) {
-      if (historyCursor < 0) historyScratch = composerValue(input);
-      if (historyCursor >= history.length - 1) return false;
-      historyCursor++;
-      setComposerValue(input, history[history.length - 1 - historyCursor]);
-    } else {
-      if (historyCursor < 0) return false;
-      historyCursor--;
-      setComposerValue(input, historyCursor < 0 ? historyScratch : history[history.length - 1 - historyCursor]);
-    }
-    return true;
   }
 
   function replyActionToken(button) {
@@ -2218,7 +1809,7 @@
       if (!input) return;
       if (input !== composerInput) {
         composerInput = input;
-        bindComposer(input);
+        syncComposerObserver(input);
       }
       ensureCharacterCounter(input);
       updateCharacterCounter(input);
@@ -2228,46 +1819,6 @@
         const input = composerFromEventTarget(event.target);
         if (input) scheduleCharacterCounterUpdate(input);
       }, true);
-    });
-    document.addEventListener('paste', (event) => {
-      if (!CONFIG.saferSending) return;
-      const input = composerFromEventTarget(event.target);
-      if (!input) return;
-      const pasted = event.clipboardData && event.clipboardData.getData('text/plain');
-      if (!pasted) return;
-      const lines = pasted.split(/\r\n|\r|\n/).length;
-      if (pasted.length >= LARGE_PASTE_CHARS || lines >= LARGE_PASTE_LINES) {
-        showComposerNotice(tf('largePasteWarning', { chars: pasted.length, lines }), 'warning', 4600);
-      }
-    }, true);
-    document.addEventListener('click', (event) => {
-      const button = event.target.closest && event.target.closest('button,[role="button"]');
-      if (!button) return;
-      if (button.matches && button.matches('button[data-a-target="chat-send-button"]')) {
-        if (composerInput && !allowSendAttempt(composerInput)) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          return;
-        }
-        if (composerInput) schedulePendingSend(composerInput);
-        return;
-      }
-    }, true);
-    document.addEventListener('keydown', (event) => {
-      const input = composerFromEventTarget(event.target);
-      const sendKey = input && event.key === 'Enter' && !event.isComposing &&
-        !event.shiftKey && !event.altKey && !event.ctrlKey && !event.metaKey;
-      if (sendKey) {
-        if (!allowSendAttempt(input)) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          return;
-        }
-        schedulePendingSend(input);
-      }
-    }, true);
-    window.addEventListener('beforeunload', () => {
-      if (CONFIG.preserveDrafts && composerInput) saveDraftNow(composerChannel || currentChannelKey(), composerValue(composerInput));
     });
   }
 
@@ -2284,73 +1835,17 @@
     composerObserver.observe(input, { childList: true, characterData: true, subtree: true });
   }
 
-  function bindComposer(input) {
-    syncComposerObserver(input);
-    if (composerBindings.has(input)) return;
-    composerBindings.add(input);
-    input.addEventListener('input', () => {
-      const value = composerValue(input);
-      updateCharacterCounter(input);
-      let sentTransition = false;
-      const pending = pendingComposerSends.get(input);
-      if (pending) {
-        if (Date.now() - pending.created >= 2000 || (value && value !== pending.text)) pendingComposerSends.delete(input);
-        else if (!value) {
-          commitPendingSend(input);
-          sentTransition = true;
-        }
-      }
-      if (programmaticComposerInputs.has(input)) return;
-      historyCursor = -1;
-      historyScratch = '';
-      if (CONFIG.preserveDrafts && !sentTransition) scheduleDraftSave(currentChannelKey(), value);
-    });
-    input.addEventListener('keydown', (event) => {
-      if (event.isComposing) return;
-      if (CONFIG.sentMessageHistory && !nativeComposerSuggestionsOpen(input) &&
-          !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
-        if (event.key === 'ArrowUp' && navigateSentHistory(input, -1)) { event.preventDefault(); event.stopPropagation(); return; }
-        if (event.key === 'ArrowDown' && navigateSentHistory(input, 1)) { event.preventDefault(); event.stopPropagation(); return; }
-      }
-    }, true);
-    const form = input.closest('form');
-    if (form && !composerForms.has(form)) {
-      composerForms.add(form);
-      form.addEventListener('submit', () => {
-        const current = findComposerInput();
-        if (current) schedulePendingSend(current);
-      }, true);
-    }
-  }
-
   function ensureComposerTools() {
     bindComposerDocumentEvents();
     const input = findComposerInput();
-    const channel = currentChannelKey();
-    const inputChanged = input && input !== composerInput;
-    const channelChanged = channel !== composerChannel;
-    if (channelChanged && composerInput && composerChannel && CONFIG.preserveDrafts) {
-      saveDraftNow(composerChannel, composerValue(composerInput));
-    }
-    if (channelChanged) {
-      composerChannel = channel;
-      historyCursor = -1;
-      historyScratch = '';
-    }
     composerInput = input;
     if (!input) {
       syncComposerObserver(null);
       removeCharacterCounter();
-      removeConnectionStatus();
       return;
     }
-    bindComposer(input);
-    if ((inputChanged || channelChanged) && CONFIG.preserveDrafts && !composerValue(input)) {
-      const draft = storedDraft(channel);
-      if (draft) setComposerValue(input, draft);
-    }
+    syncComposerObserver(input);
     ensureCharacterCounter(input);
-    ensureConnectionStatus();
   }
 
   function removeFooterButton(id) {
@@ -3519,15 +3014,9 @@
       .bt-character-counter { display: inline-flex; align-items: center; align-self: center; justify-content: center; min-width: 58px; padding: 3px 6px; color: #adadb8; font: 600 12px/1.25 ui-monospace,Menlo,Consolas,monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
       .bt-character-counter.bt-near-limit { color: #ffb86b; }
       .bt-character-counter.bt-over-limit { color: #ff6b6b; font-weight: 800; }
-      .bt-connection-status { display: inline-flex; align-items: center; align-self: center; margin: 0 3px; color: #ffb86b; font: 700 11px/1.25 Inter,Roobert,"Helvetica Neue",Arial,sans-serif; white-space: nowrap; }
-      .bt-connection-status::before { content: ""; width: 7px; height: 7px; margin-right: 5px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 rgba(255,184,107,.45); animation: bt-reconnect-pulse 1.25s ease-out infinite; }
-      @keyframes bt-reconnect-pulse { 70%,100% { box-shadow: 0 0 0 6px rgba(255,184,107,0); } }
-      #bt-composer-notice { position: fixed; z-index: 100000; box-sizing: border-box; min-height: 34px; padding: 8px 11px; border: 1px solid #46464f; border-radius: 5px; background: #18181b; color: #efeff1; box-shadow: 0 5px 18px rgba(0,0,0,.5); font: 600 12px/1.4 Inter,Roobert,"Helvetica Neue",Arial,sans-serif; }
-      #bt-composer-notice.bt-warning { border-color: #a76d22; background: #2b2115; color: #ffd39a; }
-      #bt-composer-notice.bt-error { border-color: #b43a4f; background: #30171c; color: #ffb7c3; }
 
       #bt-panel {
-        position: fixed; z-index: 99999; width: 390px; max-width: calc(100vw - 16px); max-height: 74vh; overflow-y: auto; overflow-x: hidden; box-sizing: border-box;
+        position: fixed; z-index: 99999; width: 390px; max-width: calc(100vw - 16px); max-height: 64vh; overflow-y: auto; overflow-x: hidden; box-sizing: border-box;
         background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: 0;
         padding: 0 16px 14px; box-shadow: 0 8px 28px rgba(0,0,0,.55);
         --bt-setting-font-size: 13px; font: var(--bt-setting-font-size)/1.45 Inter, Roobert, "Helvetica Neue", Arial, sans-serif; display: none;
@@ -3689,7 +3178,7 @@
       .bt-hover-emote img { width: 24px; height: 24px; object-fit: contain; }
 
       /* Shared modern surfaces */
-      #bt-panel, .bt-pop, #bt-modal .bt-modal-box, #bt-hovercard, #bt-setting-tooltip, #bt-composer-notice {
+      #bt-panel, .bt-pop, #bt-modal .bt-modal-box, #bt-hovercard, #bt-setting-tooltip {
         --bt-surface-0: #121216;
         --bt-surface-1: #18181d;
         --bt-surface-2: #222228;
@@ -3736,7 +3225,7 @@
 
       /* Settings */
       #bt-panel {
-        width: 390px; max-height: 78vh; padding: 0 10px 12px; overflow-x: hidden;
+        width: 390px; max-height: 64vh; padding: 0 10px 12px; overflow-x: hidden;
         border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 24%,var(--bt-line)); border-radius: 13px;
         background: radial-gradient(circle at 90% 0,color-mix(in srgb,var(--bt-accent,#e31337) 11%,transparent),transparent 27%),linear-gradient(180deg,#19191e,#141418);
         box-shadow: 0 18px 54px rgba(0,0,0,.62),0 0 0 1px rgba(255,255,255,.025) inset; backdrop-filter: blur(16px);
@@ -3824,16 +3313,6 @@
         width: 305px; padding: 10px 12px 10px 14px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 30%,#484852); border-left: 3px solid var(--bt-accent,#e31337); border-radius: 9px;
         background: linear-gradient(145deg,rgba(35,35,41,.98),rgba(22,22,27,.98)); box-shadow: 0 14px 38px rgba(0,0,0,.58); backdrop-filter: blur(14px); color: #e8e8ec;
       }
-      #bt-composer-notice {
-        min-height: 40px; padding: 10px 13px 10px 30px; border-color: #45454f; border-radius: 10px; background: linear-gradient(145deg,rgba(33,33,39,.98),rgba(20,20,24,.98));
-        box-shadow: 0 14px 36px rgba(0,0,0,.58),0 0 0 1px rgba(255,255,255,.025) inset; backdrop-filter: blur(14px);
-      }
-      #bt-composer-notice::before { content: ""; position: absolute; left: 13px; top: 50%; width: 7px; height: 7px; border-radius: 50%; background: var(--bt-accent,#e31337); transform: translateY(-50%); box-shadow: 0 0 0 4px color-mix(in srgb,var(--bt-accent,#e31337) 16%,transparent); }
-      #bt-composer-notice.bt-warning { border-color: rgba(255,184,107,.38); background: linear-gradient(145deg,rgba(50,38,23,.98),rgba(29,23,17,.98)); color: #ffdaa8; }
-      #bt-composer-notice.bt-warning::before { background: #ffb86b; box-shadow: 0 0 0 4px rgba(255,184,107,.14); }
-      #bt-composer-notice.bt-error { border-color: rgba(255,107,128,.42); background: linear-gradient(145deg,rgba(53,25,31,.98),rgba(30,18,21,.98)); color: #ffc0cb; }
-      #bt-composer-notice.bt-error::before { background: #ff6b80; box-shadow: 0 0 0 4px rgba(255,107,128,.14); }
-      .bt-connection-status { padding: 4px 7px; border: 1px solid rgba(255,184,107,.22); border-radius: 99px; background: rgba(255,184,107,.07); }
 
       /* Shared popovers, Mentions and Stats */
       .bt-pop {
@@ -3919,8 +3398,7 @@
       html[data-bt-theme="light"] .bt-pop,
       html[data-bt-theme="light"] #bt-modal .bt-modal-box,
       html[data-bt-theme="light"] #bt-hovercard,
-      html[data-bt-theme="light"] #bt-setting-tooltip,
-      html[data-bt-theme="light"] #bt-composer-notice {
+      html[data-bt-theme="light"] #bt-setting-tooltip {
         --bt-surface-0: #f2f2f4;
         --bt-surface-1: #ffffff;
         --bt-surface-2: #efeff1;
@@ -4069,12 +3547,6 @@
         border-color: color-mix(in srgb,var(--bt-accent,#e31337) 28%,#b8b8c0); border-left-color: var(--bt-accent,#e31337);
         background: linear-gradient(145deg,rgba(255,255,255,.99),rgba(242,242,244,.99)); color: #18181b; box-shadow: 0 14px 38px rgba(0,0,0,.2);
       }
-      html[data-bt-theme="light"] #bt-composer-notice {
-        border-color: #b8b8c0; background: linear-gradient(145deg,rgba(255,255,255,.99),rgba(242,242,244,.99)); color: #18181b;
-        box-shadow: 0 14px 36px rgba(0,0,0,.2),0 0 0 1px rgba(255,255,255,.7) inset;
-      }
-      html[data-bt-theme="light"] #bt-composer-notice.bt-warning { background: linear-gradient(145deg,#fff8ec,#fff1d7); color: #704313; }
-      html[data-bt-theme="light"] #bt-composer-notice.bt-error { background: linear-gradient(145deg,#fff2f4,#ffe4e9); color: #8b1e32; }
 
       html[data-bt-theme="light"] .bt-pop,
       html[data-bt-theme="light"] #bt-inbox {
@@ -4541,20 +4013,14 @@
 
   function syncFeatureSurfaces() {
     const signature = [
-      CONFIG.viewerHovercards, CONFIG.preserveDrafts, CONFIG.characterCounter,
+      CONFIG.viewerHovercards, CONFIG.characterCounter,
       CONFIG.spamCompression, CONFIG.quickChatFilters, CONFIG.liveChatSearch,
-      CONFIG.appearanceProfile, CONFIG.saferSending, CONFIG.autoClaimPoints,
+      CONFIG.appearanceProfile, CONFIG.autoClaimPoints,
       CONFIG.autoClaimDrops, currentLang(),
     ].join('|');
     if (signature !== featureSurfaceSignature) {
       featureSurfaceSignature = signature;
       if (!CONFIG.viewerHovercards && hovercard) hovercard.classList.remove('bt-open');
-      if (!CONFIG.preserveDrafts && !draftStorageDisabledCleared) {
-        clearStoredDrafts();
-        draftStorageDisabledCleared = true;
-      } else if (CONFIG.preserveDrafts) {
-        draftStorageDisabledCleared = false;
-      }
       if (!CONFIG.characterCounter) removeCharacterCounter();
       if (spamCompressionActive !== CONFIG.spamCompression) {
         resetSpamCompression();
@@ -4563,11 +4029,6 @@
       syncChatControlAvailability();
       applyAppearanceProfile();
       syncClaimSchedule();
-      if (!CONFIG.saferSending) {
-        duplicateConfirmation = null;
-        hideComposerNotice();
-        removeConnectionStatus();
-      }
     }
     ensureComposerTools();
   }
@@ -4600,7 +4061,6 @@
     secDeleted: SVG('<polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>'),
     secChatAppearance: SVG('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16M6 8h6M6 12h6"/>'),
     secChatTools: SVG('<path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/>'),
-    secComposer: SVG('<path d="M4 4h16v12H8l-4 4V4Z"/><path d="M8 8h8M8 12h5"/>'),
     secConversation: SVG('<path d="M3 5h18v12H7l-4 4V5Z"/><path d="m8 11 2 2 5-5M17 9h1M17 13h1"/>'),
     secPlayerRewards: SVG('<polygon points="5 3 19 12 5 21 5 3"/><path d="M17 3l1 2 2 .3-1.5 1.5.4 2.2L17 8l-1.9 1 .4-2.2L14 5.3l2-.3z"/>'),
     secNotifications: SVG('<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>'),
@@ -4761,12 +4221,7 @@
       <label class="bt-row"><input type="checkbox" data-k="inlineTranslate"> ${t('inlineTranslate')}</label>
       <label class="bt-row"><input type="checkbox" data-k="mentionInbox"> ${t('mentionInbox')}</label>
       <div class="bt-rowflex"><span style="flex:0 0 130px">${t('mentionContextMessages')}</span><input type="range" min="0" max="3" step="1" data-k="mentionContextMessages"><span class="bt-val" data-val-for="mentionContextMessages"></span></div>
-
-      ${secHead('secComposer')}
-      <label class="bt-row"><input type="checkbox" data-k="preserveDrafts"> ${t('preserveDrafts')}</label>
-      <label class="bt-row"><input type="checkbox" data-k="sentMessageHistory"> ${t('sentMessageHistory')}</label>
       <label class="bt-row"><input type="checkbox" data-k="characterCounter"> ${t('characterCounter')}</label>
-      <label class="bt-row"><input type="checkbox" data-k="saferSending"> ${t('saferSending')}</label>
 
       ${secHead('secConversation')}
       <label class="bt-row"><input type="checkbox" data-k="spamCompression"> ${t('spamCompression')}</label>

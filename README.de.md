@@ -41,14 +41,7 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 - Kopiere lesbaren Nachrichtentext ohne BetterTwitch-Bedienelemente oder übersetze ihn mit Google automatisch in die ausgewählte beziehungsweise erkannte BetterTwitch-Sprache.
 - Fehlgeschlagene Übersetzungen lassen sich wiederholen, Ergebnisse kopieren und Original/Übersetzung umschalten; erkannte und gewählte Sprachen werden lokalisiert angezeigt.
 - Blende Nachrichten aus, die mit `!` beginnen, sowie Nachrichten aus einer konfigurierbaren Bot-Liste.
-
-### Nachrichteneingabe
-
-- Behalte unfertige Entwürfe getrennt für jeden Kanal und stelle sie bei der Rückkehr wieder her.
-- Blättere am Anfang oder Ende des Eingabefelds mit `↑` und `↓` durch die in der aktuellen Seitensitzung gesendeten Nachrichten.
 - Zeige einen laufenden Zeichenzähler mit Twitchs ermitteltem Limit.
-- Der erste schnelle Duplikatversuch wird blockiert und muss innerhalb von drei Sekunden durch erneutes Senden bestätigt werden.
-- Große oder mehrzeilige Einfügungen lösen eine Warnung aus; Entwürfe bleiben bis zur Twitch-Bestätigung erhalten, unbestätigte Nachrichten werden wiederhergestellt und ein dezenter Status zeigt die Neuverbindung.
 
 ### Gesprächsqualität
 
@@ -87,7 +80,7 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 
 ### Einstellungen
 
-- Einstellungen sind logisch in Allgemein, Chat-Darstellung, Chat-Werkzeuge, Nachrichteneingabe, Gesprächsqualität, Hervorhebungen, Benachrichtigungen, Gelöschte Nachrichten, Nachrichtenfilter sowie Player & Belohnungen gegliedert.
+- Einstellungen sind logisch in Allgemein, Chat-Darstellung, Chat-Werkzeuge, Gesprächsqualität, Hervorhebungen, Benachrichtigungen, Gelöschte Nachrichten, Nachrichtenfilter sowie Player & Belohnungen gegliedert.
 - Einstellungen, Erwähnungen, Live-Statistik, Chat-Filter & Suche, Benachrichtigungsregler, Dialoge, Zuschauerkarten, Tooltips und Hinweise verwenden ein einheitliches responsives Karten-Design mit deutlichem Fokus und reduzierter Bewegung.
 - BetterTwitch folgt automatisch dem aktuell gewählten hellen oder dunklen Twitch-Design, auch wenn es ohne Neuladen der Seite geändert wird.
 - Nur beim Überfahren oder Tastaturfokus des Informationssymbols neben einer Einstellung erscheint eine ausführliche Beschreibung.
@@ -127,10 +120,7 @@ Aktualisierungen werden durch den Userscript-Manager über dieselbe GitHub-Raw-U
 | Chat-Werkzeuge | Beim Überfahren übersetzen | Fügt jeder Nachricht eine Google-Übersetzung hinzu. |
 | Chat-Werkzeuge | Erwähnungs-Panel | Fügt den durchsuchbaren Erwähnungs-Button samt Ungelesen-Zähler hinzu. |
 | Chat-Werkzeuge | Kontextnachrichten | Speichert 0–3 Nachrichten auf jeder Seite einer Erwähnung. |
-| Nachrichteneingabe | Entwürfe pro Kanal behalten | Speichert unfertigen Text lokal je Kanal und stellt ihn bei der Rückkehr wieder her. |
-| Nachrichteneingabe | Verlauf gesendeter Nachrichten | Blättert mit Auf/Ab durch Nachrichten der aktuellen Seitensitzung. |
-| Nachrichteneingabe | Zeichenzähler | Zeigt Nachrichtenlänge und Twitchs ermitteltes Limit. |
-| Nachrichteneingabe | Sicheres Senden | Schützt vor schnellen Duplikaten, warnt bei großen Einfügungen, stellt unbestätigte Nachrichten wieder her und zeigt den Verbindungsstatus. |
+| Chat-Werkzeuge | Zeichenzähler | Zeigt Nachrichtenlänge und Twitchs ermitteltes Limit. |
 | Gesprächsqualität | Wiederholte Nachrichten zusammenfassen | Gruppiert drei oder mehr identische Nachrichten innerhalb von zwölf Sekunden und lässt die Originale aufklappbar. |
 | Gesprächsqualität | Schnelle Chat-Filter | Fügt dem Fußleisten-Panel Filter für sichtbare Erwähnungen, Rollen, Fragen, Links oder Emotes hinzu. |
 | Gesprächsqualität | Live-Chat-Suche | Durchsucht sichtbare Benutzernamen, Twitch-Logins und Nachrichtentext direkt ohne Präfixe und bietet Vorheriger-/Nächster-Navigation. |
@@ -168,13 +158,12 @@ Aktualisierungen werden durch den Userscript-Manager über dieselbe GitHub-Raw-U
 - Das Dashboard aktualisiert sich nur bei geöffnetem Panel und pausiert die Darstellung in ausgeblendeten Tabs. Die Belohnungsprüfung läuft nur, solange mindestens eine Auto-Einlösen-Option aktiv ist.
 - Audio-Knoten werden nach jedem Hinweiston getrennt. Übersetzungs- und Avatar-Anfragen brechen nach 15 Sekunden ab; identische laufende Anfragen werden gemeinsam verwendet.
 - Der Speicher langer Sitzungen ist begrenzt: 50 Erwähnungen, 250 Kontextnachrichten, 500 Nachrichten-Metadatensätze, 1.000 Zuschauerprofile, 1.000 Dashboard-Chatter, 100 Emotes je Zuschauer, 1.000 Dashboard-Emotes, 300 Übersetzungen und 500 Avatar-Ergebnisse.
-- Der Verlauf gesendeter Nachrichten behält bis zu 50 Einträge für jeden der 30 zuletzt verwendeten Kanäle. Suche und Filter berücksichtigen nur die von Twitch aktuell dargestellten Nachrichten.
+- Suche und Filter berücksichtigen nur die von Twitch aktuell dargestellten Nachrichten.
 
 ## Daten und Datenschutz
 
 - Einstellungen werden im `localStorage` des Browsers unter `BetterTwitch-settings` gespeichert.
-- Unfertige Kanalentwürfe werden im Browser unter `BetterTwitch-chat-drafts` gespeichert; höchstens 30 Kanäle bleiben erhalten. Eine von Twitch bestätigte Sendung oder das Leeren des Eingabefelds entfernt den jeweiligen Entwurf.
-- Erwähnungen und der Verlauf gesendeter Nachrichten bleiben nur im Arbeitsspeicher der aktuellen Seitensitzung und verwenden die oben genannten Grenzen. Hovercard- und Dashboard-Statistiken werden zusätzlich beim Wechsel des Chatraums zurückgesetzt.
+- Erwähnungen bleiben nur im Arbeitsspeicher der aktuellen Seitensitzung und verwenden die oben genannten Grenzen. Hovercard- und Dashboard-Statistiken werden zusätzlich beim Wechsel des Chatraums zurückgesetzt.
 - Wiederholungsgruppen, Chat-Filter und Suchergebnisse bleiben lokal auf der aktuellen Seite. Die Link-Prüfung untersucht nur den URL-Text und ruft die Zielseite nicht ab.
 - Wenn **Benutzer-Avatare anzeigen** oder **Zuschauer-Hovercards** aktiviert ist, werden geprüfte Twitch-Login-Namen für Profilbilder in Chat, Dashboard oder Hovercard gebündelt an Twitchs GraphQL-Endpunkt gesendet.
 - Nur nach einem Klick auf **Übersetzen** wird der Text dieser Nachricht an `translate.googleapis.com` gesendet; Ergebnisse werden für die Sitzung zwischengespeichert.

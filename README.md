@@ -1,6 +1,6 @@
 # BetterTwitch
 
-[![Version 2.0.4](https://img.shields.io/badge/version-2.0.4-9147ff?style=flat-square)](CHANGELOG.md)
+[![Version 2.0.5](https://img.shields.io/badge/version-2.0.5-9147ff?style=flat-square)](CHANGELOG.md)
 [![License MIT](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](LICENSE)
 
 <div align="center">
@@ -23,7 +23,7 @@ A lightweight userscript that makes Twitch chat easier to follow, personalize, a
 - **Extended live chat dashboard** with current/peak activity, session totals, active chatters, a richer graph, avatar rankings, and top emotes
 - **Viewer hovercards** with Twitch avatars, session message count, mentions, and favorite emote
 - **Unified message actions** for Reply, permission-aware Pin, Copy, and Google Translate, with keyboard access
-- **Safer composer** with per-channel drafts, history, character count, duplicate protection, paste warnings, failed-send recovery, and reconnect status
+- **Live character counter** using Twitch's detected message limit
 - **Chat filters & search panel** opened from the footer, with quick filters, plain username/message search, result navigation, and an active-state indicator
 - **Spam compression** that groups repeated messages while keeping every original expandable
 - **Safer links** with visible destination domains and confirmation for suspicious-looking addresses
@@ -48,7 +48,7 @@ The userscript checks the same raw GitHub URL for updates through your userscrip
 
 ## Privacy
 
-BetterTwitch has no analytics or telemetry. Settings and optional unfinished drafts stay in your browser. Repeated-message groups, chat filters, search, viewer data, mentions, dashboard statistics, and sent-message history stay local and use documented memory limits. Link safety checks URL text without contacting destination sites. Chat, dashboard, and hovercard avatars use Twitch GraphQL, and message text is sent to Google Translate only when you explicitly request a translation. Network requests time out after 15 seconds.
+BetterTwitch has no analytics or telemetry. Settings stay in your browser. Repeated-message groups, chat filters, search, viewer data, mentions, and dashboard statistics stay local and use documented memory limits. Link safety checks URL text without contacting destination sites. Chat, dashboard, and hovercard avatars use Twitch GraphQL, and message text is sent to Google Translate only when you explicitly request a translation. Network requests time out after 15 seconds.
 
 See the language-specific documentation for the complete settings reference and technical details.
 

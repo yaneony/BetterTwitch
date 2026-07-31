@@ -2,6 +2,18 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [2.0.5] - 2026-07-31
+
+### Changed
+
+- Reduced the maximum height of the settings window from 78% to 64% of the viewport while keeping its contents scrollable.
+- Moved Character counter from the Message composer section to Chat tools.
+
+### Removed
+
+- Removed per-channel draft preservation and sent-message history, including their settings, storage, keyboard handling, translations, and documentation. Previously stored channel drafts are cleared on upgrade.
+- Removed safer message sending, including duplicate-send blocking, large-paste warnings, failed-send restoration, reconnect status, and their supporting settings and translations.
+
 ## [2.0.4] - 2026-07-31
 
 ### Removed

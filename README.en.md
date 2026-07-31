@@ -41,14 +41,7 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 - Copy readable message text without BetterTwitch controls, or translate it with Google into the selected - or auto-detected - BetterTwitch interface language.
 - Retry a failed translation, copy the translated text, toggle between original and translation, and see localized detected/target language names.
 - Hide messages beginning with `!` and messages from a configurable list of bot accounts.
-
-### Message composer
-
-- Preserve unfinished drafts separately for each channel and restore them when you return.
-- Browse messages sent during the current page session with `↑` and `↓` at the start or end of the composer.
 - Show a live character counter using Twitch's detected limit.
-- Block the first rapid duplicate send and require a second attempt within three seconds to confirm it.
-- Warn after a large or multiline paste, retain a submitted draft until Twitch confirms it, restore an unconfirmed message, and show a subtle reconnecting indicator.
 
 ### Conversation quality
 
@@ -87,7 +80,7 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 
 ### Settings experience
 
-- Settings are grouped into General, Chat appearance, Chat tools, Message composer, Conversation quality, Highlights, Notifications, Deleted messages, Message filters, and Player & rewards.
+- Settings are grouped into General, Chat appearance, Chat tools, Conversation quality, Highlights, Notifications, Deleted messages, Message filters, and Player & rewards.
 - Settings, Mentions, Live Stats, Chat filters & search, notification controls, dialogs, viewer cards, tooltips, and notices use one responsive card-based visual system with clear focus states and reduced-motion support.
 - BetterTwitch automatically follows Twitch’s current light or dark theme, including changes made without reloading the page.
 - Hover or keyboard-focus the information symbol beside any setting for an explicit description.
@@ -127,10 +120,7 @@ Updates are delivered from the same raw GitHub URL by your userscript manager. I
 | Chat tools | Translate on hover | Adds a Google translation control to each message. |
 | Chat tools | Mentions panel | Adds the searchable Mentions button and unread badge. |
 | Chat tools | Context messages | Stores 0–3 messages on each side of a mention; available with Mentions enabled. |
-| Message composer | Preserve drafts per channel | Stores unfinished text locally for each channel and restores it when you return. |
-| Message composer | Sent-message history | Uses Up/Down to browse messages sent during the current page session. |
-| Message composer | Character counter | Shows current message length and Twitch's detected limit. |
-| Message composer | Safer message sending | Guards rapid duplicates, warns about large pastes, restores unconfirmed messages, and shows reconnect status. |
+| Chat tools | Character counter | Shows current message length and Twitch's detected limit. |
 | Conversation quality | Compress repeated messages | Groups three or more identical messages received within twelve seconds and keeps them expandable. |
 | Conversation quality | Quick chat filters | Adds footer-panel filters for visible mentions, roles, questions, links, or emotes. |
 | Conversation quality | Live chat search | Searches visible usernames, Twitch logins, and message text directly without prefixes, with previous/next result navigation. |
@@ -168,13 +158,12 @@ Updates are delivered from the same raw GitHub URL by your userscript manager. I
 - The dashboard refreshes only while its panel is open and pauses rendering in hidden tabs. Reward polling runs only while at least one auto-claim option is enabled.
 - Audio nodes disconnect after each notification. Translation and avatar requests time out after 15 seconds, and repeated requests share one in-flight operation.
 - Long-session memory is bounded: 50 mentions, 250 context messages, 500 message-metadata records, 1,000 viewer profiles, 1,000 dashboard chatter records, 100 emotes per viewer, 1,000 dashboard emotes, 300 translations, and 500 avatar results.
-- Sent-message history keeps up to 50 entries for each of the 30 most recently encountered channels. Search and filters operate only on messages currently rendered by Twitch.
+- Search and filters operate only on messages currently rendered by Twitch.
 
 ## Data and privacy
 
 - Settings are stored in browser `localStorage` under `BetterTwitch-settings`.
-- Unfinished channel drafts are stored in browser `localStorage` under `BetterTwitch-chat-drafts`, with at most 30 channels retained. A Twitch-confirmed send or clearing the composer removes the corresponding draft.
-- Mention and sent-message history live only in memory for the current page session and use the limits listed above. Viewer hovercards and dashboard statistics are additionally reset when the chat room changes.
+- Mention history lives only in memory for the current page session and uses the limits listed above. Viewer hovercards and dashboard statistics are additionally reset when the chat room changes.
 - Duplicate groups, chat filters, and search results stay local to the current page. Link safety examines URL text only and does not fetch destination pages.
 - If **Show user avatars** or **Viewer hovercards** is enabled, validated Twitch login names needed for chat, dashboard, or hovercard profile images are sent in batched requests to Twitch's GraphQL endpoint.
 - If you click **Translate**, that message's text is sent to `translate.googleapis.com`; translations are cached in memory for the session.
