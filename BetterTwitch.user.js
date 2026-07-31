@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      2.0.1
+// @version      2.0.2
 // @description  A Twitch chat enhancement suite with live statistics, viewer hovercards, translation, notifications, filters, and layout controls.
 // @description:de Eine Twitch-Chat-Erweiterung mit Live-Statistik, Zuschauer-Hovercards, Übersetzung, Benachrichtigungen, Filtern und Layout-Steuerung.
 // @description:ru Расширение чата Twitch со статистикой, карточками зрителей, переводом, уведомлениями, фильтрами и настройкой интерфейса.
@@ -110,6 +110,7 @@
       settingHelpTitle: 'Explain this setting', byAuthor: 'by', botNamesLabel: 'Bot usernames', botNamesPlaceholder: 'bot1, bot2, …',
       saferSending: 'Safer message sending', messageActions: 'Message actions',
       replyMessageAction: 'Reply to message',
+      pinMessageAction: 'Pin message',
       replyUnavailable: 'Reply is not available for this message.',
       sendAlreadyPending: 'That message is already being sent.',
       duplicateBlocked: 'Duplicate message blocked. Send it again within 3 seconds to confirm.',
@@ -214,6 +215,7 @@
       settingHelpTitle: 'Diese Einstellung erklären', byAuthor: 'von', botNamesLabel: 'Bot-Benutzernamen', botNamesPlaceholder: 'bot1, bot2, …',
       saferSending: 'Sicheres Senden', messageActions: 'Nachrichtenaktionen',
       replyMessageAction: 'Auf Nachricht antworten',
+      pinMessageAction: 'Nachricht anheften',
       replyUnavailable: 'Für diese Nachricht ist keine Antwortfunktion verfügbar.',
       sendAlreadyPending: 'Diese Nachricht wird bereits gesendet.',
       duplicateBlocked: 'Doppelte Nachricht blockiert. Innerhalb von 3 Sekunden erneut senden, um sie zu bestätigen.',
@@ -318,6 +320,7 @@
       settingHelpTitle: 'Описание этой настройки', byAuthor: 'от', botNamesLabel: 'Имена ботов', botNamesPlaceholder: 'bot1, bot2, …',
       saferSending: 'Безопасная отправка', messageActions: 'Действия с сообщением',
       replyMessageAction: 'Ответить на сообщение',
+      pinMessageAction: 'Закрепить сообщение',
       replyUnavailable: 'Для этого сообщения ответ недоступен.',
       sendAlreadyPending: 'Это сообщение уже отправляется.',
       duplicateBlocked: 'Повторное сообщение заблокировано. Отправьте его ещё раз в течение 3 секунд для подтверждения.',
@@ -515,7 +518,7 @@
     );
   }
 
-  const VERSION = '2.0.1';
+  const VERSION = '2.0.2';
   const PROJECT_URL = 'https://github.com/yaneony/BetterTwitch';
   const AUTHOR_URL = 'https://yaneony.com';
   const STORAGE_KEY = 'BetterTwitch-settings';
@@ -3139,6 +3142,7 @@
 
   const MESSAGE_ACTION_ICONS = {
     reply: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5v-3h4c3.5 0 5.8 1.2 7 4-.2-6-3.2-9-7-9H9V7Z"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8M10 3v6l-3 3v3h10v-3l-3-3V3M12 15v6"/></svg>',
     copy: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 6V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h1"/></svg>',
     translate: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
   };
@@ -3175,6 +3179,23 @@
     return Array.from(line.querySelectorAll('button,[role="button"]')).find((button) =>
       !button.closest('.bt-message-actions') && replyActionToken(button).includes('reply')
     ) || null;
+  }
+
+  function findNativePinButton(line) {
+    const button = line.querySelector(
+      '.chat-line__pin-icon button, .chat-line__pin-icon [role="button"]'
+    );
+    if (!button || button.disabled || button.getAttribute('aria-disabled') === 'true') return null;
+    return button;
+  }
+
+  function triggerMessagePin(line) {
+    const nativeButton = findNativePinButton(line);
+    if (!nativeButton) {
+      ensureMessageActionBar(line);
+      return;
+    }
+    nativeButton.click();
   }
 
   function triggerMessageReply(line) {
@@ -3231,6 +3252,11 @@
     bar.setAttribute('aria-label', t('messageActions'));
     setMessageAction(bar, 'reply', true, t('replyMessageAction'), MESSAGE_ACTION_ICONS.reply, (event) => {
       event.preventDefault(); event.stopPropagation(); triggerMessageReply(el);
+    });
+    const nativePinButton = findNativePinButton(el);
+    el.classList.toggle('bt-pin-action-ready', !!nativePinButton);
+    setMessageAction(bar, 'pin', !!nativePinButton, t('pinMessageAction'), MESSAGE_ACTION_ICONS.pin, (event) => {
+      event.preventDefault(); event.stopPropagation(); triggerMessagePin(el);
     });
     setMessageAction(bar, 'copy', CONFIG.copyButton, t('copyMessage'), MESSAGE_ACTION_ICONS.copy, (event) => {
       event.preventDefault(); event.stopPropagation();
@@ -3302,12 +3328,16 @@
     chatSearchIndex = -1;
     chatObserver = new MutationObserver((muts) => {
       const lines = new Set();
-      for (const m of muts) for (const node of m.addedNodes) {
-        if (node.nodeType !== 1) continue;
-        if (node.matches && node.matches('.chat-line__message')) lines.add(node);
-        const parentLine = node.closest && node.closest('.chat-line__message');
-        if (parentLine) lines.add(parentLine);
-        if (node.querySelectorAll) node.querySelectorAll('.chat-line__message').forEach((line) => lines.add(line));
+      for (const m of muts) {
+        const changedLine = m.target.closest && m.target.closest('.chat-line__message');
+        if (changedLine) lines.add(changedLine);
+        for (const node of m.addedNodes) {
+          if (node.nodeType !== 1) continue;
+          if (node.matches && node.matches('.chat-line__message')) lines.add(node);
+          const parentLine = node.closest && node.closest('.chat-line__message');
+          if (parentLine) lines.add(parentLine);
+          if (node.querySelectorAll) node.querySelectorAll('.chat-line__message').forEach((line) => lines.add(line));
+        }
       }
       lines.forEach((line) => processLine(line, true));
     });
@@ -3357,6 +3387,7 @@
 
       .chat-line__message { position: relative; }
       .chat-line__message.bt-actions-ready .chat-line__reply-icon { display: none !important; }
+      .chat-line__message.bt-pin-action-ready .chat-line__pin-icon { display: none !important; }
       .chat-line__message .bt-message-actions { position: absolute; z-index: 5; top: 0; right: 4px; display: flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid #3a3a42; border-radius: 5px; background: rgba(24,24,27,.96); box-shadow: 0 3px 12px rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .1s ease; }
       .chat-line__message:hover .bt-message-actions, .chat-line__message .bt-message-actions:focus-within { opacity: 1; pointer-events: auto; }
       .chat-line__message .bt-action-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 27px; height: 27px; margin: 0; padding: 5px; border: 0; border-radius: 4px; background: transparent; color: #b7b7c2; cursor: pointer; }

@@ -20,7 +20,7 @@ A lightweight userscript that makes Twitch chat easier to follow, personalize, a
 - **Contextual Mentions panel** with unread count, search, surrounding messages, and jump-to-message
 - **Extended live chat dashboard** with current/peak activity, session totals, active chatters, a richer graph, avatar rankings, and top emotes
 - **Viewer hovercards** with Twitch avatars, session activity, first-seen time, mentions, and favorite emote
-- **Unified message actions** for Reply, Copy, and Google Translate, with keyboard access
+- **Unified message actions** for Reply, permission-aware Pin, Copy, and Google Translate, with keyboard access
 - **Safer composer** with per-channel drafts, history, character count, duplicate protection, paste warnings, failed-send recovery, and reconnect status
 - **Chat filters & search panel** opened from the footer, with quick filters, plain username/message search, result navigation, and an active-state indicator
 - **Spam compression** that groups repeated messages while keeping every original expandable

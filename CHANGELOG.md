@@ -2,6 +2,12 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [2.0.2] - 2026-07-31
+
+### Added
+
+- The unified message action bar includes Twitch's native Pin action only when Twitch exposes it to the signed-in moderator, administrator, or channel owner.
+
 ## [2.0.1] - 2026-07-31
 
 ### Fixed

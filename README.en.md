@@ -30,7 +30,7 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 
 ### Message tools
 
-- Use one top-aligned, non-shifting **message action bar** for Reply, Copy, and Translate. Every action has a larger localized tooltip and is reachable by keyboard; Reply opens Twitch’s native reply panel.
+- Use one top-aligned, non-shifting **message action bar** for Reply, Pin, Copy, and Translate. Every action has a larger localized tooltip and is reachable by keyboard; Reply and Pin use Twitch’s native controls, and Pin appears only when Twitch makes it available to your account.
 - Copy readable message text without BetterTwitch controls, or translate it with Google into the selected - or auto-detected - BetterTwitch interface language.
 - Retry a failed translation, copy the translated text, toggle between original and translation, and see localized detected/target language names.
 - Hide messages beginning with `!` and messages from a configurable list of bot accounts.

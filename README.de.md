@@ -30,7 +30,7 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 
 ### Nachrichtenwerkzeuge
 
-- Eine oben ausgerichtete, platzsparende **Nachrichten-Aktionsleiste** bietet Antworten, Kopieren und Übersetzen. Jede Aktion besitzt einen größeren lokalisierten Tooltip und ist per Tastatur erreichbar; Antworten öffnet Twitchs eigenes Antwort-Panel.
+- Eine oben ausgerichtete, platzsparende **Nachrichten-Aktionsleiste** bietet Antworten, Anheften, Kopieren und Übersetzen. Jede Aktion besitzt einen größeren lokalisierten Tooltip und ist per Tastatur erreichbar; Antworten und Anheften verwenden Twitchs eigene Bedienelemente, und Anheften erscheint nur, wenn Twitch es für dein Konto anbietet.
 - Kopiere lesbaren Nachrichtentext ohne BetterTwitch-Bedienelemente oder übersetze ihn mit Google automatisch in die ausgewählte beziehungsweise erkannte BetterTwitch-Sprache.
 - Fehlgeschlagene Übersetzungen lassen sich wiederholen, Ergebnisse kopieren und Original/Übersetzung umschalten; erkannte und gewählte Sprachen werden lokalisiert angezeigt.
 - Blende Nachrichten aus, die mit `!` beginnen, sowie Nachrichten aus einer konfigurierbaren Bot-Liste.
