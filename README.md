@@ -40,7 +40,7 @@ A lightweight userscript that makes Twitch chat easier to follow, personalize, a
 
 ## Install
 
-1. Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/).
+1. Install the recommended userscript manager, [ScriptCat](https://scriptcat.org/en).
 2. Open **[BetterTwitch.user.js](https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js)** and confirm the installation.
 3. Open a Twitch channel and use the BetterTwitch panel buttons placed before Twitch's settings cog.
 

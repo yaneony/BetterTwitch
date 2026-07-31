@@ -99,10 +99,7 @@ BetterTwitch - лёгкий пользовательский скрипт, ко�
 
 ## Установка
 
-1. Установите менеджер пользовательских скриптов:
-
-   - [Tampermonkey](https://www.tampermonkey.net/)
-   - [Violentmonkey](https://violentmonkey.github.io/)
+1. Установите рекомендуемый менеджер пользовательских скриптов [ScriptCat](https://scriptcat.org/ru).
 
 2. Откройте **[Установить BetterTwitch.user.js](https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js)** и подтвердите установку.
 3. Откройте канал Twitch. Кнопки панелей BetterTwitch появятся в нижней части чата перед шестерёнкой настроек Twitch.
@@ -186,7 +183,7 @@ BetterTwitch - лёгкий пользовательский скрипт, ко�
 ## Совместимость
 
 - Работает на `https://www.twitch.tv/*` и `https://dashboard.twitch.tv/*`.
-- Предназначен для актуальных настольных браузеров с Tampermonkey или Violentmonkey.
+- Предназначен для актуальных настольных браузеров с поддержкой ScriptCat.
 - Twitch часто меняет внутреннюю разметку. Если элемент исчез, сначала перезагрузите страницу, затем сообщите страницу Twitch и используемый браузер.
 
 ## Лицензия

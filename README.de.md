@@ -99,10 +99,7 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 
 ## Installation
 
-1. Installiere einen Userscript-Manager:
-
-   - [Tampermonkey](https://www.tampermonkey.net/)
-   - [Violentmonkey](https://violentmonkey.github.io/)
+1. Installiere den empfohlenen Userscript-Manager [ScriptCat](https://scriptcat.org/de).
 
 2. Öffne **[BetterTwitch.user.js installieren](https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js)** und bestätige die Installation.
 3. Öffne einen Twitch-Kanal. Die BetterTwitch-Panel-Buttons erscheinen in der Chat-Fußleiste vor Twitchs Einstellungs-Zahnrad.
@@ -186,7 +183,7 @@ Aktualisierungen werden durch den Userscript-Manager über dieselbe GitHub-Raw-U
 ## Kompatibilität
 
 - Gilt für `https://www.twitch.tv/*` und `https://dashboard.twitch.tv/*`.
-- Vorgesehen für aktuelle Desktop-Browser mit Tampermonkey oder Violentmonkey.
+- Vorgesehen für aktuelle Desktop-Browser mit ScriptCat.
 - Twitch ändert häufig internes Markup. Falls ein Bedienelement verschwindet, lade zuerst die Seite neu und melde anschließend Twitch-Seite und Browser.
 
 ## Lizenz
