@@ -961,9 +961,14 @@
   const MAX_DELETE_TASKS = 500;
   const CHAT_HYDRATION_SWEEPS = 6;
   const NETWORK_TIMEOUT_MS = 15000;
-  const MOD_BADGE_UUID = '3267646d-33f0-4b17-b3df-f923a41db1d0';
-  const VIP_BADGE_UUID = 'b817aba4-fad8-49e2-b88a-7cc744dfa6ec';
-  const MOD_BADGE_NAMES = new Set(['moderator', 'global_mod', 'admin', 'staff']);
+  const MOD_BADGE_UUIDS = new Set([
+    '3267646d-33f0-4b17-b3df-f923a41db1d0',
+    '0822047b-65e0-46f2-94a9-d1091d685d33',
+  ]);
+  const VIP_BADGE_UUIDS = new Set(['b817aba4-fad8-49e2-b88a-7cc744dfa6ec']);
+  const MOD_BADGE_NAMES = new Set([
+    'moderator', 'lead_moderator', 'lead-moderator', 'global_mod', 'admin', 'staff',
+  ]);
   const VIP_BADGE_NAMES = new Set(['vip']);
   const RESERVED_TWITCH_ROUTES = new Set([
     'directory', 'downloads', 'drops', 'inventory', 'jobs', 'login', 'p', 'search',
@@ -1013,6 +1018,13 @@
 
   function tagsIdentifyVip(tags) {
     return badgeListHasRole(tags.badges, VIP_BADGE_NAMES);
+  }
+
+  function descriptionHasBadgeRole(value, badgeUuids, roleNames) {
+    const description = String(value || '').toLowerCase();
+    for (const uuid of badgeUuids) if (description.includes(uuid)) return true;
+    for (const name of roleNames) if (description.includes(name)) return true;
+    return false;
   }
 
   function parseEmotes(tags, text) {
@@ -2965,7 +2977,7 @@
     return isMention(lineCopyText(el), me);
   }
 
-  function lineHasBadge(el, uuid, roleNames) {
+  function lineHasBadge(el, badgeUuids, roleNames) {
     const badgeRoots = el.querySelectorAll(
       '.chat-badge, [data-a-target="chat-badge"], [data-test-selector*="badge" i], [class*="chat-badge"]'
     );
@@ -2974,6 +2986,7 @@
       for (const candidate of candidates) {
         const values = [
           candidate.getAttribute('src'),
+          candidate.getAttribute('srcset'),
           candidate.getAttribute('alt'),
           candidate.getAttribute('aria-label'),
           candidate.getAttribute('title'),
@@ -2981,8 +2994,7 @@
           candidate.getAttribute('data-badge-type'),
           candidate.getAttribute('data-test-selector'),
         ];
-        const description = values.filter(Boolean).join(' ').toLowerCase();
-        if (description.includes(uuid) || Array.from(roleNames).some((name) => description.includes(name))) {
+        if (descriptionHasBadgeRole(values.filter(Boolean).join(' '), badgeUuids, roleNames)) {
           return true;
         }
       }
@@ -2993,7 +3005,7 @@
   function lineHasMod(el) {
     const meta = metadataForLine(el);
     if (meta && meta.moderator) return true;
-    if (lineHasBadge(el, MOD_BADGE_UUID, MOD_BADGE_NAMES)) return true;
+    if (lineHasBadge(el, MOD_BADGE_UUIDS, MOD_BADGE_NAMES)) return true;
     const profile = userProfiles.get(lineLogin(el));
     return !!(profile && profile.moderator);
   }
@@ -3001,7 +3013,7 @@
   function lineHasVip(el) {
     const meta = metadataForLine(el);
     if (meta && meta.vip) return true;
-    if (lineHasBadge(el, VIP_BADGE_UUID, VIP_BADGE_NAMES)) return true;
+    if (lineHasBadge(el, VIP_BADGE_UUIDS, VIP_BADGE_NAMES)) return true;
     const profile = userProfiles.get(lineLogin(el));
     return !!(profile && profile.vip);
   }
