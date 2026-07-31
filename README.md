@@ -1,51 +1,58 @@
 # BetterTwitch
 
-A lightweight userscript that improves Twitch chat and the player. Everything is configurable from a settings panel right in the chat footer, and it works in normal chat and **Mod View**.
+[![Version 2.0.0](https://img.shields.io/badge/version-2.0.0-9147ff?style=flat-square)](CHANGELOG.md)
+[![License MIT](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](LICENSE)
+
+A lightweight userscript that makes Twitch chat easier to follow, personalize, and manage. BetterTwitch adds contextual mentions, local search and filters, safer links, viewer context, notification sounds, moderation visibility, layout controls, and more—all from one settings panel in the chat footer.
 
 <div align="center">
 
-### 📖 Read the docs in your language
+### Documentation
 
-[![English](https://img.shields.io/badge/🇬🇧_English-Read_docs-2ea44f?style=for-the-badge)](README.en.md)
-[![Deutsch](https://img.shields.io/badge/🇩🇪_Deutsch-Anleitung-2ea44f?style=for-the-badge)](README.de.md)
-[![Русский](https://img.shields.io/badge/🇷🇺_Русский-Документация-2ea44f?style=for-the-badge)](README.ru.md)
+[![English](https://img.shields.io/badge/English-Read_docs-2ea44f?style=for-the-badge)](README.en.md)
+[![Deutsch](https://img.shields.io/badge/Deutsch-Anleitung-2ea44f?style=for-the-badge)](README.de.md)
+[![Русский](https://img.shields.io/badge/Русский-Документация-2ea44f?style=for-the-badge)](README.ru.md)
 
 </div>
 
-## ✨ Highlights
+## Highlights
 
-- 🗑️ **Keep deleted messages visible**: single deletions, timeouts/bans, and full chat clears
-- 💬 **Chat tweaks**: widen the panel, show avatars, boost name contrast, copy & translate messages on hover
-- 🔔 **Notifications**: @mention sounds, mod/VIP & mention highlights, and a Mentions Panel
-- 📊 **Live dashboard**: messages/min, a live sparkline, top chatters and top emotes
-- ⭐ **Automation**: auto-claim channel points & Drops, prefer source quality
-- 🧹 **Filters**: hide `!` commands, bot messages, badges, and the Bits leaderboard
-- 🌐 **Multi-language UI**: English / Deutsch / Русский (auto-detected)
+- **Contextual Mentions panel** with unread count, search, surrounding messages, and jump-to-message
+- **Extended live chat dashboard** with current/peak activity, session totals, active chatters, a richer graph, avatar rankings, and top emotes
+- **Viewer hovercards** with session activity, first-seen time, mentions, and favorite emote
+- **Unified message actions** for Reply, Copy, and Google Translate, with keyboard access
+- **Safer composer** with per-channel drafts, history, character count, duplicate protection, paste warnings, failed-send recovery, and reconnect status
+- **Chat filters & search panel** opened from the footer, with quick filters, plain username/message search, result navigation, and an active-state indicator
+- **Spam compression** that groups repeated messages while keeping every original expandable
+- **Safer links** with visible destination domains and confirmation for suspicious-looking addresses
+- **Visual highlights** for mentions, moderators, VIPs, first-time chatters, and returning chatters
+- **18 distinct notification sounds** with volume control and instant preview
+- **Deleted-message visibility** for individual deletions, timeouts/bans, and full chat clears
+- **Layout and appearance controls** for chat width, Comfortable/Compact/Accessible profiles, avatars, badges, separators, name contrast, and accent color
+- **Convenience options** for source quality, channel-point bonuses, Drops, commands, and bot messages
+- **English, German, and Russian UI**, with detailed tooltips for every setting
+- **Modern, consistent full-width panel headers** for Settings, Mentions, Live Stats, Chat filters & search, notification controls, dialogs, viewer cards, and notices
+- **Unified footer launchers** placed before Twitch's settings cog, with matching accent styling, open-state feedback, and a small visual separator
+- **Bounded long-session memory and adaptive maintenance**, including detached-observer cleanup, hidden-tab throttling, network timeouts, and notification-audio cleanup
 
-## 🌍 Browser support
-
-Works on any modern desktop browser via a userscript manager:
-
-![Chrome](https://img.shields.io/badge/Chrome-✓-4285F4?logo=googlechrome&logoColor=white)
-![Edge](https://img.shields.io/badge/Edge-✓-0078D7?logo=microsoftedge&logoColor=white)
-![Firefox](https://img.shields.io/badge/Firefox-✓-FF7139?logo=firefoxbrowser&logoColor=white)
-![Opera](https://img.shields.io/badge/Opera-✓-FF1B2D?logo=opera&logoColor=white)
-![Brave](https://img.shields.io/badge/Brave-✓-FB542B?logo=brave&logoColor=white)
-![Yandex](https://img.shields.io/badge/Yandex-✓-FF0000?logo=yandex&logoColor=white)
-
-…with a userscript manager installed:
-
-![Tampermonkey](https://img.shields.io/badge/Tampermonkey-✓-00485B?logo=tampermonkey&logoColor=white)
-![Violentmonkey](https://img.shields.io/badge/Violentmonkey-✓-663399?logo=violentmonkey&logoColor=white)
-
-> **Chrome / Yandex:** recent versions require you to enable **"Allow user scripts"** on the manager's extension page. See the docs below for details.
-
-## 📥 Install
+## Install
 
 1. Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/).
-2. Open **[BetterTwitch.user.js](https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js)** and confirm the install (it auto-updates from the same URL).
-3. Open any [twitch.tv](https://www.twitch.tv/) channel. A ⚙ icon appears in the chat footer next to **Send**.
+2. Open **[BetterTwitch.user.js](https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js)** and confirm the installation.
+3. Open a Twitch channel and use the BetterTwitch panel buttons placed before Twitch's settings cog.
+
+The userscript checks the same raw GitHub URL for updates through your userscript manager.
+
+## Validation
+
+Run `node test/validate.js` to check JavaScript syntax, version consistency, all localized UI and tooltip keys, one control per setting, runtime lifecycle guards, and the complete settings tables in every localized README.
+
+## Privacy
+
+BetterTwitch has no analytics or telemetry. Settings and optional unfinished drafts stay in your browser. Repeated-message groups, chat filters, search, viewer data, mentions, dashboard statistics, and sent-message history stay local and use documented memory limits. Link safety checks URL text without contacting destination sites. Optional avatars use Twitch GraphQL, and message text is sent to Google Translate only when you explicitly request a translation. Network requests time out after 15 seconds.
+
+See the language-specific documentation for the complete settings reference and technical details.
 
 ---
 
-License: [MIT](LICENSE)
+Created by [YaneonY](https://yaneony.com) · [Changelog](CHANGELOG.md) · [MIT License](LICENSE)
