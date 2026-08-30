@@ -43,7 +43,7 @@
       hideCommunityHighlights: 'Hide community highlights',
       secPlayerRewards: 'Player & rewards',
       autoQuality: 'Prefer source quality',
-      preventRaidRedirects: 'Stay on channel after raids',
+      raidReturnMinutes: 'Return to original channel after raids',
       offlineRefreshMinutes: 'Offline refresh interval',
       disabledValue: 'Off', minuteShortSetting: 'min',
       autoClaimPoints: 'Auto-claim bonus chest',
@@ -142,7 +142,7 @@
       hideCommunityHighlights: 'Community-Highlights ausblenden',
       secPlayerRewards: 'Player & Belohnungen',
       autoQuality: 'Quellqualität bevorzugen',
-      preventRaidRedirects: 'Nach Raids auf dem Kanal bleiben',
+      raidReturnMinutes: 'Nach Raids zum Ausgangskanal zurückkehren',
       offlineRefreshMinutes: 'Neuladeintervall bei Offline-Kanälen',
       disabledValue: 'Aus', minuteShortSetting: 'Min.',
       autoClaimPoints: 'Bonus-Truhe automatisch einlösen',
@@ -241,7 +241,7 @@
       hideCommunityHighlights: 'Скрыть важные сообщения',
       secPlayerRewards: 'Плеер и награды',
       autoQuality: 'Предпочитать исходное качество',
-      preventRaidRedirects: 'Оставаться на канале после рейда',
+      raidReturnMinutes: 'Возвращаться на исходный канал после рейдов',
       offlineRefreshMinutes: 'Обновление канала не в сети',
       disabledValue: 'Выкл.', minuteShortSetting: 'мин',
       autoClaimPoints: 'Авто-сбор бонусного сундука',
@@ -334,7 +334,7 @@
       hideLeaderboard: 'Hides only Twitch’s animated top-user slider above chat. Depending on the channel, this strip can rank Bits cheerers, gift-sub gifters, or other leading supporters. It does not hide pinned messages, community highlights, chat notices, or the composer. The slider is hidden only in your browser.',
       hideCommunityHighlights: 'Hides Twitch’s community-highlight stack above the message list, including pinned messages and any other cards Twitch places in that same stack. It does not unpin or delete anything, and other viewers still see it. The top-user slider has a separate setting and is not affected.',
       autoQuality: 'Stores Twitch’s "source/chunked" quality preference so the player tries to select the highest quality offered by the current stream. It cannot create a source-quality option when the streamer does not provide one, and Twitch may still change quality because of player or connection conditions. Higher quality can use more bandwidth.',
-      preventRaidRedirects: 'Automatically uses Twitch’s Leave control when a raid countdown appears so you remain on the current channel. If Twitch redirects first, BetterTwitch also returns from raid-marked destination URLs to the previous channel in this tab. This affects automatic raid navigation only; you can still open another channel yourself.',
+      raidReturnMinutes: 'Sets when BetterTwitch returns to the channel where a raid chain began. Choose 5 to 60 minutes in five-minute steps, or 0 (Off) to never return automatically. The timer starts with the first raid and later raids do not restart it. Offline refresh stays disabled on every raided destination and resumes only on the original channel.',
       offlineRefreshMinutes: 'Reloads a channel page at the selected interval while Twitch reports that channel as offline. Choose 1 to 60 minutes in one-minute steps, or 0 (Off) to disable it. Reloading stops after Twitch reports the channel live or when you navigate away, and directories, videos, settings, dashboards, and chat popouts are never refreshed.',
       autoClaimPoints: 'Automatically clicks the bonus channel-points chest when Twitch makes that chest available in chat. It only collects the free bonus: it never spends points, chooses rewards, follows channels, or performs predictions. If Twitch does not display a claimable chest, there is nothing for BetterTwitch to click.',
       autoClaimDrops: 'Automatically clicks a visible Twitch Drops "Claim" button when one appears on a supported Twitch page. It cannot complete eligibility requirements, link external accounts, visit another website, or claim a reward that Twitch still considers locked. Check Twitch’s Drops inventory if a campaign requires extra manual steps.',
@@ -355,7 +355,7 @@
       hideBots: 'Locally hides messages sent by usernames listed in the bot field below. Matching ignores uppercase/lowercase differences, but the username still needs to be spelled correctly. Nothing is blocked, reported, timed out, or deleted on Twitch; other viewers continue to see those messages.',
       botNames: 'Enter the Twitch login names that "Hide bot messages" should match, separated by commas - for example: nightbot, streamelements. Do not include @ symbols, display-name decorations, or profile links. This field has no effect until "Hide bot messages" is enabled, and a misspelled name will not match.',
       inlineTranslate: 'Adds a Translate action to each message toolbar. Translation is requested only when you click it; the clicked message text is sent directly to Google’s public translation endpoint and translated into the selected or auto-detected BetterTwitch language. Results are cached for this page session and can be copied, retried, or switched back to the original; no BetterTwitch server is involved.',
-      mentionInbox: 'Adds a Mentions panel that collects incoming messages which mention your username or directly reply to you. The panel provides an unread count, search, optional nearby context, and a button to jump to a message that is still visible. It records only messages received while this page is open; reloading, closing, or changing the room clears the session list.',
+      mentionInbox: 'Adds a Mentions panel that collects incoming messages which mention your username or directly reply to you. It keeps only the 50 newest mentions, and its unread count is also capped at 50. The panel provides search, optional nearby context, and a button to jump to a message that is still visible. It records only messages received while this page is open; reloading, closing, or changing the room clears the session list.',
       mentionContextMessages: 'Chooses how many ordinary chat messages are saved before and after each item in the Mentions panel: 0, 1, 2, or 3 on each side. This control has no effect until the Mentions panel is enabled. A larger value provides more conversation context but displays and keeps more lines in memory; it does not send them to a server.',
       viewerHovercards: 'Shows a BetterTwitch information card with the viewer’s Twitch avatar when you hover over a username in chat. It summarizes only what BetterTwitch observed during the current page session, including message count, mentions, and most-used emote. The avatar is requested directly from Twitch and cached for the page session; this is not Twitch account history, and reloading or changing the room resets the observed statistics.',
       characterCounter: 'Shows the message’s current character count immediately before Twitch’s chat-settings button, using a slightly larger readable label. It compares the count with the limit detected from Twitch and falls back to 500 characters when no limit is available. The counter is guidance only: it does not shorten text or prevent Twitch from rejecting a message.',
@@ -379,7 +379,7 @@
       hideLeaderboard: 'Blendet ausschließlich Twitchs animiertes Top-Nutzer-Karussell über dem Chat aus. Je nach Kanal zeigt dieser Streifen führende Bits-Spender, Geschenkabo-Spender oder andere Unterstützer. Angeheftete Nachrichten, Community-Highlights, Chat-Hinweise und Eingabefeld bleiben sichtbar. Das Karussell wird nur in deinem Browser ausgeblendet.',
       hideCommunityHighlights: 'Blendet Twitchs Community-Highlight-Stapel über der Nachrichtenliste aus, einschließlich angehefteter Nachrichten und weiterer Karten, die Twitch in diesem Stapel anzeigt. Nichts wird gelöst oder gelöscht und andere Zuschauer sehen alles weiterhin. Das Top-Nutzer-Karussell besitzt eine eigene Einstellung und bleibt unverändert.',
       autoQuality: 'Speichert bei Twitch die Qualitätspräferenz „Quelle/Chunked", damit der Player die höchste vom aktuellen Stream angebotene Qualität versucht. Die Einstellung kann keine Quellqualität erzeugen, wenn der Streamer sie nicht anbietet, und Twitch kann die Qualität wegen Player- oder Verbindungsbedingungen weiterhin ändern. Höhere Qualität kann mehr Datenvolumen verbrauchen.',
-      preventRaidRedirects: 'Verwendet automatisch Twitchs Verlassen-Button, sobald ein Raid-Countdown erscheint, damit du auf dem aktuellen Kanal bleibst. Falls Twitch vorher weiterleitet, kehrt BetterTwitch von einer als Raid markierten Zieladresse zum vorherigen Kanal dieses Tabs zurück. Nur automatische Raid-Wechsel werden verhindert; andere Kanäle kannst du weiterhin selbst öffnen.',
+      raidReturnMinutes: 'Legt fest, wann BetterTwitch zu dem Kanal zurückkehrt, auf dem eine Raid-Kette begann. Wähle 5 bis 60 Minuten in Fünf-Minuten-Schritten oder 0 (Aus), um nie automatisch zurückzukehren. Der Timer beginnt mit dem ersten Raid und wird durch weitere Raids nicht neu gestartet. Das Offline-Neuladen bleibt auf allen Raid-Zielkanälen deaktiviert und läuft nur auf dem Ausgangskanal weiter.',
       offlineRefreshMinutes: 'Lädt eine Kanalseite im gewählten Abstand neu, solange Twitch den Kanal als offline meldet. Wähle 1 bis 60 Minuten in Minutenschritten oder 0 (Aus), um die Funktion zu deaktivieren. Das Neuladen endet, nachdem Twitch den Kanal als live meldet oder du die Seite wechselst; Verzeichnisse, Videos, Einstellungen, Dashboards und Chat-Popouts werden nie neu geladen.',
       autoClaimPoints: 'Klickt automatisch auf die Kanalpunkte-Bonustruhe, sobald Twitch sie im Chat anbietet. Es wird ausschließlich der kostenlose Bonus eingesammelt: BetterTwitch gibt keine Punkte aus, wählt keine Belohnungen, folgt keinem Kanal und nimmt nicht an Vorhersagen teil. Zeigt Twitch keine einlösbare Truhe an, gibt es nichts anzuklicken.',
       autoClaimDrops: 'Klickt automatisch auf einen sichtbaren „Einlösen"-Button für Twitch Drops, wenn er auf einer unterstützten Twitch-Seite erscheint. BetterTwitch kann keine Teilnahmebedingungen erfüllen, externe Konten verknüpfen, andere Webseiten besuchen oder noch gesperrte Belohnungen einlösen. Prüfe Twitchs Drops-Inventar, wenn eine Kampagne zusätzliche manuelle Schritte verlangt.',
@@ -400,7 +400,7 @@
       hideBots: 'Blendet lokal Nachrichten von Benutzernamen aus, die im Bot-Feld darunter stehen. Beim Vergleich ist Groß-/Kleinschreibung egal, der Name muss aber richtig geschrieben sein. Bei Twitch wird nichts blockiert, gemeldet, gesperrt oder gelöscht; andere Zuschauer sehen diese Nachrichten weiterhin.',
       botNames: 'Trage die Twitch-Login-Namen ein, die „Bot-Nachrichten ausblenden" erkennen soll, durch Kommas getrennt, zum Beispiel: nightbot, streamelements. Verwende keine @-Zeichen, Zusätze im Anzeigenamen oder Profillinks. Das Feld wirkt nur bei aktivierter Bot-Ausblendung; ein falsch geschriebener Name wird nicht erkannt.',
       inlineTranslate: 'Fügt jeder Nachrichtenleiste eine Übersetzungsaktion hinzu. Erst beim Anklicken wird der Text dieser einen Nachricht direkt an Googles öffentlichen Übersetzungsdienst gesendet und in die gewählte oder automatisch erkannte BetterTwitch-Sprache übersetzt. Ergebnisse werden für diese Seitensitzung zwischengespeichert und lassen sich kopieren, wiederholen oder gegen das Original umschalten; ein BetterTwitch-Server ist nicht beteiligt.',
-      mentionInbox: 'Fügt ein Erwähnungs-Panel hinzu, das eingehende Nachrichten mit deinem Benutzernamen oder direkte Antworten auf dich sammelt. Es bietet einen Ungelesen-Zähler, Suche, optionalen Kontext und einen Sprung-Button, solange die Nachricht noch sichtbar ist. Gespeichert werden nur Nachrichten, die bei geöffneter Seite eintreffen; Neuladen, Schließen oder Raumwechsel löscht die Sitzungsliste.',
+      mentionInbox: 'Fügt ein Erwähnungs-Panel hinzu, das eingehende Nachrichten mit deinem Benutzernamen oder direkte Antworten auf dich sammelt. Es behält nur die 50 neuesten Erwähnungen; auch der Ungelesen-Zähler ist auf 50 begrenzt. Das Panel bietet Suche, optionalen Kontext und einen Sprung-Button, solange die Nachricht noch sichtbar ist. Gespeichert werden nur Nachrichten, die bei geöffneter Seite eintreffen; Neuladen, Schließen oder Raumwechsel löscht die Sitzungsliste.',
       mentionContextMessages: 'Legt fest, wie viele normale Chat-Nachrichten vor und nach jedem Eintrag im Erwähnungs-Panel gespeichert werden: 0, 1, 2 oder 3 je Seite. Der Wert hat keine Wirkung, solange das Erwähnungs-Panel ausgeschaltet ist. Mehr Kontext zeigt und behält mehr Zeilen im Arbeitsspeicher, sendet sie aber an keinen Server.',
       viewerHovercards: 'Zeigt beim Überfahren eines Chat-Namens eine BetterTwitch-Infokarte mit dem Twitch-Avatar des Zuschauers. Sie fasst ausschließlich zusammen, was BetterTwitch in der aktuellen Seitensitzung gesehen hat: Nachrichtenanzahl, Erwähnungen und meistgenutztes Emote. Der Avatar wird direkt von Twitch abgerufen und für die Seitensitzung zwischengespeichert; dies ist kein Kontoverlauf, und Neuladen oder Raumwechsel setzt die beobachteten Statistiken zurück.',
       characterCounter: 'Zeigt die aktuelle Zeichenzahl direkt vor Twitchs Chat-Einstellungsbutton in einer etwas größeren, gut lesbaren Anzeige. Sie vergleicht den Wert mit dem von Twitch erkannten Limit und verwendet 500 Zeichen, falls kein Limit gefunden wird. Der Zähler dient nur als Orientierung: Er kürzt keinen Text und verhindert keine Ablehnung durch Twitch.',
@@ -424,7 +424,7 @@
       hideLeaderboard: 'Скрывает только анимированную карусель лидеров над чатом. В зависимости от канала в ней показываются лидеры по Bits, подарочным подпискам или другой поддержке. Закреплённые сообщения, важные карточки, уведомления чата и поле ввода остаются видимыми. Карусель скрывается только в вашем браузере.',
       hideCommunityHighlights: 'Скрывает блок важных карточек Twitch над списком сообщений, включая закреплённые сообщения и другие карточки в том же блоке. Ничего не открепляется и не удаляется, остальные зрители продолжают всё видеть. Карусель лидеров настраивается отдельно и не затрагивается.',
       autoQuality: 'Сохраняет в Twitch предпочтение качества «Исходное/Chunked», чтобы плеер пытался выбрать самое высокое качество, доступное у текущей трансляции. Настройка не может создать исходное качество, если стример его не предоставляет, а Twitch всё равно может менять качество из-за состояния плеера или соединения. Более высокое качество может расходовать больше трафика.',
-      preventRaidRedirects: 'Автоматически нажимает кнопку выхода Twitch при появлении обратного отсчёта рейда, чтобы вы остались на текущем канале. Если Twitch успеет перенаправить страницу, BetterTwitch также вернётся с помеченного как рейд адреса на предыдущий канал этой вкладки. Блокируется только автоматический переход рейда; другие каналы можно открывать вручную.',
+      raidReturnMinutes: 'Задаёт время возвращения BetterTwitch на канал, где началась цепочка рейдов. Выберите от 5 до 60 минут с шагом 5 минут или 0 (Выкл.), чтобы не возвращаться автоматически. Таймер запускается с первым рейдом и не перезапускается последующими. Обновление офлайн-канала отключено на всех каналах назначения рейда и возобновляется только на исходном канале.',
       offlineRefreshMinutes: 'Перезагружает страницу канала с выбранным интервалом, пока Twitch сообщает, что канал не в сети. Выберите от 1 до 60 минут с шагом в одну минуту или 0 (Выкл.), чтобы отключить функцию. Обновление прекращается после того, как Twitch сообщает о начале эфира, или при переходе на другую страницу; каталоги, видео, настройки, панели и отдельный чат не обновляются.',
       autoClaimPoints: 'Автоматически нажимает на бонусный сундук баллов канала, когда Twitch показывает его в чате. Получается только бесплатный бонус: BetterTwitch не тратит баллы, не выбирает награды, не подписывается на каналы и не участвует в прогнозах. Если Twitch не показывает доступный сундук, нажимать нечего.',
       autoClaimDrops: 'Автоматически нажимает видимую кнопку «Получить» для Twitch Drops, когда она появляется на поддерживаемой странице Twitch. BetterTwitch не может выполнить условия участия, привязать сторонние аккаунты, открыть другой сайт или получить награду, которую Twitch ещё считает заблокированной. Если кампания требует дополнительных действий, проверьте инвентарь Drops на Twitch.',
@@ -445,7 +445,7 @@
       hideBots: 'Локально скрывает сообщения от имён, указанных в поле списка ботов ниже. Регистр букв не учитывается, но имя должно быть написано правильно. На Twitch ничего не блокируется, не отправляется в жалобы, не выдаётся таймаут и не удаляется; остальные зрители продолжают видеть эти сообщения.',
       botNames: 'Введите логины Twitch, которые должна распознавать настройка «Скрывать сообщения ботов», разделяя их запятыми, например: nightbot, streamelements. Не добавляйте символы @, украшения отображаемого имени или ссылки на профиль. Поле работает только при включённом скрытии ботов; имя с ошибкой не совпадёт.',
       inlineTranslate: 'Добавляет действие перевода в панель каждого сообщения. Текст конкретного сообщения отправляется напрямую в публичный сервис перевода Google только после нажатия кнопки и переводится на выбранный или автоматически определённый язык BetterTwitch. Результат кешируется на время сеанса страницы; его можно скопировать, запросить повторно или переключить на оригинал. Сервер BetterTwitch не используется.',
-      mentionInbox: 'Добавляет панель упоминаний, которая собирает входящие сообщения с вашим именем и прямые ответы на ваши сообщения. В панели есть счётчик непрочитанных, поиск, необязательный контекст и кнопка перехода, пока исходное сообщение ещё видно. Записываются только сообщения, полученные при открытой странице; перезагрузка, закрытие или смена комнаты очищает список сеанса.',
+      mentionInbox: 'Добавляет панель упоминаний, которая собирает входящие сообщения с вашим именем и прямые ответы на ваши сообщения. Она хранит только 50 последних упоминаний; счётчик непрочитанных также ограничен значением 50. В панели есть поиск, необязательный контекст и кнопка перехода, пока исходное сообщение ещё видно. Записываются только сообщения, полученные при открытой странице; перезагрузка, закрытие или смена комнаты очищает список сеанса.',
       mentionContextMessages: 'Определяет, сколько обычных сообщений сохраняется до и после каждого элемента панели упоминаний: 0, 1, 2 или 3 с каждой стороны. Значение ничего не меняет, пока панель упоминаний отключена. Чем больше число, тем больше строк показывается и хранится в памяти; на сервер они не отправляются.',
       viewerHovercards: 'Показывает при наведении на имя в чате информационную карточку BetterTwitch с аватаром зрителя Twitch. Карточка содержит только данные текущего сеанса страницы: количество сообщений, упоминания и самую частую эмоцию. Аватар запрашивается напрямую у Twitch и кешируется на время страницы; это не история аккаунта, а перезагрузка или смена комнаты сбрасывает собранную статистику.',
       characterCounter: 'Показывает текущее количество символов прямо перед кнопкой настроек чата Twitch более крупным и читаемым текстом. Счётчик сравнивает длину с лимитом, обнаруженным у Twitch, и использует запасное значение 500 символов, если лимит найти не удалось. Это только подсказка: текст не обрезается, и отказ Twitch в отправке не предотвращается.',
@@ -510,7 +510,7 @@
     hideBadges: false, showAvatars: false, msgSeparators: false,
     hideLeaderboard: false, hideCommunityHighlights: false,
     autoClaimPoints: true, autoClaimDrops: true, autoQuality: false,
-    preventRaidRedirects: false, offlineRefreshMinutes: 0,
+    raidReturnMinutes: 0, offlineRefreshMinutes: 0,
     mentionSound: true, mentionReplyPing: true,
     pingSound: 'message', pingVolume: 0.35,
     mentionHighlight: true, highlightMods: false, highlightVips: false,
@@ -532,7 +532,7 @@
     'markSingleDeletes', 'markTimeouts', 'markFullClear',
     'chatWidthEnabled', 'hideBadges', 'showAvatars', 'msgSeparators',
     'hideLeaderboard', 'hideCommunityHighlights',
-    'autoClaimPoints', 'autoClaimDrops', 'autoQuality', 'preventRaidRedirects',
+    'autoClaimPoints', 'autoClaimDrops', 'autoQuality',
     'mentionSound', 'mentionReplyPing', 'mentionHighlight', 'highlightMods', 'highlightVips',
     'fixNameColors', 'copyButton', 'hideCommands', 'hideBots',
     'inlineTranslate', 'mentionInbox', 'viewerHovercards',
@@ -559,6 +559,7 @@
     if (key === 'chatWidthPx') return typeof value === 'number' && Number.isFinite(value) && value >= DEFAULT_CHAT_PX && value <= MAX_CHAT_PX;
     if (key === 'pingVolume') return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1;
     if (key === 'mentionContextMessages') return Number.isInteger(value) && value >= 0 && value <= 3;
+    if (key === 'raidReturnMinutes') return Number.isInteger(value) && value >= 0 && value <= 60 && value % 5 === 0;
     if (key === 'offlineRefreshMinutes') return Number.isInteger(value) && value >= 0 && value <= 60;
     if (key === 'botNames') return typeof value === 'string' && value.length <= 2000;
     if (key === 'appearanceProfile') return typeof value === 'string' && APPEARANCE_PROFILES.has(value);
@@ -572,6 +573,9 @@
       if (!Object.prototype.hasOwnProperty.call(value, key) || !validSettingValue(key, value[key])) continue;
       if (key === 'chatWidthPx') normalized[key] = Math.round(value[key] / 10) * 10;
       else normalized[key] = value[key];
+    }
+    if (!Object.prototype.hasOwnProperty.call(value, 'raidReturnMinutes') && value.preventRaidRedirects === true) {
+      normalized.raidReturnMinutes = 5;
     }
     return normalized;
   }
@@ -598,6 +602,9 @@
   function saveConfig() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(CONFIG)); } catch (e) {} }
 
   const LAST_CHANNEL_URL_KEY = 'BetterTwitch-last-channel-url';
+  const RAID_RETURN_STATE_KEY = 'BetterTwitch-raid-return-state';
+  const MINUTE_MS = 60 * 1000;
+  const MAX_RAID_RETURN_MINUTES = 60;
   const OFFLINE_CHANNEL_SELECTORS = [
     '[data-a-target="offline-channel-main-content"]',
     '[data-test-selector="offline-channel-main-content"]',
@@ -611,20 +618,8 @@
     'moderator', 'p', 'payments', 'popout', 'prime', 'products', 'search', 'settings', 'store',
     'subscriptions', 'team', 'turbo', 'twitchcon', 'videos', 'wallet',
   ]);
-  const RAID_LEAVE_BUTTON_SELECTOR = [
-    'button[data-a-target*="raid"][data-a-target*="leave"]',
-    'button[data-a-target*="raid"][data-a-target*="opt-out"]',
-    'button[data-test-selector*="raid"][data-test-selector*="leave"]',
-    'button[data-test-selector*="raid"][data-test-selector*="opt-out"]',
-  ].join(',');
-  const RAID_NOTICE_SELECTOR = [
-    '[data-a-target*="raid-notification"]',
-    '[data-test-selector*="raid-notification"]',
-    '[data-a-target*="raid-banner"]',
-    '[data-test-selector*="raid-banner"]',
-  ].join(',');
-  const RAID_LEAVE_TEXT_RE = /^(?:leave|leave raid|opt out|verlassen|raid verlassen|покинуть|покинуть рейд|выйти|выйти из рейда)$/i;
-  const raidLeaveAttempts = new WeakMap();
+  let raidReturnTimer = null;
+  let raidReturnDeadlineScheduled = 0;
   let offlineRefreshTimer = null;
   let offlineRefreshRoute = '';
   let offlineRefreshMinutesScheduled = 0;
@@ -657,51 +652,121 @@
     return referrer === 'raid' || referrer.startsWith('raid_') || referrer.endsWith('_raid');
   }
 
-  function syncRaidRouteProtection() {
+  function readRaidReturnState() {
+    try {
+      const parsed = JSON.parse(sessionStorage.getItem(RAID_RETURN_STATE_KEY) || 'null');
+      if (!parsed || typeof parsed !== 'object') return null;
+      const originUrl = normalizedChannelUrl(parsed.originUrl);
+      const currentChannelUrl = normalizedChannelUrl(parsed.currentChannelUrl);
+      let startedAt = Number(parsed.startedAt);
+      const deadline = Number(parsed.deadline);
+      if (!Number.isFinite(startedAt) || startedAt <= 0) startedAt = deadline - 5 * MINUTE_MS;
+      if (!originUrl || !currentChannelUrl || originUrl === currentChannelUrl || !Number.isFinite(startedAt) || startedAt <= 0 || !Number.isFinite(deadline) || deadline < 0) {
+        sessionStorage.removeItem(RAID_RETURN_STATE_KEY);
+        return null;
+      }
+      return { originUrl, currentChannelUrl, startedAt, deadline };
+    } catch (e) {
+      try { sessionStorage.removeItem(RAID_RETURN_STATE_KEY); } catch (ignored) {}
+      return null;
+    }
+  }
+
+  function writeRaidReturnState(state) {
+    try { sessionStorage.setItem(RAID_RETURN_STATE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function clearRaidReturnTimer() {
+    if (raidReturnTimer) clearTimeout(raidReturnTimer);
+    raidReturnTimer = null;
+    raidReturnDeadlineScheduled = 0;
+  }
+
+  function clearRaidReturnState() {
+    clearRaidReturnTimer();
+    try { sessionStorage.removeItem(RAID_RETURN_STATE_KEY); } catch (e) {}
+  }
+
+  function scheduleRaidReturn(deadline) {
+    if (raidReturnTimer && raidReturnDeadlineScheduled === deadline) return;
+    clearRaidReturnTimer();
+    raidReturnDeadlineScheduled = deadline;
+    raidReturnTimer = setTimeout(() => {
+      raidReturnTimer = null;
+      raidReturnDeadlineScheduled = 0;
+      syncNavigationFeatures();
+    }, Math.max(0, Math.min(MAX_RAID_RETURN_MINUTES * MINUTE_MS, deadline - Date.now())));
+  }
+
+  function rememberLastChannel(currentChannelUrl) {
+    if (!currentChannelUrl) return;
+    try { sessionStorage.setItem(LAST_CHANNEL_URL_KEY, currentChannelUrl); } catch (e) {}
+  }
+
+  function syncRaidReturn() {
     const currentUrl = new URL(location.href);
     const currentChannelUrl = normalizedChannelUrl(currentUrl);
-    if (CONFIG.preventRaidRedirects && currentChannelUrl && isRaidDestinationUrl(currentUrl)) {
-      let previousUrl = '';
-      try { previousUrl = normalizedChannelUrl(sessionStorage.getItem(LAST_CHANNEL_URL_KEY) || ''); } catch (e) {}
-      if (!previousUrl) previousUrl = normalizedChannelUrl(document.referrer || '');
-      if (previousUrl && previousUrl !== currentChannelUrl) {
-        location.replace(previousUrl);
+    const raidDestination = currentChannelUrl && isRaidDestinationUrl(currentUrl);
+    let state = readRaidReturnState();
+
+    if (raidDestination) {
+      if (!state) {
+        let originUrl = '';
+        try { originUrl = normalizedChannelUrl(sessionStorage.getItem(LAST_CHANNEL_URL_KEY) || ''); } catch (e) {}
+        if (!originUrl) originUrl = normalizedChannelUrl(document.referrer || '');
+        if (originUrl && originUrl !== currentChannelUrl) {
+          const startedAt = Date.now();
+          const deadline = CONFIG.raidReturnMinutes ? startedAt + CONFIG.raidReturnMinutes * MINUTE_MS : 0;
+          state = { originUrl, currentChannelUrl, startedAt, deadline };
+          writeRaidReturnState(state);
+        }
+      } else if (state.originUrl === currentChannelUrl) {
+        const originUrl = state.originUrl;
+        clearRaidReturnState();
+        location.replace(originUrl);
         return true;
+      } else if (state.currentChannelUrl !== currentChannelUrl) {
+        state.currentChannelUrl = currentChannelUrl;
+        writeRaidReturnState(state);
       }
     }
-    if (currentChannelUrl && !isRaidDestinationUrl(currentUrl)) {
-      try { sessionStorage.setItem(LAST_CHANNEL_URL_KEY, currentChannelUrl); } catch (e) {}
+
+    if (state) {
+      const stillInRaidChain = currentChannelUrl && (raidDestination || currentChannelUrl === state.currentChannelUrl);
+      if (!stillInRaidChain) {
+        clearRaidReturnState();
+        state = null;
+      } else {
+        const deadline = CONFIG.raidReturnMinutes ? state.startedAt + CONFIG.raidReturnMinutes * MINUTE_MS : 0;
+        if (state.deadline !== deadline) {
+          state.deadline = deadline;
+          writeRaidReturnState(state);
+        }
+        if (deadline && Date.now() >= deadline) {
+          const originUrl = state.originUrl;
+          clearRaidReturnState();
+          if (currentChannelUrl !== originUrl) {
+            location.replace(originUrl);
+            return true;
+          }
+          state = null;
+        } else if (deadline) {
+          scheduleRaidReturn(deadline);
+        } else {
+          clearRaidReturnTimer();
+        }
+      }
+    }
+
+    if (!state) {
+      clearRaidReturnTimer();
+      if (currentChannelUrl && !raidDestination) rememberLastChannel(currentChannelUrl);
     }
     return false;
   }
 
   function visibleElement(element) {
     return !!(element && element.isConnected && element.getClientRects().length);
-  }
-
-  function findRaidLeaveButton() {
-    const direct = Array.from(document.querySelectorAll(RAID_LEAVE_BUTTON_SELECTOR)).find(visibleElement);
-    if (direct) return direct;
-    for (const notice of document.querySelectorAll(RAID_NOTICE_SELECTOR)) {
-      if (!visibleElement(notice)) continue;
-      const button = Array.from(notice.querySelectorAll('button')).find((candidate) => {
-        if (!visibleElement(candidate)) return false;
-        const label = (candidate.getAttribute('aria-label') || candidate.textContent || '').replace(/\s+/g, ' ').trim();
-        return RAID_LEAVE_TEXT_RE.test(label);
-      });
-      if (button) return button;
-    }
-    return null;
-  }
-
-  function optOutOfRaid() {
-    if (!CONFIG.preventRaidRedirects) return;
-    const button = findRaidLeaveButton();
-    if (!button) return;
-    const now = Date.now();
-    if (now - (raidLeaveAttempts.get(button) || 0) < 1500) return;
-    raidLeaveAttempts.set(button, now);
-    button.click();
   }
 
   function resetOfflineStatus(login) {
@@ -752,7 +817,7 @@
     const minutes = CONFIG.offlineRefreshMinutes;
     const login = channelLoginFromUrl(location.href);
     const route = normalizedChannelUrl(location.href);
-    if (!minutes || !login || isRaidDestinationUrl(location.href)) {
+    if (!minutes || !login || isRaidDestinationUrl(location.href) || readRaidReturnState()) {
       clearOfflineRefresh();
       resetOfflineStatus('');
       return;
@@ -777,13 +842,12 @@
   }
 
   function syncNavigationFeatures() {
-    if (syncRaidRouteProtection()) return true;
-    optOutOfRaid();
+    if (syncRaidReturn()) return true;
     syncOfflineRefresh();
     return false;
   }
 
-  syncRaidRouteProtection();
+  syncRaidReturn();
 
   function chatWidth() { return CONFIG.chatWidthEnabled ? CONFIG.chatWidthPx + 'px' : null; }
 
@@ -1082,6 +1146,7 @@
 
   const MAX_MESSAGE_META = 500;
   const MAX_CHAT_HISTORY = 250;
+  const MAX_MENTIONS = 50;
   const MAX_USER_PROFILES = 1000;
   const MAX_PROFILE_EMOTES = 100;
   const MAX_DASHBOARD_EMOTES = 1000;
@@ -1353,8 +1418,8 @@
           before,
           after: [],
         });
-        if (mentions.length > 50) mentions.shift();
-        if (!inboxOpen) mentionUnread++;
+        while (mentions.length > MAX_MENTIONS) mentions.shift();
+        if (!inboxOpen) mentionUnread = Math.min(mentionUnread + 1, MAX_MENTIONS);
         updateInboxBadge();
         newMention = true;
       }
@@ -1696,7 +1761,7 @@
     let b = btn.querySelector('.bt-badge');
     if (mentionUnread > 0) {
       if (!b) { b = document.createElement('span'); b.className = 'bt-badge'; btn.appendChild(b); }
-      b.textContent = mentionUnread > 99 ? '99+' : mentionUnread;
+      b.textContent = mentionUnread;
     } else if (b) { b.remove(); }
   }
 
@@ -3178,6 +3243,7 @@
     const style = document.createElement('style');
     style.id = 'bt-style';
     style.textContent = `
+      :root { --bt-radius: 5px; }
       .chat-line__username-container:hover { background-color: transparent !important; }
 
       .channel-root__right-column, .channel-root__right-column--expanded,
@@ -3201,12 +3267,12 @@
       .chat-line__message { position: relative; }
       .chat-line__message.bt-actions-ready .chat-line__reply-icon { display: none !important; }
       .chat-line__message.bt-pin-action-ready .chat-line__pin-icon { display: none !important; }
-      .chat-line__message .bt-message-actions { position: absolute; z-index: 5; top: 0; right: 4px; display: flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid #3a3a42; border-radius: 5px; background: rgba(24,24,27,.96); box-shadow: 0 3px 12px rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .1s ease; }
+      .chat-line__message .bt-message-actions { position: absolute; z-index: 5; top: 0; right: 4px; display: flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid #3a3a42; border-radius: var(--bt-radius); background: rgba(24,24,27,.96); box-shadow: 0 3px 12px rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .1s ease; }
       .chat-line__message:hover .bt-message-actions, .chat-line__message .bt-message-actions:focus-within { opacity: 1; pointer-events: auto; }
-      .chat-line__message .bt-action-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 27px; height: 27px; margin: 0; padding: 5px; border: 0; border-radius: 4px; background: transparent; color: #b7b7c2; cursor: pointer; }
+      .chat-line__message .bt-action-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 27px; height: 27px; margin: 0; padding: 5px; border: 0; border-radius: var(--bt-radius); background: transparent; color: #b7b7c2; cursor: pointer; }
       .chat-line__message .bt-action-btn:hover, .chat-line__message .bt-action-btn:focus { background: #34343b; color: #fff; outline: 2px solid color-mix(in srgb,var(--bt-accent,#e31337) 58%,transparent); outline-offset: -1px; }
       .chat-line__message .bt-action-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
-      .chat-line__message .bt-action-btn::after { content: attr(data-bt-tooltip); position: absolute; z-index: 8; top: calc(100% + 7px); right: 0; width: max-content; max-width: 220px; padding: 6px 9px; border: 1px solid #46464f; border-radius: 5px; background: #0e0e10; color: #efeff1; box-shadow: 0 4px 14px rgba(0,0,0,.48); font: 600 12px/1.35 Inter,Roobert,"Helvetica Neue",Arial,sans-serif; white-space: normal; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-2px); transition: opacity .1s ease,transform .1s ease,visibility 0s linear .1s; }
+      .chat-line__message .bt-action-btn::after { content: attr(data-bt-tooltip); position: absolute; z-index: 8; top: calc(100% + 7px); right: 0; width: max-content; max-width: 220px; padding: 6px 9px; border: 1px solid #46464f; border-radius: var(--bt-radius); background: #0e0e10; color: #efeff1; box-shadow: 0 4px 14px rgba(0,0,0,.48); font: 600 12px/1.35 Inter,Roobert,"Helvetica Neue",Arial,sans-serif; white-space: normal; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-2px); transition: opacity .1s ease,transform .1s ease,visibility 0s linear .1s; }
       .chat-line__message .bt-action-btn:hover::after, .chat-line__message .bt-action-btn:focus::after { opacity: 1; visibility: visible; transform: none; transition-delay: .28s; }
       @media (hover: none) { .chat-line__message .bt-message-actions { opacity: .88; pointer-events: auto; } }
 
@@ -3218,25 +3284,25 @@
       html.bt-separators .chat-line__message { border-bottom: 1px solid rgba(255,255,255,.08) !important; }
       .bt-avatar { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; vertical-align: middle; margin-right: 5px; display: inline-block; background: #2f2f35; }
 
-      .bt-spam-toggle { display: inline-flex; align-items: center; margin-left: 7px; padding: 2px 7px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 38%,#414149); border-radius: 99px; background: color-mix(in srgb,var(--bt-accent,#e31337) 9%,#202025); color: #c7c7ce; font: 750 9px/1.4 Inter,Roobert,Arial,sans-serif; cursor: pointer; vertical-align: 1px; }
+      .bt-spam-toggle { display: inline-flex; align-items: center; margin-left: 7px; padding: 2px 7px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 38%,#414149); border-radius: var(--bt-radius); background: color-mix(in srgb,var(--bt-accent,#e31337) 9%,#202025); color: #c7c7ce; font: 750 9px/1.4 Inter,Roobert,Arial,sans-serif; cursor: pointer; vertical-align: 1px; }
       .bt-spam-toggle:hover, .bt-spam-toggle:focus-visible { border-color: var(--bt-accent,#e31337); color: #fff; outline: none; }
       .chat-line__message.bt-spam-duplicate:not(.bt-spam-show), .chat-line__message.bt-filter-hidden, .chat-line__message.bt-search-hidden { display: none !important; }
       .chat-line__message.bt-spam-show { opacity: .76; border-left: 2px dashed color-mix(in srgb,var(--bt-accent,#e31337) 35%,transparent); }
       .chat-line__message.bt-search-current { background-color: color-mix(in srgb,var(--bt-accent,#e31337) 25%,transparent) !important; box-shadow: inset 4px 0 var(--bt-accent,#e31337),0 0 16px color-mix(in srgb,var(--bt-accent,#e31337) 18%,transparent); }
       .bt-safe-link { text-decoration-style: dotted !important; text-underline-offset: 2px; }
       .bt-risky-link { color: #ffbe72 !important; }
-      .bt-link-domain { display: inline-flex; align-items: center; max-width: 150px; margin: 0 4px; padding: 1px 5px; overflow: hidden; border: 1px solid rgba(255,255,255,.11); border-radius: 99px; background: rgba(255,255,255,.045); color: #9999a3; font: 650 8px/1.45 ui-monospace,Menlo,Consolas,monospace; text-overflow: ellipsis; white-space: nowrap; vertical-align: 2px; }
+      .bt-link-domain { display: inline-flex; align-items: center; max-width: 150px; margin: 0 4px; padding: 1px 5px; overflow: hidden; border: 1px solid rgba(255,255,255,.11); border-radius: var(--bt-radius); background: rgba(255,255,255,.045); color: #9999a3; font: 650 8px/1.45 ui-monospace,Menlo,Consolas,monospace; text-overflow: ellipsis; white-space: nowrap; vertical-align: 2px; }
       .bt-link-domain.bt-link-risk { border-color: rgba(255,184,107,.34); background: rgba(255,184,107,.09); color: #ffc27b; }
 
       .bt-filter-bar { display: flex; flex-wrap: wrap; gap: 5px; overflow: visible; padding: 0; scrollbar-width: none; }
       .bt-filter-bar::-webkit-scrollbar { display: none; }
-      .bt-filter-bar button { flex: 0 0 auto; min-height: 25px; padding: 3px 8px; border: 1px solid #393941; border-radius: 99px; background: #222228; color: #a5a5ae; font: inherit; cursor: pointer; }
+      .bt-filter-bar button { flex: 0 0 auto; min-height: 25px; padding: 3px 8px; border: 1px solid #393941; border-radius: var(--bt-radius); background: #222228; color: #a5a5ae; font: inherit; cursor: pointer; }
       .bt-filter-bar button:hover, .bt-filter-bar button:focus-visible { border-color: #565660; color: #fff; outline: none; }
       .bt-filter-bar button.bt-active { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 62%,#fff); background: color-mix(in srgb,var(--bt-accent,#e31337) 19%,#24242a); color: #fff; box-shadow: 0 0 0 2px color-mix(in srgb,var(--bt-accent,#e31337) 10%,transparent); }
       .bt-chat-search { display: grid; grid-template-columns: minmax(0,1fr) 27px auto 27px; align-items: center; gap: 4px; padding-top: 3px; }
-      .bt-chat-search input { min-width: 0; height: 29px; padding: 5px 9px; border: 1px solid #3b3b44; border-radius: 8px; background: #101014; color: #eeeef1; font: inherit; }
+      .bt-chat-search input { min-width: 0; height: 29px; padding: 5px 9px; border: 1px solid #3b3b44; border-radius: var(--bt-radius); background: #101014; color: #eeeef1; font: inherit; }
       .bt-chat-search input:focus { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 64%,#fff); outline: none; box-shadow: 0 0 0 2px color-mix(in srgb,var(--bt-accent,#e31337) 14%,transparent); }
-      .bt-chat-search button { display: grid; place-items: center; width: 27px; height: 27px; padding: 0; border: 1px solid #3b3b44; border-radius: 7px; background: #24242a; color: #b4b4bd; font: 800 17px/1 Inter,Roobert,Arial,sans-serif; cursor: pointer; }
+      .bt-chat-search button { display: grid; place-items: center; width: 27px; height: 27px; padding: 0; border: 1px solid #3b3b44; border-radius: var(--bt-radius); background: #24242a; color: #b4b4bd; font: 800 17px/1 Inter,Roobert,Arial,sans-serif; cursor: pointer; }
       .bt-chat-search button:hover:not(:disabled), .bt-chat-search button:focus-visible { border-color: var(--bt-accent,#e31337); color: #fff; outline: none; }
       .bt-chat-search button:disabled { opacity: .35; cursor: default; }
       .bt-search-count { min-width: 34px; color: #888891; font: 700 9px/1 ui-monospace,Menlo,Consolas,monospace; text-align: center; }
@@ -3257,7 +3323,7 @@
       #bt-settings-btn.bt-footer-btn, #bt-inbox-btn.bt-footer-btn, #bt-dash-btn.bt-footer-btn, #bt-chat-control-btn.bt-footer-btn {
         padding: 4px 6px; border: none; background: none; line-height: 0;
       }
-      .bt-float-btn { position: absolute; top: 8px; right: 8px; z-index: 1000; background: rgba(14,14,16,.7); border: none; border-radius: 4px; padding: 5px; line-height: 0; }
+      .bt-float-btn { position: absolute; top: 8px; right: 8px; z-index: 1000; background: rgba(14,14,16,.7); border: none; border-radius: var(--bt-radius); padding: 5px; line-height: 0; }
       #bt-inbox-btn, #bt-chat-control-btn { position: relative; }
       #bt-chat-control-btn.bt-state-active:not(.bt-open-state) { color: var(--bt-accent,#e31337); }
       #bt-chat-control-btn.bt-state-active::after { content: ""; position: absolute; right: 3px; top: 3px; width: 6px; height: 6px; border: 1px solid #18181b; border-radius: 50%; background: var(--bt-accent,#e31337); box-shadow: 0 0 7px color-mix(in srgb,var(--bt-accent,#e31337) 60%,transparent); }
@@ -3267,7 +3333,7 @@
 
       #bt-panel {
         position: fixed; z-index: 99999; width: 390px; max-width: calc(100vw - 16px); max-height: 64vh; overflow-y: auto; overflow-x: hidden; box-sizing: border-box;
-        background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: 0;
+        background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: var(--bt-radius);
         padding: 0 16px 14px; box-shadow: 0 8px 28px rgba(0,0,0,.55);
         --bt-setting-font-size: 13px; font: var(--bt-setting-font-size)/1.45 Inter, Roobert, "Helvetica Neue", Arial, sans-serif; display: none;
       }
@@ -3277,7 +3343,7 @@
       #bt-panel .bt-head { display: flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; max-width: none; margin: 0 -16px 8px; padding: 0 16px; border-bottom: 1px solid #34343b; position: sticky; top: 0; background: #18181b; z-index: 2; }
       #bt-panel .bt-title { font-size: 17px; font-weight: 800; letter-spacing: .2px; color: var(--bt-accent,#e31337); }
       #bt-panel .bt-by { margin-left: auto; font-size: 11px; color: #7d7d85; }
-      .bt-version { display: inline-flex; align-items: center; margin-left: 2px; padding: 1px 6px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 50%,#34343b); border-radius: 999px; background: color-mix(in srgb,var(--bt-accent,#e31337) 12%,transparent); color: #c9c9d1; font-size: 10px; font-weight: 700; line-height: 1.4; letter-spacing: .03em; text-decoration: none; cursor: pointer; }
+      .bt-version { display: inline-flex; align-items: center; margin-left: 2px; padding: 1px 6px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 50%,#34343b); border-radius: var(--bt-radius); background: color-mix(in srgb,var(--bt-accent,#e31337) 12%,transparent); color: #c9c9d1; font-size: 10px; font-weight: 700; line-height: 1.4; letter-spacing: .03em; text-decoration: none; cursor: pointer; }
       .bt-version:hover, .bt-version:focus { border-color: var(--bt-accent,#e31337); color: #fff; outline: none; }
       #bt-panel .bt-by a { color: inherit; text-decoration: none; }
       #bt-panel .bt-by a:hover, #bt-panel .bt-by a:focus { color: #efeff1; text-decoration: underline; outline: none; }
@@ -3290,33 +3356,33 @@
       #bt-panel .bt-rowflex label { display: flex; align-items: center; gap: 9px; flex: 1; cursor: pointer; }
       #bt-panel .bt-rowflex label input[type=checkbox] { accent-color: var(--bt-accent,#e31337); width: 15px; height: 15px; }
       #bt-panel input[type=range] { flex: 1 1 auto; min-width: 0; accent-color: var(--bt-accent,#e31337); cursor: pointer; }
-      #bt-panel input[type=color] { width: 26px; height: 18px; border: 1px solid #34343b; background: none; padding: 0; cursor: pointer; border-radius: 4px; }
+      #bt-panel input[type=color] { width: 26px; height: 18px; border: 1px solid #34343b; background: none; padding: 0; cursor: pointer; border-radius: var(--bt-radius); }
       #bt-panel .bt-val { flex: 0 0 52px; width: 52px; text-align: right; color: #adadb8; font-variant-numeric: tabular-nums; }
-      #bt-panel select { background: #0e0e10; color: #efeff1; border: 1px solid #34343b; border-radius: 4px; padding: 2px 6px; margin-left: auto; }
-      #bt-panel input[type=text], #bt-panel input[type=url], #bt-panel input[type=password] { flex: 1; min-width: 0; background: #0e0e10; color: #efeff1; border: 1px solid #34343b; border-radius: 4px; padding: 3px 6px; }
+      #bt-panel select { background: #0e0e10; color: #efeff1; border: 1px solid #34343b; border-radius: var(--bt-radius); padding: 2px 6px; margin-left: auto; }
+      #bt-panel input[type=text], #bt-panel input[type=url], #bt-panel input[type=password] { flex: 1; min-width: 0; background: #0e0e10; color: #efeff1; border: 1px solid #34343b; border-radius: var(--bt-radius); padding: 3px 6px; }
       #bt-panel input:disabled, #bt-panel select:disabled { opacity: .42; cursor: not-allowed; }
-      #bt-panel button.bt-btn { background: #26262c; color: #efeff1; border: 1px solid #3a3a42; border-radius: 4px; padding: 4px 9px; cursor: pointer; font-size: 12px; }
+      #bt-panel button.bt-btn { background: #26262c; color: #efeff1; border: 1px solid #3a3a42; border-radius: var(--bt-radius); padding: 4px 9px; cursor: pointer; font-size: 12px; }
       #bt-panel button.bt-btn:hover { background: #34343b; }
       #bt-panel .bt-foot { display: flex; gap: 6px; margin-top: 12px; }
       #bt-panel .bt-note { margin-top: 10px; font-size: 11px; color: #7d7d85; }
       #bt-panel .bt-help { flex: 0 0 16px; width: 16px; height: 16px; margin-left: 3px; padding: 0; border: 1px solid #575761; border-radius: 50%; background: #26262c; color: #b7b7c2; font: 700 10px/14px Inter,Roobert,Arial,sans-serif; text-align: center; cursor: help; }
       #bt-panel label.bt-row > .bt-help { margin-left: auto; }
       #bt-panel .bt-help:hover, #bt-panel .bt-help:focus, #bt-panel .bt-help[aria-expanded="true"] { border-color: var(--bt-accent,#e31337); color: #fff; outline: none; box-shadow: 0 0 0 2px color-mix(in srgb,var(--bt-accent,#e31337) 24%,transparent); }
-      #bt-setting-tooltip { position: fixed; z-index: 100001; display: none; width: 290px; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 9px 11px; border: 1px solid #4a4a54; border-left: 3px solid var(--bt-accent,#e31337); border-radius: 5px; background: #202024; color: #efeff1; box-shadow: 0 8px 24px rgba(0,0,0,.55); font: 12px/1.45 Inter,Roobert,"Helvetica Neue",Arial,sans-serif; pointer-events: none; }
+      #bt-setting-tooltip { position: fixed; z-index: 100001; display: none; width: 290px; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 9px 11px; border: 1px solid #4a4a54; border-left: 3px solid var(--bt-accent,#e31337); border-radius: var(--bt-radius); background: #202024; color: #efeff1; box-shadow: 0 8px 24px rgba(0,0,0,.55); font: 12px/1.45 Inter,Roobert,"Helvetica Neue",Arial,sans-serif; pointer-events: none; }
       #bt-setting-tooltip.bt-open { display: block; animation: bt-tooltip-in .12s ease-out; }
       @keyframes bt-tooltip-in { from { opacity: 0; transform: translateY(3px); } }
 
       #bt-modal { position: fixed; inset: 0; z-index: 100000; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.6); }
       #bt-modal.bt-open { display: flex; }
-      #bt-modal .bt-modal-box { width: 420px; max-width: calc(100vw - 32px); background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: 6px; box-shadow: 0 8px 28px rgba(0,0,0,.55); padding: 16px; font: 13px/1.45 Inter, Roobert, "Helvetica Neue", Arial, sans-serif; box-sizing: border-box; }
+      #bt-modal .bt-modal-box { width: 420px; max-width: calc(100vw - 32px); background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: var(--bt-radius); box-shadow: 0 8px 28px rgba(0,0,0,.55); padding: 16px; font: 13px/1.45 Inter, Roobert, "Helvetica Neue", Arial, sans-serif; box-sizing: border-box; }
       #bt-modal .bt-modal-head { display: flex; align-items: center; margin-bottom: 10px; }
       #bt-modal .bt-modal-title { font-size: 15px; font-weight: 700; color: var(--bt-accent,#e31337); }
       #bt-modal .bt-modal-x { margin-left: auto; background: none; border: none; color: #adadb8; font-size: 18px; line-height: 1; cursor: pointer; padding: 0 2px; }
       #bt-modal .bt-modal-x:hover { color: #efeff1; }
-      #bt-modal textarea { width: 100%; height: 160px; resize: vertical; box-sizing: border-box; background: #0e0e10; color: #efeff1; border: 1px solid #34343b; border-radius: 4px; padding: 8px; font: 12px/1.4 ui-monospace, Menlo, Consolas, monospace; }
+      #bt-modal textarea { width: 100%; height: 160px; resize: vertical; box-sizing: border-box; background: #0e0e10; color: #efeff1; border: 1px solid #34343b; border-radius: var(--bt-radius); padding: 8px; font: 12px/1.4 ui-monospace, Menlo, Consolas, monospace; }
       #bt-modal .bt-modal-foot { display: flex; gap: 6px; margin-top: 12px; }
       #bt-modal .bt-modal-foot .bt-modal-close { margin-left: auto; }
-      #bt-modal button.bt-btn { background: #26262c; color: #efeff1; border: 1px solid #3a3a42; border-radius: 4px; padding: 4px 12px; cursor: pointer; font-size: 12px; }
+      #bt-modal button.bt-btn { background: #26262c; color: #efeff1; border: 1px solid #3a3a42; border-radius: var(--bt-radius); padding: 4px 12px; cursor: pointer; font-size: 12px; }
       #bt-modal button.bt-btn:hover { background: #34343b; }
       #bt-modal .bt-modal-note { margin-top: 8px; font-size: 11px; min-height: 14px; color: #57bb6c; }
 
@@ -3325,12 +3391,12 @@
       .chat-line__message .bt-trans-text { max-width: 100%; margin-top: 1px; overflow-wrap: anywhere; white-space: pre-wrap; }
       .chat-line__message .bt-trans-error { color: #ff6b6b; }
       .chat-line__message .bt-trans-actions { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-      .chat-line__message .bt-trans-action { border: 1px solid #3a3a42; border-radius: 3px; background: #26262c; color: #c9c9d1; padding: 2px 6px; font: 10px/1.3 Inter,Roobert,Arial,sans-serif; cursor: pointer; }
+      .chat-line__message .bt-trans-action { border: 1px solid #3a3a42; border-radius: var(--bt-radius); background: #26262c; color: #c9c9d1; padding: 2px 6px; font: 10px/1.3 Inter,Roobert,Arial,sans-serif; cursor: pointer; }
       .chat-line__message .bt-trans-action:hover, .chat-line__message .bt-trans-action:focus { border-color: var(--bt-accent,#e31337); color: #fff; outline: none; }
       .chat-line__message .bt-trans-error > .bt-trans-action { margin-left: 7px; }
       .bt-pop {
         position: fixed; z-index: 99999; width: 300px; max-height: 70vh; overflow-y: auto; box-sizing: border-box; display: none;
-        background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: 6px; padding: 0 14px 14px;
+        background: #18181b; color: #efeff1; border: 1px solid #2f2f35; border-radius: var(--bt-radius); padding: 0 14px 14px;
         box-shadow: 0 8px 28px rgba(0,0,0,.55); font: 13px/1.45 Inter, Roobert, "Helvetica Neue", Arial, sans-serif;
       }
       .bt-pop.bt-open { display: block; }
@@ -3342,27 +3408,27 @@
       .bt-pop .bt-pop-sub { margin: 12px 0 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #adadb8; }
       .bt-pop .bt-pop-empty { padding: 16px 0; color: #7d7d85; text-align: center; }
       .bt-chat-control-body { display: grid; gap: 9px; padding-top: 2px; }
-      .bt-chat-control-section { padding: 10px; border: 1px solid rgba(255,255,255,.075); border-radius: 9px; background: rgba(255,255,255,.022); }
+      .bt-chat-control-section { padding: 10px; border: 1px solid rgba(255,255,255,.075); border-radius: var(--bt-radius); background: rgba(255,255,255,.022); }
       .bt-chat-control-label { margin-bottom: 8px; color: #a9a9b3; font-size: 10px; font-weight: 800; letter-spacing: .045em; text-transform: uppercase; }
       #bt-dash { max-height: 78vh; background: radial-gradient(circle at 92% 0,color-mix(in srgb,var(--bt-accent,#e31337) 13%,transparent),transparent 32%),#18181b; }
       #bt-dash .bt-pop-head { background: linear-gradient(90deg,#18181b 68%,color-mix(in srgb,var(--bt-accent,#e31337) 8%,#18181b)); }
       #bt-dash .bt-pop-sub { display: flex; align-items: center; justify-content: space-between; margin-top: 15px; }
-      #bt-dash .bt-pop-sub > b { min-width: 25px; padding: 1px 7px; border: 1px solid #3a3a42; border-radius: 999px; background: #242429; color: #c9c9d1; font-size: 10px; text-align: center; font-variant-numeric: tabular-nums; }
-      .bt-dash-live { display: inline-flex; align-items: center; gap: 5px; margin-left: 8px; padding: 2px 7px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 52%,#34343b); border-radius: 999px; color: #d6d6dc; font-size: 8px; font-weight: 800; letter-spacing: .08em; }
+      #bt-dash .bt-pop-sub > b { min-width: 25px; padding: 1px 7px; border: 1px solid #3a3a42; border-radius: var(--bt-radius); background: #242429; color: #c9c9d1; font-size: 10px; text-align: center; font-variant-numeric: tabular-nums; }
+      .bt-dash-live { display: inline-flex; align-items: center; gap: 5px; margin-left: 8px; padding: 2px 7px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 52%,#34343b); border-radius: var(--bt-radius); color: #d6d6dc; font-size: 8px; font-weight: 800; letter-spacing: .08em; }
       .bt-dash-live i { width: 6px; height: 6px; border-radius: 50%; background: var(--bt-accent,#e31337); box-shadow: 0 0 0 0 color-mix(in srgb,var(--bt-accent,#e31337) 42%,transparent); animation: bt-dash-live 1.5s ease-out infinite; }
       @keyframes bt-dash-live { 70%,100% { box-shadow: 0 0 0 6px transparent; } }
       .bt-dash-empty { display: flex; flex-direction: column; align-items: center; padding: 28px 14px 22px; color: #8f8f99; text-align: center; }
-      .bt-dash-empty-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 10px; border: 1px solid #3a3a42; border-radius: 13px; background: linear-gradient(145deg,#29292f,#19191d); color: var(--bt-accent,#e31337); font-size: 25px; }
+      .bt-dash-empty-icon { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 10px; border: 1px solid #3a3a42; border-radius: var(--bt-radius); background: linear-gradient(145deg,#29292f,#19191d); color: var(--bt-accent,#e31337); font-size: 25px; }
       .bt-dash-empty b { color: #dedee3; font-size: 13px; }
       .bt-dash-empty > span:last-child { max-width: 250px; margin-top: 4px; font-size: 11px; }
       .bt-dash-metrics { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; margin-top: 10px; }
-      .bt-dash-metric { position: relative; min-height: 72px; overflow: hidden; padding: 9px 10px; border: 1px solid #34343b; border-radius: 8px; background: linear-gradient(145deg,#242429,#1b1b1f); }
+      .bt-dash-metric { position: relative; min-height: 72px; overflow: hidden; padding: 9px 10px; border: 1px solid #34343b; border-radius: var(--bt-radius); background: linear-gradient(145deg,#242429,#1b1b1f); }
       .bt-dash-metric::after { content: ""; position: absolute; right: -19px; bottom: -24px; width: 62px; height: 62px; border-radius: 50%; background: color-mix(in srgb,var(--bt-accent,#e31337) 8%,transparent); }
       .bt-dash-metric-accent { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 60%,#34343b); background: linear-gradient(145deg,color-mix(in srgb,var(--bt-accent,#e31337) 17%,#242429),#1b1b1f); }
       .bt-dash-metric > b { position: relative; z-index: 1; display: block; color: #f4f4f5; font-size: 24px; line-height: 1; font-weight: 850; font-variant-numeric: tabular-nums; }
       .bt-dash-metric > span { position: relative; z-index: 1; display: block; margin-top: 6px; color: #b8b8c1; font-size: 10px; font-weight: 700; }
       .bt-dash-metric > small { position: relative; z-index: 1; display: block; margin-top: 1px; color: #71717a; font-size: 8px; }
-      .bt-dash-chart { margin-top: 8px; padding: 9px 10px 6px; border: 1px solid #303036; border-radius: 8px; background: rgba(10,10,12,.44); }
+      .bt-dash-chart { margin-top: 8px; padding: 9px 10px 6px; border: 1px solid #303036; border-radius: var(--bt-radius); background: rgba(10,10,12,.44); }
       .bt-dash-chart-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 3px; }
       .bt-dash-chart-head span { display: flex; flex-direction: column; }
       .bt-dash-chart-head b { color: #d9d9df; font-size: 11px; }
@@ -3371,13 +3437,13 @@
       .bt-spark-grid { stroke: rgba(255,255,255,.055); stroke-width: 1; vector-effect: non-scaling-stroke; }
       .bt-spark-area { fill: url(#bt-dash-gradient); }
       .bt-spark-line { fill: none; stroke: var(--bt-accent,#e31337); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 3px color-mix(in srgb,var(--bt-accent,#e31337) 45%,transparent)); }
-      .bt-dash-session { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 8px; border: 1px solid #303036; border-radius: 8px; background: rgba(255,255,255,.018); }
+      .bt-dash-session { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 8px; border: 1px solid #303036; border-radius: var(--bt-radius); background: rgba(255,255,255,.018); }
       .bt-dash-session > span { min-width: 0; padding: 7px 5px; text-align: center; }
       .bt-dash-session > span + span { border-left: 1px solid #303036; }
       .bt-dash-session b { display: block; overflow: hidden; color: #e8e8ec; font-size: 12px; font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
       .bt-dash-session small { display: block; overflow: hidden; margin-top: 1px; color: #74747d; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
       .bt-dash-list { display: grid; gap: 4px; }
-      .bt-dash-row { display: flex; align-items: center; gap: 7px; min-height: 37px; padding: 4px 6px; border: 1px solid transparent; border-radius: 7px; background: rgba(255,255,255,.018); transition: border-color .12s ease,background .12s ease; }
+      .bt-dash-row { display: flex; align-items: center; gap: 7px; min-height: 37px; padding: 4px 6px; border: 1px solid transparent; border-radius: var(--bt-radius); background: rgba(255,255,255,.018); transition: border-color .12s ease,background .12s ease; }
       .bt-dash-row:hover { border-color: #34343b; background: rgba(255,255,255,.035); }
       .bt-dash-rank { flex: 0 0 16px; color: #666670; font: 700 9px/1 ui-monospace,Menlo,Consolas,monospace; text-align: center; }
       .bt-dash-avatar { flex: 0 0 27px; display: grid; place-items: center; width: 27px; height: 27px; overflow: hidden; border: 1px solid #3d3d45; border-radius: 50%; background: #2a2a30; color: #a9a9b2; font-size: 9px; font-weight: 800; }
@@ -3386,15 +3452,15 @@
       .bt-dash-person-line { display: flex; align-items: center; gap: 8px; }
       .bt-dash-name { flex: 1; min-width: 0; overflow: hidden; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
       .bt-dash-count { flex: 0 0 auto; color: #a7a7b0; font-size: 10px; font-variant-numeric: tabular-nums; }
-      .bt-dash-share { display: block; height: 3px; margin-top: 4px; overflow: hidden; border-radius: 2px; background: #303036; }
+      .bt-dash-share { display: block; height: 3px; margin-top: 4px; overflow: hidden; border-radius: var(--bt-radius); background: #303036; }
       .bt-dash-share i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg,var(--bt-accent,#e31337),color-mix(in srgb,var(--bt-accent,#e31337) 52%,#9147ff)); }
       .bt-dash-emotes { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; min-height: 34px; }
-      .bt-dash-emote { display: flex; align-items: center; gap: 7px; min-width: 0; padding: 7px; border: 1px solid #303036; border-radius: 7px; background: rgba(255,255,255,.018); }
+      .bt-dash-emote { display: flex; align-items: center; gap: 7px; min-width: 0; padding: 7px; border: 1px solid #303036; border-radius: var(--bt-radius); background: rgba(255,255,255,.018); }
       .bt-dash-emote img { flex: 0 0 29px; width: 29px; height: 29px; object-fit: contain; }
       .bt-dash-emote > span { min-width: 0; }
       .bt-dash-emote b { display: block; overflow: hidden; color: #d5d5da; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
       .bt-dash-emote small { display: block; color: #85858e; font-size: 9px; font-variant-numeric: tabular-nums; }
-      .bt-inbox-search { position: sticky; top: 45px; z-index: 2; width: 100%; margin: 0 0 6px; padding: 6px 8px; border: 1px solid #34343b; border-radius: 4px; background: #0e0e10; color: #efeff1; }
+      .bt-inbox-search { position: sticky; top: 45px; z-index: 2; width: 100%; margin: 0 0 6px; padding: 6px 8px; border: 1px solid #34343b; border-radius: var(--bt-radius); background: #0e0e10; color: #efeff1; }
       .bt-inbox-notice { margin: 4px 0; color: #ffb86b; font-size: 11px; }
       .bt-inbox-row { padding: 5px 0; border-bottom: 1px solid #26262c; line-height: 1.4; word-break: break-word; cursor: pointer; }
       .bt-inbox-main { display: flex; align-items: baseline; gap: 3px; }
@@ -3412,9 +3478,9 @@
       .bt-context-line > span:first-child { font-weight: 700; }
       .bt-context-line.bt-context-focus { color: #efeff1; background: rgba(255,255,255,.04); }
       #bt-inbox-btn { position: relative; }
-      #bt-inbox-btn .bt-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; min-width: 15px; height: 15px; padding: 0 3px; border-radius: 8px; background: var(--bt-accent,#e31337); color: #fff; font-size: 9px; line-height: 1; font-weight: 700; pointer-events: none; box-shadow: 0 0 0 2px #18181b; }
+      #bt-inbox-btn .bt-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; min-width: 15px; height: 15px; padding: 0 3px; border-radius: var(--bt-radius); background: var(--bt-accent,#e31337); color: #fff; font-size: 9px; line-height: 1; font-weight: 700; pointer-events: none; box-shadow: 0 0 0 2px #18181b; }
 
-      #bt-hovercard { position: fixed; z-index: 100001; display: none; width: 250px; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 10px; border: 1px solid #3a3a42; border-radius: 7px; background: #18181b; color: #efeff1; box-shadow: 0 8px 24px rgba(0,0,0,.55); font: 12px/1.4 Inter,Roobert,Arial,sans-serif; }
+      #bt-hovercard { position: fixed; z-index: 100001; display: none; width: 250px; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 10px; border: 1px solid #3a3a42; border-radius: var(--bt-radius); background: #18181b; color: #efeff1; box-shadow: 0 8px 24px rgba(0,0,0,.55); font: 12px/1.4 Inter,Roobert,Arial,sans-serif; }
       #bt-hovercard.bt-open { display: block; }
       .bt-hover-head { display: flex; align-items: center; gap: 9px; }
       .bt-hover-avatar { display: grid; flex: 0 0 36px; width: 36px; height: 36px; place-items: center; overflow: hidden; border: 1px solid #3d3d46; border-radius: 50%; background: #292930; color: #d7d7dc; font-size: 14px; font-weight: 800; }
@@ -3442,14 +3508,14 @@
         scrollbar-color: color-mix(in srgb,var(--bt-accent,#e31337) 42%,#4a4a52) transparent;
       }
       #bt-panel::-webkit-scrollbar, .bt-pop::-webkit-scrollbar { width: 7px; }
-      #bt-panel::-webkit-scrollbar-thumb, .bt-pop::-webkit-scrollbar-thumb { border: 2px solid transparent; border-radius: 99px; background: color-mix(in srgb,var(--bt-accent,#e31337) 42%,#4a4a52); background-clip: padding-box; }
+      #bt-panel::-webkit-scrollbar-thumb, .bt-pop::-webkit-scrollbar-thumb { border: 2px solid transparent; border-radius: var(--bt-radius); background: color-mix(in srgb,var(--bt-accent,#e31337) 42%,#4a4a52); background-clip: padding-box; }
       @keyframes bt-surface-in { from { opacity: 0; transform: translateY(6px) scale(.985); } to { opacity: 1; transform: none; } }
       @keyframes bt-modal-in { from { opacity: 0; transform: translateY(10px) scale(.975); } to { opacity: 1; transform: none; } }
       #bt-panel.bt-open, .bt-pop.bt-open { animation: bt-surface-in .16s cubic-bezier(.2,.8,.2,1); transform-origin: bottom right; }
 
       /* Footer launchers */
       #bt-settings-btn.bt-footer-btn, #bt-inbox-btn.bt-footer-btn, #bt-dash-btn.bt-footer-btn, #bt-chat-control-btn.bt-footer-btn {
-        min-width: 30px; min-height: 30px; padding: 5px !important; border: 1px solid transparent; border-radius: 8px;
+        min-width: 30px; min-height: 30px; padding: 5px !important; border: 1px solid transparent; border-radius: var(--bt-radius);
         background: color-mix(in srgb,var(--bt-accent,#e31337) 7%,transparent); color: var(--bt-accent,#e31337) !important; line-height: 0;
         transition: background .14s ease,border-color .14s ease,box-shadow .14s ease,color .14s ease,transform .14s ease;
       }
@@ -3476,7 +3542,7 @@
       /* Settings */
       #bt-panel {
         width: 390px; max-height: 64vh; padding: 0 10px 12px; overflow-x: hidden;
-        border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 24%,var(--bt-line)); border-radius: 13px;
+        border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 24%,var(--bt-line)); border-radius: var(--bt-radius);
         background: radial-gradient(circle at 90% 0,color-mix(in srgb,var(--bt-accent,#e31337) 11%,transparent),transparent 27%),linear-gradient(180deg,#19191e,#141418);
         box-shadow: 0 18px 54px rgba(0,0,0,.62),0 0 0 1px rgba(255,255,255,.025) inset; backdrop-filter: blur(16px);
       }
@@ -3486,12 +3552,12 @@
         box-shadow: 0 5px 18px rgba(0,0,0,.18); backdrop-filter: blur(16px);
       }
       #bt-panel .bt-title { display: inline-flex; align-items: center; gap: 9px; color: var(--bt-text); font-size: 16px; letter-spacing: -.01em; }
-      #bt-panel .bt-title::before { content: ""; width: 10px; height: 22px; border-radius: 5px; background: linear-gradient(180deg,var(--bt-accent,#e31337),color-mix(in srgb,var(--bt-accent,#e31337) 55%,#9147ff)); box-shadow: 0 0 14px color-mix(in srgb,var(--bt-accent,#e31337) 35%,transparent); }
+      #bt-panel .bt-title::before { content: ""; width: 10px; height: 22px; border-radius: var(--bt-radius); background: linear-gradient(180deg,var(--bt-accent,#e31337),color-mix(in srgb,var(--bt-accent,#e31337) 55%,#9147ff)); box-shadow: 0 0 14px color-mix(in srgb,var(--bt-accent,#e31337) 35%,transparent); }
       #bt-panel .bt-by { color: #777781; font-size: 10px; }
       #bt-panel .bt-by a { color: #a9a9b2; }
       .bt-version { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 36%,#3b3b43); background: color-mix(in srgb,var(--bt-accent,#e31337) 10%,#1b1b20); box-shadow: 0 2px 8px rgba(0,0,0,.22); }
       .bt-settings-section {
-        margin: 8px 0; padding: 0 7px 7px; overflow: visible; border: 1px solid var(--bt-line); border-radius: 10px;
+        margin: 8px 0; padding: 0 7px 7px; overflow: visible; border: 1px solid var(--bt-line); border-radius: var(--bt-radius);
         background: linear-gradient(145deg,rgba(255,255,255,.028),rgba(255,255,255,.012)); box-shadow: 0 5px 18px rgba(0,0,0,.12);
         transition: border-color .14s ease,background .14s ease;
       }
@@ -3505,7 +3571,7 @@
         border-color: color-mix(in srgb,var(--bt-accent,#e31337) 27%,var(--bt-line));
         background: radial-gradient(circle at 100% 0,color-mix(in srgb,var(--bt-accent,#e31337) 11%,transparent),transparent 45%),linear-gradient(145deg,rgba(255,255,255,.03),rgba(255,255,255,.012));
       }
-      #bt-panel .bt-setting-item, #bt-panel .bt-rowflex { display: flex; align-items: center; gap: 9px; min-height: 34px; margin: 2px 0; padding: 6px 7px; border-radius: 7px; font-size: var(--bt-setting-font-size); font-weight: 400; line-height: 1.45; transition: background .12s ease; }
+      #bt-panel .bt-setting-item, #bt-panel .bt-rowflex { display: flex; align-items: center; gap: 9px; min-height: 34px; margin: 2px 0; padding: 6px 7px; border-radius: var(--bt-radius); font-size: var(--bt-setting-font-size); font-weight: 400; line-height: 1.45; transition: background .12s ease; }
       #bt-panel .bt-setting-item:hover, #bt-panel .bt-rowflex:hover { background: rgba(255,255,255,.038); }
       #bt-panel .bt-setting-item:has(input:disabled), #bt-panel .bt-rowflex:has(input:disabled), #bt-panel .bt-rowflex:has(select:disabled), #bt-panel .bt-rowflex:has(textarea:disabled) { opacity: .52; }
       #bt-panel .bt-setting-item > label.bt-row { flex: 1; min-width: 0; min-height: 0; margin: 0; padding: 0; border-radius: 0; background: none; }
@@ -3513,21 +3579,21 @@
       #bt-panel .bt-setting-item > label.bt-row, #bt-panel .bt-rowflex > label, #bt-panel .bt-rowflex > span:not(.bt-val) { font-size: inherit; font-weight: inherit; line-height: inherit; }
       #bt-panel label.bt-row input[type=checkbox], #bt-panel .bt-rowflex label input[type=checkbox] {
         appearance: none; position: relative; order: 2; flex: 0 0 31px; width: 31px !important; height: 18px !important; margin: 0 0 0 auto;
-        border: 1px solid #4a4a53; border-radius: 99px; background: #2c2c33; box-shadow: 0 1px 3px rgba(0,0,0,.32) inset; transition: border-color .15s ease,background .15s ease;
+        border: 1px solid #4a4a53; border-radius: var(--bt-radius); background: #2c2c33; box-shadow: 0 1px 3px rgba(0,0,0,.32) inset; transition: border-color .15s ease,background .15s ease;
       }
       #bt-panel input[type=checkbox]::before { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: #b6b6bf; box-shadow: 0 1px 3px rgba(0,0,0,.45); transition: transform .16s cubic-bezier(.2,.8,.2,1),background .15s ease; }
       #bt-panel input[type=checkbox]:checked { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 72%,#fff) !important; background: var(--bt-accent,#e31337) !important; box-shadow: 0 0 0 1px color-mix(in srgb,var(--bt-accent,#e31337) 28%,transparent),0 0 10px color-mix(in srgb,var(--bt-accent,#e31337) 24%,transparent) !important; }
       #bt-panel input[type=checkbox]:checked::before { transform: translateX(13px); background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.52); }
       #bt-panel input[type=checkbox]:focus-visible { outline: 2px solid color-mix(in srgb,var(--bt-accent,#e31337) 58%,transparent); outline-offset: 2px; }
-      #bt-panel input[type=range] { appearance: none; height: 4px; border-radius: 99px; background: linear-gradient(90deg,color-mix(in srgb,var(--bt-accent,#e31337) 72%,#9147ff),#3a3a42); }
+      #bt-panel input[type=range] { appearance: none; height: 4px; border-radius: var(--bt-radius); background: linear-gradient(90deg,color-mix(in srgb,var(--bt-accent,#e31337) 72%,#9147ff),#3a3a42); }
       #bt-panel input[type=range]::-webkit-slider-thumb { appearance: none; width: 15px; height: 15px; border: 2px solid #f3f3f5; border-radius: 50%; background: var(--bt-accent,#e31337); box-shadow: 0 2px 7px rgba(0,0,0,.48); }
       #bt-panel input[type=range]::-moz-range-thumb { width: 12px; height: 12px; border: 2px solid #f3f3f5; border-radius: 50%; background: var(--bt-accent,#e31337); box-shadow: 0 2px 7px rgba(0,0,0,.48); }
       #bt-panel input[type=range]:focus-visible { outline: 2px solid color-mix(in srgb,var(--bt-accent,#e31337) 52%,transparent); outline-offset: 4px; }
-      #bt-panel input[type=color] { width: 31px; height: 24px; overflow: hidden; border: 1px solid #50505a; border-radius: 7px; background: #202025; box-shadow: 0 2px 7px rgba(0,0,0,.25); }
+      #bt-panel input[type=color] { width: 31px; height: 24px; overflow: hidden; border: 1px solid #50505a; border-radius: var(--bt-radius); background: #202025; box-shadow: 0 2px 7px rgba(0,0,0,.25); }
       #bt-panel input[type=color]::-webkit-color-swatch-wrapper { padding: 2px; }
-      #bt-panel input[type=color]::-webkit-color-swatch { border: 0; border-radius: 4px; }
+      #bt-panel input[type=color]::-webkit-color-swatch { border: 0; border-radius: var(--bt-radius); }
       #bt-panel select, #bt-panel input[type=text], #bt-panel input[type=url], #bt-panel input[type=password], #bt-panel textarea {
-        min-height: 30px; border: 1px solid #3e3e47; border-radius: 7px; background: #111115; color: #ececf0; box-shadow: 0 1px 4px rgba(0,0,0,.25) inset;
+        min-height: 30px; border: 1px solid #3e3e47; border-radius: var(--bt-radius); background: #111115; color: #ececf0; box-shadow: 0 1px 4px rgba(0,0,0,.25) inset;
         font: inherit;
       }
       #bt-panel select { padding: 4px 26px 4px 8px; }
@@ -3540,7 +3606,7 @@
       #bt-panel .bt-help { width: 18px; height: 18px; flex-basis: 18px; border-color: #4a4a54; background: #24242a; color: #9f9fa9; font-size: 9px; line-height: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.22); }
       #bt-panel .bt-setting-item > .bt-help, #bt-panel .bt-rowflex > .bt-help { order: -1; flex: 0 0 18px; margin: 0 1px 0 0; }
       #bt-panel button.bt-btn, #bt-modal button.bt-btn {
-        min-height: 30px; padding: 5px 11px; border: 1px solid #41414a; border-radius: 7px; background: linear-gradient(180deg,#2c2c33,#232329); color: #e9e9ed;
+        min-height: 30px; padding: 5px 11px; border: 1px solid #41414a; border-radius: var(--bt-radius); background: linear-gradient(180deg,#2c2c33,#232329); color: #e9e9ed;
         box-shadow: 0 2px 7px rgba(0,0,0,.25); font-size: 11px; font-weight: 700; transition: border-color .13s ease,background .13s ease,transform .13s ease;
       }
       #bt-panel button.bt-btn { font-size: var(--bt-setting-font-size); }
@@ -3560,13 +3626,13 @@
 
       /* Tooltips and transient notifications */
       #bt-setting-tooltip {
-        width: 305px; padding: 10px 12px 10px 14px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 30%,#484852); border-left: 3px solid var(--bt-accent,#e31337); border-radius: 9px;
+        width: 305px; padding: 10px 12px 10px 14px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 30%,#484852); border-left: 3px solid var(--bt-accent,#e31337); border-radius: var(--bt-radius);
         background: linear-gradient(145deg,rgba(35,35,41,.98),rgba(22,22,27,.98)); box-shadow: 0 14px 38px rgba(0,0,0,.58); backdrop-filter: blur(14px); color: #e8e8ec;
       }
 
       /* Shared popovers, Mentions and Stats */
       .bt-pop {
-        max-height: 78vh; padding: 0 12px 13px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 20%,var(--bt-line)); border-radius: 13px;
+        max-height: 78vh; padding: 0 12px 13px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 20%,var(--bt-line)); border-radius: var(--bt-radius);
         background: radial-gradient(circle at 92% 0,color-mix(in srgb,var(--bt-accent,#e31337) 10%,transparent),transparent 29%),linear-gradient(180deg,#19191e,#141418);
         box-shadow: 0 18px 54px rgba(0,0,0,.62),0 0 0 1px rgba(255,255,255,.025) inset; backdrop-filter: blur(16px);
       }
@@ -3575,8 +3641,8 @@
         background: linear-gradient(90deg,rgba(24,24,29,.97) 62%,color-mix(in srgb,var(--bt-accent,#e31337) 8%,rgba(24,24,29,.97))); box-shadow: 0 5px 18px rgba(0,0,0,.16); backdrop-filter: blur(16px);
       }
       .bt-pop .bt-pop-title { display: inline-flex; align-items: center; color: var(--bt-text); font-size: 15px; letter-spacing: -.01em; }
-      .bt-pop .bt-pop-title::before { content: ""; width: 7px; height: 19px; margin-right: 8px; border-radius: 4px; background: linear-gradient(180deg,var(--bt-accent,#e31337),color-mix(in srgb,var(--bt-accent,#e31337) 55%,#9147ff)); }
-      .bt-pop .bt-pop-empty { margin: 9px 0; padding: 25px 14px; border: 1px dashed #383840; border-radius: 10px; background: rgba(255,255,255,.014); color: #7f7f89; }
+      .bt-pop .bt-pop-title::before { content: ""; width: 7px; height: 19px; margin-right: 8px; border-radius: var(--bt-radius); background: linear-gradient(180deg,var(--bt-accent,#e31337),color-mix(in srgb,var(--bt-accent,#e31337) 55%,#9147ff)); }
+      .bt-pop .bt-pop-empty { margin: 9px 0; padding: 25px 14px; border: 1px dashed #383840; border-radius: var(--bt-radius); background: rgba(255,255,255,.014); color: #7f7f89; }
       #bt-chat-controls .bt-chat-control-section { border-color: rgba(255,255,255,.085); background: linear-gradient(145deg,rgba(255,255,255,.032),rgba(255,255,255,.014)); box-shadow: 0 4px 13px rgba(0,0,0,.1); }
       #bt-chat-controls .bt-filter-bar button { min-height: 29px; padding: 4px 10px; }
       #bt-chat-controls .bt-chat-search { padding-top: 0; }
@@ -3584,33 +3650,33 @@
       #bt-dash .bt-dash-metric, #bt-dash .bt-dash-chart, #bt-dash .bt-dash-session, #bt-dash .bt-dash-row, #bt-dash .bt-dash-emote { box-shadow: 0 4px 13px rgba(0,0,0,.11); }
       #bt-dash .bt-dash-metric, #bt-dash .bt-dash-emote { transition: border-color .14s ease,transform .14s ease,background .14s ease; }
       #bt-dash .bt-dash-metric:hover, #bt-dash .bt-dash-emote:hover { border-color: rgba(255,255,255,.16); transform: translateY(-1px); }
-      .bt-inbox-total { min-width: 25px; margin-left: 8px; padding: 2px 7px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 28%,#393941); border-radius: 99px; background: color-mix(in srgb,var(--bt-accent,#e31337) 9%,#202025); color: #bdbdc5; font-size: 9px; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; }
+      .bt-inbox-total { min-width: 25px; margin-left: 8px; padding: 2px 7px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 28%,#393941); border-radius: var(--bt-radius); background: color-mix(in srgb,var(--bt-accent,#e31337) 9%,#202025); color: #bdbdc5; font-size: 9px; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; }
       #bt-inbox { background: radial-gradient(circle at 92% 0,color-mix(in srgb,var(--bt-accent,#e31337) 10%,transparent),transparent 29%),linear-gradient(180deg,#19191e,#141418); }
       .bt-inbox-search {
-        top: 53px; height: 36px; margin: 3px 0 9px; padding: 7px 10px; border: 1px solid #3d3d46; border-radius: 9px; background: rgba(14,14,18,.94); color: #efeff2;
+        top: 53px; height: 36px; margin: 3px 0 9px; padding: 7px 10px; border: 1px solid #3d3d46; border-radius: var(--bt-radius); background: rgba(14,14,18,.94); color: #efeff2;
         box-shadow: 0 3px 10px rgba(0,0,0,.2); backdrop-filter: blur(12px); transition: border-color .13s ease,box-shadow .13s ease;
       }
       .bt-inbox-search:focus { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 64%,#fff); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb,var(--bt-accent,#e31337) 15%,transparent),0 4px 12px rgba(0,0,0,.28); }
-      .bt-inbox-notice { margin: 5px 0 8px; padding: 7px 9px; border: 1px solid rgba(255,184,107,.24); border-radius: 7px; background: rgba(255,184,107,.07); color: #ffc986; }
-      .bt-inbox-row { margin: 5px 0; padding: 8px; border: 1px solid rgba(255,255,255,.07); border-radius: 9px; background: linear-gradient(145deg,rgba(255,255,255,.026),rgba(255,255,255,.012)); box-shadow: 0 4px 13px rgba(0,0,0,.1); transition: border-color .13s ease,background .13s ease,transform .13s ease; }
+      .bt-inbox-notice { margin: 5px 0 8px; padding: 7px 9px; border: 1px solid rgba(255,184,107,.24); border-radius: var(--bt-radius); background: rgba(255,184,107,.07); color: #ffc986; }
+      .bt-inbox-row { margin: 5px 0; padding: 8px; border: 1px solid rgba(255,255,255,.07); border-radius: var(--bt-radius); background: linear-gradient(145deg,rgba(255,255,255,.026),rgba(255,255,255,.012)); box-shadow: 0 4px 13px rgba(0,0,0,.1); transition: border-color .13s ease,background .13s ease,transform .13s ease; }
       .bt-inbox-row:hover { border-color: rgba(255,255,255,.14); background: linear-gradient(145deg,rgba(255,255,255,.042),rgba(255,255,255,.017)); transform: translateY(-1px); }
       .bt-inbox-row.bt-expanded { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 28%,#3a3a42); background: color-mix(in srgb,var(--bt-accent,#e31337) 4%,#1d1d22); }
       .bt-inbox-main { align-items: center; gap: 5px; }
-      .bt-inbox-kind { display: grid; place-items: center; flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 32%,#404048); border-radius: 7px; background: color-mix(in srgb,var(--bt-accent,#e31337) 10%,#222228); font-size: 10px; }
-      .bt-inbox-time { padding: 2px 5px; border-radius: 4px; background: rgba(255,255,255,.035); color: #777781; font-size: 9px; }
+      .bt-inbox-kind { display: grid; place-items: center; flex: 0 0 22px; width: 22px; height: 22px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 32%,#404048); border-radius: var(--bt-radius); background: color-mix(in srgb,var(--bt-accent,#e31337) 10%,#222228); font-size: 10px; }
+      .bt-inbox-time { padding: 2px 5px; border-radius: var(--bt-radius); background: rgba(255,255,255,.035); color: #777781; font-size: 9px; }
       .bt-inbox-channel { color: color-mix(in srgb,var(--bt-accent,#e31337) 38%,#a89bea); font-size: 9px; }
       .bt-inbox-user { font-size: 11px; }
       .bt-inbox-text { overflow: hidden; color: #d6d6dc; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
-      .bt-inbox-jump { display: grid; place-items: center; width: 25px; height: 25px; padding: 0; border: 1px solid #3b3b44; border-radius: 7px; background: #24242a; color: #a8a8b1; transition: border-color .12s ease,color .12s ease,background .12s ease; }
+      .bt-inbox-jump { display: grid; place-items: center; width: 25px; height: 25px; padding: 0; border: 1px solid #3b3b44; border-radius: var(--bt-radius); background: #24242a; color: #a8a8b1; transition: border-color .12s ease,color .12s ease,background .12s ease; }
       .bt-inbox-jump:hover, .bt-inbox-jump:focus-visible { border-color: var(--bt-accent,#e31337); background: color-mix(in srgb,var(--bt-accent,#e31337) 11%,#24242a); color: #fff; outline: none; }
-      .bt-inbox-context { margin: 8px 0 1px 28px; padding: 6px 8px; border: 0; border-radius: 7px; background: rgba(7,7,9,.35); }
-      .bt-context-line { padding: 3px 4px; border-radius: 4px; font-size: 10px; }
+      .bt-inbox-context { margin: 8px 0 1px 28px; padding: 6px 8px; border: 0; border-radius: var(--bt-radius); background: rgba(7,7,9,.35); }
+      .bt-context-line { padding: 3px 4px; border-radius: var(--bt-radius); font-size: 10px; }
       .bt-context-line.bt-context-focus { background: color-mix(in srgb,var(--bt-accent,#e31337) 8%,rgba(255,255,255,.035)); box-shadow: inset 2px 0 var(--bt-accent,#e31337); }
       #bt-inbox-btn .bt-badge { min-width: 16px; height: 16px; border: 1px solid rgba(255,255,255,.34); box-shadow: 0 3px 9px rgba(0,0,0,.45); }
 
       /* Viewer card */
       #bt-hovercard {
-        width: 260px; padding: 12px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 22%,var(--bt-line)); border-radius: 12px;
+        width: 260px; padding: 12px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 22%,var(--bt-line)); border-radius: var(--bt-radius);
         background: radial-gradient(circle at 95% 0,color-mix(in srgb,var(--bt-accent,#e31337) 13%,transparent),transparent 38%),linear-gradient(145deg,rgba(31,31,37,.98),rgba(18,18,22,.98));
         box-shadow: 0 16px 42px rgba(0,0,0,.62),0 0 0 1px rgba(255,255,255,.025) inset; backdrop-filter: blur(15px);
       }
@@ -3619,9 +3685,9 @@
       .bt-hover-avatar { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 28%,rgba(255,255,255,.12)); background: color-mix(in srgb,var(--bt-accent,#e31337) 10%,#292930); box-shadow: 0 3px 11px rgba(0,0,0,.34); }
       .bt-hover-name { font-size: 15px; letter-spacing: -.01em; }
       .bt-hover-grid { gap: 6px; margin-top: 9px; }
-      .bt-hover-grid span { min-width: 0; padding: 7px 4px; border: 1px solid rgba(255,255,255,.065); border-radius: 7px; background: rgba(255,255,255,.022); color: #777781; font-size: 8px; }
+      .bt-hover-grid span { min-width: 0; padding: 7px 4px; border: 1px solid rgba(255,255,255,.065); border-radius: var(--bt-radius); background: rgba(255,255,255,.022); color: #777781; font-size: 8px; }
       .bt-hover-grid b { overflow: hidden; margin-bottom: 2px; color: #ededf0; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
-      .bt-hover-emote { margin-top: 9px; padding: 8px; border: 1px solid rgba(255,255,255,.065); border-radius: 7px; background: rgba(255,255,255,.022); }
+      .bt-hover-emote { margin-top: 9px; padding: 8px; border: 1px solid rgba(255,255,255,.065); border-radius: var(--bt-radius); background: rgba(255,255,255,.022); }
       .bt-hover-emote small { color: #81818a; }
       .bt-hover-emote img { width: 27px; height: 27px; }
 
@@ -3629,16 +3695,16 @@
       #bt-modal { background: rgba(5,5,7,.72); backdrop-filter: blur(8px); }
       #bt-modal.bt-open .bt-modal-box { animation: bt-modal-in .18s cubic-bezier(.2,.8,.2,1); }
       #bt-modal .bt-modal-box {
-        width: 440px; padding: 15px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 22%,var(--bt-line)); border-radius: 14px;
+        width: 440px; padding: 15px; border: 1px solid color-mix(in srgb,var(--bt-accent,#e31337) 22%,var(--bt-line)); border-radius: var(--bt-radius);
         background: radial-gradient(circle at 94% 0,color-mix(in srgb,var(--bt-accent,#e31337) 11%,transparent),transparent 34%),linear-gradient(145deg,#1d1d23,#141418);
         box-shadow: 0 24px 70px rgba(0,0,0,.68),0 0 0 1px rgba(255,255,255,.025) inset;
       }
       #bt-modal .bt-modal-head { min-height: 36px; margin-bottom: 11px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.075); }
       #bt-modal .bt-modal-title { display: inline-flex; align-items: center; gap: 8px; color: #f0f0f2; font-size: 15px; }
-      #bt-modal .bt-modal-title::before { content: ""; width: 7px; height: 18px; border-radius: 4px; background: var(--bt-accent,#e31337); }
-      #bt-modal .bt-modal-x { display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 1px solid transparent; border-radius: 8px; background: rgba(255,255,255,.025); color: #8e8e98; transition: border-color .12s ease,background .12s ease,color .12s ease; }
+      #bt-modal .bt-modal-title::before { content: ""; width: 7px; height: 18px; border-radius: var(--bt-radius); background: var(--bt-accent,#e31337); }
+      #bt-modal .bt-modal-x { display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 1px solid transparent; border-radius: var(--bt-radius); background: rgba(255,255,255,.025); color: #8e8e98; transition: border-color .12s ease,background .12s ease,color .12s ease; }
       #bt-modal .bt-modal-x:hover, #bt-modal .bt-modal-x:focus-visible { border-color: #494952; background: rgba(255,255,255,.06); color: #fff; outline: none; }
-      #bt-modal textarea { height: 190px; padding: 10px 11px; border: 1px solid #3c3c45; border-radius: 9px; background: rgba(8,8,11,.78); color: #ededf0; box-shadow: 0 3px 10px rgba(0,0,0,.24) inset; }
+      #bt-modal textarea { height: 190px; padding: 10px 11px; border: 1px solid #3c3c45; border-radius: var(--bt-radius); background: rgba(8,8,11,.78); color: #ededf0; box-shadow: 0 3px 10px rgba(0,0,0,.24) inset; }
       #bt-modal textarea:focus { border-color: color-mix(in srgb,var(--bt-accent,#e31337) 65%,#fff); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb,var(--bt-accent,#e31337) 15%,transparent),0 3px 10px rgba(0,0,0,.24) inset; }
       #bt-modal .bt-modal-note { margin-top: 8px; padding: 0 3px; color: #74d68a; font-size: 10px; }
       #bt-modal .bt-modal-foot { gap: 7px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.07); }
@@ -4246,7 +4312,7 @@
   function formatVal(k, v) {
     if (k === 'chatWidthPx') return v + 'px';
     if (k === 'pingVolume') return Math.round(v * 100) + '%';
-    if (k === 'offlineRefreshMinutes') return v ? v + ' ' + t('minuteShortSetting') : t('disabledValue');
+    if (k === 'raidReturnMinutes' || k === 'offlineRefreshMinutes') return v ? v + ' ' + t('minuteShortSetting') : t('disabledValue');
     return '' + v;
   }
 
@@ -4503,7 +4569,7 @@
 
       ${secHead('secPlayerRewards')}
       <label class="bt-row"><input type="checkbox" data-k="autoQuality"> ${t('autoQuality')}</label>
-      <label class="bt-row"><input type="checkbox" data-k="preventRaidRedirects"> ${t('preventRaidRedirects')}</label>
+      <div class="bt-rowflex"><span style="flex:1">${t('raidReturnMinutes')}</span><input type="range" min="0" max="60" step="5" data-k="raidReturnMinutes"><span class="bt-val" data-val-for="raidReturnMinutes"></span></div>
       <div class="bt-rowflex"><span style="flex:1">${t('offlineRefreshMinutes')}</span><input type="range" min="0" max="60" step="1" data-k="offlineRefreshMinutes"><span class="bt-val" data-val-for="offlineRefreshMinutes"></span></div>
       <label class="bt-row"><input type="checkbox" data-k="autoClaimPoints"> ${t('autoClaimPoints')}</label>
       <label class="bt-row"><input type="checkbox" data-k="autoClaimDrops"> ${t('autoClaimDrops')}</label>

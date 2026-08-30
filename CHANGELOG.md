@@ -6,8 +6,13 @@ All notable changes to **BetterTwitch** are documented in this file.
 
 ### Added
 
-- **Stay on channel after raids** automatically leaves Twitch raid countdowns and returns from raid-marked destination URLs when Twitch redirects before the opt-out is applied.
+- **Return to original channel after raids** follows a raid chain for a configurable 5 to 60 minutes, then returns to the channel where the first raid began; `0` disables automatic return. Later raids keep the original deadline, and offline refresh remains disabled on raided destinations even when they go offline, resuming only on the original channel.
 - **Offline refresh interval** reloads offline channel pages every 1 to 60 minutes, with `0` disabling the feature. Channel state is checked directly with Twitch and non-channel pages are excluded.
+- The **Mentions panel** keeps only the 50 newest mentions and caps its unread badge at 50.
+
+### Changed
+
+- BetterTwitch panels, cards, controls, badges, and overlays now share a compact 5-pixel corner radius; intentionally circular avatars, indicators, and control handles remain round.
 
 ## [2.0.6] - 2026-07-31
 

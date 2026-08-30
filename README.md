@@ -31,7 +31,7 @@ A lightweight userscript that makes Twitch chat easier to follow, personalize, a
 - **18 distinct notification sounds** with volume control and instant preview
 - **Deleted-message visibility** for individual deletions, timeouts/bans, and full chat clears
 - **Layout and appearance controls** for chat width, Comfortable/Compact/Accessible profiles, avatars, badges, separators, name contrast, accent color, the top-user slider, and community/pinned highlights
-- **Convenience options** for source quality, raid opt-out, offline-channel refresh, channel-point bonuses, Drops, commands, and bot messages
+- **Convenience options** for source quality, configurable return after raid chains, offline-channel refresh, channel-point bonuses, Drops, commands, and bot messages
 - **English, German, and Russian UI**, with detailed tooltips for every setting
 - **Modern, consistent full-width panel headers** for Settings, Mentions, Live Stats, Chat filters & search, notification controls, dialogs, viewer cards, and notices
 - **Automatic light and dark themes** that follow Twitch’s current appearance setting

@@ -18,8 +18,8 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 
 ### Erwähnungen und Gesprächskontext
 
-- Ein eigenes **Erwähnungs-Panel** sammelt Nachrichten, die dich mit @ erwähnen oder direkt auf dich antworten.
-- Ein Zähler zeigt neue Erwähnungen an, die bei geschlossenem Panel eingegangen sind.
+- Ein eigenes **Erwähnungs-Panel** behält die 50 neuesten Nachrichten, die dich mit @ erwähnen oder direkt auf dich antworten.
+- Ein auf 50 begrenzter Zähler zeigt neue, noch gespeicherte Erwähnungen an, die bei geschlossenem Panel eingegangen sind.
 - Durchsuche Erwähnungen, klappe den umgebenden Gesprächsverlauf aus oder springe zur ursprünglichen Nachricht, solange sie noch im Chat sichtbar ist.
 - Speichere null bis drei Nachrichten vor und nach jeder Erwähnung als Kontext.
 - Die Daten gelten nur für die aktuelle Sitzung und werden beim Neuladen der Seite gelöscht.
@@ -75,7 +75,7 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 ### Player und Belohnungen
 
 - Bevorzuge automatisch Twitchs Quell-/Chunked-Videoqualität.
-- Bleibe auf dem aktuellen Kanal, wenn Twitch einen Raid-Wechsel startet.
+- Folge Twitch-Raid-Ketten für einstellbare 5–60 Minuten und kehre dann zum Ausgangskanal zurück; 0 deaktiviert die automatische Rückkehr.
 - Lade Offline-Kanäle in einem einstellbaren Intervall von 1–60 Minuten neu oder deaktiviere das Neuladen mit 0.
 - Löse die Kanalpunkte-Bonustruhe automatisch ein.
 - Klicke sichtbare Einlösen-Buttons für Twitch Drops automatisch an.
@@ -120,7 +120,7 @@ Aktualisierungen werden durch den Userscript-Manager über dieselbe GitHub-Raw-U
 | Chat-Werkzeuge | Zuschauer-Hovercards | Zeigt beim Überfahren den Twitch-Avatar und lokal erfasste Sitzungsdaten eines Zuschauers. |
 | Chat-Werkzeuge | Kopier-Button beim Überfahren | Fügt einen Button zum Kopieren des lesbaren Nachrichtentexts hinzu. |
 | Chat-Werkzeuge | Beim Überfahren übersetzen | Fügt jeder Nachricht eine Google-Übersetzung hinzu. |
-| Chat-Werkzeuge | Erwähnungs-Panel | Fügt den durchsuchbaren Erwähnungs-Button samt Ungelesen-Zähler hinzu. |
+| Chat-Werkzeuge | Erwähnungs-Panel | Behält die 50 neuesten Erwähnungen in einem durchsuchbaren Panel mit einem auf 50 begrenzten Ungelesen-Zähler. |
 | Chat-Werkzeuge | Kontextnachrichten | Speichert 0–3 Nachrichten auf jeder Seite einer Erwähnung. |
 | Chat-Werkzeuge | Zeichenzähler | Zeigt Nachrichtenlänge und Twitchs ermitteltes Limit. |
 | Gesprächsqualität | Wiederholte Nachrichten zusammenfassen | Gruppiert drei oder mehr identische Nachrichten innerhalb von zwölf Sekunden und lässt die Originale aufklappbar. |
@@ -142,7 +142,7 @@ Aktualisierungen werden durch den Userscript-Manager über dieselbe GitHub-Raw-U
 | Nachrichtenfilter | Bot-Nachrichten ausblenden | Blendet lokal Nachrichten aus der konfigurierten Bot-Liste aus. |
 | Nachrichtenfilter | Bot-Namen | Kommagetrennte, nicht von Groß-/Kleinschreibung abhängige Twitch-Login-Namen. |
 | Player & Belohnungen | Quellqualität bevorzugen | Speichert Twitchs Quellqualitäts-Einstellung im lokalen Speicher. |
-| Player & Belohnungen | Nach Raids auf dem Kanal bleiben | Verwendet Twitchs Raid-Ausstieg und kehrt von Raid-Zieladressen zum vorherigen Kanal zurück. |
+| Player & Belohnungen | Nach Raids zum Ausgangskanal zurückkehren | Legt die Rückkehrzeit in Fünf-Minuten-Schritten auf 5–60 Minuten fest; 0 deaktiviert die automatische Rückkehr. Weitere Raids verlängern die Frist nicht und Raid-Zielkanäle lösen nie das Offline-Neuladen aus. |
 | Player & Belohnungen | Neuladeintervall bei Offline-Kanälen | Lädt einen Offline-Kanal alle 1–60 Minuten neu; 0 deaktiviert die Funktion. |
 | Player & Belohnungen | Bonus-Truhe automatisch einlösen | Klickt die Kanalpunkte-Bonustruhe an, wenn Twitch sie anzeigt. |
 | Player & Belohnungen | Drops automatisch einlösen | Klickt sichtbare Einlösen-Buttons für Twitch Drops an. |
