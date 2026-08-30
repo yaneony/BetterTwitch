@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BetterTwitch
 // @namespace    https://yaneony.com
-// @version      2.0.6
+// @version      2.1.0
 // @description  A Twitch chat enhancement suite with live statistics, viewer hovercards, translation, notifications, filters, and layout controls.
 // @description:de Eine Twitch-Chat-Erweiterung mit Live-Statistik, Zuschauer-Hovercards, Übersetzung, Benachrichtigungen, Filtern und Layout-Steuerung.
 // @description:ru Расширение чата Twitch со статистикой, карточками зрителей, переводом, уведомлениями, фильтрами и настройкой интерфейса.
@@ -43,6 +43,9 @@
       hideCommunityHighlights: 'Hide community highlights',
       secPlayerRewards: 'Player & rewards',
       autoQuality: 'Prefer source quality',
+      preventRaidRedirects: 'Stay on channel after raids',
+      offlineRefreshMinutes: 'Offline refresh interval',
+      disabledValue: 'Off', minuteShortSetting: 'min',
       autoClaimPoints: 'Auto-claim bonus chest',
       autoClaimDrops: 'Auto-claim Drops',
       secNotifications: 'Notifications',
@@ -139,6 +142,9 @@
       hideCommunityHighlights: 'Community-Highlights ausblenden',
       secPlayerRewards: 'Player & Belohnungen',
       autoQuality: 'Quellqualität bevorzugen',
+      preventRaidRedirects: 'Nach Raids auf dem Kanal bleiben',
+      offlineRefreshMinutes: 'Neuladeintervall bei Offline-Kanälen',
+      disabledValue: 'Aus', minuteShortSetting: 'Min.',
       autoClaimPoints: 'Bonus-Truhe automatisch einlösen',
       autoClaimDrops: 'Drops automatisch einlösen',
       secNotifications: 'Benachrichtigungen',
@@ -235,6 +241,9 @@
       hideCommunityHighlights: 'Скрыть важные сообщения',
       secPlayerRewards: 'Плеер и награды',
       autoQuality: 'Предпочитать исходное качество',
+      preventRaidRedirects: 'Оставаться на канале после рейда',
+      offlineRefreshMinutes: 'Обновление канала не в сети',
+      disabledValue: 'Выкл.', minuteShortSetting: 'мин',
       autoClaimPoints: 'Авто-сбор бонусного сундука',
       autoClaimDrops: 'Авто-сбор Drops',
       secNotifications: 'Уведомления',
@@ -325,6 +334,8 @@
       hideLeaderboard: 'Hides only Twitch’s animated top-user slider above chat. Depending on the channel, this strip can rank Bits cheerers, gift-sub gifters, or other leading supporters. It does not hide pinned messages, community highlights, chat notices, or the composer. The slider is hidden only in your browser.',
       hideCommunityHighlights: 'Hides Twitch’s community-highlight stack above the message list, including pinned messages and any other cards Twitch places in that same stack. It does not unpin or delete anything, and other viewers still see it. The top-user slider has a separate setting and is not affected.',
       autoQuality: 'Stores Twitch’s "source/chunked" quality preference so the player tries to select the highest quality offered by the current stream. It cannot create a source-quality option when the streamer does not provide one, and Twitch may still change quality because of player or connection conditions. Higher quality can use more bandwidth.',
+      preventRaidRedirects: 'Automatically uses Twitch’s Leave control when a raid countdown appears so you remain on the current channel. If Twitch redirects first, BetterTwitch also returns from raid-marked destination URLs to the previous channel in this tab. This affects automatic raid navigation only; you can still open another channel yourself.',
+      offlineRefreshMinutes: 'Reloads a channel page at the selected interval while Twitch reports that channel as offline. Choose 1 to 60 minutes in one-minute steps, or 0 (Off) to disable it. Reloading stops after Twitch reports the channel live or when you navigate away, and directories, videos, settings, dashboards, and chat popouts are never refreshed.',
       autoClaimPoints: 'Automatically clicks the bonus channel-points chest when Twitch makes that chest available in chat. It only collects the free bonus: it never spends points, chooses rewards, follows channels, or performs predictions. If Twitch does not display a claimable chest, there is nothing for BetterTwitch to click.',
       autoClaimDrops: 'Automatically clicks a visible Twitch Drops "Claim" button when one appears on a supported Twitch page. It cannot complete eligibility requirements, link external accounts, visit another website, or claim a reward that Twitch still considers locked. Check Twitch’s Drops inventory if a campaign requires extra manual steps.',
       mentionSound: 'Plays the selected BetterTwitch sound when a message from another user mentions your currently logged-in Twitch username. Your own messages are ignored, and rapid alerts are rate-limited so a burst of mentions does not play continuously. Most browsers require you to click or interact with the page once before they allow notification audio.',
@@ -368,6 +379,8 @@
       hideLeaderboard: 'Blendet ausschließlich Twitchs animiertes Top-Nutzer-Karussell über dem Chat aus. Je nach Kanal zeigt dieser Streifen führende Bits-Spender, Geschenkabo-Spender oder andere Unterstützer. Angeheftete Nachrichten, Community-Highlights, Chat-Hinweise und Eingabefeld bleiben sichtbar. Das Karussell wird nur in deinem Browser ausgeblendet.',
       hideCommunityHighlights: 'Blendet Twitchs Community-Highlight-Stapel über der Nachrichtenliste aus, einschließlich angehefteter Nachrichten und weiterer Karten, die Twitch in diesem Stapel anzeigt. Nichts wird gelöst oder gelöscht und andere Zuschauer sehen alles weiterhin. Das Top-Nutzer-Karussell besitzt eine eigene Einstellung und bleibt unverändert.',
       autoQuality: 'Speichert bei Twitch die Qualitätspräferenz „Quelle/Chunked", damit der Player die höchste vom aktuellen Stream angebotene Qualität versucht. Die Einstellung kann keine Quellqualität erzeugen, wenn der Streamer sie nicht anbietet, und Twitch kann die Qualität wegen Player- oder Verbindungsbedingungen weiterhin ändern. Höhere Qualität kann mehr Datenvolumen verbrauchen.',
+      preventRaidRedirects: 'Verwendet automatisch Twitchs Verlassen-Button, sobald ein Raid-Countdown erscheint, damit du auf dem aktuellen Kanal bleibst. Falls Twitch vorher weiterleitet, kehrt BetterTwitch von einer als Raid markierten Zieladresse zum vorherigen Kanal dieses Tabs zurück. Nur automatische Raid-Wechsel werden verhindert; andere Kanäle kannst du weiterhin selbst öffnen.',
+      offlineRefreshMinutes: 'Lädt eine Kanalseite im gewählten Abstand neu, solange Twitch den Kanal als offline meldet. Wähle 1 bis 60 Minuten in Minutenschritten oder 0 (Aus), um die Funktion zu deaktivieren. Das Neuladen endet, nachdem Twitch den Kanal als live meldet oder du die Seite wechselst; Verzeichnisse, Videos, Einstellungen, Dashboards und Chat-Popouts werden nie neu geladen.',
       autoClaimPoints: 'Klickt automatisch auf die Kanalpunkte-Bonustruhe, sobald Twitch sie im Chat anbietet. Es wird ausschließlich der kostenlose Bonus eingesammelt: BetterTwitch gibt keine Punkte aus, wählt keine Belohnungen, folgt keinem Kanal und nimmt nicht an Vorhersagen teil. Zeigt Twitch keine einlösbare Truhe an, gibt es nichts anzuklicken.',
       autoClaimDrops: 'Klickt automatisch auf einen sichtbaren „Einlösen"-Button für Twitch Drops, wenn er auf einer unterstützten Twitch-Seite erscheint. BetterTwitch kann keine Teilnahmebedingungen erfüllen, externe Konten verknüpfen, andere Webseiten besuchen oder noch gesperrte Belohnungen einlösen. Prüfe Twitchs Drops-Inventar, wenn eine Kampagne zusätzliche manuelle Schritte verlangt.',
       mentionSound: 'Spielt den gewählten BetterTwitch-Ton ab, wenn ein anderer Benutzer deinen aktuell angemeldeten Twitch-Namen erwähnt. Eigene Nachrichten werden ignoriert und schnelle Meldungen werden begrenzt, damit bei vielen Erwähnungen kein Dauerton entsteht. Die meisten Browser erlauben Benachrichtigungstöne erst, nachdem du einmal auf der Seite geklickt oder mit ihr interagiert hast.',
@@ -411,6 +424,8 @@
       hideLeaderboard: 'Скрывает только анимированную карусель лидеров над чатом. В зависимости от канала в ней показываются лидеры по Bits, подарочным подпискам или другой поддержке. Закреплённые сообщения, важные карточки, уведомления чата и поле ввода остаются видимыми. Карусель скрывается только в вашем браузере.',
       hideCommunityHighlights: 'Скрывает блок важных карточек Twitch над списком сообщений, включая закреплённые сообщения и другие карточки в том же блоке. Ничего не открепляется и не удаляется, остальные зрители продолжают всё видеть. Карусель лидеров настраивается отдельно и не затрагивается.',
       autoQuality: 'Сохраняет в Twitch предпочтение качества «Исходное/Chunked», чтобы плеер пытался выбрать самое высокое качество, доступное у текущей трансляции. Настройка не может создать исходное качество, если стример его не предоставляет, а Twitch всё равно может менять качество из-за состояния плеера или соединения. Более высокое качество может расходовать больше трафика.',
+      preventRaidRedirects: 'Автоматически нажимает кнопку выхода Twitch при появлении обратного отсчёта рейда, чтобы вы остались на текущем канале. Если Twitch успеет перенаправить страницу, BetterTwitch также вернётся с помеченного как рейд адреса на предыдущий канал этой вкладки. Блокируется только автоматический переход рейда; другие каналы можно открывать вручную.',
+      offlineRefreshMinutes: 'Перезагружает страницу канала с выбранным интервалом, пока Twitch сообщает, что канал не в сети. Выберите от 1 до 60 минут с шагом в одну минуту или 0 (Выкл.), чтобы отключить функцию. Обновление прекращается после того, как Twitch сообщает о начале эфира, или при переходе на другую страницу; каталоги, видео, настройки, панели и отдельный чат не обновляются.',
       autoClaimPoints: 'Автоматически нажимает на бонусный сундук баллов канала, когда Twitch показывает его в чате. Получается только бесплатный бонус: BetterTwitch не тратит баллы, не выбирает награды, не подписывается на каналы и не участвует в прогнозах. Если Twitch не показывает доступный сундук, нажимать нечего.',
       autoClaimDrops: 'Автоматически нажимает видимую кнопку «Получить» для Twitch Drops, когда она появляется на поддерживаемой странице Twitch. BetterTwitch не может выполнить условия участия, привязать сторонние аккаунты, открыть другой сайт или получить награду, которую Twitch ещё считает заблокированной. Если кампания требует дополнительных действий, проверьте инвентарь Drops на Twitch.',
       mentionSound: 'Воспроизводит выбранный звук BetterTwitch, когда другой пользователь упоминает имя вашей текущей учётной записи Twitch. Собственные сообщения игнорируются, а частые сигналы ограничиваются, чтобы серия упоминаний не создавала непрерывный шум. Большинство браузеров разрешает звук уведомлений только после первого клика или другого взаимодействия со страницей.',
@@ -470,7 +485,7 @@
     );
   }
 
-  const VERSION = '2.0.6';
+  const VERSION = '2.1.0';
   const PROJECT_URL = 'https://github.com/yaneony/BetterTwitch';
   const AUTHOR_URL = 'https://yaneony.com';
   const STORAGE_KEY = 'BetterTwitch-settings';
@@ -479,6 +494,7 @@
   const DEFAULT_MESSAGE_LIMIT = 500;
   const SPAM_WINDOW_MS = 12000;
   const SPAM_MIN_MATCHES = 3;
+  const LOGIN_RE = /^[a-z0-9_]{1,30}$/;
   const APPEARANCE_PROFILES = new Set(['comfortable', 'compact', 'accessible']);
   const PING_SOUND_NAMES = new Set([
     'message', 'pop', 'drop', 'knock', 'glass', 'pluck', 'orbit', 'pixel', 'bell', 'spark',
@@ -494,6 +510,7 @@
     hideBadges: false, showAvatars: false, msgSeparators: false,
     hideLeaderboard: false, hideCommunityHighlights: false,
     autoClaimPoints: true, autoClaimDrops: true, autoQuality: false,
+    preventRaidRedirects: false, offlineRefreshMinutes: 0,
     mentionSound: true, mentionReplyPing: true,
     pingSound: 'message', pingVolume: 0.35,
     mentionHighlight: true, highlightMods: false, highlightVips: false,
@@ -515,7 +532,7 @@
     'markSingleDeletes', 'markTimeouts', 'markFullClear',
     'chatWidthEnabled', 'hideBadges', 'showAvatars', 'msgSeparators',
     'hideLeaderboard', 'hideCommunityHighlights',
-    'autoClaimPoints', 'autoClaimDrops', 'autoQuality',
+    'autoClaimPoints', 'autoClaimDrops', 'autoQuality', 'preventRaidRedirects',
     'mentionSound', 'mentionReplyPing', 'mentionHighlight', 'highlightMods', 'highlightVips',
     'fixNameColors', 'copyButton', 'hideCommands', 'hideBots',
     'inlineTranslate', 'mentionInbox', 'viewerHovercards',
@@ -542,6 +559,7 @@
     if (key === 'chatWidthPx') return typeof value === 'number' && Number.isFinite(value) && value >= DEFAULT_CHAT_PX && value <= MAX_CHAT_PX;
     if (key === 'pingVolume') return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1;
     if (key === 'mentionContextMessages') return Number.isInteger(value) && value >= 0 && value <= 3;
+    if (key === 'offlineRefreshMinutes') return Number.isInteger(value) && value >= 0 && value <= 60;
     if (key === 'botNames') return typeof value === 'string' && value.length <= 2000;
     if (key === 'appearanceProfile') return typeof value === 'string' && APPEARANCE_PROFILES.has(value);
     return false;
@@ -578,6 +596,194 @@
   try { localStorage.removeItem('BetterTwitch-chat-drafts'); } catch (e) {}
 
   function saveConfig() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(CONFIG)); } catch (e) {} }
+
+  const LAST_CHANNEL_URL_KEY = 'BetterTwitch-last-channel-url';
+  const OFFLINE_CHANNEL_SELECTORS = [
+    '[data-a-target="offline-channel-main-content"]',
+    '[data-test-selector="offline-channel-main-content"]',
+    '[data-a-target="home-offline-hero-image"]',
+    '[data-test-selector="home-offline-hero-image"]',
+    'main [data-a-target*="offline-channel"]',
+    'main [data-test-selector*="offline-channel"]',
+  ].join(',');
+  const RESERVED_CHANNEL_ROUTES = new Set([
+    'browse', 'creatorcamp', 'directory', 'downloads', 'drops', 'following', 'inventory', 'jobs',
+    'moderator', 'p', 'payments', 'popout', 'prime', 'products', 'search', 'settings', 'store',
+    'subscriptions', 'team', 'turbo', 'twitchcon', 'videos', 'wallet',
+  ]);
+  const RAID_LEAVE_BUTTON_SELECTOR = [
+    'button[data-a-target*="raid"][data-a-target*="leave"]',
+    'button[data-a-target*="raid"][data-a-target*="opt-out"]',
+    'button[data-test-selector*="raid"][data-test-selector*="leave"]',
+    'button[data-test-selector*="raid"][data-test-selector*="opt-out"]',
+  ].join(',');
+  const RAID_NOTICE_SELECTOR = [
+    '[data-a-target*="raid-notification"]',
+    '[data-test-selector*="raid-notification"]',
+    '[data-a-target*="raid-banner"]',
+    '[data-test-selector*="raid-banner"]',
+  ].join(',');
+  const RAID_LEAVE_TEXT_RE = /^(?:leave|leave raid|opt out|verlassen|raid verlassen|покинуть|покинуть рейд|выйти|выйти из рейда)$/i;
+  const raidLeaveAttempts = new WeakMap();
+  let offlineRefreshTimer = null;
+  let offlineRefreshRoute = '';
+  let offlineRefreshMinutesScheduled = 0;
+  let offlineStatusLogin = '';
+  let offlineStatus = null;
+  let offlineStatusRequest = null;
+  let offlineStatusCheckedAt = 0;
+
+  function channelLoginFromUrl(value) {
+    if (!value) return '';
+    let url;
+    try { url = value instanceof URL ? value : new URL(value, location.href); } catch (e) { return ''; }
+    if (url.hostname !== 'www.twitch.tv') return '';
+    const parts = url.pathname.split('/').filter(Boolean);
+    if (parts.length !== 1) return '';
+    const login = parts[0].toLowerCase();
+    return LOGIN_RE.test(login) && !RESERVED_CHANNEL_ROUTES.has(login) ? login : '';
+  }
+
+  function normalizedChannelUrl(value) {
+    if (!value) return '';
+    const login = channelLoginFromUrl(value);
+    return login ? 'https://www.twitch.tv/' + login : '';
+  }
+
+  function isRaidDestinationUrl(value) {
+    let url;
+    try { url = value instanceof URL ? value : new URL(value, location.href); } catch (e) { return false; }
+    const referrer = (url.searchParams.get('referrer') || '').toLowerCase();
+    return referrer === 'raid' || referrer.startsWith('raid_') || referrer.endsWith('_raid');
+  }
+
+  function syncRaidRouteProtection() {
+    const currentUrl = new URL(location.href);
+    const currentChannelUrl = normalizedChannelUrl(currentUrl);
+    if (CONFIG.preventRaidRedirects && currentChannelUrl && isRaidDestinationUrl(currentUrl)) {
+      let previousUrl = '';
+      try { previousUrl = normalizedChannelUrl(sessionStorage.getItem(LAST_CHANNEL_URL_KEY) || ''); } catch (e) {}
+      if (!previousUrl) previousUrl = normalizedChannelUrl(document.referrer || '');
+      if (previousUrl && previousUrl !== currentChannelUrl) {
+        location.replace(previousUrl);
+        return true;
+      }
+    }
+    if (currentChannelUrl && !isRaidDestinationUrl(currentUrl)) {
+      try { sessionStorage.setItem(LAST_CHANNEL_URL_KEY, currentChannelUrl); } catch (e) {}
+    }
+    return false;
+  }
+
+  function visibleElement(element) {
+    return !!(element && element.isConnected && element.getClientRects().length);
+  }
+
+  function findRaidLeaveButton() {
+    const direct = Array.from(document.querySelectorAll(RAID_LEAVE_BUTTON_SELECTOR)).find(visibleElement);
+    if (direct) return direct;
+    for (const notice of document.querySelectorAll(RAID_NOTICE_SELECTOR)) {
+      if (!visibleElement(notice)) continue;
+      const button = Array.from(notice.querySelectorAll('button')).find((candidate) => {
+        if (!visibleElement(candidate)) return false;
+        const label = (candidate.getAttribute('aria-label') || candidate.textContent || '').replace(/\s+/g, ' ').trim();
+        return RAID_LEAVE_TEXT_RE.test(label);
+      });
+      if (button) return button;
+    }
+    return null;
+  }
+
+  function optOutOfRaid() {
+    if (!CONFIG.preventRaidRedirects) return;
+    const button = findRaidLeaveButton();
+    if (!button) return;
+    const now = Date.now();
+    if (now - (raidLeaveAttempts.get(button) || 0) < 1500) return;
+    raidLeaveAttempts.set(button, now);
+    button.click();
+  }
+
+  function resetOfflineStatus(login) {
+    if (login === offlineStatusLogin) return;
+    offlineStatusLogin = login;
+    offlineStatus = null;
+    offlineStatusRequest = null;
+    offlineStatusCheckedAt = 0;
+  }
+
+  function requestOfflineStatus(login) {
+    resetOfflineStatus(login);
+    if (!login || offlineStatus !== null || offlineStatusRequest || Date.now() - offlineStatusCheckedAt < 60000) return;
+    offlineStatusCheckedAt = Date.now();
+    const query = 'query{user(login:"' + login + '"){stream{id}}}';
+    offlineStatusRequest = fetchWithTimeout('https://gql.twitch.tv/gql', {
+      method: 'POST',
+      headers: { 'Client-ID': 'kimne78kx3ncx6brgo4mv6wki5h1ko', 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ query }),
+    }, NETWORK_TIMEOUT_MS).then((response) => {
+      if (!response.ok) throw new Error('Twitch channel status request failed');
+      return response.json();
+    }).then((payload) => {
+      const user = payload && payload.data && payload.data.user;
+      if (offlineStatusLogin === login) offlineStatus = user ? !user.stream : false;
+    }).catch(() => {
+      if (offlineStatusLogin === login) offlineStatus = null;
+    }).finally(() => {
+      if (offlineStatusLogin === login) offlineStatusRequest = null;
+      syncOfflineRefresh();
+    });
+  }
+
+  function twitchShowsChannelOffline(login) {
+    if (!login) return false;
+    const marker = Array.from(document.querySelectorAll(OFFLINE_CHANNEL_SELECTORS)).find(visibleElement);
+    return !!marker || (offlineStatusLogin === login && offlineStatus === true);
+  }
+
+  function clearOfflineRefresh() {
+    if (offlineRefreshTimer) clearTimeout(offlineRefreshTimer);
+    offlineRefreshTimer = null;
+    offlineRefreshRoute = '';
+    offlineRefreshMinutesScheduled = 0;
+  }
+
+  function syncOfflineRefresh() {
+    const minutes = CONFIG.offlineRefreshMinutes;
+    const login = channelLoginFromUrl(location.href);
+    const route = normalizedChannelUrl(location.href);
+    if (!minutes || !login || isRaidDestinationUrl(location.href)) {
+      clearOfflineRefresh();
+      resetOfflineStatus('');
+      return;
+    }
+    requestOfflineStatus(login);
+    if (!twitchShowsChannelOffline(login)) {
+      clearOfflineRefresh();
+      return;
+    }
+    if (offlineRefreshTimer && offlineRefreshRoute === route && offlineRefreshMinutesScheduled === minutes) return;
+    clearOfflineRefresh();
+    offlineRefreshRoute = route;
+    offlineRefreshMinutesScheduled = minutes;
+    offlineRefreshTimer = setTimeout(() => {
+      offlineRefreshTimer = null;
+      if (CONFIG.offlineRefreshMinutes && normalizedChannelUrl(location.href) === route && twitchShowsChannelOffline(login)) {
+        location.reload();
+      } else {
+        syncOfflineRefresh();
+      }
+    }, minutes * 60 * 1000);
+  }
+
+  function syncNavigationFeatures() {
+    if (syncRaidRouteProtection()) return true;
+    optOutOfRaid();
+    syncOfflineRefresh();
+    return false;
+  }
+
+  syncRaidRouteProtection();
 
   function chatWidth() { return CONFIG.chatWidthEnabled ? CONFIG.chatWidthPx + 'px' : null; }
 
@@ -2527,7 +2733,6 @@
     return false;
   }
 
-  const LOGIN_RE = /^[a-z0-9_]{1,30}$/;
   const AVATAR_BATCH = 50;
   const MAX_AVATAR_CACHE = 500;
   const MAX_AVATAR_PENDING = 250;
@@ -4041,6 +4246,7 @@
   function formatVal(k, v) {
     if (k === 'chatWidthPx') return v + 'px';
     if (k === 'pingVolume') return Math.round(v * 100) + '%';
+    if (k === 'offlineRefreshMinutes') return v ? v + ' ' + t('minuteShortSetting') : t('disabledValue');
     return '' + v;
   }
 
@@ -4078,7 +4284,7 @@
     ensureComposerTools();
   }
 
-  function refresh() { applyLayout(); applyVars(); applyAutoQuality(true); ensureExtraButtons(); syncFeatureSurfaces(); syncAll(); }
+  function refresh() { applyLayout(); applyVars(); applyAutoQuality(true); ensureExtraButtons(); syncFeatureSurfaces(); syncNavigationFeatures(); syncAll(); }
 
   function settingDisabled(key) {
     const parents = {
@@ -4297,6 +4503,8 @@
 
       ${secHead('secPlayerRewards')}
       <label class="bt-row"><input type="checkbox" data-k="autoQuality"> ${t('autoQuality')}</label>
+      <label class="bt-row"><input type="checkbox" data-k="preventRaidRedirects"> ${t('preventRaidRedirects')}</label>
+      <div class="bt-rowflex"><span style="flex:1">${t('offlineRefreshMinutes')}</span><input type="range" min="0" max="60" step="1" data-k="offlineRefreshMinutes"><span class="bt-val" data-val-for="offlineRefreshMinutes"></span></div>
       <label class="bt-row"><input type="checkbox" data-k="autoClaimPoints"> ${t('autoClaimPoints')}</label>
       <label class="bt-row"><input type="checkbox" data-k="autoClaimDrops"> ${t('autoClaimDrops')}</label>
 
@@ -4568,7 +4776,7 @@
 
   function ensureUI() { ensureTwitchTheme(); injectStyle(); applyVars(); ensurePanel(); ensureSettingsButton(); ensureExtraButtons(); ensureChatObserver(); ensureChatTopSurfaceObserver(); applyAutoQuality(); syncFeatureSurfaces(); }
 
-  function tick() { ensureUI(); applyLayout(); reSyncOnLogin(); }
+  function tick() { if (syncNavigationFeatures()) return; ensureUI(); applyLayout(); reSyncOnLogin(); }
 
   if (document.body) tick(); else document.addEventListener('DOMContentLoaded', tick);
 

@@ -75,6 +75,8 @@ BetterTwitch is a lightweight userscript focused on making Twitch chat easier to
 ### Player and rewards
 
 - Prefer Twitch's source/chunked video quality.
+- Stay on the current channel when Twitch starts a raid redirect.
+- Reload offline channel pages on a configurable 1–60 minute interval, or disable refreshing with 0.
 - Automatically claim the channel-points bonus chest.
 - Automatically click visible Twitch Drops claim buttons.
 
@@ -140,6 +142,8 @@ Updates are delivered from the same raw GitHub URL by your userscript manager. I
 | Message filters | Hide bot messages | Locally hides messages from the configured bot list. |
 | Message filters | Bot names | Sets a comma-separated, case-insensitive list of Twitch login names. |
 | Player & rewards | Prefer source quality | Saves Twitch's source-quality preference in local storage. |
+| Player & rewards | Stay on channel after raids | Uses Twitch's raid opt-out and returns from raid-marked redirects to the previous channel. |
+| Player & rewards | Offline refresh interval | Reloads an offline channel every 1–60 minutes; 0 disables it. |
 | Player & rewards | Auto-claim bonus chest | Clicks the channel-points bonus chest when Twitch displays it. |
 | Player & rewards | Auto-claim Drops | Clicks visible Twitch Drops claim buttons. |
 
@@ -166,6 +170,7 @@ Updates are delivered from the same raw GitHub URL by your userscript manager. I
 - Mention history lives only in memory for the current page session and uses the limits listed above. Viewer hovercards and dashboard statistics are additionally reset when the chat room changes.
 - Duplicate groups, chat filters, and search results stay local to the current page. Link safety examines URL text only and does not fetch destination pages.
 - If **Show user avatars** or **Viewer hovercards** is enabled, validated Twitch login names needed for chat, dashboard, or hovercard profile images are sent in batched requests to Twitch's GraphQL endpoint.
+- If **Offline refresh interval** is enabled on a channel page, that channel's validated login is sent to Twitch's GraphQL endpoint to confirm whether it is offline.
 - If you click **Translate**, that message's text is sent to `translate.googleapis.com`; translations are cached in memory for the session.
 - BetterTwitch contains no telemetry, analytics, advertising, or BetterTwitch-operated backend.
 

@@ -75,6 +75,8 @@ BetterTwitch ist ein schlankes Userscript, mit dem sich der Twitch-Chat leichter
 ### Player und Belohnungen
 
 - Bevorzuge automatisch Twitchs Quell-/Chunked-Videoqualität.
+- Bleibe auf dem aktuellen Kanal, wenn Twitch einen Raid-Wechsel startet.
+- Lade Offline-Kanäle in einem einstellbaren Intervall von 1–60 Minuten neu oder deaktiviere das Neuladen mit 0.
 - Löse die Kanalpunkte-Bonustruhe automatisch ein.
 - Klicke sichtbare Einlösen-Buttons für Twitch Drops automatisch an.
 
@@ -140,6 +142,8 @@ Aktualisierungen werden durch den Userscript-Manager über dieselbe GitHub-Raw-U
 | Nachrichtenfilter | Bot-Nachrichten ausblenden | Blendet lokal Nachrichten aus der konfigurierten Bot-Liste aus. |
 | Nachrichtenfilter | Bot-Namen | Kommagetrennte, nicht von Groß-/Kleinschreibung abhängige Twitch-Login-Namen. |
 | Player & Belohnungen | Quellqualität bevorzugen | Speichert Twitchs Quellqualitäts-Einstellung im lokalen Speicher. |
+| Player & Belohnungen | Nach Raids auf dem Kanal bleiben | Verwendet Twitchs Raid-Ausstieg und kehrt von Raid-Zieladressen zum vorherigen Kanal zurück. |
+| Player & Belohnungen | Neuladeintervall bei Offline-Kanälen | Lädt einen Offline-Kanal alle 1–60 Minuten neu; 0 deaktiviert die Funktion. |
 | Player & Belohnungen | Bonus-Truhe automatisch einlösen | Klickt die Kanalpunkte-Bonustruhe an, wenn Twitch sie anzeigt. |
 | Player & Belohnungen | Drops automatisch einlösen | Klickt sichtbare Einlösen-Buttons für Twitch Drops an. |
 
@@ -166,6 +170,7 @@ Aktualisierungen werden durch den Userscript-Manager über dieselbe GitHub-Raw-U
 - Erwähnungen bleiben nur im Arbeitsspeicher der aktuellen Seitensitzung und verwenden die oben genannten Grenzen. Hovercard- und Dashboard-Statistiken werden zusätzlich beim Wechsel des Chatraums zurückgesetzt.
 - Wiederholungsgruppen, Chat-Filter und Suchergebnisse bleiben lokal auf der aktuellen Seite. Die Link-Prüfung untersucht nur den URL-Text und ruft die Zielseite nicht ab.
 - Wenn **Benutzer-Avatare anzeigen** oder **Zuschauer-Hovercards** aktiviert ist, werden geprüfte Twitch-Login-Namen für Profilbilder in Chat, Dashboard oder Hovercard gebündelt an Twitchs GraphQL-Endpunkt gesendet.
+- Wenn das **Neuladeintervall bei Offline-Kanälen** auf einer Kanalseite aktiviert ist, wird der geprüfte Login dieses Kanals an Twitchs GraphQL-Endpunkt gesendet, um den Offline-Status zu bestätigen.
 - Nur nach einem Klick auf **Übersetzen** wird der Text dieser Nachricht an `translate.googleapis.com` gesendet; Ergebnisse werden für die Sitzung zwischengespeichert.
 - BetterTwitch enthält keine Telemetrie, Analyse, Werbung oder ein von BetterTwitch betriebenes Backend.
 

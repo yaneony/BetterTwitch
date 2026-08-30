@@ -2,6 +2,13 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [2.1.0] - 2026-08-30
+
+### Added
+
+- **Stay on channel after raids** automatically leaves Twitch raid countdowns and returns from raid-marked destination URLs when Twitch redirects before the opt-out is applied.
+- **Offline refresh interval** reloads offline channel pages every 1 to 60 minutes, with `0` disabling the feature. Channel state is checked directly with Twitch and non-channel pages are excluded.
+
 ## [2.0.6] - 2026-07-31
 
 ### Fixed
