@@ -72,6 +72,7 @@
       savedNote: 'Saved automatically.',
       settingsBtnTitle: 'BetterTwitch settings',
       alertCopied: 'Copied to clipboard.',
+      alertCopyFailed: 'Copy failed. Press Ctrl/Cmd+C to copy the selected text.',
       copyMessage: 'Copy message',
       alertInvalidSettings: 'Invalid settings data.',
       confirmReset: 'Reset all BetterTwitch settings to defaults?',
@@ -171,6 +172,7 @@
       savedNote: 'Automatisch gespeichert.',
       settingsBtnTitle: 'BetterTwitch-Einstellungen',
       alertCopied: 'In die Zwischenablage kopiert.',
+      alertCopyFailed: 'Kopieren fehlgeschlagen. Drücke Strg/Cmd+C, um den markierten Text zu kopieren.',
       copyMessage: 'Nachricht kopieren',
       alertInvalidSettings: 'Ungültige Einstellungsdaten.',
       confirmReset: 'Alle BetterTwitch-Einstellungen auf Standard zurücksetzen?',
@@ -270,6 +272,7 @@
       savedNote: 'Сохраняется автоматически.',
       settingsBtnTitle: 'Настройки BetterTwitch',
       alertCopied: 'Скопировано в буфер обмена.',
+      alertCopyFailed: 'Не удалось скопировать. Нажмите Ctrl/Cmd+C, чтобы скопировать выделенный текст.',
       copyMessage: 'Копировать сообщение',
       alertInvalidSettings: 'Некорректные данные настроек.',
       confirmReset: 'Сбросить все настройки BetterTwitch к значениям по умолчанию?',
@@ -355,7 +358,7 @@
       hideBots: 'Locally hides messages sent by usernames listed in the bot field below. Matching ignores uppercase/lowercase differences, but the username still needs to be spelled correctly. Nothing is blocked, reported, timed out, or deleted on Twitch; other viewers continue to see those messages.',
       botNames: 'Enter the Twitch login names that "Hide bot messages" should match, separated by commas - for example: nightbot, streamelements. Do not include @ symbols, display-name decorations, or profile links. This field has no effect until "Hide bot messages" is enabled, and a misspelled name will not match.',
       inlineTranslate: 'Adds a Translate action to each message toolbar. Translation is requested only when you click it; the clicked message text is sent directly to Google’s public translation endpoint and translated into the selected or auto-detected BetterTwitch language. Results are cached for this page session and can be copied, retried, or switched back to the original; no BetterTwitch server is involved.',
-      mentionInbox: 'Adds a Mentions panel that collects incoming messages which mention your username or directly reply to you. It keeps only the 50 newest mentions, and its unread count is also capped at 50. The panel provides search, optional nearby context, and a button to jump to a message that is still visible. It records only messages received while this page is open; reloading, closing, or changing the room clears the session list.',
+      mentionInbox: 'Adds a Mentions panel that collects incoming messages which mention your username or directly reply to you. It keeps only the 50 newest mentions, and its unread count is also capped at 50. The panel provides search, optional nearby context, and a button to jump to a message that is still visible. It records only messages received while this page is open; reloading or closing clears the list, while channel changes keep mentions from the same page session.',
       mentionContextMessages: 'Chooses how many ordinary chat messages are saved before and after each item in the Mentions panel: 0, 1, 2, or 3 on each side. This control has no effect until the Mentions panel is enabled. A larger value provides more conversation context but displays and keeps more lines in memory; it does not send them to a server.',
       viewerHovercards: 'Shows a BetterTwitch information card with the viewer’s Twitch avatar when you hover over a username in chat. It summarizes only what BetterTwitch observed during the current page session, including message count, mentions, and most-used emote. The avatar is requested directly from Twitch and cached for the page session; this is not Twitch account history, and reloading or changing the room resets the observed statistics.',
       characterCounter: 'Shows the message’s current character count immediately before Twitch’s chat-settings button, using a slightly larger readable label. It compares the count with the limit detected from Twitch and falls back to 500 characters when no limit is available. The counter is guidance only: it does not shorten text or prevent Twitch from rejecting a message.',
@@ -400,7 +403,7 @@
       hideBots: 'Blendet lokal Nachrichten von Benutzernamen aus, die im Bot-Feld darunter stehen. Beim Vergleich ist Groß-/Kleinschreibung egal, der Name muss aber richtig geschrieben sein. Bei Twitch wird nichts blockiert, gemeldet, gesperrt oder gelöscht; andere Zuschauer sehen diese Nachrichten weiterhin.',
       botNames: 'Trage die Twitch-Login-Namen ein, die „Bot-Nachrichten ausblenden" erkennen soll, durch Kommas getrennt, zum Beispiel: nightbot, streamelements. Verwende keine @-Zeichen, Zusätze im Anzeigenamen oder Profillinks. Das Feld wirkt nur bei aktivierter Bot-Ausblendung; ein falsch geschriebener Name wird nicht erkannt.',
       inlineTranslate: 'Fügt jeder Nachrichtenleiste eine Übersetzungsaktion hinzu. Erst beim Anklicken wird der Text dieser einen Nachricht direkt an Googles öffentlichen Übersetzungsdienst gesendet und in die gewählte oder automatisch erkannte BetterTwitch-Sprache übersetzt. Ergebnisse werden für diese Seitensitzung zwischengespeichert und lassen sich kopieren, wiederholen oder gegen das Original umschalten; ein BetterTwitch-Server ist nicht beteiligt.',
-      mentionInbox: 'Fügt ein Erwähnungs-Panel hinzu, das eingehende Nachrichten mit deinem Benutzernamen oder direkte Antworten auf dich sammelt. Es behält nur die 50 neuesten Erwähnungen; auch der Ungelesen-Zähler ist auf 50 begrenzt. Das Panel bietet Suche, optionalen Kontext und einen Sprung-Button, solange die Nachricht noch sichtbar ist. Gespeichert werden nur Nachrichten, die bei geöffneter Seite eintreffen; Neuladen, Schließen oder Raumwechsel löscht die Sitzungsliste.',
+      mentionInbox: 'Fügt ein Erwähnungs-Panel hinzu, das eingehende Nachrichten mit deinem Benutzernamen oder direkte Antworten auf dich sammelt. Es behält nur die 50 neuesten Erwähnungen; auch der Ungelesen-Zähler ist auf 50 begrenzt. Das Panel bietet Suche, optionalen Kontext und einen Sprung-Button, solange die Nachricht noch sichtbar ist. Gespeichert werden nur Nachrichten der geöffneten Seite; Neuladen oder Schließen löscht die Liste, Kanalwechsel behalten Erwähnungen derselben Seitensitzung.',
       mentionContextMessages: 'Legt fest, wie viele normale Chat-Nachrichten vor und nach jedem Eintrag im Erwähnungs-Panel gespeichert werden: 0, 1, 2 oder 3 je Seite. Der Wert hat keine Wirkung, solange das Erwähnungs-Panel ausgeschaltet ist. Mehr Kontext zeigt und behält mehr Zeilen im Arbeitsspeicher, sendet sie aber an keinen Server.',
       viewerHovercards: 'Zeigt beim Überfahren eines Chat-Namens eine BetterTwitch-Infokarte mit dem Twitch-Avatar des Zuschauers. Sie fasst ausschließlich zusammen, was BetterTwitch in der aktuellen Seitensitzung gesehen hat: Nachrichtenanzahl, Erwähnungen und meistgenutztes Emote. Der Avatar wird direkt von Twitch abgerufen und für die Seitensitzung zwischengespeichert; dies ist kein Kontoverlauf, und Neuladen oder Raumwechsel setzt die beobachteten Statistiken zurück.',
       characterCounter: 'Zeigt die aktuelle Zeichenzahl direkt vor Twitchs Chat-Einstellungsbutton in einer etwas größeren, gut lesbaren Anzeige. Sie vergleicht den Wert mit dem von Twitch erkannten Limit und verwendet 500 Zeichen, falls kein Limit gefunden wird. Der Zähler dient nur als Orientierung: Er kürzt keinen Text und verhindert keine Ablehnung durch Twitch.',
@@ -445,7 +448,7 @@
       hideBots: 'Локально скрывает сообщения от имён, указанных в поле списка ботов ниже. Регистр букв не учитывается, но имя должно быть написано правильно. На Twitch ничего не блокируется, не отправляется в жалобы, не выдаётся таймаут и не удаляется; остальные зрители продолжают видеть эти сообщения.',
       botNames: 'Введите логины Twitch, которые должна распознавать настройка «Скрывать сообщения ботов», разделяя их запятыми, например: nightbot, streamelements. Не добавляйте символы @, украшения отображаемого имени или ссылки на профиль. Поле работает только при включённом скрытии ботов; имя с ошибкой не совпадёт.',
       inlineTranslate: 'Добавляет действие перевода в панель каждого сообщения. Текст конкретного сообщения отправляется напрямую в публичный сервис перевода Google только после нажатия кнопки и переводится на выбранный или автоматически определённый язык BetterTwitch. Результат кешируется на время сеанса страницы; его можно скопировать, запросить повторно или переключить на оригинал. Сервер BetterTwitch не используется.',
-      mentionInbox: 'Добавляет панель упоминаний, которая собирает входящие сообщения с вашим именем и прямые ответы на ваши сообщения. Она хранит только 50 последних упоминаний; счётчик непрочитанных также ограничен значением 50. В панели есть поиск, необязательный контекст и кнопка перехода, пока исходное сообщение ещё видно. Записываются только сообщения, полученные при открытой странице; перезагрузка, закрытие или смена комнаты очищает список сеанса.',
+      mentionInbox: 'Добавляет панель упоминаний, которая собирает входящие сообщения с вашим именем и прямые ответы на ваши сообщения. Она хранит только 50 последних упоминаний; счётчик непрочитанных также ограничен значением 50. В панели есть поиск, необязательный контекст и кнопка перехода, пока исходное сообщение ещё видно. Записываются только сообщения открытой страницы; перезагрузка или закрытие очищает список, а смена канала сохраняет упоминания той же сессии страницы.',
       mentionContextMessages: 'Определяет, сколько обычных сообщений сохраняется до и после каждого элемента панели упоминаний: 0, 1, 2 или 3 с каждой стороны. Значение ничего не меняет, пока панель упоминаний отключена. Чем больше число, тем больше строк показывается и хранится в памяти; на сервер они не отправляются.',
       viewerHovercards: 'Показывает при наведении на имя в чате информационную карточку BetterTwitch с аватаром зрителя Twitch. Карточка содержит только данные текущего сеанса страницы: количество сообщений, упоминания и самую частую эмоцию. Аватар запрашивается напрямую у Twitch и кешируется на время страницы; это не история аккаунта, а перезагрузка или смена комнаты сбрасывает собранную статистику.',
       characterCounter: 'Показывает текущее количество символов прямо перед кнопкой настроек чата Twitch более крупным и читаемым текстом. Счётчик сравнивает длину с лимитом, обнаруженным у Twitch, и использует запасное значение 500 символов, если лимит найти не удалось. Это только подсказка: текст не обрезается, и отказ Twitch в отправке не предотвращается.',
@@ -585,7 +588,14 @@
     try { parsed = JSON.parse(text); } catch (e) { return null; }
     if (!isPlainObject(parsed)) return null;
     for (const key of Object.keys(parsed)) {
-      if (Object.prototype.hasOwnProperty.call(DEFAULTS, key) && !validSettingValue(key, parsed[key])) return null;
+      if (Object.prototype.hasOwnProperty.call(DEFAULTS, key)) {
+        if (!validSettingValue(key, parsed[key])) return null;
+        continue;
+      }
+      // Keep the one supported legacy import migration, but reject misspelled or
+      // otherwise unknown keys instead of silently replacing them with defaults.
+      if (key === 'preventRaidRedirects' && typeof parsed[key] === 'boolean') continue;
+      return null;
     }
     return normalizeConfig(parsed);
   }
@@ -873,6 +883,17 @@
       return await fetch(url, Object.assign({}, options || {}, { signal: controller.signal }));
     } finally {
       clearTimeout(timer);
+    }
+  }
+
+  function writeClipboardText(text) {
+    if (!navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+      return Promise.reject(new Error('Clipboard API unavailable'));
+    }
+    try {
+      return Promise.resolve(navigator.clipboard.writeText(String(text || '')));
+    } catch (error) {
+      return Promise.reject(error);
     }
   }
 
@@ -1960,13 +1981,10 @@
     copy.addEventListener('click', (event) => {
       event.stopPropagation();
       const normalLabel = t('copyTranslation');
-      try {
-        const copied = navigator.clipboard.writeText(result.text);
-        Promise.resolve(copied).then(() => {
-          copy.textContent = t('translationCopied');
-          setTimeout(() => { if (copy.isConnected) copy.textContent = normalLabel; }, 1200);
-        }).catch(() => {});
-      } catch (e) {}
+      writeClipboardText(result.text).then(() => {
+        copy.textContent = t('translationCopied');
+        setTimeout(() => { if (copy.isConnected) copy.textContent = normalLabel; }, 1200);
+      }).catch(() => {});
     });
     out.appendChild(meta);
     out.appendChild(text);
@@ -2293,14 +2311,52 @@
       nested.getAttribute('data-a-message-id') || nested.getAttribute('data-id') || '';
   }
 
-  function updateSpamGroup(group) {
-    if (!group || !group.root || !group.root.isConnected) return;
+  function clearSpamLineVisuals(line) {
+    if (!line) return;
+    line.classList.remove('bt-spam-root', 'bt-spam-duplicate', 'bt-spam-show');
+    const button = line.querySelector('.bt-spam-toggle');
+    if (button) button.remove();
+  }
+
+  function clearSpamGroupVisuals(group) {
+    if (!group) return;
+    const lines = new Set(group.lines || []);
+    if (group.root) lines.add(group.root);
+    lines.forEach(clearSpamLineVisuals);
+    group.button = null;
+  }
+
+  function reconcileSpamGroup(group) {
+    if (!group) return false;
     group.lines = group.lines.filter((line) => line.isConnected);
+    if (!group.lines.length) {
+      group.root = null;
+      group.button = null;
+      return false;
+    }
+    if (!group.root || !group.root.isConnected || !group.lines.includes(group.root)) {
+      clearSpamGroupVisuals(group);
+      group.root = group.lines[0];
+    }
+    if (group.button && (!group.button.isConnected || !group.root.contains(group.button))) {
+      if (group.button.isConnected) group.button.remove();
+      group.button = null;
+    }
+    return true;
+  }
+
+  function updateSpamGroup(group) {
+    if (!reconcileSpamGroup(group)) return false;
     const count = group.lines.length;
-    if (count < SPAM_MIN_MATCHES) return;
+    if (count < SPAM_MIN_MATCHES) {
+      clearSpamGroupVisuals(group);
+      return true;
+    }
+    group.root.classList.remove('bt-spam-duplicate', 'bt-spam-show');
     group.root.classList.add('bt-spam-root');
     group.lines.slice(1).forEach((line) => {
       if (!line.isConnected) return;
+      line.classList.remove('bt-spam-root');
       line.classList.add('bt-spam-duplicate');
       line.classList.toggle('bt-spam-show', group.expanded);
     });
@@ -2321,9 +2377,17 @@
     group.button.title = group.expanded ? t('spamCollapse') : t('spamExpand');
     group.button.setAttribute('aria-label', group.button.title + ': ' + count);
     group.button.setAttribute('aria-expanded', group.expanded ? 'true' : 'false');
+    return true;
+  }
+
+  function discardSpamGroup(signature) {
+    const group = spamGroupsBySignature.get(signature);
+    if (group) clearSpamGroupVisuals(group);
+    spamGroupsBySignature.delete(signature);
   }
 
   function resetSpamCompression() {
+    spamGroupsBySignature.forEach(clearSpamGroupVisuals);
     spamGroupsBySignature.clear();
     document.querySelectorAll('.chat-line__message[data-bt-spam-processed]').forEach((line) => {
       line.classList.remove('bt-spam-root', 'bt-spam-duplicate', 'bt-spam-show');
@@ -2336,7 +2400,7 @@
   function pruneSpamGroups() {
     if (++spamPruneCounter % 25) return;
     for (const [signature, group] of spamGroupsBySignature) {
-      if (!group.root || !group.root.isConnected) spamGroupsBySignature.delete(signature);
+      if (!updateSpamGroup(group)) spamGroupsBySignature.delete(signature);
     }
   }
 
@@ -2344,15 +2408,21 @@
     if (!CONFIG.spamCompression || el.dataset.btSpamProcessed) return;
     pruneSpamGroups();
     el.dataset.btSpamProcessed = '1';
-    const normalized = lineText(el).toLowerCase().replace(/\s+/g, ' ').trim();
-    if (normalized.length < 3) return;
     const meta = metadataForLine(el);
+    const messageText = meta && meta.record ? meta.record.text : lineCopyText(el);
+    const normalized = String(messageText || '').toLowerCase().replace(/\s+/g, ' ').trim();
+    if (normalized.length < 3) return;
     const timestamp = meta && meta.record ? meta.record.t : Date.now();
     let group = spamGroupsBySignature.get(normalized);
-    if (!group || !group.root.isConnected || timestamp - group.lastAt > SPAM_WINDOW_MS) {
+    if (group && !reconcileSpamGroup(group)) {
+      spamGroupsBySignature.delete(normalized);
+      group = null;
+    }
+    if (!group || timestamp - group.lastAt > SPAM_WINDOW_MS) {
+      if (group) clearSpamGroupVisuals(group);
       group = { root: el, lines: [el], firstAt: timestamp, lastAt: timestamp, expanded: false, button: null };
       spamGroupsBySignature.set(normalized, group);
-      if (spamGroupsBySignature.size > 120) spamGroupsBySignature.delete(spamGroupsBySignature.keys().next().value);
+      if (spamGroupsBySignature.size > 120) discardSpamGroup(spamGroupsBySignature.keys().next().value);
       return;
     }
     group.lines.push(el);
@@ -3111,7 +3181,7 @@
     });
     setMessageAction(bar, 'copy', CONFIG.copyButton, t('copyMessage'), MESSAGE_ACTION_ICONS.copy, (event) => {
       event.preventDefault(); event.stopPropagation();
-      try { navigator.clipboard.writeText(lineCopyText(el)); } catch (e) {}
+      writeClipboardText(lineCopyText(el)).catch(() => {});
     });
     setMessageAction(bar, 'translate', CONFIG.inlineTranslate, t('inlineTranslate'), MESSAGE_ACTION_ICONS.translate, (event) => {
       event.preventDefault(); event.stopPropagation();
@@ -3160,12 +3230,9 @@
 
   function pruneDisconnectedChatState() {
     for (const [signature, group] of spamGroupsBySignature) {
-      if (!group.root || !group.root.isConnected) {
+      if (!updateSpamGroup(group)) {
         spamGroupsBySignature.delete(signature);
-        continue;
       }
-      group.lines = group.lines.filter((line) => line.isConnected);
-      if (group.button && !group.button.isConnected) group.button = null;
     }
     if (chatSearchMatches.length) {
       chatSearchMatches = chatSearchMatches.filter((line) => line.isConnected);
@@ -4212,12 +4279,50 @@
 
   syncClaimSchedule();
 
+  const layoutStyleSnapshots = new Map();
+  let activeLayoutTarget = null, activeVideoTarget = null;
+
   function setImp(el, prop, val) {
+    let snapshots = layoutStyleSnapshots.get(el);
+    if (!snapshots) {
+      snapshots = new Map();
+      layoutStyleSnapshots.set(el, snapshots);
+    }
+    if (!snapshots.has(prop)) {
+      snapshots.set(prop, {
+        value: el.style.getPropertyValue(prop),
+        priority: el.style.getPropertyPriority(prop),
+      });
+    }
     if (el.style.getPropertyValue(prop) !== val || el.style.getPropertyPriority(prop) !== 'important') el.style.setProperty(prop, val, 'important');
   }
 
   function removeInlineStyle(el, prop) {
-    if (el && (el.style.getPropertyValue(prop) || el.style.getPropertyPriority(prop))) el.style.removeProperty(prop);
+    const snapshots = el && layoutStyleSnapshots.get(el);
+    if (!snapshots || !snapshots.has(prop)) return;
+    const original = snapshots.get(prop);
+    if (original.value) el.style.setProperty(prop, original.value, original.priority);
+    else el.style.removeProperty(prop);
+    snapshots.delete(prop);
+    if (!snapshots.size) layoutStyleSnapshots.delete(el);
+  }
+
+  function restoreElementLayout(el) {
+    const snapshots = el && layoutStyleSnapshots.get(el);
+    if (!snapshots) return;
+    Array.from(snapshots.keys()).forEach((property) => removeInlineStyle(el, property));
+  }
+
+  function restoreAllLayoutStyles() {
+    Array.from(layoutStyleSnapshots.keys()).forEach(restoreElementLayout);
+    activeLayoutTarget = null;
+    activeVideoTarget = null;
+  }
+
+  function pruneDetachedLayoutSnapshots() {
+    for (const element of Array.from(layoutStyleSnapshots.keys())) {
+      if (!element.isConnected) restoreElementLayout(element);
+    }
   }
 
   function applyColumn(col) {
@@ -4225,26 +4330,56 @@
     setImp(col, 'width', w); setImp(col, 'min-width', w); setImp(col, 'max-width', w); setImp(col, 'flex-basis', w);
     setImp(col, 'transition', 'none');
     if (col.classList.contains('channel-root__right-column--expanded')) setImp(col, 'transform', 'translateX(-' + w + ')');
-    else if (col.style.getPropertyPriority('transform') === 'important') col.style.removeProperty('transform');
+    else removeInlineStyle(col, 'transform');
   }
 
-  function widenChat() {
-    const col = document.querySelector('.channel-root__right-column');
-    if (col) { applyColumn(col); return; }
-    const w = chatWidth();
+  function fallbackChatColumn() {
     const anchor = document.querySelector('.chat-scrollable-area__message-container, .chat-input, .stream-chat');
-    if (!w || !anchor) return;
-    let el = anchor;
-    for (let i = 0; i < 10 && el; i++, el = el.parentElement) {
-      const bw = el.getBoundingClientRect().width;
-      if (bw > 250 && bw < 1300) { setImp(el, 'width', w); setImp(el, 'max-width', w); }
+    if (!anchor) return null;
+    const explicit = anchor.closest(
+      '.stream-chat, section[data-test-selector="chat-room-component-layout"], [data-a-target="right-column-chat-bar"]'
+    );
+    if (explicit) return explicit;
+    let candidate = null, element = anchor;
+    for (let i = 0; i < 10 && element; i++, element = element.parentElement) {
+      const width = element.getBoundingClientRect().width;
+      if (width > 250 && width < 700) candidate = element;
+      else if (candidate) break;
     }
+    return candidate;
+  }
+
+  function widenChat(col) {
+    const w = chatWidth();
+    const target = col || fallbackChatColumn();
+    if (!w || !target) return null;
+    if (activeLayoutTarget && activeLayoutTarget !== target) restoreAllLayoutStyles();
+    activeLayoutTarget = target;
+    if (col) {
+      applyColumn(col);
+    } else {
+      setImp(target, 'width', w);
+      setImp(target, 'min-width', w);
+      setImp(target, 'max-width', w);
+      setImp(target, 'flex-basis', w);
+      setImp(target, 'transition', 'none');
+    }
+    return target;
   }
 
   function widenVideo() {
     const delta = Math.max(0, CONFIG.chatWidthPx - DEFAULT_CHAT_PX);
     const main = document.querySelector('main.twilight-main, .twilight-main');
-    if (main) { setImp(main, 'transition', 'none'); setImp(main, 'margin-right', delta + 'px'); }
+    if (activeVideoTarget && activeVideoTarget !== main) restoreElementLayout(activeVideoTarget);
+    activeVideoTarget = null;
+    if (main && delta) {
+      activeVideoTarget = main;
+      setImp(main, 'transition', 'none');
+      setImp(main, 'margin-right', delta + 'px');
+    } else if (main) {
+      removeInlineStyle(main, 'margin-right');
+      removeInlineStyle(main, 'transition');
+    }
   }
 
   function applyToggle() {
@@ -4262,14 +4397,7 @@
   }
 
   function resetLayout() {
-    const col = document.querySelector('.channel-root__right-column');
-    if (col) {
-      ['width', 'min-width', 'max-width', 'flex-basis', 'transition'].forEach((property) => removeInlineStyle(col, property));
-      if (col.classList.contains('channel-root__right-column--expanded')) setImp(col, 'transform', 'translateX(-' + DEFAULT_CHAT_PX + 'px)');
-      else removeInlineStyle(col, 'transform');
-    }
-    const main = document.querySelector('main.twilight-main, .twilight-main');
-    if (main) { removeInlineStyle(main, 'margin-right'); removeInlineStyle(main, 'transition'); }
+    restoreAllLayoutStyles();
   }
 
   let layoutObserver = null, observedCol = null, layoutFrame = null;
@@ -4299,11 +4427,19 @@
 
   function applyLayout() {
     const col = document.querySelector('.channel-root__right-column');
-    if (col && CONFIG.chatWidthEnabled) ensureObserver(col);
-    else if (observedCol) disconnectLayoutObserver();
     const expanded = col && col.classList.contains('channel-root__right-column--expanded');
-    if (CONFIG.chatWidthEnabled && expanded) { widenChat(); widenVideo(); } else resetLayout();
+    let target = null;
+    if (CONFIG.chatWidthEnabled && (!col || expanded)) {
+      target = widenChat(col);
+      if (target) widenVideo();
+    }
+    if (target) ensureObserver(target);
+    else {
+      if (observedCol) disconnectLayoutObserver();
+      resetLayout();
+    }
     applyToggle();
+    pruneDetachedLayoutSnapshots();
   }
 
   const PANEL_W = 390;
@@ -4611,9 +4747,17 @@
     panel.querySelector('#bt-export').addEventListener('click', () => {
       openModal({
         title: t('exportTitle'), value: JSON.stringify(CONFIG, null, 2), readOnly: true, primary: t('ioCopy'),
-        onPrimary: (ta, note) => {
-          try { navigator.clipboard.writeText(ta.value); } catch (e) {}
-          ta.select(); note.textContent = t('alertCopied');
+        onPrimary: async (ta, note) => {
+          ta.select();
+          note.textContent = '';
+          note.style.color = '';
+          try {
+            await writeClipboardText(ta.value);
+            note.textContent = t('alertCopied');
+          } catch (e) {
+            note.style.color = '#ff6b6b';
+            note.textContent = t('alertCopyFailed');
+          }
         },
       });
     });

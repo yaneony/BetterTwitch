@@ -1,0 +1,9 @@
+{
+  "name": "better-twitch-userscript",
+  "version": "2.1.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check BetterTwitch.user.js && node --test"
+  }
+}

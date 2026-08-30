@@ -2,6 +2,21 @@
 
 All notable changes to **BetterTwitch** are documented in this file.
 
+## [Unreleased]
+
+### Fixed
+
+- Repeated-message groups now promote a connected message when their original row scrolls away, and remaining rows are ungrouped when fewer than three are still visible.
+- Repeated-message signatures now retain Twitch emote names instead of treating image-only differences as identical text.
+- Custom chat width now reaches its alternate Twitch-layout fallback and restores the exact inline styles that existed before BetterTwitch changed them.
+- Settings import now rejects unknown or misspelled keys while preserving the supported legacy raid-protection migration.
+- Settings export reports clipboard success only after the browser confirms the copy and gives a manual-copy hint when permission is unavailable.
+- Mentions help now correctly explains that channel changes retain mentions during the same page session.
+
+### Development
+
+- Added dependency-free Node regression tests for settings imports, spam-group lifecycle and signatures, layout restoration, clipboard failures, localization coverage, and mention-history documentation.
+
 ## [2.1.0] - 2026-08-30
 
 ### Added
