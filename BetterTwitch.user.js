@@ -4943,6 +4943,7 @@
     r.classList.toggle('bt-hide-community-highlights', !!CONFIG.hideCommunityHighlights);
     r.classList.toggle('bt-separators', !!CONFIG.msgSeparators);
     applyChatTopSurfaces();
+    ensureChatTopSurfaceObserver();
   }
 
   const CHAT_MESSAGE_LIST_SELECTOR =
@@ -4951,6 +4952,7 @@
     '[data-testid="leaderboard-top-three-entry"], [class*="bitsLeaderboard"], ' +
     '[class*="channelLeaderboardHeader"], [class*="goal" i], ' +
     '[data-test-selector*="goal" i], [data-a-target*="goal" i]';
+  const TOP_USERS_ACCESSIBLE_LABEL_RE = /(?:goal|ziel|цель|leaderboard|ranglist|рейтинг)/i;
   const COMMUNITY_HIGHLIGHT_SURFACE_SELECTOR =
     '[class*="community-highlight-stack__"], .community-highlight, .pinned-chat__highlight-card';
   const CHAT_TOP_SURFACE_OBSERVER_IGNORE =
@@ -4958,6 +4960,12 @@
 
   function containsChatSurface(element, selector) {
     return !!(element && (element.matches(selector) || element.querySelector(selector)));
+  }
+
+  function containsTopUsersSurface(element) {
+    if (containsChatSurface(element, TOP_USERS_SURFACE_SELECTOR)) return true;
+    return Array.from(element.querySelectorAll('[aria-label]')).some((node) =>
+      TOP_USERS_ACCESSIBLE_LABEL_RE.test(node.getAttribute('aria-label') || ''));
   }
 
   function applyChatTopSurfaces() {
@@ -4975,7 +4983,7 @@
       for (let i = 0; i < listIdx; i++) {
         const child = children[i];
         if (child.matches('[data-a-target="chat-alert-queue"]') || child.querySelector('[data-a-target="chat-alert-queue"]')) continue;
-        if (CONFIG.hideLeaderboard && containsChatSurface(child, TOP_USERS_SURFACE_SELECTOR)) {
+        if (CONFIG.hideLeaderboard && containsTopUsersSurface(child)) {
           child.classList.add('bt-top-users-hidden');
         }
         if (CONFIG.hideCommunityHighlights && containsChatSurface(child, COMMUNITY_HIGHLIGHT_SURFACE_SELECTOR)) {

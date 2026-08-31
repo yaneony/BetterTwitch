@@ -261,9 +261,13 @@ test('mention help describes page-session retention consistently', () => {
 
 test('top-of-chat hiding survives Twitch rotating from leaderboards to goals', () => {
   assert.match(source, /const TOP_USERS_SURFACE_SELECTOR\s*=\s*[\s\S]*?\[class\*="goal" i\][\s\S]*?\[data-test-selector\*="goal" i\]/);
+  assert.ok(source.includes('const TOP_USERS_ACCESSIBLE_LABEL_RE = /(?:goal|ziel|цель|leaderboard|ranglist|рейтинг)/i;'));
+  assert.match(source, /function containsTopUsersSurface\(element\)[\s\S]*?querySelectorAll\('\[aria-label\]'\)[\s\S]*?TOP_USERS_ACCESSIBLE_LABEL_RE\.test/);
+  assert.match(source, /if \(CONFIG\.hideLeaderboard && containsTopUsersSurface\(child\)\)/);
   assert.match(source, /function applyChatTopSurfaces\(\)\s*\{\s*if \(!CONFIG\.hideLeaderboard\)\s*\{[^}]*\.bt-top-users-hidden/s);
   assert.match(source, /if \(!CONFIG\.hideCommunityHighlights\)\s*\{[^}]*\.bt-community-highlights-hidden/s);
   assert.doesNotMatch(source, /function applyChatTopSurfaces\(\)\s*\{\s*document\.querySelectorAll\('\.bt-top-users-hidden'\)/);
+  assert.match(source, /function applyVars\(\)[\s\S]*?applyChatTopSurfaces\(\);\s*ensureChatTopSurfaceObserver\(\);/);
 });
 
 test('footer and popup headers share one professional outline icon system', () => {
