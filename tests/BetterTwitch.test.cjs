@@ -259,6 +259,13 @@ test('mention help describes page-session retention consistently', () => {
   assert.match(source, /channel changes keep mentions from the same page session/);
 });
 
+test('top-of-chat hiding survives Twitch rotating from leaderboards to goals', () => {
+  assert.match(source, /const TOP_USERS_SURFACE_SELECTOR\s*=\s*[\s\S]*?\[class\*="goal" i\][\s\S]*?\[data-test-selector\*="goal" i\]/);
+  assert.match(source, /function applyChatTopSurfaces\(\)\s*\{\s*if \(!CONFIG\.hideLeaderboard\)\s*\{[^}]*\.bt-top-users-hidden/s);
+  assert.match(source, /if \(!CONFIG\.hideCommunityHighlights\)\s*\{[^}]*\.bt-community-highlights-hidden/s);
+  assert.doesNotMatch(source, /function applyChatTopSurfaces\(\)\s*\{\s*document\.querySelectorAll\('\.bt-top-users-hidden'\)/);
+});
+
 test('footer and popup headers share one professional outline icon system', () => {
   const css = embeddedStyleSheet();
   assert.match(css, /\.bt-panel-header\s*\{[^}]*min-height:\s*58px[^}]*border-inline-start:\s*3px solid var\(--bt-accent\)[^}]*linear-gradient\(/s);

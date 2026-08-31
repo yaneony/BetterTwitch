@@ -34,7 +34,7 @@
       hideBadges: 'Hide badges',
       showAvatars: 'Show user avatars',
       msgSeparators: 'Separator between messages',
-      hideLeaderboard: 'Hide top users slider',
+      hideLeaderboard: 'Hide leaderboard / Goals slider',
       hideCommunityHighlights: 'Hide community highlights',
       secPlayerRewards: 'Player & rewards',
       autoQuality: 'Prefer source quality',
@@ -131,7 +131,7 @@
       hideBadges: 'Abzeichen ausblenden',
       showAvatars: 'Benutzer-Avatare anzeigen',
       msgSeparators: 'Trennlinie zwischen Nachrichten',
-      hideLeaderboard: 'Top-Nutzer-Karussell ausblenden',
+      hideLeaderboard: 'Ranglisten- / Ziele-Karussell ausblenden',
       hideCommunityHighlights: 'Community-Highlights ausblenden',
       secPlayerRewards: 'Player & Belohnungen',
       autoQuality: 'Quellqualität bevorzugen',
@@ -228,7 +228,7 @@
       hideBadges: 'Скрыть значки',
       showAvatars: 'Показывать аватары',
       msgSeparators: 'Разделитель между сообщениями',
-      hideLeaderboard: 'Скрыть карусель лидеров',
+      hideLeaderboard: 'Скрыть карусель рейтинга / целей',
       hideCommunityHighlights: 'Скрыть важные сообщения',
       secPlayerRewards: 'Плеер и награды',
       autoQuality: 'Предпочитать исходное качество',
@@ -324,7 +324,7 @@
       hideBadges: 'Removes the small subscriber, moderator, VIP, broadcaster, founder, and similar badge images shown beside usernames. This is a visual change in your browser only: it does not remove anyone’s role or badge on Twitch. BetterTwitch can still use badge metadata for moderator and VIP highlighting when Twitch provides it.',
       showAvatars: 'Shows each chatter’s Twitch profile picture before their username in chat and beside their name in the dashboard ranking. BetterTwitch obtains missing avatars through batched requests directly to Twitch’s GraphQL service and caches the results for the page session; no BetterTwitch server receives the usernames. Turn this off for a denser chat and no avatar lookups.',
       msgSeparators: 'Adds a subtle horizontal divider between neighboring chat messages. This only changes appearance and can make fast or densely packed chat easier to follow. Turn it off to return to Twitch’s normal uninterrupted message list.',
-      hideLeaderboard: 'Hides only Twitch’s animated top-user slider above chat. Depending on the channel, this strip can rank Bits cheerers, gift-sub gifters, or other leading supporters. It does not hide pinned messages, community highlights, chat notices, or the composer. The slider is hidden only in your browser.',
+      hideLeaderboard: 'Hides Twitch’s rotating leaderboard and Goals slider above chat. Depending on the channel, it can show goals, top clips, Bits cheerers, gift-sub gifters, or other rankings. It does not hide pinned messages, community highlights, chat notices, or the composer. The slider is hidden only in your browser.',
       hideCommunityHighlights: 'Hides Twitch’s community-highlight stack above the message list, including pinned messages and any other cards Twitch places in that same stack. It does not unpin or delete anything, and other viewers still see it. The top-user slider has a separate setting and is not affected.',
       autoQuality: 'Stores Twitch’s "source/chunked" quality preference so the player tries to select the highest quality offered by the current stream. It cannot create a source-quality option when the streamer does not provide one, and Twitch may still change quality because of player or connection conditions. Higher quality can use more bandwidth.',
       raidReturnMinutes: 'Sets when BetterTwitch returns to the channel where a raid chain began. Choose 5 to 60 minutes in five-minute steps, or 0 (Off) to never return automatically. The timer starts with the first raid and later raids do not restart it. Offline refresh stays disabled on every raided destination and resumes only on the original channel.',
@@ -367,7 +367,7 @@
       hideBadges: 'Entfernt die kleinen Abonnenten-, Moderator-, VIP-, Broadcaster-, Gründer- und ähnlichen Abzeichen neben Benutzernamen. Das ist nur eine optische Änderung in deinem Browser: Rollen und Abzeichen auf Twitch bleiben bestehen. BetterTwitch kann von Twitch gelieferte Abzeichen-Metadaten weiterhin für Moderator- und VIP-Hervorhebungen verwenden.',
       showAvatars: 'Zeigt das Twitch-Profilbild jedes Chatters vor dem Namen im Chat und neben dem Namen in der Dashboard-Rangliste. Fehlende Avatare ruft BetterTwitch gebündelt direkt über Twitchs GraphQL-Dienst ab und speichert sie für die Seitensitzung zwischen; kein BetterTwitch-Server erhält die Benutzernamen. Ausschalten sorgt für einen kompakteren Chat und beendet Avatar-Abfragen.',
       msgSeparators: 'Fügt zwischen benachbarten Chat-Nachrichten eine dezente horizontale Trennlinie ein. Das ändert nur die Darstellung und kann einen schnellen oder dicht gefüllten Chat leichter lesbar machen. Ausschalten stellt Twitchs normale, durchgehende Nachrichtenliste wieder her.',
-      hideLeaderboard: 'Blendet ausschließlich Twitchs animiertes Top-Nutzer-Karussell über dem Chat aus. Je nach Kanal zeigt dieser Streifen führende Bits-Spender, Geschenkabo-Spender oder andere Unterstützer. Angeheftete Nachrichten, Community-Highlights, Chat-Hinweise und Eingabefeld bleiben sichtbar. Das Karussell wird nur in deinem Browser ausgeblendet.',
+      hideLeaderboard: 'Blendet Twitchs wechselndes Ranglisten- und Ziele-Karussell über dem Chat aus. Je nach Kanal zeigt es Ziele, Top-Clips, führende Bits-Spender, Geschenkabo-Spender oder andere Ranglisten. Angeheftete Nachrichten, Community-Highlights, Chat-Hinweise und Eingabefeld bleiben sichtbar. Das Karussell wird nur in deinem Browser ausgeblendet.',
       hideCommunityHighlights: 'Blendet Twitchs Community-Highlight-Stapel über der Nachrichtenliste aus, einschließlich angehefteter Nachrichten und weiterer Karten, die Twitch in diesem Stapel anzeigt. Nichts wird gelöst oder gelöscht und andere Zuschauer sehen alles weiterhin. Das Top-Nutzer-Karussell besitzt eine eigene Einstellung und bleibt unverändert.',
       autoQuality: 'Speichert bei Twitch die Qualitätspräferenz „Quelle/Chunked", damit der Player die höchste vom aktuellen Stream angebotene Qualität versucht. Die Einstellung kann keine Quellqualität erzeugen, wenn der Streamer sie nicht anbietet, und Twitch kann die Qualität wegen Player- oder Verbindungsbedingungen weiterhin ändern. Höhere Qualität kann mehr Datenvolumen verbrauchen.',
       raidReturnMinutes: 'Legt fest, wann BetterTwitch zu dem Kanal zurückkehrt, auf dem eine Raid-Kette begann. Wähle 5 bis 60 Minuten in Fünf-Minuten-Schritten oder 0 (Aus), um nie automatisch zurückzukehren. Der Timer beginnt mit dem ersten Raid und wird durch weitere Raids nicht neu gestartet. Das Offline-Neuladen bleibt auf allen Raid-Zielkanälen deaktiviert und läuft nur auf dem Ausgangskanal weiter.',
@@ -410,7 +410,7 @@
       hideBadges: 'Убирает маленькие значки подписчика, модератора, VIP, владельца канала, основателя и другие значки рядом с именами. Это только визуальное изменение в вашем браузере: роли и значки пользователей на Twitch остаются прежними. BetterTwitch по-прежнему может использовать предоставленные Twitch метаданные значков для подсветки модераторов и VIP.',
       showAvatars: 'Показывает изображение профиля Twitch перед именем участника в чате и рядом с именем в рейтинге панели статистики. Недостающие аватары BetterTwitch запрашивает пакетами напрямую у GraphQL-сервиса Twitch и кеширует на время сеанса страницы; имена не передаются на сервер BetterTwitch. Отключите настройку для более компактного чата без запросов аватаров.',
       msgSeparators: 'Добавляет тонкую горизонтальную линию между соседними сообщениями чата. Меняется только внешний вид; разделители помогают следить за быстрым или плотно заполненным чатом. Отключение возвращает обычный непрерывный список сообщений Twitch.',
-      hideLeaderboard: 'Скрывает только анимированную карусель лидеров над чатом. В зависимости от канала в ней показываются лидеры по Bits, подарочным подпискам или другой поддержке. Закреплённые сообщения, важные карточки, уведомления чата и поле ввода остаются видимыми. Карусель скрывается только в вашем браузере.',
+      hideLeaderboard: 'Скрывает над чатом меняющуюся карусель рейтингов и целей Twitch. В зависимости от канала в ней могут показываться цели, лучшие клипы, лидеры по Bits, подарочным подпискам и другие рейтинги. Закреплённые сообщения, важные карточки, уведомления чата и поле ввода остаются видимыми. Карусель скрывается только в вашем браузере.',
       hideCommunityHighlights: 'Скрывает блок важных карточек Twitch над списком сообщений, включая закреплённые сообщения и другие карточки в том же блоке. Ничего не открепляется и не удаляется, остальные зрители продолжают всё видеть. Карусель лидеров настраивается отдельно и не затрагивается.',
       autoQuality: 'Сохраняет в Twitch предпочтение качества «Исходное/Chunked», чтобы плеер пытался выбрать самое высокое качество, доступное у текущей трансляции. Настройка не может создать исходное качество, если стример его не предоставляет, а Twitch всё равно может менять качество из-за состояния плеера или соединения. Более высокое качество может расходовать больше трафика.',
       raidReturnMinutes: 'Задаёт время возвращения BetterTwitch на канал, где началась цепочка рейдов. Выберите от 5 до 60 минут с шагом 5 минут или 0 (Выкл.), чтобы не возвращаться автоматически. Таймер запускается с первым рейдом и не перезапускается последующими. Обновление офлайн-канала отключено на всех каналах назначения рейда и возобновляется только на исходном канале.',
@@ -4949,7 +4949,8 @@
     '.chat-list--default, .chat-scrollable-area__message-container, [data-test-selector="chat-scrollable-area__message-container"]';
   const TOP_USERS_SURFACE_SELECTOR =
     '[data-testid="leaderboard-top-three-entry"], [class*="bitsLeaderboard"], ' +
-    '[class*="channelLeaderboardHeader"]';
+    '[class*="channelLeaderboardHeader"], [class*="goal" i], ' +
+    '[data-test-selector*="goal" i], [data-a-target*="goal" i]';
   const COMMUNITY_HIGHLIGHT_SURFACE_SELECTOR =
     '[class*="community-highlight-stack__"], .community-highlight, .pinned-chat__highlight-card';
   const CHAT_TOP_SURFACE_OBSERVER_IGNORE =
@@ -4960,8 +4961,12 @@
   }
 
   function applyChatTopSurfaces() {
-    document.querySelectorAll('.bt-top-users-hidden').forEach((el) => el.classList.remove('bt-top-users-hidden'));
-    document.querySelectorAll('.bt-community-highlights-hidden').forEach((el) => el.classList.remove('bt-community-highlights-hidden'));
+    if (!CONFIG.hideLeaderboard) {
+      document.querySelectorAll('.bt-top-users-hidden').forEach((el) => el.classList.remove('bt-top-users-hidden'));
+    }
+    if (!CONFIG.hideCommunityHighlights) {
+      document.querySelectorAll('.bt-community-highlights-hidden').forEach((el) => el.classList.remove('bt-community-highlights-hidden'));
+    }
     if (!CONFIG.hideLeaderboard && !CONFIG.hideCommunityHighlights) return;
     document.querySelectorAll('.chat-room__content').forEach((content) => {
       const children = Array.from(content.children);
