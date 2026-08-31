@@ -4,6 +4,28 @@ All notable changes to **BetterTwitch** are documented in this file.
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-08-31
+
+### Added
+
+- Added per-section reset actions and active-tool indicators.
+- Added consistent empty, loading, error, and offline surface states plus fixed popup headers and optional footers around a shared scrollable body.
+- Added a shared outline-icon system so Settings, Mentions, Live chat dashboard, and Chat filters & search use the same artwork in the Twitch footer and their corresponding popup headers.
+
+### Changed
+
+- Replaced aggressive maintenance polling with navigation hooks, targeted UI-health observation, and a 30/60-second fallback watchdog.
+- Added incremental chat search indexing, delegated message/hovercard events, frame-budgeted mutation processing, window-resize throttling, and targeted setting refreshes.
+- Rebuilt the complete BetterTwitch interface with new dark and light palettes, clearer hierarchy, consistent 5-pixel popup shells, redesigned settings groups, controls, dashboard, inbox, hovercards, message actions, translation cards, and responsive interaction states.
+- Popup headers now use a compact product-style layout with a left accent rail, restrained static accent background, consistent typography and metadata badges, panel-specific vector icons, and more space between each icon and title.
+- Feature panels now open slightly lower and match the exact inner width and horizontal edges of the visible Twitch message input instead of extending into its surrounding margins.
+- Every popup now follows the same `container > header > scrollable body > optional footer` structure, keeping headers and footers fixed while long content scrolls independently.
+- Settings controls keep fixed widths instead of stretching with the chat panel; the chat-width control remains the single width control and fresh installations now default to 600 pixels.
+- BetterTwitch footer launchers now use equal spacing, with the character counter separated consistently from the full button group.
+- The Live chat dashboard now ranks the top ten chatters and preserves its body scroll position while live statistics refresh.
+- Focused form controls now rely on their accent-colored border without drawing a second browser outline; keyboard focus indicators remain on buttons and links.
+- Fresh installations now use the requested defaults for the primary chat, highlighting, translation, mention, safety, and dashboard tools, with `#e31337` as both the interface accent and mention color.
+
 ### Fixed
 
 - Repeated-message groups now promote a connected message when their original row scrolls away, and remaining rows are ungrouped when fewer than three are still visible.
@@ -12,10 +34,22 @@ All notable changes to **BetterTwitch** are documented in this file.
 - Settings import now rejects unknown or misspelled keys while preserving the supported legacy raid-protection migration.
 - Settings export reports clipboard success only after the browser confirms the copy and gives a manual-copy hint when permission is unavailable.
 - Mentions help now correctly explains that channel changes retain mentions during the same page session.
+- Popup shells no longer use `clip-path` at the same edge as their border, preventing the bottom border from disappearing at subpixel positions while retaining rounded corners and a scrollable body.
+- Removed the duplicate popup bottom-edge pseudo-element so panels no longer appear to have two overlapping borders.
+- Popup corner clipping, border radii, and bottom borders are now consistent across Settings, Mentions, Live chat dashboard, Chat filters & search, hovercards, and modals.
+- Switch thumbs are optically centered, setting rows keep controls on a common vertical axis, and circular color swatches no longer combine a square indicator with a rounded outer control.
+- The message translation action now describes its click behavior instead of incorrectly claiming that translation happens on hover.
+
+### Removed
+
+- Removed popup resizing, saved panel geometry, docking, dragging, and panel keyboard shortcuts; feature panels now use a stable chat-aligned width.
+- Removed Performance diagnostics, Settings search, Settings presets, Appearance profiles, the first-run “Set up BetterTwitch” flow, Compact footer controls, and Widen chat panel.
+- Removed the redundant “Saved automatically.” footer text and its supporting styles.
 
 ### Development
 
-- Added dependency-free Node regression tests for settings imports, spam-group lifecycle and signatures, layout restoration, clipboard failures, localization coverage, and mention-history documentation.
+- Removed unused legacy code, translations, styles, state, and migration paths left behind by the deleted UI features.
+- Added dependency-free Node regression tests for settings imports, spam-group lifecycle and signatures, layout restoration, clipboard failures, localization coverage, mention-history documentation, performance hot paths, popup structure, fixed sizing, dashboard scrolling, shared header/footer icons, form focus states, and removed-feature cleanup.
 
 ## [2.1.0] - 2026-08-30
 

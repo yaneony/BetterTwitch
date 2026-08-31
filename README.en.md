@@ -1,185 +1,93 @@
-# BetterTwitch 2.0
+# BetterTwitch
 
 <div align="center">
 
-## 🌐 Documentation languages
+## 🌐 Documentation language
 
-[![English documentation](https://img.shields.io/badge/English-Current_language-9147ff?style=for-the-badge)](README.en.md)
-[![Deutsche Dokumentation](https://img.shields.io/badge/Deutsch-Dokumentation_öffnen-007acc?style=for-the-badge)](README.de.md)
-[![Русская документация](https://img.shields.io/badge/Русский-Открыть_документацию-007acc?style=for-the-badge)](README.ru.md)
+**English** · [Deutsch](README.de.md) · [Русский](README.ru.md)
 
 </div>
 
-BetterTwitch is a lightweight userscript focused on making Twitch chat easier to read and use. It works on channel chat, Mod View, and Stream Manager pages where Twitch exposes the supported chat interface.
+BetterTwitch is a small add-on that makes Twitch chat easier to read and use. It works in normal channel chat, Mod View, and Stream Manager.
+
+You do not need any programming or computer knowledge. Install it once, open Twitch, and use the new buttons at the bottom of the chat.
 
 > Created by [YaneonY](https://yaneony.com) · [Version history](CHANGELOG.md)
 
-## Features
+## Main features
 
-### Mentions and conversation context
+### Keep up with chat
 
-- A dedicated **Mentions panel** keeps the 50 newest messages that @mention you or directly reply to you.
-- An unread badge, capped at 50, shows how many retained mentions arrived while the panel was closed.
-- Search mentions by their visible content, expand a result to see nearby messages, or jump to the original message while it is still in chat.
-- Store from zero to three messages before and after each mention for context.
-- The panel is session-based and clears when you reload the page.
+- Save the newest messages that mention you or reply to you.
+- Search your mentions and view nearby messages for context.
+- See live chat activity, popular emotes, and the top 10 chatters.
+- Hover over a username to see a small viewer card with session information.
 
-### Live chat dashboard
+Mention history lasts until the page is reloaded. Chat statistics reset when you move to another chat room.
 
-- Track current and peak messages per minute, total messages, unique and recently active chatters, average pace, and session duration.
-- Read a filled one-minute activity graph, an eight-person ranking with proportional activity bars and optional Twitch avatars, and six expanded top-emote cards.
-- Statistics reset when you move to another chat room and are never uploaded or written to storage.
+### Use messages more easily
 
-### Viewer context
+- Reply, copy, pin, or translate a message from one small action bar.
+- Search the visible chat by username or message text.
+- Filter chat to show mentions, moderators, questions, links, or emotes.
+- Group repeated messages into one expandable row.
+- Show the real website name beside links and warn before opening suspicious ones.
+- Show a character counter while you type.
 
-- Hover over a username to open a **viewer hovercard** with that viewer's Twitch avatar.
-- See that viewer's message count, number of mentions, and most-used emote for the current session.
+### Make chat easier to read
 
-### Message tools
+- Change the chat width from 340 to 1200 pixels. The default is 600 pixels.
+- Show user avatars and separators between messages.
+- Hide badges, the top-user carousel, or community highlights.
+- Improve hard-to-read username colors.
+- Highlight mentions, moderators, and VIPs with your chosen colors.
+- Keep deleted messages visible and clearly marked.
 
-- Use one top-aligned, non-shifting **message action bar** for Reply, Pin, Copy, and Translate. Every action has a larger localized tooltip and is reachable by keyboard; Reply and Pin use Twitch’s native controls, and Pin appears only when Twitch makes it available to your account.
-- Copy readable message text without BetterTwitch controls, or translate it with Google into the selected - or auto-detected - BetterTwitch interface language.
-- Retry a failed translation, copy the translated text, toggle between original and translation, and see localized detected/target language names.
-- Hide messages beginning with `!` and messages from a configurable list of bot accounts.
-- Show a live character counter using Twitch's detected limit.
+### Notifications and convenience
 
-### Conversation quality
-
-- Collapse three or more identical messages received within twelve seconds into one expandable row without deleting the originals.
-- Open one footer button to filter the current chat by mentions, moderators, questions, links, or emotes in a matching BetterTwitch panel.
-- Search visible chat locally by typing any part of a username, Twitch login, or message - no prefixes or special syntax required - then move between results.
-- Display real destination domains beside links and confirm shortened, numeric-IP, punycode, or misleading-looking addresses before opening them.
-
-### Notifications and highlights
-
-- Play a sound when another chatter @mentions you and, optionally, when someone replies to you.
-- Choose from 18 short sounds: Message, Pop, Drop, Knock, Glass, Pluck, Orbit, Pixel, Bell, Spark, Chime, Double Tap, Woodblock, Marble, Quartz, Blink, Ripple, and Chord.
-- Preview sounds in the settings panel and set their volume independently of Twitch; new installations and resets use Message at 35%.
-- Highlight mentions, moderators, and VIPs with separate colors.
-
-### Deleted messages
-
-- Keep individually deleted messages visible and mark them with a strikethrough and trash icon.
-- Independently preserve messages removed by a timeout/ban or a full chat clear.
-- BetterTwitch can only preserve deletion events received while it is running.
-
-### Chat appearance
-
-- Widen the chat column from 340 to 1200 pixels and resize the video area to match.
-- Show Twitch profile avatars beside chat usernames and top-chatters in the dashboard.
-- Improve the contrast of usernames that are too dark for Twitch's chat background.
-- Independently hide chat badges, the animated top-user slider, or the community-highlight and pinned-message stack.
-- Add separators between messages and choose a custom BetterTwitch accent color.
-- Choose Comfortable, Compact, or Accessible chat profiles for balanced, dense, or larger high-contrast presentation.
-
-### Player and rewards
-
-- Prefer Twitch's source/chunked video quality.
-- Follow Twitch raid chains for a configurable 5–60 minutes, then return to the channel where the chain began; choose 0 to disable automatic return.
-- Reload offline channel pages on a configurable 1–60 minute interval, or disable refreshing with 0.
-- Automatically claim the channel-points bonus chest.
-- Automatically click visible Twitch Drops claim buttons.
-
-### Settings experience
-
-- Settings are grouped into General, Chat appearance, Chat tools, Conversation quality, Highlights, Notifications, Deleted messages, Message filters, and Player & rewards.
-- Settings, Mentions, Live Stats, Chat filters & search, notification controls, dialogs, viewer cards, tooltips, and notices use one responsive card-based visual system with clear focus states and reduced-motion support.
-- BetterTwitch automatically follows Twitch’s current light or dark theme, including changes made without reloading the page.
-- Hover or keyboard-focus the information symbol beside any setting for an explicit description.
-- Every BetterTwitch label, action, accessibility label, and tooltip is available in English, German, and Russian.
-- Dependent controls remain disabled until their parent feature is enabled.
-- Settings, Mentions, Live chat dashboard, and Chat filters & search use matching panels, and opening one BetterTwitch panel closes the others.
-- All BetterTwitch launchers share one accent/open-state design and are grouped before Twitch's settings cog with a small visual gap.
-- Export, import, or reset settings from the panel. Imported data is checked against known setting names, types, and ranges.
+- Play a chosen sound when someone mentions you or replies to you.
+- Hide commands and messages from known bots.
+- Prefer Twitch's source video quality.
+- Return to the original channel after a raid.
+- Refresh offline channels after a chosen time.
+- Automatically claim channel-point bonuses and visible Drops.
 
 ## Installation
 
-1. Install the recommended userscript manager, [ScriptCat](https://scriptcat.org/en).
+1. Install [ScriptCat](https://scriptcat.org/en). ScriptCat allows your browser to run BetterTwitch.
+2. Open **[Install BetterTwitch](https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js)**.
+3. Confirm the installation.
+4. Open or reload a Twitch channel.
 
-2. Open **[Install BetterTwitch.user.js](https://raw.githubusercontent.com/yaneony/BetterTwitch/main/BetterTwitch.user.js)** and confirm the installation.
-3. Open a Twitch channel. BetterTwitch's panel buttons appear in the chat footer immediately before Twitch's settings cog.
+BetterTwitch buttons appear at the bottom of the chat, near Twitch's settings button. ScriptCat also checks for updates automatically.
 
-Updates are delivered from the same raw GitHub URL by your userscript manager. If a Chromium-based browser blocks userscripts by default, enable user-script access for the manager on the browser's extension settings page.
+If your browser blocks userscripts, open the ScriptCat extension settings and allow it to run userscripts.
 
-## Settings reference
+## Using the buttons
 
-| Section | Option | What it does |
-| --- | --- | --- |
-| General | Language | Uses Auto-detect, English, Deutsch, or Русский for BetterTwitch and as the translation target. |
-| General | Accent color | Sets the accent used by BetterTwitch buttons, headings, and active controls. |
-| Chat appearance | Widen chat panel | Enables BetterTwitch's custom chat-column width. |
-| Chat appearance | Width | Sets chat width from 340 to 1200 px; available when widening is enabled. |
-| Chat appearance | Appearance profile | Switches between Comfortable, Compact, and Accessible chat presentation. |
-| Chat appearance | Show user avatars | Fetches and displays Twitch profile images beside chat usernames and dashboard rankings. |
-| Chat appearance | Hide badges | Hides visible broadcaster, moderator, VIP, subscriber, and other chat badges. |
-| Chat appearance | Boost name contrast | Lightens username colors that are difficult to read on the dark background. |
-| Chat appearance | Separator between messages | Adds a subtle horizontal divider between chat lines. |
-| Chat appearance | Hide top users slider | Hides only the animated supporter ranking above chat, whether it currently shows Bits cheerers, gift-sub gifters, or another top-user category. |
-| Chat appearance | Hide community highlights | Hides the separate highlight stack above messages, including pinned-message cards, without affecting the top-user slider. |
-| Chat tools | Live chat dashboard | Adds current and peak rates, totals, active/unique chatter metrics, a one-minute graph, avatar rankings, and top emotes. |
-| Chat tools | Viewer hovercards | Shows the viewer's Twitch avatar and locally collected session details when hovering over a username. |
-| Chat tools | Copy button on hover | Adds a control for copying readable message text. |
-| Chat tools | Translate on hover | Adds a Google translation control to each message. |
-| Chat tools | Mentions panel | Keeps the newest 50 mentions in a searchable panel with an unread badge capped at 50. |
-| Chat tools | Context messages | Stores 0–3 messages on each side of a mention; available with Mentions enabled. |
-| Chat tools | Character counter | Shows current message length and Twitch's detected limit. |
-| Conversation quality | Compress repeated messages | Groups three or more identical messages received within twelve seconds and keeps them expandable. |
-| Conversation quality | Quick chat filters | Adds footer-panel filters for visible mentions, roles, questions, links, or emotes. |
-| Conversation quality | Live chat search | Searches visible usernames, Twitch logins, and message text directly without prefixes, with previous/next result navigation. |
-| Conversation quality | Safer link display | Shows destination domains and confirms suspicious-looking links. |
-| Highlights | Highlight @mentions | Tints messages that mention your current Twitch username. |
-| Highlights | Highlight moderators | Tints messages whose moderator status can be detected. |
-| Highlights | Highlight VIPs | Tints messages whose VIP status can be detected. |
-| Highlights | Color controls | Sets an independent color for each enabled highlight type. |
-| Notifications | Sound on @mention | Plays the selected sound when someone else mentions your username. |
-| Notifications | Sound on replies to you | Also notifies for direct replies; available when mention sounds are enabled. |
-| Notifications | Sound | Selects and previews one of the 18 notification sounds; new installations and resets default to Message. |
-| Notifications | Volume | Sets notification volume without changing Twitch player volume; new installations and resets default to 35%. |
-| Deleted messages | Mark single deletions | Preserves and marks individually deleted messages. |
-| Deleted messages | Mark timeouts / bans | Preserves and marks visible messages removed for one user. |
-| Deleted messages | Mark full chat clears | Preserves and marks visible messages when the whole room is cleared. |
-| Message filters | Hide `!` commands | Locally hides messages whose visible text starts with `!`. |
-| Message filters | Hide bot messages | Locally hides messages from the configured bot list. |
-| Message filters | Bot names | Sets a comma-separated, case-insensitive list of Twitch login names. |
-| Player & rewards | Prefer source quality | Saves Twitch's source-quality preference in local storage. |
-| Player & rewards | Return to original channel after raids | Sets a 5–60 minute return time in five-minute steps; 0 disables automatic return. Later raids do not extend the deadline, and raided destinations never trigger offline refresh. |
-| Player & rewards | Offline refresh interval | Reloads an offline channel every 1–60 minutes; 0 disables it. |
-| Player & rewards | Auto-claim bonus chest | Clicks the channel-points bonus chest when Twitch displays it. |
-| Player & rewards | Auto-claim Drops | Clicks visible Twitch Drops claim buttons. |
+- **Settings:** Choose which features you want and change their colors or values.
+- **Mentions:** View messages that mention you.
+- **Dashboard:** View live chat statistics.
+- **Chat tools:** Open chat filters and search.
 
-## How it works
+Move your pointer over the information icon beside a setting if you want a simple explanation. You can also reset one settings section without resetting everything.
 
-- The script wraps Twitch chat WebSockets at page start. It reads IRC message metadata for mentions, replies, chatter notices, and deletion events.
-- `CLEARMSG` and `CLEARCHAT` events can be intercepted so matching messages are marked instead of immediately removed.
-- A DOM observer enhances new Twitch chat lines with styling, buttons, avatars, expandable duplicate groups, safer domains, filters, and locally collected viewer details.
-- A footer button opens the local filters/search panel without modifying Twitch’s native composer suggestions.
-- Twitch changes its page without full reloads, so BetterTwitch combines DOM observers with a lightweight maintenance check to reconnect its controls and layout.
+## Privacy
 
-## Performance and lifecycle
+- BetterTwitch has no advertising, analytics, tracking, or its own online account system.
+- Settings are saved only in your browser.
+- Mentions, search results, viewer information, and chat statistics stay on the current page.
+- Avatar requests are sent to Twitch.
+- An offline channel check asks Twitch whether that channel is live.
+- Message text is sent to Google Translate only when you click **Translate**.
+- Link warnings check the address itself. BetterTwitch does not visit the linked website.
 
-- The fast startup check stops as soon as chat is ready and always ends after ten seconds; maintenance then runs every two seconds in a visible tab and every ten seconds while hidden.
-- DOM observers are disconnected when Twitch replaces or removes their chat, composer, top-of-chat surfaces, or layout targets. New chat mutations are deduplicated by message line before enhancement.
-- The dashboard refreshes only while its panel is open and pauses rendering in hidden tabs. Reward polling runs only while at least one auto-claim option is enabled.
-- Audio nodes disconnect after each notification. Translation and avatar requests time out after 15 seconds, and repeated requests share one in-flight operation.
-- Long-session memory is bounded: 50 mentions, 250 context messages, 500 message-metadata records, 1,000 viewer profiles, 1,000 dashboard chatter records, 100 emotes per viewer, 1,000 dashboard emotes, 300 translations, and 500 avatar results.
-- Search and filters operate only on messages currently rendered by Twitch.
+## Problems or missing buttons
 
-## Data and privacy
+Reload Twitch first. Then check that ScriptCat is enabled and allowed to run on Twitch.
 
-- Settings are stored in browser `localStorage` under `BetterTwitch-settings`.
-- Mention history lives only in memory for the current page session and uses the limits listed above. Viewer hovercards and dashboard statistics are additionally reset when the chat room changes.
-- Duplicate groups, chat filters, and search results stay local to the current page. Link safety examines URL text only and does not fetch destination pages.
-- If **Show user avatars** or **Viewer hovercards** is enabled, validated Twitch login names needed for chat, dashboard, or hovercard profile images are sent in batched requests to Twitch's GraphQL endpoint.
-- If **Offline refresh interval** is enabled on a channel page, that channel's validated login is sent to Twitch's GraphQL endpoint to confirm whether it is offline.
-- If you click **Translate**, that message's text is sent to `translate.googleapis.com`; translations are cached in memory for the session.
-- BetterTwitch contains no telemetry, analytics, advertising, or BetterTwitch-operated backend.
-
-## Compatibility
-
-- Matches `https://www.twitch.tv/*` and `https://dashboard.twitch.tv/*`.
-- Intended for current desktop browsers supported by ScriptCat.
-- Twitch frequently changes internal markup. If a control disappears, reload the page first, then report the affected Twitch page and browser.
+Twitch changes its website often. If the problem remains, report which Twitch page you were using and the name of your browser.
 
 ## License
 
-Released under the [MIT License](LICENSE).
+BetterTwitch is released under the [MIT License](LICENSE).
